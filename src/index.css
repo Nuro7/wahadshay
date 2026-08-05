@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Cormorant Garamond", serif;
-  --font-body: "Jost", sans-serif;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --font-numbers: "Outfit", sans-serif;
 
-  --color-plum: #5E2689;
-  --color-yellow: #F5BD20;
-  --color-plum-dark: #2E1A47;
-  --color-beige: #EFE7DA;
+  --color-plum: #5E2689;      /* Primary Purple */
+  --color-plum-dark: #2E1A47; /* Dark Plum */
+  --color-yellow: #F5BD20;    /* Warm Yellow */
+  --color-beige: #EFE7DA;     /* Soft Beige */
   --color-white: #FFFFFF;
   --color-grey: #A5A5A5;
 }
@@ -19,8 +20,8 @@
 
   body {
     margin: 0;
-    background-color: var(--color-cream);
-    color: var(--color-ink);
+    background-color: var(--color-plum); /* Purple is the primary background */
+    color: var(--color-white);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -29,9 +30,99 @@
   h1,
   h2,
   h3,
-  h4 {
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
-    font-weight: 500;
-    color: var(--color-ink);
+    color: var(--color-white);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
+
+  /* Custom Premium Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-plum-dark);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-yellow);
+    border-radius: 5px;
+    border: 2px solid var(--color-plum-dark);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e0ab1b;
+  }
+}
+
+/* Custom Animation Utilities */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(12px) rotate(-3deg);
+  }
+}
+
+@keyframes steam {
+  0% {
+    transform: translateY(0) scaleX(1) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-40px) scaleX(1.2) rotate(5deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-80px) scaleX(1.5) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float-burger {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-fries {
+  animation: float-delayed 5s ease-in-out infinite;
+}
+
+.animate-float-chilli {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-steam-line {
+  animation: steam 7s linear infinite;
+}
+
+.animate-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
 }
