@@ -126,3 +126,13 @@
 .animate-glow {
   animation: pulse-glow 4s ease-in-out infinite;
 }
+
+@keyframes orb-float-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(60px, -40px) scale(1.1); }
+}
+
+@keyframes orb-float-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50% { transform: translate(-70px, 50px) scale(0.9); }
+}

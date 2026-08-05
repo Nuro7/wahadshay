@@ -6,6 +6,7 @@ import Specials from "./components/Specials";
 import Franchise from "./components/Franchise";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
+import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 
 function App() {
@@ -13,7 +14,9 @@ function App() {
   useLenis();
 
   return (
-    <Layout>
+    <>
+      <Preloader />
+      <Layout>
       <Navbar />
       <main>
         <Hero />
@@ -24,6 +27,7 @@ function App() {
       </main>
       <Footer />
     </Layout>
+    </>
   );
 }
 

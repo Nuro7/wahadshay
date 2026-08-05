@@ -6,16 +6,36 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-plum text-white relative overflow-hidden font-body selection:bg-yellow selection:text-plum-dark">
-      {/* Premium Ambient Background Effects */}
-      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#8b3fd4] rounded-full blur-[180px] opacity-25 pointer-events-none z-0" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] bg-[#4c167d] rounded-full blur-[200px] opacity-30 pointer-events-none z-0" />
-      <div className="absolute top-[40%] right-[-15%] w-[40%] h-[40%] bg-[#aa3bff] rounded-full blur-[150px] opacity-15 pointer-events-none z-0" />
+    <div className="min-h-screen bg-plum-dark text-white relative overflow-hidden font-body selection:bg-yellow selection:text-plum-dark">
       
-      {/* Noise overlay */}
-      <div className="absolute inset-0 bg-[radial-gradient(transparent_50%,rgba(0,0,0,0.3))] pointer-events-none z-0" />
-      
-      {/* Content wrapper */}
+      {/* 1. Cinematic Ambient Orbs (Floating & Animated) */}
+      <div 
+        className="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] rounded-full bg-plum opacity-30 blur-[150px] pointer-events-none z-0" 
+        style={{
+          animation: "orb-float-1 25s ease-in-out infinite"
+        }}
+      />
+      <div 
+        className="absolute bottom-[-15%] right-[-10%] w-[55vw] h-[55vw] rounded-full bg-[#8b3fd4] opacity-25 blur-[160px] pointer-events-none z-0" 
+        style={{
+          animation: "orb-float-2 30s ease-in-out infinite"
+        }}
+      />
+      <div 
+        className="absolute top-[30%] right-[-15%] w-[40vw] h-[40vw] rounded-full bg-[#4a127a] opacity-20 blur-[120px] pointer-events-none z-0" 
+      />
+      {/* Subtle Yellow Ambient Accent Glow */}
+      <div 
+        className="absolute top-[40%] left-[-5%] w-[30vw] h-[30vw] rounded-full bg-yellow opacity-[0.03] blur-[150px] pointer-events-none z-0 animate-glow" 
+      />
+
+      {/* 2. Very Subtle Brand Grid Pattern Overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.012)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.012)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none z-0" />
+
+      {/* 3. Radial Vignette for Cinematic Depth */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(22,23,29,0.5)_90%)] pointer-events-none z-0" />
+
+      {/* Main Content Wrap */}
       <div className="relative z-10 w-full">
         {children}
       </div>
