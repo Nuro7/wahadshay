@@ -25,8 +25,8 @@ export function Preloader() {
           {/* Subtle glowing ambient sphere */}
           <div className="absolute w-[400px] h-[400px] bg-plum rounded-full blur-[140px] opacity-40 pointer-events-none" />
 
-          {/* Premium Video Frame */}
-          <div className="relative w-[300px] md:w-[600px] aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] z-10 bg-black">
+          {/* Full Screen Video Frame */}
+          <div className="absolute inset-0 w-full h-full z-10 bg-black">
             <video
               src="/rendering.mp4"
               autoPlay
@@ -36,12 +36,12 @@ export function Preloader() {
             />
           </div>
 
-          {/* Luxury loader text */}
-          <div className="mt-8 z-10 flex flex-col items-center gap-2">
-            <span className="font-display text-lg font-bold text-white tracking-widest uppercase">
+          {/* Absolute bottom loader overlay */}
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2">
+            <span className="font-display text-sm font-bold text-white tracking-widest uppercase">
               Wahad Shay
             </span>
-            <div className="flex gap-1.5 mt-2">
+            <div className="flex gap-1.5 mt-1">
               <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-bounce" style={{ animationDelay: "0s" }} />
               <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-bounce" style={{ animationDelay: "0.2s" }} />
               <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-bounce" style={{ animationDelay: "0.4s" }} />
