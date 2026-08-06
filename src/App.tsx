@@ -4,6 +4,7 @@ import Hero from "./components/hero/Hero";
 import Menu from "./components/Menu";
 import Specials from "./components/Specials";
 import Franchise from "./components/Franchise";
+import FranchiseSection from "./components/FranchiseSection";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
@@ -23,6 +24,7 @@ function App() {
         <Menu />
         <Specials />
         <Franchise />
+        <FranchiseSection />
         <Contact />
       </main>
       <Footer />
