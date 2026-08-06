@@ -9,13 +9,14 @@ interface Branch {
   y: string;
   mapX: number; // SVG coordinate for connection line
   mapY: number;
+  textOffset: string; // Offset class to prevent overlap on map
 }
 
 const branches: Branch[] = [
-  { city: "Ajman", area: "Al Jurf", status: "Open", x: "55%", y: "48%", mapX: 440, mapY: 300 },
-  { city: "Dubai", area: "Al Barsha", status: "Coming Soon", x: "58%", y: "58%", mapX: 464, mapY: 362 },
-  { city: "Sharjah", area: "Muwaileh", status: "Coming Soon", x: "60%", y: "53%", mapX: 480, mapY: 331 },
-  { city: "Abu Dhabi", area: "Al Falah", status: "Open", x: "42%", y: "63%", mapX: 336, mapY: 393 },
+  { city: "Ajman", area: "Al Jurf", status: "Open", x: "55%", y: "48%", mapX: 440, mapY: 300, textOffset: "bottom-full left-1/2 -translate-x-1/2 mb-2.5" },
+  { city: "Dubai", area: "Al Barsha", status: "Coming Soon", x: "58%", y: "58%", mapX: 464, mapY: 362, textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5" },
+  { city: "Sharjah", area: "Muwaileh", status: "Coming Soon", x: "60%", y: "53%", mapX: 480, mapY: 331, textOffset: "left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap" },
+  { city: "Abu Dhabi", area: "Al Falah", status: "Open", x: "42%", y: "63%", mapX: 336, mapY: 393, textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5" },
 ];
 
 // Continuous golden floating particles component
@@ -487,6 +488,7 @@ export default function FranchiseSection() {
           <div className="absolute inset-0 pointer-events-none z-20">
             {branches.map((b, i) => {
               const isActive = hoveredCard === b.city;
+              const isOpen = b.status === "Open";
               return (
                 <div
                   key={b.city}
@@ -497,42 +499,56 @@ export default function FranchiseSection() {
                     transform: "translate(-50%, -50%)",
                   }}
                 >
+                  {/* Simple Location Dot Symbol */}
+                  <div className="relative flex items-center justify-center w-6 h-6">
+                    {/* Ring ping ripple animation */}
+                    <span 
+                      className={`absolute rounded-full transition-all duration-500 ${
+                        isOpen ? "bg-green-400" : "bg-[#F5D66A]"
+                      }`}
+                      style={{
+                        width: isActive ? "32px" : "18px",
+                        height: isActive ? "32px" : "18px",
+                        animation: "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite",
+                      }}
+                    />
+                    {/* Glowing outer aura */}
+                    <span 
+                      className={`absolute rounded-full blur-[6px] transition-all duration-500 ${
+                        isOpen ? "bg-green-400/40" : "bg-[#F5D66A]/40"
+                      }`}
+                      style={{
+                        width: isActive ? "20px" : "12px",
+                        height: isActive ? "20px" : "12px",
+                      }}
+                    />
+                    {/* Central solid dot */}
+                    <span 
+                      className={`relative rounded-full transition-all duration-500 shadow-[0_0_8px_currentColor] ${
+                        isOpen ? "bg-green-400 text-green-400" : "bg-[#F5D66A] text-[#F5D66A]"
+                      }`}
+                      style={{
+                        width: isActive ? "10px" : "6px",
+                        height: isActive ? "10px" : "6px",
+                      }}
+                    />
+                  </div>
+
+                  {/* Clean City Label - positioned using textOffset to prevent overlap */}
                   <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: 0.6 + i * 0.15, duration: 0.5 }}
-                    className="relative flex flex-col items-center justify-center p-3 rounded-xl border border-transparent transition-all duration-500"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1,
+                      color: isActive ? "#F8EED5" : "#D4AF37"
+                    }}
+                    transition={{ delay: 0.6 + i * 0.15, duration: 0.4 }}
+                    className={`absolute ${b.textOffset} font-display font-bold text-xs tracking-wider pointer-events-none transition-all duration-300`}
                     style={{
-                      background: isActive ? "rgba(52, 30, 76, 0.75)" : "transparent",
-                      borderColor: isActive ? "rgba(212, 175, 55, 0.3)" : "transparent",
-                      boxShadow: isActive ? "0 8px 24px rgba(0, 0, 0, 0.4)" : "none",
-                      backdropBlur: isActive ? "8px" : "0px",
+                      textShadow: isActive ? "0 0 10px rgba(212,175,55,0.6)" : "0 2px 4px rgba(0,0,0,0.8)",
                     }}
                   >
-                    {/* Glowing status indicator aura */}
-                    {isActive && (
-                      <span className="absolute -inset-1 rounded-xl bg-[#D4AF37]/5 blur-[8px] animate-pulse pointer-events-none" />
-                    )}
-                    
-                    {/* City Name - Gold, Bold, Large */}
-                    <span className="text-[#D4AF37] font-display font-bold text-xs md:text-sm tracking-wide transition-colors duration-300">
-                      {b.city}
-                    </span>
-
-                    {/* Faint Divider */}
-                    <div className="h-[1px] w-12 bg-[#D4AF37]/35 my-1 transition-all duration-500" style={{ width: isActive ? "48px" : "32px" }} />
-
-                    {/* Status Info */}
-                    <div className="flex items-center justify-center gap-1.5 text-[9px] md:text-[10px] text-[#F8EED5] font-body tracking-wider uppercase font-medium">
-                      <span 
-                        className={`w-1.5 h-1.5 rounded-full shadow-[0_0_6px_currentColor] ${
-                          b.status === "Open" 
-                            ? "bg-green-400 text-green-400 animate-pulse" 
-                            : "bg-[#F5D66A] text-[#F5D66A]"
-                        }`} 
-                      />
-                      {b.status === "Open" ? "OPEN" : "COMING SOON"}
-                    </div>
+                    {b.city}
                   </motion.div>
                 </div>
               );
