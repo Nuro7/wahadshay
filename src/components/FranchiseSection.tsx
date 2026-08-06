@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { MapPin } from "lucide-react";
 
 interface Branch {
   city: string;
@@ -481,78 +482,98 @@ export default function FranchiseSection() {
                   );
                 })}
               </g>
-            </svg>
-          </div>
 
-          {/* Location Elegant City Labels directly on the map (No pins) */}
-          <div className="absolute inset-0 pointer-events-none z-20">
-            {branches.map((b, i) => {
-              const isActive = hoveredCard === b.city;
-              const isOpen = b.status === "Open";
-              return (
-                <div
-                  key={b.city}
-                  className="absolute transition-all duration-500"
-                  style={{
-                    left: b.x,
-                    top: b.y,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                >
-                  {/* Simple Location Dot Symbol */}
-                  <div className="relative flex items-center justify-center w-6 h-6">
-                    {/* Ring ping ripple animation */}
-                    <span 
-                      className={`absolute rounded-full transition-all duration-500 ${
-                        isOpen ? "bg-green-400" : "bg-[#F5D66A]"
-                      }`}
+              {/* Render Location Markers directly inside the SVG space to ensure perfect alignment */}
+              {branches.map((b, i) => {
+                const isActive = hoveredCard === b.city;
+                const isOpen = b.status === "Open";
+                
+                // SVG coordinate offsets for city names to prevent overlap:
+                // Ajman: text above (mapX, mapY - 24)
+                // Dubai: text below (mapX, mapY + 28)
+                // Sharjah: text to the right (mapX + 16, mapY + 4)
+                // Abu Dhabi: text below (mapX, mapY + 28)
+                let textX = b.mapX;
+                let textY = b.mapY;
+                let textAnchor = "middle";
+                
+                if (b.city === "Ajman") {
+                  textY = b.mapY - 24;
+                } else if (b.city === "Dubai") {
+                  textY = b.mapY + 28;
+                } else if (b.city === "Sharjah") {
+                  textX = b.mapX + 16;
+                  textY = b.mapY + 4;
+                  textAnchor = "start";
+                } else if (b.city === "Abu Dhabi") {
+                  textY = b.mapY + 28;
+                }
+
+                return (
+                  <g key={b.city} className="transition-all duration-300">
+                    {/* Ring ping ripple animation (drawn as an SVG expanding circle) */}
+                    <circle
+                      cx={b.mapX}
+                      cy={b.mapY}
+                      r={isActive ? 18 : 10}
+                      className={`fill-none transition-all duration-500 ${
+                        isOpen ? "stroke-green-400" : "stroke-[#F5D66A]"
+                      } opacity-40`}
                       style={{
-                        width: isActive ? "32px" : "18px",
-                        height: isActive ? "32px" : "18px",
+                        transformOrigin: `${b.mapX}px ${b.mapY}px`,
                         animation: "ping 3s cubic-bezier(0, 0, 0.2, 1) infinite",
                       }}
+                      strokeWidth="1.5"
                     />
-                    {/* Glowing outer aura */}
-                    <span 
-                      className={`absolute rounded-full blur-[6px] transition-all duration-500 ${
-                        isOpen ? "bg-green-400/40" : "bg-[#F5D66A]/40"
-                      }`}
-                      style={{
-                        width: isActive ? "20px" : "12px",
-                        height: isActive ? "20px" : "12px",
-                      }}
-                    />
-                    {/* Central solid dot */}
-                    <span 
-                      className={`relative rounded-full transition-all duration-500 shadow-[0_0_8px_currentColor] ${
-                        isOpen ? "bg-green-400 text-green-400" : "bg-[#F5D66A] text-[#F5D66A]"
-                      }`}
-                      style={{
-                        width: isActive ? "10px" : "6px",
-                        height: isActive ? "10px" : "6px",
-                      }}
-                    />
-                  </div>
 
-                  {/* Clean City Label - positioned using textOffset to prevent overlap */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1,
-                      color: isActive ? "#F8EED5" : "#D4AF37"
-                    }}
-                    transition={{ delay: 0.6 + i * 0.15, duration: 0.4 }}
-                    className={`absolute ${b.textOffset} font-display font-bold text-xs tracking-wider pointer-events-none transition-all duration-300`}
-                    style={{
-                      textShadow: isActive ? "0 0 10px rgba(212,175,55,0.6)" : "0 2px 4px rgba(0,0,0,0.8)",
-                    }}
-                  >
-                    {b.city}
-                  </motion.div>
-                </div>
-              );
-            })}
+                    {/* Glowing blinking location pin inside SVG foreignObject */}
+                    <foreignObject
+                      x={b.mapX - 10}
+                      y={b.mapY - 20}
+                      width="20"
+                      height="20"
+                      className="pointer-events-none"
+                    >
+                      <motion.div
+                        animate={{
+                          scale: isActive ? 1.35 : 1,
+                          color: isOpen 
+                            ? ["#22c55e", "#F5D66A", "#22c55e"] // Green to Gold
+                            : ["#F5D66A", "#AFA6C8", "#F5D66A"] // Gold to Muted Purple
+                        }}
+                        transition={{
+                          scale: { type: "spring", stiffness: 300, damping: 15 },
+                          color: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                        }}
+                        className="flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+                      >
+                        <MapPin size={16} className="stroke-[2.5]" />
+                      </motion.div>
+                    </foreignObject>
+
+                    {/* City Label Text */}
+                    <text
+                      x={textX}
+                      y={textY}
+                      textAnchor={textAnchor}
+                      className="font-display font-bold transition-all duration-300 select-none"
+                      fill={isActive ? "#F8EED5" : "#D4AF37"}
+                      style={{
+                        fontSize: "11px",
+                        letterSpacing: "0.05em",
+                        cursor: "pointer",
+                        textShadow: isActive ? "0 0 8px rgba(212,175,55,0.8)" : "0 1px 3px rgba(0,0,0,0.9)",
+                        pointerEvents: "auto"
+                      }}
+                      onMouseEnter={() => setHoveredCard(b.city)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      {b.city}
+                    </text>
+                  </g>
+                );
+              })}
+            </svg>
           </div>
         </motion.div>
 
