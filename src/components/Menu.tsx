@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import type React from "react";
 
 const menuCategories = [
   {
@@ -27,7 +27,7 @@ export function Menu() {
       <div className="mx-auto max-w-6xl px-6 relative z-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24">
           <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block mb-3">
             Handcrafted Selections
           </span>
@@ -42,15 +42,12 @@ export function Menu() {
         {/* Menu Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
           {menuCategories.map((cat, idx) => (
-            <motion.div
+            <div
               key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: idx * 0.2 }}
-              className="rounded-3xl border border-white/5 bg-plum-dark/20 p-8 md:p-10 backdrop-blur-sm"
+              style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
+              className="reveal glass-card glass-card-hover p-8 md:p-10"
             >
-              <h3 className="font-display text-2xl md:text-3xl text-yellow font-extrabold mb-8 pb-3 border-b border-white/5">
+              <h3 className="font-display text-2xl md:text-3xl text-yellow font-extrabold mb-8 pb-3 border-b border-white/5 micro-title micro-transition">
                 {cat.title}
               </h3>
               
@@ -58,7 +55,7 @@ export function Menu() {
                 {cat.items.map((item) => (
                   <div key={item.name} className="group">
                     <div className="flex justify-between items-baseline gap-4 mb-2">
-                      <h4 className="font-display text-lg md:text-xl font-bold text-white group-hover:text-yellow transition-colors duration-300">
+                      <h4 className="font-display text-lg md:text-xl font-bold text-white group-hover:text-yellow transition-colors duration-300 micro-title micro-transition">
                         {item.name}
                       </h4>
                       <div className="flex-grow border-b border-dashed border-white/10 mx-2 group-hover:border-yellow/30 transition-colors duration-300" />
@@ -72,7 +69,7 @@ export function Menu() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

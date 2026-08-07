@@ -136,3 +136,200 @@
   0%, 100% { transform: translate(0px, 0px) scale(1); }
   50% { transform: translate(-70px, 50px) scale(0.9); }
 }
+
+/* Premium Scroll Reveal System */
+.reveal {
+  opacity: 0;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform: translateY(30px) translateZ(0); /* Mobile default */
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--stagger-idx, 0) * 0.1s);
+}
+
+@media (min-width: 768px) {
+  .reveal {
+    transform: translateY(40px) translateZ(0); /* Tablet */
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--stagger-idx, 0) * 0.1s);
+  }
+}
+
+@media (min-width: 1024px) {
+  .reveal {
+    transform: translateY(50px) translateZ(0); /* Desktop */
+  }
+}
+
+.reveal-active {
+  opacity: 1 !important;
+  transform: translateY(0) translateZ(0) !important;
+}
+
+/* Premium Glassmorphism Card System */
+.glass-card {
+  background: rgba(22, 15, 40, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  transition: 
+    transform 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+  will-change: transform, background-color, border-color, box-shadow;
+}
+
+.glass-card-hover:hover {
+  transform: scale(1.03) translateY(-6px);
+  background-color: rgba(30, 22, 55, 0.85);
+  border-color: rgba(124, 58, 237, 0.35);
+  box-shadow: 
+    0 25px 60px rgba(124, 58, 237, 0.20),
+    0 0 35px rgba(124, 58, 237, 0.25);
+}
+
+/* Micro Interactions */
+.micro-transition {
+  transition: transform 300ms ease, filter 300ms ease, color 300ms ease, background-color 300ms ease;
+}
+
+.glass-card-hover:hover .micro-icon {
+  transform: scale(1.05);
+}
+
+.glass-card-hover:hover .micro-title {
+  transform: translateY(-2px);
+}
+
+.glass-card-hover:hover .micro-button {
+  filter: brightness(1.15);
+}
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+  
+  .glass-card-hover:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  
+  .glass-card-hover:hover .micro-icon,
+  .glass-card-hover:hover .micro-title,
+  .glass-card-hover:hover .micro-button {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Hero Section Anim Helpers */
+.reveal-active .hero-underline {
+  transform: scaleX(1) !important;
+}
+
+@keyframes scroll-dot {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+.animate-scroll-dot {
+  animation: scroll-dot 1.5s ease-in-out infinite;
+}
+
+/* Network Map Gold Particles & Drift Animations */
+@keyframes float-up {
+  0% {
+    transform: translateY(105vh) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.35;
+  }
+  90% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-5vh) translateX(var(--drift-x, 0px)) scale(1);
+    opacity: 0;
+  }
+}
+
+.animate-float-up {
+  animation: float-up var(--float-duration, 15s) linear infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@keyframes smoke-drift-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -40px) scale(1.08); }
+  66% { transform: translate(-30px, 20px) scale(0.96); }
+}
+
+@keyframes smoke-drift-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(-40px, 30px) scale(0.96); }
+  66% { transform: translate(30px, -20px) scale(1.04); }
+}
+
+.animate-smoke-1 {
+  animation: smoke-drift-1 22s ease-in-out infinite;
+}
+
+.animate-smoke-2 {
+  animation: smoke-drift-2 18s ease-in-out infinite;
+}
+
+@keyframes draw-path {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-path 1.5s ease-out forwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes move-dot {
+  100% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+  }
+}
+
+.animate-move-dot {
+  motion-offset: 0%;
+  offset-distance: 0%;
+  animation: move-dot 4.5s linear infinite;
+}
+
+@keyframes pin-glow-green {
+  0%, 100% { color: #22c55e; }
+  50% { color: #F5D66A; }
+}
+
+@keyframes pin-glow-gold {
+  0%, 100% { color: #F5D66A; }
+  50% { color: #AFA6C8; }
+}
+
+.animate-pin-green {
+  animation: pin-glow-green 2s ease-in-out infinite;
+}
+
+.animate-pin-gold {
+  animation: pin-glow-gold 2s ease-in-out infinite;
+}
+
+
+

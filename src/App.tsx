@@ -9,10 +9,13 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
+import useScrollReveal from "./hooks/useScrollReveal";
 
 function App() {
   // Initialize Lenis smooth scroll
   useLenis();
+  // Initialize vanilla scroll reveal animation system
+  useScrollReveal();
 
   return (
     <>

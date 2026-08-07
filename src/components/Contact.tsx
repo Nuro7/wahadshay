@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import Button from "./ui/Button";
 import { HiEnvelope, HiPhone, HiMapPin, HiClock } from "react-icons/hi2";
 
@@ -11,7 +10,7 @@ export function Contact() {
       <div className="mx-auto max-w-6xl px-6 relative z-10">
         
         {/* Section Heading */}
-        <div className="text-center max-w-2xl mx-auto mb-16 md:mb-24">
+        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24">
           <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block mb-3">
             Get In Touch
           </span>
@@ -27,7 +26,7 @@ export function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
           
           {/* Contact Details (2/5 span) */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="reveal lg:col-span-2 space-y-8">
             
             <div className="space-y-6">
               <h3 className="font-display text-2xl font-extrabold text-white">
@@ -83,13 +82,7 @@ export function Contact() {
           </div>
 
           {/* Contact Form (3/5 span) */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-3 rounded-3xl border border-white/5 bg-plum/30 p-8 md:p-10 backdrop-blur-sm"
-          >
+          <div className="reveal lg:col-span-3 glass-card glass-card-hover p-8 md:p-10">
             <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -132,11 +125,11 @@ export function Contact() {
                 />
               </div>
 
-              <Button variant="primary" className="w-full">
+              <Button variant="primary" className="w-full micro-button micro-transition">
                 Send Inquiry
               </Button>
             </form>
-          </motion.div>
+          </div>
 
         </div>
 

@@ -1,0 +1,430 @@
+/* Base Reset & Variables */
+:root {
+  --color-primary: #6C3BFF;
+  --color-secondary: #8B5CFF;
+  --color-highlight: #A66CFF;
+  --color-bg: #09090F;
+  --color-glow: rgba(108, 59, 255, 0.45);
+  
+  --font-sans: 'Manrope', sans-serif;
+  --ease-cinematic: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-exit: cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.splash-active {
+  overflow: hidden; /* Lock scroll while preloader is active */
+}
+
+/* ==================================================
+   SPLASH SCREEN
+   ================================================== */
+
+.splash-container {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #3E205C 0%, #2E1A47 100%); /* Match exact home page Dark Plum background */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  will-change: transform, opacity;
+  transition: transform 900ms var(--ease-exit), opacity 900ms var(--ease-exit);
+}
+
+/* Exit Animation trigger */
+.splash-container.splash-exit {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Shifting ambient background glow */
+.splash-bg-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, var(--color-glow) 0%, transparent 65%);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: slowGlowShift 10s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes slowGlowShift {
+  0% { transform: scale(1) translate(0, 0); }
+  50% { transform: scale(1.15) translate(3%, -3%); }
+  100% { transform: scale(0.9) translate(-2%, 4%); }
+}
+
+/* Floating blurred glowing circles (Orbs) */
+.ambient-orbs {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  opacity: 0.22;
+  will-change: transform;
+}
+
+.orb-1 {
+  width: 380px;
+  height: 380px;
+  background: var(--color-primary);
+  top: 15%;
+  left: 20%;
+  animation: orbDrift1 22s ease-in-out infinite;
+}
+
+.orb-2 {
+  width: 420px;
+  height: 420px;
+  background: var(--color-secondary);
+  bottom: 10%;
+  right: 15%;
+  animation: orbDrift2 26s ease-in-out infinite;
+}
+
+@keyframes orbDrift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(80px, 60px) scale(1.15); }
+}
+
+@keyframes orbDrift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-60px, -90px) scale(0.85); }
+}
+
+
+/* Centered layout */
+.splash-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+  gap: 20px;
+  will-change: transform;
+}
+
+.logo-text-row {
+  display: flex;
+  align-items: flex-end; /* Align bottoms perfectly */
+  justify-content: center;
+  position: relative;
+  height: 145px; /* Height to accommodate the taller icon */
+  gap: 6px; /* Narrow gap to match logo_wahad.png */
+}
+
+/* ==================================================
+   STAGE 1: ICON ENTERING
+   ================================================= */
+
+.logo-wrapper {
+  height: 139px; /* Icon is larger than wordmark */
+  width: auto;
+  opacity: 0;
+  transform: translateY(20px) scale(0.70) rotate(2deg);
+  filter: drop-shadow(0 0 0px transparent);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 1.2s var(--ease-cinematic),
+    transform 1.2s var(--ease-cinematic),
+    filter 1.2s var(--ease-cinematic);
+  z-index: 12;
+}
+
+@media (min-width: 481px) {
+  .logo-wrapper {
+    transform: translateX(100px) translateY(20px) scale(0.70) rotate(2deg);
+  }
+  .logo-wrapper.reveal-stage1 {
+    transform: translateX(100px) translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.logo-wrapper.reveal-stage1 {
+  opacity: 1;
+  transform: translateY(0) scale(1) rotate(0deg);
+  filter: drop-shadow(0 4px 25px var(--color-glow));
+}
+
+.splash-icon {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  animation: iconBreathing 3s ease-in-out infinite alternate;
+}
+
+@keyframes iconBreathing {
+  0% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(108, 59, 255, 0.3));
+  }
+  100% {
+    filter: brightness(1.1) drop-shadow(0 0 25px rgba(108, 59, 255, 0.6));
+  }
+}
+
+/* ==================================================
+   STAGE 2: ICON SLIDES LEFT, WORDMARK REVEALED
+   ================================================= */
+
+/* Slide left animation triggered on wrapper */
+.logo-wrapper.reveal-stage2 {
+  transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+}
+
+.text-wrapper {
+  height: 106px; /* Wordmark is smaller than icon */
+  width: auto;
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateX(30px);
+  will-change: transform, opacity, filter, letter-spacing;
+  transition: 
+    opacity 1s var(--ease-cinematic),
+    transform 1s var(--ease-cinematic),
+    filter 1s var(--ease-cinematic);
+  z-index: 11;
+}
+
+.text-wrapper.reveal-stage2 {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateX(0px);
+}
+
+.splash-wordmark {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==================================================
+   STAGE 3: TAGLINE FADE IN
+   ================================================= */
+
+.tagline-wrapper {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(12px);
+  will-change: transform, opacity, filter;
+  transition: 
+    opacity 800ms var(--ease-cinematic),
+    transform 800ms var(--ease-cinematic),
+    filter 800ms var(--ease-cinematic);
+  margin-top: 10px; /* Reduced gap below bottom-aligned logo row */
+}
+
+.tagline-wrapper.reveal-stage3 {
+  opacity: 0.75;
+  filter: blur(0px);
+  transform: translateY(0px);
+}
+
+.splash-tagline {
+  height: 22px; /* Set exact relative height proportional to 116px icon */
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* ==================================================
+   WEBSITE MAIN CONTENT REVEAL
+   ================================================== */
+
+.hero-section {
+  min-h: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+  padding: 40px 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+  z-index: 5;
+  position: relative;
+}
+
+/* Triggered via class when splash exits */
+.hero-section.reveal-hero {
+  animation: heroFadeUp 900ms var(--ease-cinematic) 150ms forwards;
+}
+
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  text-align: center;
+  max-width: 650px;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-highlight);
+  margin-bottom: 20px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #bca7ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: #a0aec0;
+  line-height: 1.6;
+  margin-bottom: 35px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 99px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(108, 59, 255, 0.4);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0 4px 25px rgba(108, 59, 255, 0.6);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================================================
+   RESPONSIVE DESIGN
+   ================================================== */
+
+@media (max-width: 768px) {
+  .splash-icon {
+    height: 85px;
+  }
+  .splash-wordmark {
+    height: 40px;
+  }
+  .logo-wrapper.reveal-stage2 {
+    transform: translateX(-80px);
+  }
+  .text-wrapper {
+    left: 20px;
+  }
+  .hero-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .logo-wrapper.reveal-stage2 {
+    transform: translateY(-25px);
+  }
+  .text-wrapper {
+    position: static;
+    transform: translateY(20px);
+  }
+  .text-wrapper.reveal-stage2 {
+    transform: translateY(0);
+  }
+}
+
+/* ==================================================
+   ACCESSIBILITY: REDUCED MOTION PREFERENCE
+   ================================================== */
+@media (prefers-reduced-motion: reduce) {
+  .splash-container {
+    transition: opacity 300ms ease;
+  }
+  .splash-container.splash-exit {
+    transform: none;
+    opacity: 0;
+  }
+  .logo-wrapper, .text-wrapper, .tagline-wrapper {
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transition: none !important;
+  }
+  .particle, .orb {
+    animation: none !important;
+    display: none;
+  }
+  .hero-section {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

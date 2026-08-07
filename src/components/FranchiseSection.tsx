@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import type React from "react";
 import { MapPin } from "lucide-react";
 
 interface Branch {
@@ -22,16 +22,16 @@ const branches: Branch[] = [
 
 // Continuous golden floating particles component
 const GoldParticles = () => {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number; size: number; duration: number; delay: number }>>([]);
+  const [particles, setParticles] = useState<Array<{ id: number; x: number; size: number; duration: number; delay: number; driftX: number }>>([]);
   
   useEffect(() => {
     const generated = Array.from({ length: 25 }).map((_, i) => ({
       id: i,
       x: Math.random() * 100,
-      y: Math.random() * 100,
       size: Math.random() * 3 + 1,
       duration: Math.random() * 20 + 10,
       delay: Math.random() * -20,
+      driftX: Math.random() * 40 - 20,
     }));
     setParticles(generated);
   }, []);
@@ -39,26 +39,18 @@ const GoldParticles = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       {particles.map((p) => (
-        <motion.div
+        <div
           key={p.id}
-          className="absolute rounded-full bg-gradient-to-b from-[#D4AF37] to-[#F5D66A] opacity-35 blur-[0.5px]"
+          className="absolute rounded-full bg-gradient-to-b from-[#D4AF37] to-[#F5D66A] opacity-35 blur-[0.5px] animate-float-up"
           style={{
             left: `${p.x}%`,
-            top: `${p.y}%`,
-            width: p.size,
-            height: p.size,
-          }}
-          animate={{
-            y: ["0vh", "-100vh"],
-            x: ["0vw", `${Math.random() * 10 - 5}vw`],
-            opacity: [0, 0.45, 0.45, 0],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "linear",
-          }}
+            bottom: `-10px`,
+            width: `${p.size}px`,
+            height: `${p.size}px`,
+            "--float-duration": `${p.duration}s`,
+            "--float-delay": `${p.delay}s`,
+            "--drift-x": `${p.driftX}px`,
+          } as React.CSSProperties}
         />
       ))}
     </div>
@@ -132,79 +124,34 @@ export default function FranchiseSection() {
 
       {/* Subtle Smoke Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <motion.div
-          className="absolute -bottom-[20%] left-[10%] w-[600px] h-[600px] bg-gradient-to-t from-[#D4AF37]/5 to-transparent rounded-full blur-[140px]"
-          animate={{
-            x: [0, 30, -30, 0],
-            y: [0, -40, 20, 0],
-            scale: [1, 1.08, 0.96, 1],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute -top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-b from-[#5E2689]/10 to-transparent rounded-full blur-[120px]"
-          animate={{
-            x: [0, -40, 30, 0],
-            y: [0, 30, -20, 0],
-            scale: [1, 0.96, 1.04, 1],
-          }}
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
+        <div className="absolute -bottom-[20%] left-[10%] w-[600px] h-[600px] bg-gradient-to-t from-[#D4AF37]/5 to-transparent rounded-full blur-[140px] animate-smoke-1" />
+        <div className="absolute -top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-b from-[#5E2689]/10 to-transparent rounded-full blur-[120px] animate-smoke-2" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-24 space-y-4">
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="uppercase tracking-[8px] text-[#D4AF37] text-xs font-bold font-display"
-          >
+        <div className="reveal text-center mb-24 space-y-4">
+          <p className="uppercase tracking-[8px] text-[#D4AF37] text-xs font-bold font-display">
             WAHAD SHAY
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#F8EED5] font-display"
-          >
+          </p>
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#F8EED5] font-display">
             Our Franchise Network
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-[#D9D0E8] max-w-xl mx-auto text-sm md:text-base font-light font-body"
-          >
+          </h2>
+          <p className="text-[#D9D0E8] max-w-xl mx-auto text-sm md:text-base font-light font-body">
             Growing Across the UAE with Authentic Malabar Flavours.
-          </motion.p>
+          </p>
         </div>
 
         {/* Map Visualization Container (Increased size by 35%) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{
-            x: mousePosition.x,
-            y: mousePosition.y,
-            transformStyle: "preserve-3d",
-          }}
-          className="relative mx-auto max-w-5xl h-[520px] md:h-[620px] rounded-[32px] border border-[#D4AF37]/18 bg-white/[0.04] backdrop-blur-[18px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)]"
-        >
+        <div className="reveal">
+          <div
+            style={{
+              transform: `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`,
+              transformStyle: "preserve-3d",
+              transition: "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
+            }}
+            className="relative mx-auto max-w-5xl h-[520px] md:h-[620px] rounded-[32px] border border-[#D4AF37]/18 bg-white/[0.04] backdrop-blur-[18px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)] transition-shadow duration-500"
+          >
           {/* Radial Ambient Glow behind Map */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.09),transparent_60%)] pointer-events-none" />
 
@@ -437,7 +384,7 @@ export default function FranchiseSection() {
                   return (
                     <g key={route.id}>
                       {/* Background thicker glow line */}
-                      <motion.path
+                      <path
                         d={route.path}
                         fill="none"
                         stroke="#D4AF37"
@@ -449,34 +396,23 @@ export default function FranchiseSection() {
                         }}
                       />
                       {/* Standard thin route line */}
-                      <motion.path
+                      <path
                         d={route.path}
                         fill="none"
                         stroke={isRouteActive ? "#F5D66A" : "#D4AF37"}
                         strokeWidth={isRouteActive ? 1.8 : 1.0}
                         strokeOpacity={isRouteActive ? 0.95 : 0.3}
-                        className="transition-all duration-500"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                        className="transition-all duration-500 animate-draw-path"
                       />
                       {/* Travelling Glow Dot */}
-                      <motion.circle
+                      <circle
                         r="3.0"
                         fill="#F8EED5"
                         style={{
                           offsetPath: `path('${route.path}')`,
                           boxShadow: "0 0 8px #F5D66A",
                         }}
-                        animate={{
-                          offsetDistance: ["0%", "100%"],
-                        }}
-                        transition={{
-                          duration: 4.5,
-                          repeat: Infinity,
-                          ease: "linear",
-                        }}
-                        className="shadow-[0_0_6px_#D4AF37]"
+                        className="animate-move-dot shadow-[0_0_6px_#D4AF37]"
                       />
                     </g>
                   );
@@ -534,21 +470,13 @@ export default function FranchiseSection() {
                       height="20"
                       className="pointer-events-none"
                     >
-                      <motion.div
-                        animate={{
-                          scale: isActive ? 1.35 : 1,
-                          color: isOpen 
-                            ? ["#22c55e", "#F5D66A", "#22c55e"] // Green to Gold
-                            : ["#F5D66A", "#AFA6C8", "#F5D66A"] // Gold to Muted Purple
-                        }}
-                        transition={{
-                          scale: { type: "spring", stiffness: 300, damping: 15 },
-                          color: { duration: 2, repeat: Infinity, ease: "easeInOut" }
-                        }}
-                        className="flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]"
+                      <div
+                        className={`flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] transition-transform duration-300 ${
+                          isActive ? "scale-135" : "scale-100"
+                        } ${isOpen ? "animate-pin-green" : "animate-pin-gold"}`}
                       >
                         <MapPin size={16} className="stroke-[2.5]" />
-                      </motion.div>
+                      </div>
                     </foreignObject>
 
                     {/* City Label Text */}
@@ -575,21 +503,18 @@ export default function FranchiseSection() {
               })}
             </svg>
           </div>
-        </motion.div>
+        </div>
+      </div>
 
         {/* Location Grid Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
           {branches.map((b, i) => (
-            <motion.div
+            <div
               key={b.city}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              style={{ "--stagger-idx": i + 1 } as React.CSSProperties}
               onMouseEnter={() => setHoveredCard(b.city)}
               onMouseLeave={() => setHoveredCard(null)}
-              whileHover={{ y: -10 }}
-              className="group relative rounded-3xl border border-[#D4AF37]/18 bg-[#341E4C]/65 backdrop-blur-xl p-8 flex flex-col justify-between h-[230px] overflow-hidden transition-all duration-500 hover:border-[#D4AF37]/45 hover:shadow-[0_12px_32px_rgba(212,175,55,0.08)]"
+              className="reveal glass-card glass-card-hover group relative p-8 flex flex-col justify-between h-[230px] overflow-hidden"
             >
               {/* Top border glowing slide animation */}
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
@@ -614,7 +539,7 @@ export default function FranchiseSection() {
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-3xl font-extrabold tracking-tight text-[#D4AF37] font-display transition-colors duration-300 group-hover:text-[#F8EED5]">
+                  <h3 className="text-3xl font-extrabold tracking-tight text-[#D4AF37] font-display transition-colors duration-300 group-hover:text-[#F8EED5] micro-title micro-transition">
                     {b.city}
                   </h3>
                   <p className="text-[#F8EED5] text-sm font-light font-body group-hover:text-white transition-colors duration-300">
@@ -628,7 +553,7 @@ export default function FranchiseSection() {
                   WAHAD SHAY LUXURY EXPERIENCE
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

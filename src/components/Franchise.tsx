@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import type React from "react";
 import Button from "./ui/Button";
 
 const franchiseSteps = [
@@ -33,7 +33,7 @@ export function Franchise() {
       <div className="mx-auto max-w-6xl px-6 relative z-10">
         
         {/* Section Heading & Flex Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-24">
+        <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-24">
           <div className="lg:col-span-2 space-y-6 text-center lg:text-left">
             <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
               Partner With Us
@@ -55,26 +55,23 @@ export function Franchise() {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {franchiseSteps.map((step, idx) => (
-            <motion.div
+            <div
               key={step.step}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: idx * 0.15 }}
-              className="rounded-3xl border border-white/5 bg-plum-dark/20 p-8 flex flex-col justify-between h-[260px] hover:border-yellow/10 transition-colors duration-300"
+              style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
+              className="reveal glass-card glass-card-hover p-8 flex flex-col justify-between h-[260px]"
             >
-              <div className="font-numbers text-4xl font-extrabold text-yellow/30">
+              <div className="font-numbers text-4xl font-extrabold text-yellow/30 micro-icon micro-transition">
                 {step.step}
               </div>
               <div className="space-y-3">
-                <h3 className="font-display text-xl font-bold text-white">
+                <h3 className="font-display text-xl font-bold text-white micro-title micro-transition">
                   {step.title}
                 </h3>
                 <p className="text-grey text-xs md:text-sm leading-relaxed">
                   {step.desc}
                 </p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

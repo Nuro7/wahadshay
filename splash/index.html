@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wahad Shay — Cinematic Logo Reveal Showcase</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="splash-active">
+
+  <!-- Cinematic Splash Screen Preloader -->
+  <div id="splash-preloader" class="splash-container">
+    <!-- Shifting ambient background glow -->
+    <div class="splash-bg-glow"></div>
+
+    <!-- Glowing orbs -->
+    <div class="ambient-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+    </div>
+
+
+
+    <!-- Logo layout elements -->
+    <div class="splash-content" id="splash-content">
+      <div class="logo-text-row">
+        <!-- Stage 1 Icon -->
+        <div class="logo-wrapper" id="logo-wrapper">
+          <img src="/icon.png" class="splash-icon" alt="Wahad Shay Icon">
+        </div>
+        <!-- Stage 2 Wordmark -->
+        <div class="text-wrapper" id="text-wrapper">
+          <img src="/wordmark.png" class="splash-wordmark" alt="Wahad Shay Wordmark">
+        </div>
+      </div>
+      <!-- Stage 3 Tagline -->
+      <div class="tagline-wrapper" id="tagline-wrapper">
+        <img src="/tagline.png" class="splash-tagline" alt="Wahad Shay Tagline">
+      </div>
+    </div>
+  </div>
+
+  <!-- Showcase Mockup Web App Hero (Revealed after Splash exits) -->
+  <main id="main-content" class="hero-section" aria-hidden="true">
+    <div class="hero-content">
+      <span class="hero-tag">Taste the Extraordinary</span>
+      <h1 class="hero-title">A World of Flavor in One Place</h1>
+      <p class="hero-desc">Globally inspired flavours crafted with premium ingredients and unforgettable experiences.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary">Explore Menu</button>
+        <button class="btn btn-secondary">Our Specials</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

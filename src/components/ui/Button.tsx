@@ -1,5 +1,4 @@
 import type { ButtonHTMLAttributes } from "react";
-import { motion } from "framer-motion";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
 
@@ -14,26 +13,24 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base font-semibold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-plum cursor-pointer select-none font-body";
+    "inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base font-semibold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-plum cursor-pointer select-none font-body active:scale-[0.98] hover:-translate-y-[3px] transform will-change-transform";
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
-      "bg-yellow text-plum-dark shadow-[0_4px_20px_rgba(245,189,32,0.3)] hover:shadow-[0_4px_30px_rgba(245,189,32,0.6)] hover:bg-[#ffca2b] border border-transparent",
+      "bg-yellow text-plum-dark shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_20px_rgba(245,189,32,0.15)] hover:bg-[#ffd03d] border border-transparent",
     secondary:
-      "bg-transparent text-white border border-white/20 backdrop-blur-sm hover:bg-white/10 hover:border-white/40 hover:shadow-[0_0_20px_rgba(94,38,137,0.3)]",
+      "bg-white/5 text-white border border-white/20 backdrop-blur-md hover:bg-white/10 hover:border-yellow hover:text-white",
     ghost:
       "text-white/80 hover:text-white hover:bg-white/5",
   };
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.03, y: -2 }}
-      whileTap={{ scale: 0.98 }}
+    <button
       className={`${baseClasses} ${variantClasses[variant]} ${className}`}
-      {...(props as any)}
+      {...props}
     >
       {children}
-    </motion.button>
+    </button>
   );
 }
 export default Button;
