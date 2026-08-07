@@ -5,10 +5,10 @@
   --font-body: "Manrope", sans-serif;
   --font-numbers: "Outfit", sans-serif;
 
-  --color-plum: #5E2689;      /* Primary Purple */
-  --color-plum-dark: #2E1A47; /* Dark Plum */
-  --color-yellow: #F5BD20;    /* Warm Yellow */
-  --color-beige: #EFE7DA;     /* Soft Beige */
+  --color-plum: #5E2689;      /* Primary Brand Purple */
+  --color-plum-dark: #2E1A47; /* Dark Plum Background */
+  --color-yellow: #F5BD20;    /* Warm Yellow Accent */
+  --color-beige: #EFE7DA;     /* Soft Beige Content */
   --color-white: #FFFFFF;
   --color-grey: #A5A5A5;
 }
@@ -140,55 +140,72 @@
 /* Premium Scroll Reveal System */
 .reveal {
   opacity: 0;
-  will-change: transform, opacity;
+  filter: blur(8px);
+  will-change: transform, opacity, filter;
   backface-visibility: hidden;
-  transform: translateY(30px) translateZ(0); /* Mobile default */
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--stagger-idx, 0) * 0.1s);
+  transform: translateY(35px) scale(0.97) translateZ(0);
+  transition: 
+    opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), 
+    filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--stagger-idx, 0) * 0.08s);
 }
 
 @media (min-width: 768px) {
   .reveal {
-    transform: translateY(40px) translateZ(0); /* Tablet */
-    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-    transition-delay: calc(var(--stagger-idx, 0) * 0.1s);
+    transform: translateY(45px) scale(0.97) translateZ(0);
   }
 }
 
 @media (min-width: 1024px) {
   .reveal {
-    transform: translateY(50px) translateZ(0); /* Desktop */
+    transform: translateY(55px) scale(0.97) translateZ(0);
   }
 }
 
 .reveal-active {
   opacity: 1 !important;
-  transform: translateY(0) translateZ(0) !important;
+  transform: translateY(0) scale(1) translateZ(0) !important;
+  filter: blur(0) !important;
+}
+
+/* Premium Clip-Path Mask Reveal for Titles */
+.mask-reveal {
+  clip-path: inset(0 0 100% 0);
+  transform: translateY(40px);
+  transition: clip-path 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: clip-path, transform;
+}
+
+.reveal-active .mask-reveal,
+.mask-reveal.reveal-active {
+  clip-path: inset(0 0 0 0) !important;
+  transform: translateY(0) !important;
 }
 
 /* Premium Glassmorphism Card System */
 .glass-card {
-  background: rgba(22, 15, 40, 0.75);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(124, 58, 237, 0.18);
-  border-radius: 24px;
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+  background: rgba(46, 26, 71, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(94, 38, 137, 0.30);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(46, 26, 71, 0.25);
   transition: 
-    transform 300ms ease,
+    transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1),
     background-color 300ms ease,
     border-color 300ms ease,
-    box-shadow 300ms ease;
+    box-shadow 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
   will-change: transform, background-color, border-color, box-shadow;
 }
 
 .glass-card-hover:hover {
   transform: scale(1.03) translateY(-6px);
-  background-color: rgba(30, 22, 55, 0.85);
-  border-color: rgba(124, 58, 237, 0.35);
+  background-color: rgba(94, 38, 137, 0.35);
+  border-color: rgba(245, 189, 32, 0.40);
   box-shadow: 
-    0 25px 60px rgba(124, 58, 237, 0.20),
-    0 0 35px rgba(124, 58, 237, 0.25);
+    0 20px 45px rgba(94, 38, 137, 0.30),
+    0 0 25px rgba(245, 189, 32, 0.12);
 }
 
 /* Micro Interactions */

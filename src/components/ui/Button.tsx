@@ -19,7 +19,7 @@ export function Button({
     primary:
       "bg-yellow text-plum-dark shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_20px_rgba(245,189,32,0.15)] hover:bg-[#ffd03d] border border-transparent",
     secondary:
-      "bg-white/5 text-white border border-white/20 backdrop-blur-md hover:bg-white/10 hover:border-yellow hover:text-white",
+      "bg-transparent text-white border border-yellow hover:bg-[rgba(245,189,32,0.12)] hover:border-yellow",
     ghost:
       "text-white/80 hover:text-white hover:bg-white/5",
   };

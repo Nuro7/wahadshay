@@ -155,6 +155,53 @@ export default function FranchiseSection() {
           {/* Radial Ambient Glow behind Map */}
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.09),transparent_60%)] pointer-events-none" />
 
+          {/* Floating Branch Statistics Card */}
+          <div className="absolute top-6 left-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-plum-dark/85 border border-white/10 backdrop-blur-md space-y-4 shadow-xl">
+            <h4 className="font-display text-xs font-bold text-yellow uppercase tracking-widest">Network Stats</h4>
+            <div className="space-y-3 font-body">
+              <div>
+                <span className="text-[10px] text-grey uppercase font-bold block">Active Outlets</span>
+                <span className="font-numbers text-lg font-bold text-white">4 Salons</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-grey uppercase font-bold block">Weekly Foot Traffic</span>
+                <span className="font-numbers text-lg font-bold text-white">12,500+ guests</span>
+              </div>
+              <div>
+                <span className="text-[10px] text-grey uppercase font-bold block">Growth Rate</span>
+                <span className="font-numbers text-lg font-bold text-green-400">+45% YOY</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Floating Expansion Roadmap Card */}
+          <div className="absolute top-6 right-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-plum-dark/85 border border-white/10 backdrop-blur-md space-y-4 shadow-xl">
+            <h4 className="font-display text-xs font-bold text-yellow uppercase tracking-widest">Roadmap 2026</h4>
+            <div className="space-y-3 font-body text-[11px]">
+              <div className="flex gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-green-400 mt-1 shrink-0" />
+                <div>
+                  <span className="text-white font-bold block">Q1: Dubai Al Barsha</span>
+                  <span className="text-grey font-light">Site fit-out in progress</span>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-yellow mt-1 shrink-0" />
+                <div>
+                  <span className="text-white font-bold block">Q2: Sharjah Muwaileh</span>
+                  <span className="text-grey font-light">Leasing terms finalized</span>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <div className="h-1.5 w-1.5 rounded-full bg-white/20 mt-1 shrink-0" />
+                <div>
+                  <span className="text-white font-bold block">Q3: Muscat &amp; Doha</span>
+                  <span className="text-grey font-light">Regional partner talks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* SVG Map Container */}
           <div className="absolute inset-0 flex items-center justify-center p-6 md:p-10 z-10">
             <svg

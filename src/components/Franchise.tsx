@@ -5,50 +5,54 @@ const franchiseSteps = [
   {
     step: "01",
     title: "Submit Inquiry",
-    desc: "Fill out our franchise application form and share your business plan, background, and target location.",
+    desc: "Fill out our franchise application form with details on your background, business experience, and proposed territory.",
   },
   {
     step: "02",
-    title: "Market Analysis",
-    desc: "Our real estate team helps analyze your selected market demographics and verify the prime retail spot.",
+    title: "Market Feasibility",
+    desc: "Our real estate analysis team assists in studying local demographics, verifying footfall, and selecting premium retail nodes.",
   },
   {
     step: "03",
-    title: "Store Setup",
-    desc: "Receive comprehensive blueprint layouts, supplier lists, and interior design directions.",
+    title: "Salon Construction",
+    desc: "Receive bespoke aesthetic layout blueprints, approved contractor lists, and luxury interior design blueprints.",
   },
   {
     step: "04",
-    title: "Grand Launch",
-    desc: "Get initial inventory setups, barista training, marketing support, and celebrate your opening day.",
+    title: "Inaugural Launch",
+    desc: "Deploy initial inventory packages, execute coffee/tea academy training, and celebrate your salon's grand opening.",
   },
 ];
 
 export function Franchise() {
   return (
-    <section id="franchise" className="py-24 md:py-32 bg-plum relative overflow-hidden">
+    <section id="franchise" className="py-24 md:py-32 bg-plum relative overflow-hidden select-none">
       {/* Background ambient light */}
-      <div className="absolute bottom-[10%] right-[-10%] w-[350px] h-[350px] bg-[#aa3bff] rounded-full blur-[160px] opacity-25 pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-plum/15 rounded-full blur-[160px] opacity-25 pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[350px] h-[350px] bg-yellow/3 rounded-full blur-[130px] opacity-25 pointer-events-none" />
 
-      <div className="mx-auto max-w-6xl px-6 relative z-10">
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Section Heading & Flex Layout */}
-        <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-24">
+        <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-20">
           <div className="lg:col-span-2 space-y-6 text-center lg:text-left">
             <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
               Partner With Us
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-extrabold text-white">
-              Grow the Wahad Shay Network
+            <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mask-reveal">
+              Grow the Wahad Shay <br />
+              <span className="text-yellow">Luxury Network</span>
             </h2>
-            <p className="text-grey text-base md:text-lg max-w-2xl mx-auto lg:mx-0">
+            <p className="text-grey text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-body">
               Join a rapidly expanding brand offering a premium, cozy atmosphere. We supply the operational support, design standards, and proprietary spice blends.
             </p>
           </div>
           <div className="text-center lg:text-right">
-            <Button variant="primary" className="shadow-lg">
-              Apply for Franchise
-            </Button>
+            <a href="#contact">
+              <Button variant="primary" className="shadow-[0_4px_15px_rgba(245,189,32,0.15)]">
+                Apply for Franchise
+              </Button>
+            </a>
           </div>
         </div>
 
@@ -58,16 +62,19 @@ export function Franchise() {
             <div
               key={step.step}
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-              className="reveal glass-card glass-card-hover p-8 flex flex-col justify-between h-[260px]"
+              className="reveal glass-card glass-card-hover p-8 flex flex-col justify-between h-[270px] relative"
             >
-              <div className="font-numbers text-4xl font-extrabold text-yellow/30 micro-icon micro-transition">
+              {/* Animated hover top border indicator */}
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-yellow to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-center" />
+
+              <div className="font-numbers text-4xl font-black text-yellow/20 group-hover:text-yellow/40 transition-colors duration-300">
                 {step.step}
               </div>
               <div className="space-y-3">
-                <h3 className="font-display text-xl font-bold text-white micro-title micro-transition">
+                <h3 className="font-display text-lg font-bold text-white group-hover:text-yellow transition-colors leading-tight">
                   {step.title}
                 </h3>
-                <p className="text-grey text-xs md:text-sm leading-relaxed">
+                <p className="text-grey text-xs sm:text-sm leading-relaxed font-body">
                   {step.desc}
                 </p>
               </div>

@@ -97,8 +97,8 @@ export function Preloader() {
     <>
       <style>{`
         :root {
-          --splash-bg: #09090F;
-          --splash-glow: rgba(108, 59, 255, 0.45);
+          --splash-bg: #2E1A47;
+          --splash-glow: rgba(94, 38, 137, 0.45);
         }
 
         /* Splash Screen Container */
@@ -107,7 +107,7 @@ export function Preloader() {
           inset: 0;
           width: 100%;
           height: 100%;
-          background: radial-gradient(circle at center, #3E245C 0%, #2E1A47 100%);
+          background: radial-gradient(circle at center, #5E2689 0%, #2E1A47 100%);
           z-index: 99999;
           display: flex;
           flex-direction: column;
@@ -155,7 +155,7 @@ export function Preloader() {
         .orb-1 {
           width: 380px;
           height: 380px;
-          background: #6C3BFF;
+          background: #5E2689;
           top: 15%;
           left: 20%;
           animation: orbDrift1 22s ease-in-out infinite;
@@ -164,7 +164,7 @@ export function Preloader() {
         .orb-2 {
           width: 420px;
           height: 420px;
-          background: #8B5CFF;
+          background: #F5BD20;
           bottom: 10%;
           right: 15%;
           animation: orbDrift2 26s ease-in-out infinite;
