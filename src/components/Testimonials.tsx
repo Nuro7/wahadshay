@@ -46,7 +46,7 @@ export function Testimonials() {
             Customer Testimonials
           </h2>
           <p className="text-grey text-sm md:text-base font-body">
-            What our guests and network partners say about their Wahad Shay salon experience.
+            What our guests and network partners say about their Wahad Shay café experience.
           </p>
         </div>
 

@@ -21,7 +21,7 @@ const faqData: FAQItem[] = [
     answer: "Yes. Clear teas like our Mint Suleimani and several cold-foam coolers are naturally vegan. Additionally, sweetening levels for all hot brews and iced lattes can be fully customized, with organic honey or raw sugar substitutes available.",
   },
   {
-    question: "What are your standard boutique salon operating hours?",
+    question: "What are your standard boutique café operating hours?",
     answer: "Our flagship hq in Riyadh and all branches across the UAE operate from Saturday to Thursday: 8:00 AM - 12:00 AM, and Fridays from 4:00 PM - 12:00 AM.",
   },
 ];

@@ -36,7 +36,7 @@ export function Contact() {
             Visit Or Write To Us
           </h2>
           <p className="text-grey text-base font-body">
-            Connect with our franchise office or request operations details for our luxury coffee and tea salons.
+            Connect with our franchise office or request operations details for our luxury coffee and tea Lounges.
           </p>
         </div>
 
@@ -47,7 +47,7 @@ export function Contact() {
           <div className="reveal lg:col-span-2 space-y-8">
             <div className="space-y-4">
               <h3 className="font-display text-2xl font-black text-[#F8EED5]">
-                Flagship HQ Salon
+                Flagship HQ Lounge
               </h3>
               <p className="text-grey text-sm leading-relaxed font-body">
                 Experience our quiet, ambient boutique Lounges and explore freshly baked bread selections.
@@ -102,7 +102,7 @@ export function Contact() {
                   className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-semibold transition-all duration-300 cursor-pointer"
                 >
                   <Phone size={14} className="text-yellow" />
-                  Call Salon
+                  Call HQ
                 </a>
                 <a
                   href="mailto:info@wahadshay.com"

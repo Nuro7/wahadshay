@@ -14,13 +14,13 @@ const franchiseSteps = [
   },
   {
     step: "03",
-    title: "Salon Construction",
+    title: "Lounge Construction",
     desc: "Receive bespoke aesthetic layout blueprints, approved contractor lists, and luxury interior design blueprints.",
   },
   {
     step: "04",
     title: "Inaugural Launch",
-    desc: "Deploy initial inventory packages, execute coffee/tea academy training, and celebrate your salon's grand opening.",
+    desc: "Deploy initial inventory packages, execute coffee/tea academy training, and celebrate your lounge's grand opening.",
   },
 ];
 

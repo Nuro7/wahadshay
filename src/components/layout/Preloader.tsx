@@ -18,6 +18,7 @@ export function Preloader() {
         setIsDestroyed(true);
         document.body.style.overflow = "";
         document.body.classList.add("splash-done");
+        window.dispatchEvent(new Event("splash-complete"));
       }
     });
 
@@ -251,25 +252,7 @@ export function Preloader() {
           display: block;
         }
 
-        /* Override site hero element while splash is active */
-        body:not(.splash-done) #home {
-          opacity: 0 !important;
-          transform: translateY(30px) !important;
-        }
-        body.splash-done #home {
-          animation: heroRevealFade 900ms cubic-bezier(0.19, 1, 0.22, 1) 150ms forwards !important;
-        }
-
-        @keyframes heroRevealFade {
-          0% {
-            opacity: 0 !important;
-            transform: translateY(30px) !important;
-          }
-          100% {
-            opacity: 1 !important;
-            transform: translateY(0) !important;
-          }
-        }
+        /* Accessibility overrides */
 
         @media (max-width: 768px) {
           .splash-icon {

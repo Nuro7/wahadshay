@@ -128,41 +128,51 @@ export default function Hero() {
   const lightingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // 1. Cinematic reveals via GSAP
-    const titleTimeline = gsap.timeline({ delay: 0.4 });
+    let titleTimeline: gsap.core.Timeline | null = null;
 
-    titleTimeline.fromTo(
-      ".word-reveal",
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.08,
-        duration: 1.3,
-        ease: "power4.out",
-      }
-    );
+    const startAnimations = () => {
+      // 1. Cinematic reveals via GSAP
+      titleTimeline = gsap.timeline({ delay: 0.2 });
 
-    titleTimeline.fromTo(
-      ".hero-subtitle",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-      "-=0.7"
-    );
+      titleTimeline.fromTo(
+        ".word-reveal",
+        { opacity: 0, y: 35 },
+        {
+          opacity: 1,
+          y: 0,
+          stagger: 0.08,
+          duration: 1.3,
+          ease: "power4.out",
+        }
+      );
 
-    titleTimeline.fromTo(
-      ".hero-btn-container button, .hero-btn-container a",
-      { opacity: 0, y: 25 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.9, ease: "power3.out" },
-      "-=0.7"
-    );
+      titleTimeline.fromTo(
+        ".hero-subtitle",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
+        "-=0.7"
+      );
 
-    titleTimeline.fromTo(
-      ".stat-reveal",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out" },
-      "-=0.4"
-    );
+      titleTimeline.fromTo(
+        ".hero-btn-container button, .hero-btn-container a",
+        { opacity: 0, y: 25 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.9, ease: "power3.out" },
+        "-=0.7"
+      );
+
+      titleTimeline.fromTo(
+        ".stat-reveal",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out" },
+        "-=0.4"
+      );
+    };
+
+    if (document.body.classList.contains("splash-done")) {
+      startAnimations();
+    } else {
+      window.addEventListener("splash-complete", startAnimations);
+    }
 
     // 2. Mouse parallax
     const onMouseMove = (e: MouseEvent) => {
@@ -193,7 +203,8 @@ export default function Hero() {
     window.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeMouseMove = null; // cleanup placeholder
+      if (titleTimeline) titleTimeline.kill();
+      window.removeEventListener("splash-complete", startAnimations);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
     };

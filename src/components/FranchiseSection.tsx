@@ -161,7 +161,7 @@ export default function FranchiseSection() {
             <div className="space-y-3 font-body">
               <div>
                 <span className="text-[10px] text-grey uppercase font-bold block">Active Outlets</span>
-                <span className="font-numbers text-lg font-bold text-white">4 Salons</span>
+                <span className="font-numbers text-lg font-bold text-white">4 Lounges</span>
               </div>
               <div>
                 <span className="text-[10px] text-grey uppercase font-bold block">Weekly Foot Traffic</span>
