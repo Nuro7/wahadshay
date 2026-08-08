@@ -27,32 +27,28 @@ export default function MissionVision() {
           
           <div className="space-y-12">
             {/* Vision */}
-            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal">
-              <div 
-                className="shrink-0 text-white bg-plum p-5 shadow-xl"
-                style={{ borderRadius: "40px 10px 40px 10px", transform: "rotate(-3deg)" }}
-              >
-                <Eye size={48} className="stroke-[1.5] transform rotate-3" />
+            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal group">
+              <div className="shrink-0 flex items-center justify-center w-20 h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
+                <div className="absolute inset-0 rounded-2xl border border-yellow opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-500" />
+                <Eye size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
                 <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Vision</h3>
-                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed">
+                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
                   To become a globally recognized food brand with 100 outlets worldwide.
                 </p>
               </div>
             </div>
 
             {/* Mission */}
-            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal" style={{ "--stagger-idx": 1 } as React.CSSProperties}>
-              <div 
-                className="shrink-0 text-white bg-plum p-5 shadow-xl"
-                style={{ borderRadius: "40px 10px 40px 10px", transform: "rotate(-3deg)" }}
-              >
-                <Target size={48} className="stroke-[1.5] transform rotate-3" />
+            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal group" style={{ "--stagger-idx": 1 } as React.CSSProperties}>
+              <div className="shrink-0 flex items-center justify-center w-20 h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
+                <div className="absolute inset-0 rounded-2xl border border-yellow opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-500" />
+                <Target size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
                 <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Mission</h3>
-                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed">
+                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
                   Deliver trendy, globally researched dishes with premium presentation at accessible pricing.
                 </p>
               </div>
@@ -65,11 +61,11 @@ export default function MissionVision() {
               {coreValues.map((value, idx) => {
                 const Icon = value.icon;
                 return (
-                  <div key={idx} className="flex items-center gap-5 group">
-                    <div className="shrink-0 text-white bg-plum p-3.5 rounded-2xl group-hover:scale-110 transition-transform shadow-md">
-                      <Icon size={28} className="stroke-[2]" />
+                  <div key={idx} className="flex items-center gap-5 group p-2 rounded-2xl hover:bg-white hover:shadow-sm transition-all duration-300 border border-transparent hover:border-neutral-border">
+                    <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-plum/5 text-plum group-hover:bg-plum group-hover:text-yellow transition-colors duration-300">
+                      <Icon size={22} className="stroke-[1.5]" />
                     </div>
-                    <span className="text-text-primary text-xl font-semibold group-hover:text-plum transition-colors">{value.title}</span>
+                    <span className="font-body text-text-primary text-lg md:text-xl font-semibold group-hover:text-plum transition-colors">{value.title}</span>
                   </div>
                 );
               })}
