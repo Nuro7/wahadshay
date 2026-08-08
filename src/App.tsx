@@ -4,7 +4,7 @@ import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/About";
 import SignatureExperience from "./components/SignatureExperience";
-import Menu from "./components/Menu";
+import MenuIndex from "./components/menu/MenuIndex";
 import Specials from "./components/Specials";
 import Franchise from "./components/Franchise";
 import FranchiseSection from "./components/FranchiseSection";
@@ -32,6 +32,12 @@ function App() {
 
   // Routing State management
   const [currentPage, setCurrentPage] = useState<string>("home");
+
+  useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -104,7 +110,7 @@ function App() {
           )}
 
           {currentPage === "menu" && (
-            <Menu currency={currency} />
+            <MenuIndex />
           )}
 
           {currentPage === "franchise" && (
