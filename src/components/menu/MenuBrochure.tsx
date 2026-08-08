@@ -1,4 +1,6 @@
 import React from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { Pizza, Coffee, Croissant, Beef, Sandwich, Salad, ChefHat, IceCream } from "lucide-react";
 import burgerImg from "../../assets/demo/burger.png";
 import parathaImg from "../../assets/demo/paratha.png";
 import indomieImg from "../../assets/demo/indomie.png";
@@ -30,20 +32,87 @@ const PARATHAS = [
   { name: "Zinger Paratha", img: wrapImg },
 ];
 
+const FoodPattern = () => (
+  <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-10 flex flex-wrap gap-24 items-center justify-center -z-10">
+    {[...Array(20)].map((_, i) => (
+      <div key={i} className="flex gap-24">
+        <Pizza size={64} className="rotate-12" />
+        <Coffee size={64} className="-rotate-12" />
+        <Croissant size={64} className="rotate-45" />
+        <Beef size={64} className="-rotate-45" />
+        <Sandwich size={64} className="rotate-12" />
+        <Salad size={64} className="-rotate-12" />
+        <IceCream size={64} className="rotate-45" />
+        <ChefHat size={64} className="-rotate-45" />
+      </div>
+    ))}
+  </div>
+);
+
+// High-end Awwwards-style mouse parallax component
+const MagneticImage = ({ src, alt, className = "", imgClassName = "" }: { src: string, alt: string, className?: string, imgClassName?: string }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Ultra-smooth spring physics
+  const mouseXSpring = useSpring(x, { stiffness: 100, damping: 25, mass: 0.5 });
+  const mouseYSpring = useSpring(y, { stiffness: 100, damping: 25, mass: 0.5 });
+
+  // Very subtle and premium 3D tilt
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+  
+  // Parallax float effect towards the cursor
+  const translateX = useTransform(mouseXSpring, [-0.5, 0.5], ["-15px", "15px"]);
+  const translateY = useTransform(mouseYSpring, [-0.5, 0.5], ["-15px", "15px"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // Normalize values between -0.5 and 0.5 based on cursor position in element
+    x.set(mouseX / rect.width - 0.5);
+    y.set(mouseY / rect.height - 0.5);
+  };
+
+  const handleMouseLeave = () => {
+    // Snap back to origin
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        x: translateX,
+        y: translateY,
+        transformStyle: "preserve-3d",
+      }}
+      className={`relative flex items-center justify-center will-change-transform z-20 ${className}`}
+    >
+      <motion.img 
+        src={src} 
+        alt={alt} 
+        style={{ transform: "translateZ(30px)" }} // Adds extra depth separating image from background
+        className={`object-cover pointer-events-none drop-shadow-[0_30px_30px_rgba(0,0,0,0.5)] ${imgClassName}`} 
+      />
+    </motion.div>
+  );
+};
+
 export const MenuBrochure: React.FC = () => {
   return (
-    <div id="menu" className="w-full bg-[#522378] text-white font-body selection:bg-yellow selection:text-plum-dark">
+    <div id="menu" className="w-full text-white font-body selection:bg-yellow selection:text-plum-dark">
       
       {/* -------------------- PAGE 6 -------------------- */}
-      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-24 border-b border-plum">
-        {/* Top Header */}
-        <div className="absolute top-12 left-0 right-0 px-12 md:px-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full">
-            <h2 className="text-yellow font-display font-black text-3xl leading-none">Wahad<br/>shay</h2>
-            <div className="h-px bg-white/20 flex-grow ml-8 mr-12"></div>
-            <div className="w-48 h-6 bg-yellow rounded-l-full relative right-[-3rem]"></div>
-          </div>
-        </div>
+      {/* Dark Purple */}
+      <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-24 bg-[#4a1c6f]">
+        <FoodPattern />
 
         {/* Vertical Text */}
         <div className="absolute left-8 top-1/2 -translate-y-1/2 -rotate-90 origin-center hidden xl:block">
@@ -72,34 +141,20 @@ export const MenuBrochure: React.FC = () => {
             </p>
           </div>
 
-          <div className="relative w-full aspect-square max-w-2xl mx-auto">
-            {/* Hexagon Box Mockup (Placeholder) */}
-            <div className="absolute inset-0 bg-[#8c52ff] rounded-[3rem] rotate-12 opacity-80 shadow-2xl shadow-plum-dark/50"></div>
-            <div className="absolute inset-0 bg-white/10 rounded-[3rem] -rotate-6 backdrop-blur-sm border border-white/20 flex items-center justify-center p-8 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
-               <img src={P06_BURGER} alt="Juicy Dip Burger" className="w-full h-full object-contain drop-shadow-2xl" />
+          <div className="relative w-full aspect-square max-w-2xl mx-auto group">
+            {/* Hexagon Box Mockup (Flat floating) */}
+            <div className="absolute inset-0 bg-[#8c52ff] rounded-[3rem] rotate-12 opacity-80 shadow-2xl shadow-plum-dark/50 transition-transform duration-700 group-hover:scale-105 group-hover:rotate-6"></div>
+            <div className="absolute inset-0 bg-white/10 rounded-[3rem] -rotate-6 backdrop-blur-sm border border-white/20 flex items-center justify-center p-8 shadow-[20px_40px_60px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-105 group-hover:translate-y-[-10px]">
+               <img src={P06_BURGER} alt="Juicy Dip Burger" className="w-full h-full object-contain drop-shadow-[0_30px_30px_rgba(0,0,0,0.6)]" />
             </div>
           </div>
         </div>
-
-        {/* Page Number */}
-        <div className="absolute bottom-8 left-12 md:left-24 font-display font-bold text-yellow text-xl">
-          P06
-        </div>
-        
-        {/* Bottom Yellow Wave (Simplified) */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-yellow rounded-t-[50%] translate-y-8"></div>
       </section>
 
       {/* -------------------- PAGE 7 -------------------- */}
-      <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24 border-b border-plum">
-        {/* Top Header */}
-        <div className="absolute top-12 left-0 right-0 px-12 md:px-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full">
-            <div className="w-48 h-6 bg-yellow rounded-r-full relative left-[-3rem]"></div>
-            <div className="h-px bg-white/20 flex-grow ml-12 mr-8"></div>
-            <h2 className="text-yellow font-display font-black text-3xl leading-none text-right">Wahad<br/>shay</h2>
-          </div>
-        </div>
+      {/* Light Purple */}
+      <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24 bg-[#6b339f]">
+        <FoodPattern />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-24 w-full flex flex-col gap-24">
           
@@ -117,8 +172,10 @@ export const MenuBrochure: React.FC = () => {
                 What sets our version apart is the topping: our house-made Zinger chicken. We take pride in using our own unique blend of spices and a specialized coating process to ensure the chicken is perfectly seasoned...
               </p>
             </div>
-            <div className="relative w-full max-w-lg mx-auto aspect-video bg-white rounded-3xl overflow-hidden shadow-2xl rotate-3">
-              <img src={P07_MAC} alt="Mac & Cheese" className="w-full h-full object-cover" />
+            <div className="relative w-full max-w-lg mx-auto aspect-video bg-white/5 rounded-[3rem] overflow-visible shadow-[20px_30px_50px_rgba(0,0,0,0.4)] group">
+              <div className="w-full h-full transition-transform duration-700 rounded-[3rem] overflow-hidden border-2 border-white/20 group-hover:scale-105 group-hover:translate-y-[-10px]">
+                <img src={P07_MAC} alt="Mac & Cheese" className="w-full h-full object-cover scale-110" />
+              </div>
             </div>
           </div>
 
@@ -127,8 +184,10 @@ export const MenuBrochure: React.FC = () => {
             <div className="absolute left-0 bottom-0 font-numbers font-black text-[20rem] text-white/5 leading-none pointer-events-none -translate-x-12 translate-y-12">
               03
             </div>
-            <div className="relative w-full max-w-sm mx-auto aspect-square order-2 lg:order-1">
-              <img src={P07_MINI_BITES} alt="Mini Bites" className="w-full h-full object-contain drop-shadow-2xl" />
+            <div className="relative w-full max-w-sm mx-auto aspect-square order-2 lg:order-1 group">
+              <div className="w-full h-full transition-transform duration-700 group-hover:scale-105 group-hover:translate-y-[-10px]">
+                 <img src={P07_MINI_BITES} alt="Mini Bites" className="w-full h-full object-contain drop-shadow-[0_40px_30px_rgba(0,0,0,0.6)]" />
+              </div>
             </div>
             <div className="flex flex-col gap-6 relative z-10 order-1 lg:order-2">
               <h2 className="text-yellow font-display font-black text-5xl md:text-6xl">Mini Bites</h2>
@@ -140,28 +199,13 @@ export const MenuBrochure: React.FC = () => {
               </p>
             </div>
           </div>
-
         </div>
-
-        {/* Page Number */}
-        <div className="absolute bottom-8 right-12 md:right-24 font-display font-bold text-yellow text-xl">
-          P07
-        </div>
-        
-        {/* Bottom Yellow Wave */}
-        <div className="absolute bottom-0 left-0 right-0 h-12 bg-yellow rounded-t-full translate-y-6 opacity-80"></div>
       </section>
 
       {/* -------------------- PAGE 8 -------------------- */}
-      <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24 border-b border-plum">
-         {/* Top Header */}
-         <div className="absolute top-12 left-0 right-0 px-12 md:px-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full">
-            <h2 className="text-yellow font-display font-black text-3xl leading-none">Wahad<br/>shay</h2>
-            <div className="h-px bg-white/20 flex-grow ml-8 mr-12"></div>
-            <div className="w-48 h-6 bg-yellow rounded-l-full relative right-[-3rem]"></div>
-          </div>
-        </div>
+      {/* Dark Purple */}
+      <section className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24 bg-[#4a1c6f]">
+         <FoodPattern />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-24 w-full grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           
@@ -171,8 +215,10 @@ export const MenuBrochure: React.FC = () => {
               04
             </div>
             
-            <div className="w-full max-w-sm aspect-square bg-black/20 rounded-full border-4 border-plum-dark overflow-hidden mb-4 shadow-2xl relative z-10">
-              <img src={P08_PASTA} alt="Alfredo Penne Pasta" className="w-full h-full object-cover" />
+            <div className="w-full max-w-sm mx-auto aspect-square bg-white/5 rounded-[3rem] border-2 border-white/20 overflow-visible mb-4 shadow-[20px_30px_50px_rgba(0,0,0,0.5)] relative z-10 group">
+              <div className="w-full h-full rounded-[3rem] overflow-hidden transition-transform duration-700 group-hover:scale-105 group-hover:translate-y-[-10px]">
+                 <img src={P08_PASTA} alt="Alfredo Penne Pasta" className="w-full h-full object-cover" />
+              </div>
             </div>
 
             <h2 className="text-yellow font-display font-black text-5xl md:text-6xl relative z-10">Alfredo<br/>Penne Pasta</h2>
@@ -198,99 +244,56 @@ export const MenuBrochure: React.FC = () => {
               <div className="absolute right-0 bottom-0 font-numbers font-black text-[15rem] text-white/5 leading-none pointer-events-none translate-x-12 translate-y-12">
                 05
               </div>
-              <div className="relative aspect-square">
-                 {/* Hexagon Box */}
-                 <div className="absolute inset-0 bg-[#8c52ff] rounded-3xl -rotate-6 opacity-90 shadow-2xl flex items-center justify-center p-6 border-2 border-white/20">
-                    <img src={P08_CHICKEN} alt="Chicken Rice" className="w-full h-full object-contain drop-shadow-2xl" />
+              <div className="relative aspect-square transition-transform duration-700 group hover:translate-y-[-10px]">
+                 {/* Hexagon Box Flat */}
+                 <div className="absolute inset-0 bg-[#8c52ff] rounded-[3rem] rotate-12 opacity-90 shadow-[20px_30px_50px_rgba(0,0,0,0.5)] flex items-center justify-center p-6 border-2 border-white/20 transition-transform duration-700 group-hover:scale-105">
+                    <img src={P08_CHICKEN} alt="Chicken Rice" className="w-full h-full object-contain drop-shadow-[0_40px_40px_rgba(0,0,0,0.6)] -rotate-12" />
                  </div>
               </div>
             </div>
           </div>
-
-        </div>
-
-        <div className="absolute bottom-8 left-12 md:left-24 font-display font-bold text-yellow text-xl">
-          P08
         </div>
       </section>
 
-      {/* -------------------- PAGE 9 (Parathas Grid 1) -------------------- */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden py-32 border-b border-plum">
-        {/* Top Header */}
-        <div className="absolute top-12 left-0 right-0 px-12 md:px-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full">
-            <div className="w-48 h-6 bg-yellow rounded-r-full relative left-[-3rem]"></div>
-            <div className="h-px bg-white/20 flex-grow ml-12 mr-8"></div>
-            <h2 className="text-yellow font-display font-black text-3xl leading-none text-right">Wahad<br/>shay</h2>
-          </div>
+      {/* -------------------- PARATHAS (List) -------------------- */}
+      <section className="relative w-full min-h-screen flex flex-col items-center py-32 bg-[#4a1c6f] overflow-hidden">
+        <FoodPattern />
+
+        {/* Section Header */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 mb-24 text-center">
+           <h2 className="text-yellow font-display font-black text-6xl md:text-8xl drop-shadow-xl">
+             OUR SPECIAL
+           </h2>
+           <h2 className="text-white font-display font-black text-5xl md:text-7xl -mt-4 drop-shadow-xl">
+             PARATHAS
+           </h2>
         </div>
 
-        {/* Big Yellow Stripes in Background */}
-        <div className="absolute top-[30%] left-0 right-0 h-24 bg-yellow/90 -z-10"></div>
-        <div className="absolute top-[65%] left-0 right-0 h-24 bg-yellow/90 -z-10"></div>
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16">
+          {PARATHAS.map((item, idx) => {
+            // Checkerboard pattern for 2 columns: [Yellow, Purple], [Purple, Yellow], [Yellow, Purple]
+            const isYellow = idx % 4 === 0 || idx % 4 === 3;
+            const bannerBg = isYellow ? "bg-yellow" : "bg-[#6b339f]";
+            const textColor = isYellow ? "text-[#4a1c6f]" : "text-yellow";
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-32">
-            {PARATHAS.slice(0, 8).map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center group">
-                <div className="w-40 h-40 md:w-48 md:h-48 relative mb-8">
-                  {/* Purple Wrapping/Holder Graphic Placeholder */}
-                  <div className="absolute inset-x-2 -bottom-4 top-12 bg-plum border-2 border-white/20 rounded-b-xl shadow-lg -rotate-[15deg] group-hover:-rotate-6 transition-transform duration-500"></div>
-                  
-                  <img src={item.img} alt={item.name} className="absolute inset-0 w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500 origin-bottom" />
+            return (
+              <div key={idx} className={`w-full h-40 md:h-48 rounded-[2rem] md:rounded-[3rem] ${bannerBg} shadow-[0_20px_40px_rgba(0,0,0,0.3)] group cursor-pointer flex overflow-hidden border-0 transition-transform duration-500 hover:scale-[1.02]`}>
+                
+                {/* Content Left */}
+                <div className="flex-1 flex flex-col justify-center pl-8 md:pl-12 pr-6">
+                  <h3 className={`${textColor} font-display font-black text-2xl md:text-4xl leading-tight`}>
+                    {item.name}
+                  </h3>
                 </div>
-                <h3 className="text-white font-display font-bold text-xl text-center leading-tight">
-                  {item.name.split(" ").map((word, i) => (
-                    <React.Fragment key={i}>{word}<br/></React.Fragment>
-                  ))}
-                </h3>
-              </div>
-            ))}
-          </div>
-        </div>
 
-        <div className="absolute bottom-8 right-12 md:right-24 font-display font-bold text-yellow text-xl">
-          P09
-        </div>
-      </section>
-
-      {/* -------------------- PAGE 10 (Parathas Grid 2) -------------------- */}
-      <section className="relative w-full min-h-screen flex flex-col items-center justify-center overflow-hidden py-32">
-        {/* Top Header */}
-        <div className="absolute top-12 left-0 right-0 px-12 md:px-24 flex items-center justify-between">
-          <div className="flex items-center gap-4 w-full">
-            <h2 className="text-yellow font-display font-black text-3xl leading-none">Wahad<br/>shay</h2>
-            <div className="h-px bg-white/20 flex-grow ml-8 mr-12"></div>
-            <div className="w-48 h-6 bg-yellow rounded-l-full relative right-[-3rem]"></div>
-          </div>
-        </div>
-
-        {/* Big Yellow Stripes in Background */}
-        <div className="absolute top-[35%] left-0 right-0 h-24 bg-yellow/90 -z-10"></div>
-        <div className="absolute top-[70%] left-0 right-0 h-24 bg-yellow/90 -z-10"></div>
-
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-x-12 gap-y-32">
-            {PARATHAS.slice(8).map((item, idx) => (
-              <div key={idx} className="flex flex-col items-center group w-[40%] md:w-[25%]">
-                <div className="w-40 h-40 md:w-48 md:h-48 relative mb-8">
-                  {/* Purple Wrapping/Holder Graphic Placeholder */}
-                  <div className="absolute inset-x-2 -bottom-4 top-12 bg-plum border-2 border-white/20 rounded-b-xl shadow-lg -rotate-[15deg] group-hover:-rotate-6 transition-transform duration-500"></div>
-                  
-                  <img src={item.img} alt={item.name} className="absolute inset-0 w-full h-full object-contain drop-shadow-xl group-hover:scale-110 transition-transform duration-500 origin-bottom" />
+                {/* Photo Right (Flush inside the same rectangle) */}
+                <div className="w-[45%] h-full relative [perspective:1200px]">
+                   <MagneticImage src={item.img} alt={item.name} className="w-full h-full" imgClassName="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-white font-display font-bold text-xl text-center leading-tight">
-                  {item.name.split(" ").map((word, i) => (
-                    <React.Fragment key={i}>{word}<br/></React.Fragment>
-                  ))}
-                </h3>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
-
-        {/* Bottom Yellow/Purple Decorative Wave */}
-        <div className="absolute bottom-0 left-0 w-[120%] h-32 bg-yellow rounded-tr-[100%] translate-y-12 -translate-x-12 opacity-90 -z-10"></div>
       </section>
 
     </div>
