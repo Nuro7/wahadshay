@@ -12,45 +12,52 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
   return (
     <motion.div
       onClick={() => onClick(product)}
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ duration: 0.4 }}
-      className={`group cursor-pointer relative bg-white/40 backdrop-blur-md border border-white/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.12)] transition-shadow duration-500 ${
-        featured ? "md:col-span-2 md:flex-row items-center gap-8" : "h-[320px]"
+      whileHover={{ y: -12 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`group cursor-pointer relative bg-white rounded-[2rem] p-6 md:p-8 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-[0_30px_60px_rgba(94,38,137,0.12)] transition-shadow duration-500 border border-plum/5 ${
+        featured ? "lg:flex-row items-center gap-8 md:col-span-1" : "h-full min-h-[400px]"
       }`}
     >
       {/* Subtle background glow on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-yellow/5 to-plum/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-br from-yellow/10 to-plum/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-      {/* Image */}
-      <div className={`relative flex items-center justify-center ${featured ? "w-1/2 h-[200px]" : "h-[140px] mt-2"} z-10`}>
+      {/* Image Container - Editorial style (image breaks bounds slightly) */}
+      <div className={`relative flex items-center justify-center ${featured ? "w-full lg:w-1/2 h-[250px]" : "h-[200px] mt-4"} z-10`}>
+        <div className="absolute inset-0 bg-plum/5 rounded-full blur-2xl group-hover:bg-yellow/20 transition-colors duration-500" />
         <motion.img
           src={product.image}
           alt={product.name}
-          className="max-h-full max-w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.15)] group-hover:-translate-y-2 group-hover:scale-105 transition-transform duration-500"
+          className="relative z-10 max-h-full max-w-full object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.2)] group-hover:scale-110 group-hover:-rotate-3 transition-transform duration-700 ease-[0.22,1,0.36,1]"
         />
       </div>
 
       {/* Content */}
-      <div className={`flex flex-col justify-end z-10 ${featured ? "w-1/2" : "mt-6 flex-1"}`}>
+      <div className={`flex flex-col justify-end z-10 ${featured ? "w-full lg:w-1/2 mt-6 lg:mt-0" : "mt-8 flex-1"}`}>
         <div className="flex justify-between items-start gap-4">
           <div>
-            <h3 className="font-display text-lg md:text-xl font-black text-text-primary group-hover:text-plum transition-colors duration-300">
+            <h3 className="font-display text-2xl font-black text-plum group-hover:text-yellow transition-colors duration-300">
               {product.name}
             </h3>
             {product.arabicName && (
-              <p className="font-arabic text-sm text-text-secondary mt-1">{product.arabicName}</p>
+              <p className="font-arabic text-plum/60 mt-1">{product.arabicName}</p>
             )}
           </div>
-          <span className="font-numbers text-lg font-extrabold text-plum shrink-0">
+          <span className="font-display text-xl font-bold text-plum shrink-0 bg-plum/5 px-3 py-1 rounded-full">
             AED {product.price}
           </span>
         </div>
-        <p className="text-text-secondary text-sm mt-3 line-clamp-2 leading-relaxed">
+        <p className="text-plum/70 text-sm mt-4 line-clamp-3 leading-relaxed font-medium">
           {product.description}
         </p>
         
-        <div className="mt-4 flex items-center gap-2 text-yellow font-bold text-xs uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
-          View Details <span className="text-lg leading-none">+</span>
+        <div className="mt-6 flex items-center gap-2 text-plum font-bold text-xs uppercase tracking-widest overflow-hidden">
+          <motion.span 
+            className="inline-block relative"
+            whileHover={{ x: 5 }}
+            transition={{ duration: 0.2 }}
+          >
+            Explore Flavor →
+          </motion.span>
         </div>
       </div>
     </motion.div>

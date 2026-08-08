@@ -25,7 +25,7 @@ export interface Category {
   transitionStyle?: "depth" | "fade" | "liquid" | "steam" | "floating";
 }
 
-// Dummy data structure until PDF is uploaded
+// Dummy data structure until PDF is fully processed
 export const menuCategories: Category[] = [
   {
     id: "tea",
@@ -61,20 +61,20 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "b1",
-        name: "Zinger Supreme",
-        arabicName: "زنجر سوبريم",
-        price: 14,
+        name: "Juicy Dip Burger",
+        arabicName: "جوسي ديب برجر",
+        price: 35,
         image: burgerImg,
-        description: "Crispy chicken breast, signature sauce, fresh lettuce in a toasted bun.",
+        description: "Signature double beef patty, melted cheddar, caramelised onions, with our secret dip sauce.",
         featured: true
       },
       {
         id: "b2",
-        name: "Royal Truffle Burger",
-        arabicName: "رويال ترافل برجر",
-        price: 38,
-        image: cheeseImg,
-        description: "Wagyu beef patty with truffle mayo, cheddar cheese, and fresh brioche.",
+        name: "Zinger Supreme",
+        arabicName: "زنجر سوبريم",
+        price: 28,
+        image: burgerImg,
+        description: "Crispy chicken breast, signature sauce, fresh lettuce in a toasted bun.",
         featured: true
       }
     ]
@@ -87,45 +87,46 @@ export const menuCategories: Category[] = [
     products: [
       {
         id: "p1",
-        name: "Cheese Paratha",
-        arabicName: "براتا جبن",
-        price: 8,
+        name: "Oman Chips Paratha",
+        arabicName: "براتا بطاطس عمان",
+        price: 10,
         image: cheeseImg,
-        description: "Flaky layered flatbread stuffed with melted kraft cheese.",
+        description: "Flaky layered flatbread stuffed with crushed Oman chips and kraft cheese.",
         featured: true
-      }
-    ]
-  },
-  {
-    id: "juices",
-    name: "FRESH JUICES",
-    heroImage: herbsImg, // placeholder
-    transitionStyle: "liquid",
-    products: [
+      },
       {
-        id: "j1",
-        name: "Fresh Orange Juice",
-        arabicName: "عصير برتقال طازج",
-        price: 15,
-        image: herbsImg,
-        description: "100% cold-pressed organic local oranges served over crushed ice.",
-        featured: true
+        id: "p2",
+        name: "Egg & Cheese Paratha",
+        arabicName: "براتا بيض وجبن",
+        price: 12,
+        image: cheeseImg,
+        description: "Freshly pan-fried egg with melted cheddar cheese in a crispy paratha.",
+        featured: false
       }
     ]
   },
   {
-    id: "desserts",
-    name: "DESSERTS",
+    id: "specials",
+    name: "SPECIALS",
     heroImage: friesImg, // placeholder
     transitionStyle: "floating",
     products: [
       {
-        id: "d1",
-        name: "Saffron Milk Cake",
-        arabicName: "كيكة الحليب بالزعفران",
-        price: 28,
-        image: herbsImg,
-        description: "Sponge cake soaked in rich saffron milk and topped with vanilla whip.",
+        id: "s1",
+        name: "Mac & Cheese with Chicken",
+        arabicName: "ماك اند تشيز بالدجاج",
+        price: 42,
+        image: cheeseImg,
+        description: "Creamy baked macaroni and cheese topped with crispy fried chicken bites.",
+        featured: true
+      },
+      {
+        id: "s2",
+        name: "Dynamite Fries",
+        arabicName: "بطاطس ديناميت",
+        price: 25,
+        image: friesImg,
+        description: "Crispy fries loaded with cheese sauce, jalapenos, and dynamite chicken pops.",
         featured: true
       }
     ]

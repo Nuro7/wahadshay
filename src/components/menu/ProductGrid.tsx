@@ -12,13 +12,13 @@ const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 50 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
 };
 
 export const ProductGrid: React.FC<ProductGridProps> = ({ category, onSelectProduct }) => {
@@ -39,7 +39,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ category, onSelectProd
     >
       {/* Featured Items */}
       {displayFeatured.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
           {displayFeatured.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
               <ProductCard product={product} onClick={onSelectProduct} featured={true} />
@@ -50,17 +50,17 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ category, onSelectProd
 
       {/* Regular Items Title */}
       {displayRegular.length > 0 && (
-        <motion.div variants={itemVariants} className="mb-8 flex items-center gap-4">
-          <h3 className="font-display text-2xl font-bold text-text-primary">
-            More From {category.name}
+        <motion.div variants={itemVariants} className="mb-12 flex items-center gap-6">
+          <h3 className="font-display text-3xl font-black text-plum uppercase tracking-wider">
+            Explore {category.name}
           </h3>
-          <div className="flex-1 h-[1px] bg-neutral-border" />
+          <div className="flex-1 h-px bg-plum/10" />
         </motion.div>
       )}
 
       {/* Regular Items Grid */}
       {displayRegular.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {displayRegular.map((product) => (
             <motion.div key={product.id} variants={itemVariants}>
               <ProductCard product={product} onClick={onSelectProduct} />

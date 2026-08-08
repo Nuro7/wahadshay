@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { Category } from "../../data/menuData";
 
 interface CategoryNavProps {
@@ -22,10 +23,10 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
   }, [activeCategoryId]);
 
   return (
-    <div className="sticky top-20 z-40 bg-white/80 backdrop-blur-md border-b border-neutral-border/50 py-4 mb-8">
+    <div className="sticky top-[72px] md:top-20 z-40 bg-beige/80 backdrop-blur-xl border-b border-plum/10 py-3 mb-8 shadow-sm">
       <div
         ref={scrollRef}
-        className="flex items-center gap-4 overflow-x-auto px-6 max-w-7xl mx-auto no-scrollbar"
+        className="flex items-center gap-3 md:gap-6 overflow-x-auto px-6 max-w-7xl mx-auto no-scrollbar py-2"
       >
         {categories.map((cat) => {
           const isActive = activeCategoryId === cat.id;
@@ -33,19 +34,27 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`relative flex items-center gap-3 px-6 py-3 rounded-full font-display text-sm md:text-base font-bold uppercase tracking-wider transition-all duration-500 cursor-pointer shrink-0 ${
+              className={`group relative flex items-center gap-3 px-5 py-2.5 rounded-full font-display text-sm md:text-base font-bold uppercase tracking-wider transition-colors duration-300 cursor-pointer shrink-0 overflow-hidden ${
                 isActive
-                  ? "category-active text-plum bg-yellow/10"
-                  : "text-text-secondary hover:text-plum hover:bg-neutral-bg"
+                  ? "category-active text-white"
+                  : "text-plum/60 hover:text-plum hover:bg-plum/5"
               }`}
             >
               {isActive && (
-                <span className="absolute inset-0 rounded-full border border-yellow pointer-events-none" />
+                <motion.div
+                  layoutId="activeCategoryBg"
+                  className="absolute inset-0 bg-plum rounded-full z-0"
+                  initial={false}
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
               )}
-              {isActive && (
-                <span className="h-2 w-2 rounded-full bg-yellow shadow-[0_0_8px_rgba(255,199,44,0.6)] animate-pulse" />
-              )}
-              {cat.name}
+              
+              <div className="relative z-10 flex items-center gap-3">
+                <div className={`w-8 h-8 rounded-full overflow-hidden flex-shrink-0 border-2 transition-colors ${isActive ? 'border-yellow' : 'border-transparent group-hover:border-plum/20'}`}>
+                   <img src={cat.heroImage} alt={cat.name} className="w-full h-full object-cover" />
+                </div>
+                <span>{cat.name}</span>
+              </div>
             </button>
           );
         })}

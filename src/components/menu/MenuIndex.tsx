@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { menuCategories, Product } from "../../data/menuData";
 import { MenuHero } from "./MenuHero";
 import { CategoryNavigation } from "./CategoryNavigation";
@@ -11,6 +11,14 @@ export const MenuIndex: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const activeCategory = menuCategories.find((c) => c.id === activeCategoryId) || menuCategories[0];
+
+  // Preload images for smoother transitions
+  useEffect(() => {
+    menuCategories.forEach(category => {
+      const img = new Image();
+      img.src = category.heroImage;
+    });
+  }, []);
 
   return (
     <section id="menu" className="relative min-h-screen bg-beige font-body selection:bg-plum selection:text-white">
@@ -25,7 +33,7 @@ export const MenuIndex: React.FC = () => {
       />
 
       {/* 3. Category Scene (Cinematic Transition + 3D Food) */}
-      <div className="relative z-10 overflow-hidden">
+      <div className="relative z-10 overflow-hidden pt-8 pb-12">
         <CategoryScene category={activeCategory} />
       </div>
 
