@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
@@ -18,6 +18,9 @@ import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
+// Import new featured/teaser components
+import FranchiseTeaser from "./components/FranchiseTeaser";
+
 function App() {
   // Initialize Lenis smooth scroll
   useLenis();
@@ -26,6 +29,52 @@ function App() {
 
   // Currency State management
   const [currency, setCurrency] = useState<"AED" | "SAR">("AED");
+
+  // Routing State management
+  const [currentPage, setCurrentPage] = useState<string>("home");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.toLowerCase() || "#home";
+      const page = hash.replace("#", "");
+
+      let targetPage = "home";
+      if (["home", "specials"].includes(page)) {
+        targetPage = "home";
+      } else if (["about"].includes(page)) {
+        targetPage = "about";
+      } else if (["menu"].includes(page)) {
+        targetPage = "menu";
+      } else if (["franchise"].includes(page)) {
+        targetPage = "franchise";
+      } else if (["gallery"].includes(page)) {
+        targetPage = "gallery";
+      } else if (["contact", "faq"].includes(page)) {
+        targetPage = "contact";
+      }
+
+      setCurrentPage(targetPage);
+
+      // Smooth scroll target resolution if a sub-hash section exists on the page
+      setTimeout(() => {
+        if (page === "faq") {
+          const faqEl = document.getElementById("faq");
+          if (faqEl) faqEl.scrollIntoView({ behavior: "smooth" });
+        } else if (page === "specials") {
+          const specialsEl = document.getElementById("specials");
+          if (specialsEl) specialsEl.scrollIntoView({ behavior: "smooth" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }
+      }, 50);
+    };
+
+    // Initialize page on load
+    handleHashChange();
+
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   return (
     <>
@@ -37,19 +86,47 @@ function App() {
           onCurrencyChange={(curr) => setCurrency(curr)}
         />
         
-        <main>
-          <Hero />
-          <About />
-          <SignatureExperience />
-          <Menu currency={currency} />
-          <Specials currency={currency} />
-          <Franchise />
-          <FranchiseSection />
-          <Testimonials />
-          <Gallery />
-          <VideoGallery />
-          <FAQ />
-          <Contact />
+        <main className="flex-1 flex flex-col">
+          {currentPage === "home" && (
+            <>
+              <Hero />
+              <Specials currency={currency} />
+              <Testimonials />
+              <FranchiseTeaser />
+            </>
+          )}
+
+          {currentPage === "about" && (
+            <>
+              <About />
+              <SignatureExperience />
+            </>
+          )}
+
+          {currentPage === "menu" && (
+            <Menu currency={currency} />
+          )}
+
+          {currentPage === "franchise" && (
+            <>
+              <Franchise />
+              <FranchiseSection />
+            </>
+          )}
+
+          {currentPage === "gallery" && (
+            <>
+              <Gallery />
+              <VideoGallery />
+            </>
+          )}
+
+          {currentPage === "contact" && (
+            <>
+              <FAQ />
+              <Contact />
+            </>
+          )}
         </main>
         
         <Footer />

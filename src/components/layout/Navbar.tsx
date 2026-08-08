@@ -6,11 +6,22 @@ interface NavbarProps {
   onCurrencyChange: (curr: "AED" | "SAR") => void;
 }
 
-const menuItems = ["Home", "About", "Menu", "Specials", "Franchise", "Contact"];
+const menuItems = ["Home", "About", "Menu", "Specials", "Franchise", "Gallery", "Contact"];
 
 export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+
+  const [activeHash, setActiveHash] = useState("#home");
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setActiveHash(window.location.hash || "#home");
+    };
+    handleHashChange();
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,24 +60,36 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
         {/* Desktop Navigation with Animated Underline */}
         <nav className="hidden lg:flex items-center gap-8">
           <ul className="flex items-center gap-6">
-            {menuItems.map((item) => (
-              <li 
-                key={item}
-                className="relative py-1 group"
-              >
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  className={`font-body text-xs font-semibold tracking-wider transition-colors duration-300 px-2 block uppercase ${
-                    isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white"
-                  }`}
+            {menuItems.map((item) => {
+              const itemHash = `#${item.toLowerCase()}`;
+              const isActive =
+                activeHash === itemHash ||
+                (item === "Home" && activeHash === "#specials") ||
+                (item === "Contact" && activeHash === "#faq");
+              
+              return (
+                <li 
+                  key={item}
+                  className="relative py-1 group"
                 >
-                  {item}
-                </a>
-                <div className={`absolute left-2 right-2 bottom-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center ${
-                  isScrolled ? "bg-plum" : "bg-yellow"
-                }`} />
-              </li>
-            ))}
+                  <a
+                    href={itemHash}
+                    className={`font-body text-xs font-semibold tracking-wider transition-colors duration-300 px-2 block uppercase ${
+                      isActive
+                        ? (isScrolled ? "text-plum font-bold" : "text-white font-bold")
+                        : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
+                    }`}
+                  >
+                    {item}
+                  </a>
+                  <div className={`absolute left-2 right-2 bottom-0 h-[2px] transition-transform duration-300 origin-center ${
+                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                  } ${
+                    isScrolled ? "bg-plum" : "bg-yellow"
+                  }`} />
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -135,19 +158,29 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
             : "border-white/10 bg-plum-dark/95 text-white"
         }`}>
           <ul className="flex flex-col gap-4 text-center mb-6">
-            {menuItems.map((item) => (
-              <li key={item}>
-                <a
-                  href={`#${item.toLowerCase()}`}
-                  onClick={() => setIsOpen(false)}
-                  className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${
-                    isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow"
-                  }`}
-                >
-                  {item}
-                </a>
-              </li>
-            ))}
+            {menuItems.map((item) => {
+              const itemHash = `#${item.toLowerCase()}`;
+              const isActive =
+                activeHash === itemHash ||
+                (item === "Home" && activeHash === "#specials") ||
+                (item === "Contact" && activeHash === "#faq");
+              
+              return (
+                <li key={item}>
+                  <a
+                    href={itemHash}
+                    onClick={() => setIsOpen(false)}
+                    className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${
+                      isActive
+                        ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
+                        : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow")
+                    }`}
+                  >
+                    {item}
+                  </a>
+                </li>
+              );
+            })}
           </ul>
           
           <div className="flex flex-col gap-4 border-t border-white/5 pt-4">

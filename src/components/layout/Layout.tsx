@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen bg-neutral-white text-text-primary relative overflow-hidden font-body selection:bg-yellow selection:text-plum-dark">
+    <div className="min-h-screen bg-neutral-white text-text-primary relative overflow-hidden font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
 
       {/* 1. Cinematic Ambient Orbs (Floating & Animated) */}
       <div 
@@ -36,7 +36,7 @@ export function Layout({ children }: LayoutProps) {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(43,37,32,0.02)_95%)] pointer-events-none z-0" />
 
       {/* Main Content Wrap */}
-      <div className="relative z-10 w-full">
+      <div className="relative z-10 w-full flex-1 flex flex-col">
         {children}
       </div>
     </div>
