@@ -88,12 +88,16 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
 
                 <div className="w-16 h-1 bg-yellow mb-8 rounded-full" />
                 
-                <p className="text-plum/80 text-lg leading-relaxed mb-10 font-medium">
+                <p className="text-text-secondary text-lg leading-relaxed mb-10 font-medium">
                   {product.description}
                 </p>
 
-                <button className="w-full py-5 bg-plum text-white font-bold tracking-widest uppercase rounded-full hover:bg-plum/90 transition-all shadow-xl shadow-plum/20 hover:shadow-plum/40 hover:-translate-y-1">
-                  Add To Order
+                {/* Return to menu / Close Action */}
+                <button 
+                  onClick={onClose}
+                  className="w-full md:w-auto px-10 py-4 bg-white border-2 border-plum text-plum font-bold tracking-[0.15em] text-sm uppercase rounded-full hover:bg-plum hover:text-white transition-colors duration-300 shadow-sm"
+                >
+                  Return to Menu
                 </button>
               </motion.div>
             </div>

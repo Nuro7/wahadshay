@@ -19,7 +19,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-plum-dark border-t border-white/5 pt-20 pb-10 select-none">
+    <footer className="bg-plum-dark border-t border-white/5 pt-20 pb-6 select-none">
       <div className="mx-auto max-w-7xl px-6">
         
         {/* Main Grid */}

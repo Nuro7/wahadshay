@@ -3,6 +3,8 @@ import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/About";
+import MissionVision from "./components/MissionVision";
+import Vision2030 from "./components/Vision2030";
 import SignatureExperience from "./components/SignatureExperience";
 import MenuIndex from "./components/menu/MenuIndex";
 import Specials from "./components/Specials";
@@ -105,6 +107,8 @@ function App() {
           {currentPage === "about" && (
             <>
               <About />
+              <MissionVision />
+              <Vision2030 />
               <SignatureExperience />
             </>
           )}

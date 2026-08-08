@@ -83,56 +83,58 @@ export function About() {
   }, [currentStep]);
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
-      {/* Background Soft Glow Orbs */}
-      <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[10%] left-[-15%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-
-      <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-24 md:space-y-36">
+    <>
+      {/* 1. Our Story Section */}
+      <section id="about" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
+        <div className="absolute top-[20%] right-[-10%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
         
-        {/* About Narrative Block */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="reveal-left reveal space-y-6">
-            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
-              Our Story
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-text-primary leading-tight">
-              <span className="text-shimmer">A Symphony of Tea</span> <br />
-              <span className="text-plum">&amp; Baked Craft</span>
-            </h2>
-            <p className="text-text-secondary text-base md:text-lg leading-relaxed font-body">
-              Wahad Shay was born from a simple yet profound desire: to create a sanctuary where the ancient, rich traditions of slow-brewed tea meet the meticulous artistry of European baking. 
-            </p>
-            <p className="text-text-primary/85 text-sm md:text-base leading-relaxed font-body font-light">
-              From our signature cardamom-infused Karak to our melting cheddar brioches, every item on our menu is a testament to culinary craftsmanship. We import raw saffron directly, hand-crush whole spices, and allow our bread doughs to slow-ferment for over 24 hours to achieve an exquisite, pillowy structure.
-            </p>
-          </div>
+        <div className="mx-auto max-w-7xl px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="reveal-left reveal space-y-6">
+              <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+                Our Story
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black text-text-primary leading-tight">
+                <span className="text-shimmer">A Symphony of Tea</span> <br />
+                <span className="text-plum">&amp; Baked Craft</span>
+              </h2>
+              <p className="text-text-secondary text-base md:text-lg leading-relaxed font-body">
+                Wahad Shay was born from a simple yet profound desire: to create a sanctuary where the ancient, rich traditions of slow-brewed tea meet the meticulous artistry of European baking. 
+              </p>
+              <p className="text-text-primary/85 text-sm md:text-base leading-relaxed font-body font-light">
+                From our signature cardamom-infused Karak to our melting cheddar brioches, every item on our menu is a testament to culinary craftsmanship. We import raw saffron directly, hand-crush whole spices, and allow our bread doughs to slow-ferment for over 24 hours to achieve an exquisite, pillowy structure.
+              </p>
+            </div>
 
-          <div className="reveal-right reveal relative flex items-center justify-center">
-            {/* Ambient brand gradient glow card wrapper */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-plum/5 to-yellow/5 rounded-3xl blur-xl opacity-30" />
-            <div className="w-full max-w-lg premium-card p-8 md:p-10 text-center relative z-10 border border-neutral-border flex flex-col justify-between h-[360px] overflow-hidden">
-              <div className="space-y-4">
-                <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-plum">
-                  The Brand Motto
-                </span>
-                <blockquote className="font-display text-2xl md:text-3xl italic font-medium leading-relaxed text-text-primary">
-                  "A World of Flavor in One Place. Prepared with passion, served with elegance."
-                </blockquote>
-              </div>
-              <div className="border-t border-neutral-border pt-6 flex items-center justify-center gap-3">
-                <div className="h-0.5 w-6 bg-yellow" />
-                <span className="font-display text-xs font-bold tracking-widest text-plum uppercase">
-                  WAHAD SHAY LUXURY
-                </span>
-                <div className="h-0.5 w-6 bg-yellow" />
+            <div className="reveal-right reveal relative flex items-center justify-center">
+              <div className="absolute -inset-2 bg-gradient-to-r from-plum/5 to-yellow/5 rounded-3xl blur-xl opacity-30" />
+              <div className="w-full max-w-lg premium-card p-8 md:p-10 text-center relative z-10 border border-neutral-border flex flex-col justify-between h-[360px] overflow-hidden">
+                <div className="space-y-4">
+                  <span className="text-[10px] uppercase font-bold tracking-[0.3em] text-plum">
+                    The Brand Motto
+                  </span>
+                  <blockquote className="font-display text-2xl md:text-3xl italic font-medium leading-relaxed text-text-primary">
+                    "A World of Flavor in One Place. Prepared with passion, served with elegance."
+                  </blockquote>
+                </div>
+                <div className="border-t border-neutral-border pt-6 flex items-center justify-center gap-3">
+                  <div className="h-0.5 w-6 bg-yellow" />
+                  <span className="font-display text-xs font-bold tracking-widest text-plum uppercase">
+                    WAHAD SHAY LUXURY
+                  </span>
+                  <div className="h-0.5 w-6 bg-yellow" />
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Brand Philosophy Grid */}
-        <div className="space-y-16">
+      {/* 2. Brand Philosophy Section */}
+      <section className="py-24 md:py-32 bg-neutral-ivory relative overflow-hidden select-none">
+        <div className="absolute bottom-[10%] left-[-15%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+        
+        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-16">
           <div className="reveal text-center max-w-2xl mx-auto space-y-4">
             <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               Philosophy
@@ -154,7 +156,7 @@ export function About() {
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
                   className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 flex flex-col justify-between h-[280px]`}
                 >
-                  <div className="rounded-full bg-neutral-ivory border border-neutral-border p-3.5 text-plum w-fit shrink-0 mb-6 group-hover:scale-105 transition-transform">
+                  <div className="rounded-full bg-beige border border-neutral-border p-3.5 text-plum w-fit shrink-0 mb-6 group-hover:scale-105 transition-transform">
                     <Icon size={24} className="stroke-[1.5]" />
                   </div>
                   <div className="space-y-2 mt-auto">
@@ -170,9 +172,11 @@ export function About() {
             })}
           </div>
         </div>
+      </section>
 
-        {/* Brand Timeline Section */}
-        <div className="space-y-16 pt-8">
+      {/* 3. Brand Timeline Section */}
+      <section className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
+        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-16">
           <div className="reveal text-center max-w-2xl mx-auto space-y-4">
             <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               Timeline
@@ -185,7 +189,6 @@ export function About() {
             </p>
           </div>
 
-          {/* Journey Route Map SVG */}
           <div className="relative max-w-3xl mx-auto">
             <svg 
               viewBox="0 0 800 220" 
@@ -309,9 +312,7 @@ export function About() {
             </svg>
           </div>
 
-          {/* Timeline Slider Window with Navigation Arrows */}
           <div className="relative max-w-3xl mx-auto px-4 md:px-12 flex items-center gap-4 md:gap-6 justify-center">
-            {/* Left Arrow */}
             <button
               onClick={handlePrev}
               disabled={currentStep === 0}
@@ -322,7 +323,6 @@ export function About() {
               <ChevronLeft size={18} />
             </button>
 
-            {/* Slider Window Container */}
             <div className="flex-1 overflow-hidden min-h-[190px] flex items-center justify-center relative">
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
@@ -363,7 +363,6 @@ export function About() {
               </AnimatePresence>
             </div>
 
-            {/* Right Arrow */}
             <button
               onClick={handleNext}
               disabled={currentStep === timelineData.length - 1}
@@ -375,9 +374,9 @@ export function About() {
             </button>
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
+
 export default About;

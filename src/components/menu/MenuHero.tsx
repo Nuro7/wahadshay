@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import teacupImg from "../../assets/wahad_teacup.png";
+import burgerImg from "../../assets/wahad_burger.png";
 
 export const MenuHero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -10,45 +10,75 @@ export const MenuHero: React.FC = () => {
   });
 
   const yBg = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const yImage = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const rotateImage = useTransform(scrollYProgress, [0, 1], [0, -5]);
 
   return (
-    <div ref={containerRef} className="relative pt-32 pb-16 md:pt-40 md:pb-32 overflow-hidden flex flex-col items-center justify-center text-center">
+    <div ref={containerRef} className="relative pt-32 pb-16 md:pt-32 md:pb-32 overflow-hidden flex flex-col justify-center bg-beige">
       {/* Background aesthetics */}
-      <motion.div style={{ y: yBg }} className="absolute inset-0 bg-plum opacity-5 pointer-events-none" />
-      <div className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] bg-plum/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-yellow/20 rounded-full blur-[100px] pointer-events-none" />
-
-      <div className="relative z-10 px-6 max-w-4xl mx-auto flex flex-col items-center">
+      <motion.div style={{ y: yBg }} className="absolute inset-0 bg-plum/5 pointer-events-none" />
+      
+      {/* Organic Background Shapes */}
+      <div className="absolute top-[-10%] right-[-5%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] bg-plum rounded-full blur-[80px] opacity-20 pointer-events-none" />
+      
+      {/* The main container */}
+      <div className="relative z-10 px-6 max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 md:gap-8">
+        
+        {/* Left Side: Text Content (40%) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative w-64 h-64 md:w-80 md:h-80 mb-8"
-          style={{ y: yImage }}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full md:w-[40%] flex flex-col text-left space-y-6 pt-10 md:pt-0 z-20"
         >
-          <img src={teacupImg} alt="Wahad Shay Teacup" className="w-full h-full object-contain drop-shadow-2xl" />
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
-            transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-            className="absolute -top-4 -right-8 w-24 h-24 bg-yellow/40 rounded-full blur-2xl z-[-1]"
-          />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-4"
-        >
-          <h1 className="font-display text-6xl md:text-8xl font-black text-plum tracking-tight uppercase drop-shadow-lg">
-            Our Menu
+          <div className="inline-flex items-center gap-4">
+            <span className="h-px w-8 bg-yellow" />
+            <span className="text-yellow text-sm font-bold uppercase tracking-[0.2em]">Explore Our Menu</span>
+            <span className="h-px w-8 bg-yellow" />
+          </div>
+          
+          <h1 className="font-display text-5xl md:text-[clamp(72px,8vw,120px)] font-black text-plum leading-[0.85] uppercase tracking-tight">
+            Our <span className="text-yellow">Menu</span>
           </h1>
-          <p className="font-body text-xl md:text-3xl text-plum/80 font-medium tracking-wide">
+          
+          <p className="font-signature text-3xl md:text-5xl text-plum/80 -rotate-2 -mt-4 mb-4">
             One Cup. Many Stories.
           </p>
+          
+          <p className="font-body text-base md:text-lg text-text-secondary max-w-sm leading-relaxed">
+            Globally inspired flavors crafted with passion. Premium taste at prices for everyone.
+          </p>
         </motion.div>
+
+        {/* Right Side: Large Food Composition (60%) */}
+        <div className="w-full md:w-[60%] relative flex justify-center items-center mt-12 md:mt-0">
+          
+          {/* Yellow Organic Brand Shape */}
+          <motion.div 
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[250px] h-[300px] md:w-[500px] md:h-[500px] bg-yellow rounded-tl-[40%] rounded-tr-[60%] rounded-bl-[70%] rounded-br-[40%] z-0"
+          />
+          
+          {/* Main Food Image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, rotate: 5, y: 50 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            style={{ y: yImage, rotateZ: rotateImage }}
+            className="relative z-10 w-[120%] md:w-[130%] -ml-[10%] md:-ml-[15%] flex justify-center"
+          >
+            <img 
+              src={burgerImg} 
+              alt="Wahad Shay Burger" 
+              className="w-full max-w-[400px] md:max-w-[700px] object-contain drop-shadow-[0_30px_40px_rgba(0,0,0,0.3)]" 
+            />
+          </motion.div>
+          
+        </div>
       </div>
     </div>
   );
 };
+

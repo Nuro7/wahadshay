@@ -1,0 +1,83 @@
+import { Eye, Target, CheckCircle2, Lightbulb, Award, TrendingUp } from "lucide-react";
+
+const coreValues = [
+  {
+    icon: CheckCircle2,
+    title: "Authentic exploration",
+  },
+  {
+    icon: Lightbulb,
+    title: "Thoughtful innovation",
+  },
+  {
+    icon: Award,
+    title: "Consistent quality",
+  },
+  {
+    icon: TrendingUp,
+    title: "Community-driven growth",
+  }
+];
+
+export default function MissionVision() {
+  return (
+    <section className="py-24 bg-neutral-ivory relative overflow-hidden select-none">
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          
+          <div className="space-y-12">
+            {/* Vision */}
+            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal">
+              <div 
+                className="shrink-0 text-white bg-plum p-5 shadow-xl"
+                style={{ borderRadius: "40px 10px 40px 10px", transform: "rotate(-3deg)" }}
+              >
+                <Eye size={48} className="stroke-[1.5] transform rotate-3" />
+              </div>
+              <div className="pt-2">
+                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Vision</h3>
+                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed">
+                  To become a globally recognized food brand with 100 outlets worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* Mission */}
+            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal" style={{ "--stagger-idx": 1 } as React.CSSProperties}>
+              <div 
+                className="shrink-0 text-white bg-plum p-5 shadow-xl"
+                style={{ borderRadius: "40px 10px 40px 10px", transform: "rotate(-3deg)" }}
+              >
+                <Target size={48} className="stroke-[1.5] transform rotate-3" />
+              </div>
+              <div className="pt-2">
+                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Mission</h3>
+                <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed">
+                  Deliver trendy, globally researched dishes with premium presentation at accessible pricing.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:border-l lg:border-plum/20 lg:pl-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
+            <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-10">Core Values</h3>
+            <div className="space-y-6">
+              {coreValues.map((value, idx) => {
+                const Icon = value.icon;
+                return (
+                  <div key={idx} className="flex items-center gap-5 group">
+                    <div className="shrink-0 text-white bg-plum p-3.5 rounded-2xl group-hover:scale-110 transition-transform shadow-md">
+                      <Icon size={28} className="stroke-[2]" />
+                    </div>
+                    <span className="text-text-primary text-xl font-semibold group-hover:text-plum transition-colors">{value.title}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
