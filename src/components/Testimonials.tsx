@@ -30,22 +30,22 @@ const testimonialsData: Testimonial[] = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-plum relative overflow-hidden select-none">
+    <section id="testimonials" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
       {/* Ambient background glow orbs */}
-      <div className="absolute top-[20%] left-[-15%] w-[450px] h-[450px] bg-[#5E2689]/15 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/4 rounded-full blur-[110px] pointer-events-none animate-pulse" />
+      <div className="absolute top-[20%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/2 rounded-full blur-[110px] pointer-events-none animate-pulse" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             Guest Experience
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-white">
-            Customer Testimonials
+          <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
+            <span className="text-shimmer">Customer Testimonials</span>
           </h2>
-          <p className="text-grey text-sm md:text-base font-body">
+          <p className="text-text-secondary text-sm md:text-base font-body">
             What our guests and network partners say about their Wahad Shay café experience.
           </p>
         </div>
@@ -56,10 +56,10 @@ export function Testimonials() {
             <div
               key={t.name}
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-              className="reveal glass-card glass-card-hover p-8 md:p-10 flex flex-col justify-between h-[320px] relative"
+              className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 md:p-10 flex flex-col justify-between h-[320px] relative`}
             >
               {/* Quote Mark Icon Accent */}
-              <div className="absolute top-6 right-6 text-yellow/10">
+              <div className="absolute top-6 right-6 text-plum/10">
                 <Quote size={40} className="stroke-[1.5]" />
               </div>
 
@@ -71,16 +71,16 @@ export function Testimonials() {
               </div>
 
               {/* Message */}
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed italic font-body my-6 flex-1">
+              <p className="text-text-primary/85 text-xs sm:text-sm leading-relaxed italic font-body my-6 flex-1">
                 "{t.text}"
               </p>
 
               {/* User Bio */}
-              <div className="border-t border-white/5 pt-4">
-                <h4 className="font-display text-sm font-bold text-[#F8EED5]">
+              <div className="border-t border-neutral-border pt-4">
+                <h4 className="font-display text-sm font-bold text-plum group-hover:text-plum-dark transition-colors">
                   {t.name}
                 </h4>
-                <span className="text-[10px] text-grey font-body uppercase font-bold tracking-wider mt-1 block">
+                <span className="text-[10px] text-text-secondary font-body uppercase font-bold tracking-wider mt-1 block">
                   {t.role}
                 </span>
               </div>

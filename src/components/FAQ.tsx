@@ -34,22 +34,22 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-plum relative overflow-hidden select-none">
+    <section id="faq" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
       {/* Background ambient orbs */}
-      <div className="absolute top-[30%] right-[-10%] w-[450px] h-[450px] bg-plum/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[20%] left-[-15%] w-[400px] h-[400px] bg-yellow/3 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[30%] right-[-10%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[20%] left-[-15%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="mx-auto max-w-4xl px-6 relative z-10">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             Common Inquiries
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-white">
-            Frequently Asked Questions
+          <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
+            <span className="text-shimmer">Frequently Asked Questions</span>
           </h2>
-          <p className="text-grey text-sm md:text-base font-body">
+          <p className="text-text-secondary text-sm md:text-base font-body">
             Find answers to questions about our ingredients, brewing rituals, operating details, and franchise opportunities.
           </p>
         </div>
@@ -62,13 +62,13 @@ export function FAQ() {
               <div
                 key={idx}
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                className="reveal"
+                className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal`}
               >
                 <div 
-                  className={`glass-card border overflow-hidden transition-all duration-300 ${
+                  className={`border rounded-3xl overflow-hidden bg-white transition-all duration-300 ${
                     isOpen 
-                      ? "border-yellow/30 bg-plum-dark/80 shadow-[0_15px_30px_rgba(94,38,137,0.15)]" 
-                      : "border-plum/20 bg-plum-dark/50"
+                      ? "border-plum/30 shadow-[0_10px_25px_rgba(94,38,137,0.04)]" 
+                      : "border-neutral-border bg-white"
                   }`}
                 >
                   {/* Trigger Header */}
@@ -77,15 +77,15 @@ export function FAQ() {
                     className="w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none select-none"
                   >
                     <div className="flex items-center gap-4 pr-4">
-                      <HelpCircle size={18} className={`shrink-0 transition-colors ${isOpen ? "text-yellow" : "text-grey"}`} />
-                      <span className="font-display text-sm sm:text-base font-bold text-white group-hover:text-yellow transition-colors">
+                      <HelpCircle size={18} className={`shrink-0 transition-colors ${isOpen ? "text-plum" : "text-text-secondary"}`} />
+                      <span className="font-display text-sm sm:text-base font-bold text-text-primary hover:text-plum transition-colors">
                         {item.question}
                       </span>
                     </div>
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="text-white/60 shrink-0"
+                      className={`shrink-0 ${isOpen ? "text-plum" : "text-text-secondary"}`}
                     >
                       <ChevronDown size={18} />
                     </motion.div>
@@ -100,7 +100,7 @@ export function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <div className="px-6 pb-6 pt-2 border-t border-white/5 font-body text-xs sm:text-sm text-grey leading-relaxed">
+                        <div className="px-6 pb-6 pt-2 border-t border-neutral-border font-body text-xs sm:text-sm text-text-secondary leading-relaxed">
                           {item.answer}
                         </div>
                       </motion.div>

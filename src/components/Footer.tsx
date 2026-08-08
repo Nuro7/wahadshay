@@ -76,9 +76,9 @@ export function Footer() {
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
-                    className="flex items-center gap-2 text-green-400 text-xs font-body"
+                    className="flex items-center gap-2 text-yellow text-xs font-body"
                   >
-                    <div className="h-5 w-5 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center">
+                    <div className="h-5 w-5 rounded-full bg-yellow/10 border border-yellow/30 flex items-center justify-center text-yellow">
                       <Check size={10} />
                     </div>
                     <span>Thank you for subscribing to our journal.</span>

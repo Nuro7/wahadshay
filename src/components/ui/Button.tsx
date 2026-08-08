@@ -17,9 +17,9 @@ export function Button({
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
-      "bg-yellow text-plum-dark shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_20px_rgba(245,189,32,0.15)] hover:bg-[#ffd03d] border border-transparent",
+      "bg-yellow text-plum-dark shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_20px_rgba(94,38,137,0.15)] hover:bg-plum hover:text-white border border-transparent",
     secondary:
-      "bg-transparent text-white border border-yellow hover:bg-[rgba(245,189,32,0.12)] hover:border-yellow",
+      "bg-transparent text-white border border-yellow hover:bg-yellow hover:text-plum-dark",
     ghost:
       "text-white/80 hover:text-white hover:bg-white/5",
   };

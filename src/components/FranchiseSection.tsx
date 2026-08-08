@@ -103,18 +103,18 @@ export default function FranchiseSection() {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
-        background: "linear-gradient(180deg, #241237 0%, #1E102D 35%, #28153F 70%, #2E1845 100%)"
+        background: "var(--color-neutral-ivory)"
       }}
-      className="py-32 px-6 text-white relative overflow-hidden select-none z-10"
+      className="py-32 px-6 text-text-primary relative overflow-hidden select-none z-10"
     >
       {/* Background radial gold glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.06),transparent_65%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.02),transparent_65%)] pointer-events-none z-0" />
       
       {/* Islamic Geometric Pattern overlay (4% opacity) */}
       <div 
-        className="absolute inset-0 opacity-[0.04] pointer-events-none z-0" 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none z-0" 
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z' fill='%23D4AF37' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z' fill='%235E2689' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
           backgroundSize: "80px 80px"
         }}
       />
@@ -124,20 +124,20 @@ export default function FranchiseSection() {
 
       {/* Subtle Smoke Effect */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute -bottom-[20%] left-[10%] w-[600px] h-[600px] bg-gradient-to-t from-[#D4AF37]/5 to-transparent rounded-full blur-[140px] animate-smoke-1" />
-        <div className="absolute -top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-b from-[#5E2689]/10 to-transparent rounded-full blur-[120px] animate-smoke-2" />
+        <div className="absolute -bottom-[20%] left-[10%] w-[600px] h-[600px] bg-gradient-to-t from-yellow/2 to-transparent rounded-full blur-[140px] animate-smoke-1" />
+        <div className="absolute -top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-b from-plum/4 to-transparent rounded-full blur-[120px] animate-smoke-2" />
       </div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="reveal text-center mb-24 space-y-4">
-          <p className="uppercase tracking-[8px] text-[#D4AF37] text-xs font-bold font-display">
+          <p className="uppercase tracking-[8px] text-plum text-xs font-bold font-display">
             WAHAD SHAY
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-[#F8EED5] font-display">
-            Our Franchise Network
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-text-primary font-display">
+            <span className="text-shimmer">Our Franchise Network</span>
           </h2>
-          <p className="text-[#D9D0E8] max-w-xl mx-auto text-sm md:text-base font-light font-body">
+          <p className="text-text-secondary max-w-xl mx-auto text-sm md:text-base font-light font-body">
             Growing Across the UAE with Authentic Malabar Flavours.
           </p>
         </div>
@@ -150,53 +150,53 @@ export default function FranchiseSection() {
               transformStyle: "preserve-3d",
               transition: "transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)",
             }}
-            className="relative mx-auto max-w-5xl h-[520px] md:h-[620px] rounded-[32px] border border-[#D4AF37]/18 bg-white/[0.04] backdrop-blur-[18px] overflow-hidden shadow-[0_24px_80px_rgba(0,0,0,0.6)] hover:shadow-[0_24px_80px_rgba(212,175,55,0.12)] transition-shadow duration-500"
+            className="relative mx-auto max-w-5xl h-[520px] md:h-[620px] rounded-[32px] border border-neutral-border bg-white/80 backdrop-blur-[18px] overflow-hidden shadow-[0_24px_80px_rgba(43,37,32,0.05)] hover:shadow-[0_24px_80px_rgba(94,38,137,0.08)] transition-shadow duration-500"
           >
           {/* Radial Ambient Glow behind Map */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.09),transparent_60%)] pointer-events-none" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.04),transparent_60%)] pointer-events-none" />
 
           {/* Floating Branch Statistics Card */}
-          <div className="absolute top-6 left-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-plum-dark/85 border border-white/10 backdrop-blur-md space-y-4 shadow-xl">
-            <h4 className="font-display text-xs font-bold text-yellow uppercase tracking-widest">Network Stats</h4>
+          <div className="absolute top-6 left-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-white/95 border border-neutral-border backdrop-blur-md space-y-4 shadow-lg">
+            <h4 className="font-display text-xs font-bold text-plum uppercase tracking-widest">Network Stats</h4>
             <div className="space-y-3 font-body">
               <div>
-                <span className="text-[10px] text-grey uppercase font-bold block">Active Outlets</span>
-                <span className="font-numbers text-lg font-bold text-white">4 Lounges</span>
+                <span className="text-[10px] text-text-secondary uppercase font-bold block">Active Outlets</span>
+                <span className="font-numbers text-lg font-bold text-text-primary">4 Lounges</span>
               </div>
               <div>
-                <span className="text-[10px] text-grey uppercase font-bold block">Weekly Foot Traffic</span>
-                <span className="font-numbers text-lg font-bold text-white">12,500+ guests</span>
+                <span className="text-[10px] text-text-secondary uppercase font-bold block">Weekly Foot Traffic</span>
+                <span className="font-numbers text-lg font-bold text-text-primary">12,500+ guests</span>
               </div>
               <div>
-                <span className="text-[10px] text-grey uppercase font-bold block">Growth Rate</span>
-                <span className="font-numbers text-lg font-bold text-green-400">+45% YOY</span>
+                <span className="text-[10px] text-text-secondary uppercase font-bold block">Growth Rate</span>
+                <span className="font-numbers text-lg font-bold text-plum">+45% YOY</span>
               </div>
             </div>
           </div>
 
           {/* Floating Expansion Roadmap Card */}
-          <div className="absolute top-6 right-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-plum-dark/85 border border-white/10 backdrop-blur-md space-y-4 shadow-xl">
-            <h4 className="font-display text-xs font-bold text-yellow uppercase tracking-widest">Roadmap 2026</h4>
+          <div className="absolute top-6 right-6 z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-white/95 border border-neutral-border backdrop-blur-md space-y-4 shadow-lg">
+            <h4 className="font-display text-xs font-bold text-plum uppercase tracking-widest">Roadmap 2026</h4>
             <div className="space-y-3 font-body text-[11px]">
               <div className="flex gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-green-400 mt-1 shrink-0" />
+                <div className="h-1.5 w-1.5 rounded-full bg-plum mt-1 shrink-0 animate-pulse" />
                 <div>
-                  <span className="text-white font-bold block">Q1: Dubai Al Barsha</span>
-                  <span className="text-grey font-light">Site fit-out in progress</span>
+                  <span className="text-text-primary font-bold block">Q1: Dubai Al Barsha</span>
+                  <span className="text-text-secondary font-light">Site fit-out in progress</span>
                 </div>
               </div>
               <div className="flex gap-2">
                 <div className="h-1.5 w-1.5 rounded-full bg-yellow mt-1 shrink-0" />
                 <div>
-                  <span className="text-white font-bold block">Q2: Sharjah Muwaileh</span>
-                  <span className="text-grey font-light">Leasing terms finalized</span>
+                  <span className="text-text-primary font-bold block">Q2: Sharjah Muwaileh</span>
+                  <span className="text-text-secondary font-light">Leasing terms finalized</span>
                 </div>
               </div>
               <div className="flex gap-2">
-                <div className="h-1.5 w-1.5 rounded-full bg-white/20 mt-1 shrink-0" />
+                <div className="h-1.5 w-1.5 rounded-full bg-neutral-border mt-1 shrink-0" />
                 <div>
-                  <span className="text-white font-bold block">Q3: Muscat &amp; Doha</span>
-                  <span className="text-grey font-light">Regional partner talks</span>
+                  <span className="text-text-primary font-bold block">Q3: Muscat &amp; Doha</span>
+                  <span className="text-text-secondary font-light">Regional partner talks</span>
                 </div>
               </div>
             </div>
@@ -434,7 +434,7 @@ export default function FranchiseSection() {
                       <path
                         d={route.path}
                         fill="none"
-                        stroke="#D4AF37"
+                        stroke="var(--color-plum)"
                         strokeWidth={isRouteActive ? 3.5 : 1.5}
                         strokeOpacity={isRouteActive ? 0.35 : 0.08}
                         className="transition-all duration-500"
@@ -446,7 +446,7 @@ export default function FranchiseSection() {
                       <path
                         d={route.path}
                         fill="none"
-                        stroke={isRouteActive ? "#F5D66A" : "#D4AF37"}
+                        stroke={isRouteActive ? "var(--color-yellow)" : "var(--color-plum)"}
                         strokeWidth={isRouteActive ? 1.8 : 1.0}
                         strokeOpacity={isRouteActive ? 0.95 : 0.3}
                         className="transition-all duration-500 animate-draw-path"
@@ -454,12 +454,12 @@ export default function FranchiseSection() {
                       {/* Travelling Glow Dot */}
                       <circle
                         r="3.0"
-                        fill="#F8EED5"
+                        fill="var(--color-yellow)"
                         style={{
                           offsetPath: `path('${route.path}')`,
-                          boxShadow: "0 0 8px #F5D66A",
+                          boxShadow: "0 0 8px var(--color-yellow)",
                         }}
-                        className="animate-move-dot shadow-[0_0_6px_#D4AF37]"
+                        className="animate-move-dot shadow-[0_0_6px_var(--color-yellow)]"
                       />
                     </g>
                   );
@@ -500,7 +500,7 @@ export default function FranchiseSection() {
                       cy={b.mapY}
                       r={isActive ? 18 : 10}
                       className={`fill-none transition-all duration-500 ${
-                        isOpen ? "stroke-green-400" : "stroke-[#F5D66A]"
+                        isOpen ? "stroke-plum" : "stroke-yellow"
                       } opacity-40`}
                       style={{
                         transformOrigin: `${b.mapX}px ${b.mapY}px`,
@@ -518,9 +518,9 @@ export default function FranchiseSection() {
                       className="pointer-events-none"
                     >
                       <div
-                        className={`flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)] transition-transform duration-300 ${
+                        className={`flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(94,38,137,0.15)] transition-transform duration-300 ${
                           isActive ? "scale-135" : "scale-100"
-                        } ${isOpen ? "animate-pin-green" : "animate-pin-gold"}`}
+                        } ${isOpen ? "animate-pin-purple text-plum" : "animate-pin-yellow text-yellow"}`}
                       >
                         <MapPin size={16} className="stroke-[2.5]" />
                       </div>
@@ -532,12 +532,12 @@ export default function FranchiseSection() {
                       y={textY}
                       textAnchor={textAnchor}
                       className="font-display font-bold transition-all duration-300 select-none"
-                      fill={isActive ? "#F8EED5" : "#D4AF37"}
+                      fill={isActive ? "var(--color-plum)" : "var(--color-text-secondary)"}
                       style={{
                         fontSize: "11px",
                         letterSpacing: "0.05em",
                         cursor: "pointer",
-                        textShadow: isActive ? "0 0 8px rgba(212,175,55,0.8)" : "0 1px 3px rgba(0,0,0,0.9)",
+                        textShadow: isActive ? "0 0 8px rgba(94,38,137,0.15)" : "none",
                         pointerEvents: "auto"
                       }}
                       onMouseEnter={() => setHoveredCard(b.city)}
@@ -561,42 +561,42 @@ export default function FranchiseSection() {
               style={{ "--stagger-idx": i + 1 } as React.CSSProperties}
               onMouseEnter={() => setHoveredCard(b.city)}
               onMouseLeave={() => setHoveredCard(null)}
-              className="reveal glass-card glass-card-hover group relative p-8 flex flex-col justify-between h-[230px] overflow-hidden"
+              className="reveal premium-card premium-card-hover group relative p-8 flex flex-col justify-between h-[230px] overflow-hidden"
             >
               {/* Top border glowing slide animation */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-plum to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
 
               <div className="space-y-5">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-[4px] uppercase text-[#D4AF37] font-bold font-display">
+                  <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
                     📍 NETWORK
                   </span>
                   
                   {b.status === "Open" ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-green-500/10 border border-green-500/30 text-green-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 border border-plum/30 text-plum">
+                      <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
                       OPEN
                     </span>
                   ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-[#F5BD20]/10 border border-[#F5BD20]/30 text-[#F5BD20]">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#F5BD20]" />
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 border border-yellow/30 text-yellow-800">
+                      <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
                       COMING SOON
                     </span>
                   )}
                 </div>
 
                 <div className="space-y-1">
-                  <h3 className="text-3xl font-extrabold tracking-tight text-[#D4AF37] font-display transition-colors duration-300 group-hover:text-[#F8EED5] micro-title micro-transition">
+                  <h3 className="text-3xl font-extrabold tracking-tight text-text-primary font-display transition-colors duration-300 group-hover:text-plum micro-title micro-transition">
                     {b.city}
                   </h3>
-                  <p className="text-[#F8EED5] text-sm font-light font-body group-hover:text-white transition-colors duration-300">
+                  <p className="text-text-secondary text-sm font-light font-body group-hover:text-text-primary transition-colors duration-300">
                     {b.area}
                   </p>
                 </div>
               </div>
 
-              <div className="border-t border-white/5 pt-4 mt-auto">
-                <p className="text-[10px] text-[#AFA6C8] font-light tracking-wide font-body">
+              <div className="border-t border-neutral-border pt-4 mt-auto">
+                <p className="text-[10px] text-text-secondary/70 font-light tracking-wide font-body">
                   WAHAD SHAY LUXURY EXPERIENCE
                 </p>
               </div>

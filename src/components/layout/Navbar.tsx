@@ -33,7 +33,7 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
       <div 
         className={`mx-auto max-w-7xl rounded-full border transition-all duration-500 flex items-center justify-between px-6 md:px-10 py-3 ${
           isScrolled 
-            ? "border-white/10 bg-plum-dark/80 backdrop-blur-xl shadow-[0_12px_40px_rgba(11,6,23,0.7)]" 
+            ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]" 
             : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
         }`}
       >
@@ -56,11 +56,15 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
               >
                 <a
                   href={`#${item.toLowerCase()}`}
-                  className="font-body text-xs font-semibold tracking-wider text-white/70 transition-colors duration-300 hover:text-white px-2 block uppercase"
+                  className={`font-body text-xs font-semibold tracking-wider transition-colors duration-300 px-2 block uppercase ${
+                    isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white"
+                  }`}
                 >
                   {item}
                 </a>
-                <div className="absolute left-2 right-2 bottom-0 h-[2px] bg-yellow scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center" />
+                <div className={`absolute left-2 right-2 bottom-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center ${
+                  isScrolled ? "bg-plum" : "bg-yellow"
+                }`} />
               </li>
             ))}
           </ul>
@@ -69,18 +73,30 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
         {/* Action Controls (Currency Switcher & CTA button) */}
         <div className="hidden sm:flex items-center gap-4">
           {/* Currency Switcher */}
-          <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-full px-3 py-1.5 text-xs text-white/85">
-            <Globe size={13} className="text-yellow" />
+          <div className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs border transition-colors ${
+            isScrolled 
+              ? "bg-neutral-white border-neutral-border text-text-primary" 
+              : "bg-white/5 border-white/10 text-white/85"
+          }`}>
+            <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
             <button
               onClick={() => onCurrencyChange("AED")}
-              className={`font-semibold cursor-pointer transition-colors ${currency === "AED" ? "text-yellow font-bold" : "hover:text-white"}`}
+              className={`font-semibold cursor-pointer transition-colors ${
+                currency === "AED" 
+                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
+                  : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+              }`}
             >
               AED
             </button>
-            <span className="text-white/20">|</span>
+            <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
             <button
               onClick={() => onCurrencyChange("SAR")}
-              className={`font-semibold cursor-pointer transition-colors ${currency === "SAR" ? "text-yellow font-bold" : "hover:text-white"}`}
+              className={`font-semibold cursor-pointer transition-colors ${
+                currency === "SAR" 
+                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
+                  : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+              }`}
             >
               SAR
             </button>
@@ -89,7 +105,7 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
           {/* Action Call-to-action */}
           <a
             href="#contact"
-            className="rounded-full bg-yellow hover:bg-[#ffd03d] text-plum-dark text-xs font-black uppercase tracking-widest px-6 py-2.5 border border-transparent shadow-[0_4px_12px_rgba(245,189,32,0.15)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer block"
+            className="rounded-full bg-yellow hover:bg-plum hover:text-white text-plum-dark text-xs font-black uppercase tracking-widest px-6 py-2.5 border border-transparent shadow-[0_4px_12px_rgba(245,189,32,0.1)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer block"
           >
             Reserve Table
           </a>
@@ -100,7 +116,11 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
           {/* Hamburger trigger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-full p-2.5 bg-white/5 border border-white/10 text-white/80 hover:text-white transition-all cursor-pointer focus:outline-none"
+            className={`rounded-full p-2.5 border transition-all cursor-pointer focus:outline-none ${
+              isScrolled 
+                ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum" 
+                : "bg-white/5 border-white/10 text-white/80 hover:text-white"
+            }`}
           >
             {isOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -109,14 +129,20 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
 
       {/* Mobile Drawer Navigation */}
       {isOpen && (
-        <div className="absolute left-4 right-4 top-full mt-2 overflow-hidden rounded-3xl border border-white/10 bg-plum-dark/95 backdrop-blur-xl p-6 shadow-2xl lg:hidden animate-fade-in origin-top">
+        <div className={`absolute left-4 right-4 top-full mt-2 overflow-hidden rounded-3xl border backdrop-blur-xl p-6 shadow-2xl lg:hidden animate-fade-in origin-top ${
+          isScrolled 
+            ? "border-neutral-border bg-neutral-white/95 text-text-primary" 
+            : "border-white/10 bg-plum-dark/95 text-white"
+        }`}>
           <ul className="flex flex-col gap-4 text-center mb-6">
             {menuItems.map((item) => (
               <li key={item}>
                 <a
                   href={`#${item.toLowerCase()}`}
                   onClick={() => setIsOpen(false)}
-                  className="block font-body text-base font-semibold tracking-wider text-white/80 transition-colors hover:text-yellow uppercase"
+                  className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${
+                    isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow"
+                  }`}
                 >
                   {item}
                 </a>
@@ -126,21 +152,23 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
           
           <div className="flex flex-col gap-4 border-t border-white/5 pt-4">
             {/* Currency select */}
-            <div className="flex justify-between items-center px-4 py-2 bg-white/5 rounded-xl text-xs text-white/80">
+            <div className={`flex justify-between items-center px-4 py-2 rounded-xl text-xs ${
+              isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
+            }`}>
               <span className="font-body font-semibold">Store Currency</span>
               <div className="flex gap-3">
                 <button
                   onClick={() => { onCurrencyChange("AED"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${currency === "AED" ? "text-yellow font-bold" : ""}`}
+                  className={`font-semibold cursor-pointer ${currency === "AED" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
                 >
-                  AED (UAE)
+                  AED
                 </button>
-                <span className="text-white/20">|</span>
+                <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
                 <button
                   onClick={() => { onCurrencyChange("SAR"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${currency === "SAR" ? "text-yellow font-bold" : ""}`}
+                  className={`font-semibold cursor-pointer ${currency === "SAR" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
                 >
-                  SAR (KSA)
+                  SAR
                 </button>
               </div>
             </div>
@@ -149,7 +177,7 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
             <a
               href="#contact"
               onClick={() => setIsOpen(false)}
-              className="w-full text-center py-3.5 rounded-xl bg-yellow text-plum-dark text-xs font-black uppercase tracking-widest cursor-pointer hover:bg-yellow/90 block"
+              className="w-full text-center py-3.5 rounded-xl bg-yellow text-plum-dark text-xs font-black uppercase tracking-widest cursor-pointer hover:bg-plum hover:text-white transition-colors block"
             >
               Reserve Table
             </a>

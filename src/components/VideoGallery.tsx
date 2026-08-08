@@ -68,7 +68,7 @@ export function VideoGallery() {
             Cinematic Log
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-black text-white mask-reveal">
-            Video Gallery
+            <span className="text-shimmer-gold">Video Gallery</span>
           </h2>
           <p className="text-grey text-sm md:text-base font-body max-w-md mx-auto leading-relaxed">
             Witness the craftsmanship behind every pour and bake in our high-definition cinematic previews.

@@ -220,8 +220,8 @@ export function Preloader() {
         }
 
         @keyframes iconBreathing {
-          0% { filter: brightness(1) drop-shadow(0 0 10px rgba(108, 59, 255, 0.3)); }
-          100% { filter: brightness(1.1) drop-shadow(0 0 25px rgba(108, 59, 255, 0.6)); }
+          0% { filter: brightness(1) drop-shadow(0 0 10px rgba(94, 38, 137, 0.3)); }
+          100% { filter: brightness(1.1) drop-shadow(0 0 25px rgba(94, 38, 137, 0.6)); }
         }
 
         /* Wordmark wrapper */

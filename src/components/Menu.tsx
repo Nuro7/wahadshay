@@ -99,22 +99,22 @@ export function Menu({ currency }: MenuProps) {
   }, [activeTab]);
 
   return (
-    <section id="menu" className="py-24 md:py-32 bg-plum relative overflow-hidden select-none">
+    <section id="menu" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
       {/* Background soft glow orbs */}
-      <div className="absolute top-[40%] left-[-15%] w-[450px] h-[450px] bg-plum/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-yellow/3 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+      <div className="absolute top-[40%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             Handcrafted Selections
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-white mask-reveal">
-            Explore Our Brand Menu
+          <h2 className="font-display text-4xl md:text-5xl font-black text-text-primary mask-reveal">
+            <span className="text-shimmer">Explore Our Brand Menu</span>
           </h2>
-          <p className="text-grey text-base font-body max-w-lg mx-auto leading-relaxed">
+          <p className="text-text-secondary text-base font-body max-w-lg mx-auto leading-relaxed">
             Every cup and loaf at Wahad Shay is prepared using premium, ethically sourced ingredients and time-honored artisanal baking.
           </p>
         </div>
@@ -131,12 +131,12 @@ export function Menu({ currency }: MenuProps) {
                 onClick={() => setActiveTab(cat)}
                 className={`category-btn flex items-center gap-2 px-6 py-3 rounded-full font-display text-xs md:text-sm font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 ${
                   activeTab === cat
-                    ? "category-active bg-yellow text-plum-dark shadow-md scale-102"
-                    : "bg-plum-dark/40 border border-white/5 text-white/60 hover:text-white"
+                    ? "category-active bg-plum text-white shadow-md scale-102"
+                    : "bg-white border border-neutral-border text-text-secondary hover:text-text-primary"
                 }`}
               >
                 {activeTab === cat && (
-                  <span className="h-1.5 w-1.5 rounded-full bg-plum-dark animate-pulse" />
+                  <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse" />
                 )}
                 {cat}
               </button>
@@ -157,7 +157,7 @@ export function Menu({ currency }: MenuProps) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.4, delay: idx * 0.05 }}
-                className="glass-card glass-card-hover group relative p-6 flex flex-col justify-between h-[330px] overflow-hidden"
+                className="premium-card premium-card-hover group relative p-6 flex flex-col justify-between h-[330px] overflow-hidden"
               >
                 {/* Badges / Accents */}
                 <div className="absolute top-4 left-4 right-4 flex justify-between items-center z-20">
@@ -171,12 +171,12 @@ export function Menu({ currency }: MenuProps) {
                   
                   <div className="flex gap-1.5">
                     {item.spicy && (
-                      <span className="bg-red-500/10 border border-red-500/30 text-red-400 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase">
+                      <span className="bg-plum/10 border border-plum/30 text-plum text-[8px] font-bold px-2 py-0.5 rounded-full uppercase">
                         Spicy
                       </span>
                     )}
                     {item.vegan && (
-                      <span className="bg-green-500/10 border border-green-500/30 text-green-400 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase flex items-center gap-0.5">
+                      <span className="bg-yellow/10 border border-yellow/30 text-yellow-800 text-[8px] font-bold px-2 py-0.5 rounded-full uppercase flex items-center gap-0.5">
                         <Leaf size={7} />
                         Vegan
                       </span>
@@ -186,26 +186,26 @@ export function Menu({ currency }: MenuProps) {
 
                 {/* Styled Food Image */}
                 <div className="h-[140px] flex items-center justify-center relative mt-4">
-                  <div className="absolute w-24 h-24 rounded-full bg-[radial-gradient(circle_at_center,rgba(245,189,32,0.15)_0%,transparent_60%)] blur-md scale-0 group-hover:scale-130 transition-transform duration-500" />
+                  <div className="absolute w-24 h-24 rounded-full bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.06)_0%,transparent_60%)] blur-md scale-0 group-hover:scale-130 transition-transform duration-500" />
                   
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="h-full w-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.4)] group-hover:translate-y-[-6px] group-hover:scale-[1.04] transition-all duration-500 will-change-transform"
+                    className="h-full w-auto object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.15)] group-hover:translate-y-[-6px] group-hover:scale-[1.04] transition-all duration-500 will-change-transform"
                   />
                 </div>
 
                 {/* Content description & metadata */}
                 <div className="space-y-3 mt-4 flex-1 flex flex-col justify-end">
                   <div className="flex justify-between items-baseline gap-2">
-                    <h3 className="font-display text-base sm:text-lg font-black text-white group-hover:text-yellow transition-colors leading-tight">
+                    <h3 className="font-display text-base sm:text-lg font-black text-text-primary group-hover:text-plum transition-colors leading-tight">
                       {item.name}
                     </h3>
-                    <span className="font-numbers text-sm font-extrabold text-yellow shrink-0">
+                    <span className="font-numbers text-sm font-extrabold text-plum shrink-0">
                       {currency} {item.price}
                     </span>
                   </div>
-                  <p className="text-grey text-[11px] sm:text-xs leading-relaxed line-clamp-2">
+                  <p className="text-text-secondary text-[11px] sm:text-xs leading-relaxed line-clamp-2">
                     {item.desc}
                   </p>
                 </div>

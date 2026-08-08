@@ -26,30 +26,30 @@ const franchiseSteps = [
 
 export function Franchise() {
   return (
-    <section id="franchise" className="py-24 md:py-32 bg-plum relative overflow-hidden select-none">
+    <section id="franchise" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
       {/* Background ambient light */}
-      <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-plum/15 rounded-full blur-[160px] opacity-25 pointer-events-none" />
-      <div className="absolute top-[10%] left-[-10%] w-[350px] h-[350px] bg-yellow/3 rounded-full blur-[130px] opacity-25 pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-[10%] left-[-10%] w-[350px] h-[350px] bg-yellow/2 rounded-full blur-[130px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         
         {/* Section Heading & Flex Layout */}
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-20">
           <div className="lg:col-span-2 space-y-6 text-center lg:text-left">
-            <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
+            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               Partner With Us
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-black text-white leading-tight mask-reveal">
-              Grow the Wahad Shay <br />
-              <span className="text-yellow">Luxury Network</span>
+            <h2 className="font-display text-4xl md:text-5xl font-black text-text-primary leading-tight mask-reveal">
+              <span className="text-shimmer">Grow the Wahad Shay</span> <br />
+              <span className="text-plum">Luxury Network</span>
             </h2>
-            <p className="text-grey text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-body">
+            <p className="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-body">
               Join a rapidly expanding brand offering a premium, cozy atmosphere. We supply the operational support, design standards, and proprietary spice blends.
             </p>
           </div>
           <div className="text-center lg:text-right">
             <a href="#contact">
-              <Button variant="primary" className="shadow-[0_4px_15px_rgba(245,189,32,0.15)]">
+              <Button variant="primary" className="shadow-[0_4px_15px_rgba(245,189,32,0.1)]">
                 Apply for Franchise
               </Button>
             </a>
@@ -62,19 +62,19 @@ export function Franchise() {
             <div
               key={step.step}
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-              className="reveal glass-card glass-card-hover p-8 flex flex-col justify-between h-[270px] relative"
+              className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 flex flex-col justify-between h-[270px] relative`}
             >
               {/* Animated hover top border indicator */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-yellow to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-center" />
+              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-plum to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out origin-center" />
 
-              <div className="font-numbers text-4xl font-black text-yellow/20 group-hover:text-yellow/40 transition-colors duration-300">
+              <div className="font-numbers text-4xl font-black text-plum/15 group-hover:text-plum/30 transition-colors duration-300">
                 {step.step}
               </div>
               <div className="space-y-3">
-                <h3 className="font-display text-lg font-bold text-white group-hover:text-yellow transition-colors leading-tight">
+                <h3 className="font-display text-lg font-bold text-text-primary group-hover:text-plum transition-colors leading-tight">
                   {step.title}
                 </h3>
-                <p className="text-grey text-xs sm:text-sm leading-relaxed font-body">
+                <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-body">
                   {step.desc}
                 </p>
               </div>

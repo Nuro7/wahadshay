@@ -241,7 +241,7 @@ export default function Hero() {
         {/* Warm Golden Key Light */}
         <div className="absolute top-0 left-0 w-[70%] h-[70%] bg-[radial-gradient(circle_at_top_left,rgba(245,189,32,0.08)_0%,transparent_75%)]" />
         {/* Violet rim light */}
-        <div className="absolute bottom-0 right-0 w-[50%] h-[70%] bg-[radial-gradient(circle_at_bottom_right,rgba(108,59,255,0.08)_0%,transparent_60%)]" />
+        <div className="absolute bottom-0 right-0 w-[50%] h-[70%] bg-[radial-gradient(circle_at_bottom_right,rgba(94,38,137,0.15)_0%,transparent_60%)]" />
       </div>
 
       {/* Slow gold particles */}
@@ -262,7 +262,7 @@ export default function Hero() {
               <span className="inline-block word-reveal">A</span>
               <span className="inline-block word-reveal">World</span>
               <span className="inline-block word-reveal">of</span>
-              <span className="inline-block word-reveal bg-gradient-to-r from-[#F5BD20] to-[#E3A812] bg-clip-text text-transparent font-black">
+              <span className="inline-block word-reveal text-shimmer-gold font-black">
                 Flavor
               </span>
               <span className="inline-block word-reveal">in</span>
@@ -290,15 +290,6 @@ export default function Hero() {
             <CounterItem label="Countries Inspired" target={25} suffix="+" delay={1.3} />
             <CounterItem label="Community" target={600} suffix="K+" delay={1.45} />
             <CounterItem label="Future Outlets" target={100} suffix="+" delay={1.6} />
-
-            <div style={{ opacity: 0 }} className="text-center lg:text-left flex-1 min-w-[120px] translate-y-4 stat-reveal">
-              <div className="font-display text-3xl md:text-4xl font-extrabold text-yellow tracking-tight">
-                One Cup
-              </div>
-              <div className="font-body text-[10px] md:text-xs font-semibold tracking-wider text-grey uppercase mt-1">
-                Many Stories
-              </div>
-            </div>
           </div>
         </div>
 
