@@ -23,10 +23,10 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
   }, [activeCategoryId]);
 
   return (
-    <div className="sticky top-[72px] md:top-20 z-40 bg-beige/90 backdrop-blur-md border-b border-plum/5 py-4 mb-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+    <div className="relative z-40 bg-transparent py-4 mb-12">
       <div
         ref={scrollRef}
-        className="flex items-center gap-4 overflow-x-auto px-6 max-w-7xl mx-auto no-scrollbar py-2"
+        className="flex items-center gap-4 md:gap-6 overflow-x-auto px-6 max-w-7xl mx-auto no-scrollbar py-4"
       >
         {categories.map((cat) => {
           const isActive = activeCategoryId === cat.id;
@@ -34,26 +34,26 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`group relative flex items-center gap-3 px-5 py-2.5 rounded-full font-display text-sm md:text-base font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 ${
+              className={`group relative flex flex-col items-center justify-center gap-3 w-20 h-[104px] md:w-24 md:h-[116px] rounded-[2rem] font-display text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 shadow-sm ${
                 isActive
-                  ? "category-active text-white scale-105 shadow-[0_8px_16px_rgba(94,38,137,0.25)]"
-                  : "bg-white/60 text-plum/50 hover:bg-white hover:text-plum hover:shadow-sm"
+                  ? "category-active bg-plum-dark text-white shadow-[0_8px_16px_rgba(94,38,137,0.3)] -translate-y-2"
+                  : "bg-white text-plum-dark/70 hover:bg-white hover:text-plum hover:-translate-y-1 hover:shadow-md"
               }`}
             >
               {isActive && (
                 <motion.div
-                  layoutId="activeCategoryBg"
-                  className="absolute inset-0 bg-plum rounded-full z-0 border-b-4 border-yellow"
+                  layoutId="activeCategoryBorder"
+                  className="absolute bottom-3 left-1/2 -translate-x-1/2 w-8 h-1 bg-yellow rounded-full"
                   initial={false}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
               
-              <div className="relative z-10 flex items-center gap-3">
-                <div className={`w-9 h-9 rounded-full overflow-hidden flex-shrink-0 bg-beige flex items-center justify-center p-1 transition-all ${isActive ? 'bg-white' : 'group-hover:scale-110'}`}>
-                   <img src={cat.heroImage} alt={cat.name} className="w-full h-full object-contain" />
+              <div className="relative z-10 flex flex-col items-center gap-2 mt-1">
+                <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center transition-all ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
+                   <img src={cat.heroImage} alt={cat.name} className="w-full h-full object-contain drop-shadow-md" />
                 </div>
-                <span className="mt-0.5">{cat.name}</span>
+                <span className={`mt-1 ${isActive ? 'mb-2' : ''}`}>{cat.name}</span>
               </div>
             </button>
           );

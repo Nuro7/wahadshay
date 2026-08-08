@@ -74,7 +74,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
                 transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 {product.arabicName && (
-                  <p className="font-arabic text-2xl text-plum/60 mb-2">{product.arabicName}</p>
+                  <p className="font-body text-2xl text-plum/60 mb-2">{product.arabicName}</p>
                 )}
                 <h2 className="font-display text-4xl md:text-6xl font-black text-plum mb-6 leading-none">
                   {product.name}

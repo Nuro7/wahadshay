@@ -35,7 +35,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ category, onSelectProd
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-100px" }}
-      className="max-w-7xl mx-auto px-6 pb-32"
+      className="max-w-7xl mx-auto px-6 pb-12"
     >
       {/* Featured Items */}
       {displayFeatured.length > 0 && (
