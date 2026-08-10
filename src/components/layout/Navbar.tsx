@@ -34,12 +34,12 @@ export function Navbar() {
 
   return (
     <header 
-      className={`fixed inset-x-0 top-0 z-50 px-4 md:px-8 py-3 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 lg:px-12 py-3 transition-all duration-500 ${
         isScrolled ? "translate-y-0" : "translate-y-1"
       }`}
     >
       <div 
-        className={`mx-auto max-w-7xl rounded-full border transition-all duration-500 flex items-center justify-between px-6 md:px-8 py-1 md:py-1.5 ${
+        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-4 sm:px-6 md:px-8 py-1.5 md:py-2 ${
           isScrolled 
             ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]" 
             : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
@@ -52,14 +52,14 @@ export function Navbar() {
              <img 
                src="/logo_wahad.png" 
                alt="Wahad Shay Logo" 
-               className="h-14 md:h-[72px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+               className="h-10 sm:h-12 md:h-14 lg:h-[68px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
              />
              {/* Tagline Overlay (Turns black when scrolled) */}
              <img 
                src="/logo_wahad.png" 
                alt="" 
                aria-hidden="true"
-               className={`absolute inset-0 h-14 md:h-[72px] w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${
+               className={`absolute inset-0 h-10 sm:h-12 md:h-14 lg:h-[68px] w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${
                  isScrolled ? "opacity-100" : "opacity-0"
                }`}
                style={{

@@ -28,18 +28,18 @@ export function Footer() {
 
   return (
     <footer className="bg-plum-dark pt-[75px] md:pt-[85px] pb-[30px] select-none">
-      <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
+      <div className="premium-container">
 
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[40%_30%_30%] gap-y-10 gap-x-8 lg:gap-x-12 pb-10 md:pb-12">
 
           {/* Logo & Brand Story */}
           <div className="flex flex-col items-start">
-            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ml-2 md:-ml-3 lg:-ml-4">
+            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7">
               <img
                 src="/logo_wahad.png"
                 alt="Wahad Shay Logo"
-                className="w-[160px] md:w-[200px] lg:w-[240px] h-auto object-contain"
+                className="h-10 sm:h-12 md:h-16 w-auto object-contain"
               />
             </a>
             <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left">

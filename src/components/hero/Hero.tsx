@@ -291,7 +291,7 @@ export default function Hero() {
       <CanvasParticles />
 
       {/* Content wrapper */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8" dir="ltr">
+      <div className="relative z-10 premium-container grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12" dir="ltr">
 
         {/* Left Side Copywriting */}
         <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-8 flex flex-col justify-center text-center lg:text-start items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
@@ -301,7 +301,7 @@ export default function Hero() {
             </span>
 
             {/* Word-by-word reveal heading */}
-            <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-tight text-white flex flex-wrap justify-center lg:justify-start gap-x-[0.28em] gap-y-[0.1em]">
+            <h1 className="font-display heading-fluid-h1 font-extrabold text-white flex flex-wrap justify-center lg:justify-start gap-x-[0.28em] gap-y-[0.1em]">
               {(t('hero.heading') as any).map((word: any, i: number) => (
                 <span key={i} className={`inline-block word-reveal ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
                   {word.text}
@@ -309,7 +309,7 @@ export default function Hero() {
               ))}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-sm sm:text-base md:text-lg font-medium leading-relaxed text-grey">
+            <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-fluid-body font-medium text-grey">
               {t('hero.subtitle')}
             </p>
           </div>

@@ -7,16 +7,19 @@ export function Preloader() {
   const iconRef = useRef<HTMLDivElement>(null);
   const wordmarkRef = useRef<HTMLDivElement>(null);
   const taglineRef = useRef<HTMLDivElement>(null);
+  const mobileLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Disable scrolling when preloader is active
     document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
     document.body.classList.remove("splash-done");
 
     const tl = gsap.timeline({
       onComplete: () => {
         setIsDestroyed(true);
         document.body.style.overflow = "";
+        document.documentElement.style.overflow = "";
         document.body.classList.add("splash-done");
         window.dispatchEvent(new Event("splash-complete"));
       }
@@ -41,6 +44,11 @@ export function Preloader() {
       y: 12,
       filter: "blur(8px)"
     });
+    gsap.set(mobileLogoRef.current, {
+      opacity: 0,
+      scale: 0.85,
+      y: 20
+    });
 
     // STAGE 1: Icon entrance (0s to 1.2s)
     tl.to(iconRef.current, {
@@ -51,6 +59,15 @@ export function Preloader() {
       duration: 1.2,
       ease: "power3.out"
     });
+    
+    // Animate mobile logo concurrently
+    tl.to(mobileLogoRef.current, {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      duration: 1.4,
+      ease: "power3.out"
+    }, 0);
 
     // STAGE 2: Icon slides left, Wordmark enters (1.2s to 2.2s)
     tl.addLabel("stage2", 1.2);
@@ -89,6 +106,7 @@ export function Preloader() {
     return () => {
       tl.kill();
       document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
     };
   }, []);
 
@@ -193,6 +211,27 @@ export function Preloader() {
           will-change: transform;
         }
 
+        .desktop-logo-group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .mobile-logo-wrapper {
+          display: none;
+          width: auto;
+          height: 140px;
+          will-change: transform, opacity;
+          z-index: 12;
+        }
+        
+        .splash-mobile-logo {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+        }
+
         .logo-text-row {
           display: flex;
           align-items: flex-end;
@@ -248,11 +287,25 @@ export function Preloader() {
         /* Accessibility overrides */
 
         @media (max-width: 768px) {
+          .desktop-logo-group {
+            display: none !important;
+          }
+          .mobile-logo-wrapper {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+          }
+          .logo-wrapper {
+            height: 100px;
+          }
           .splash-icon {
-            height: 85px;
+            height: 100%;
+          }
+          .text-wrapper {
+            height: 80px;
           }
           .splash-wordmark {
-            height: 40px;
+            height: 100%;
           }
           .logo-wrapper.reveal-stage2 {
             transform: translateX(-80px);
@@ -265,17 +318,27 @@ export function Preloader() {
         @media (max-width: 480px) {
           .logo-text-row {
             flex-direction: column;
-            gap: 12px;
+            align-items: center;
+            height: auto;
+            gap: 16px;
+            margin-bottom: 12px;
+          }
+          .logo-wrapper {
+            height: 90px;
           }
           .logo-wrapper.reveal-stage2 {
-            transform: translateY(-25px);
+            transform: none;
           }
           .text-wrapper {
+            height: 70px;
             position: static;
-            transform: translateY(20px);
+            left: 0;
           }
           .text-wrapper.reveal-stage2 {
-            transform: translateY(0);
+            transform: none;
+          }
+          .splash-tagline {
+            height: 20px;
           }
         }
 
@@ -320,33 +383,41 @@ export function Preloader() {
 
         {/* Logo elements content */}
         <div className="splash-content">
-          <div className="logo-text-row">
-            {/* Stage 1: Icon reveal */}
-            <div ref={iconRef} className="logo-wrapper">
-              <img
-                src="/icon.png"
-                alt="Wahad Shay Icon"
-                className="splash-icon"
-              />
+          {/* Desktop multi-part logo */}
+          <div className="desktop-logo-group">
+            <div className="logo-text-row">
+              {/* Stage 1: Icon reveal */}
+              <div ref={iconRef} className="logo-wrapper">
+                <img
+                  src="/icon.png"
+                  alt="Wahad Shay Icon"
+                  className="splash-icon"
+                />
+              </div>
+
+              {/* Stage 2: Wordmark slides in */}
+              <div ref={wordmarkRef} className="text-wrapper">
+                <img
+                  src="/wordmark.png"
+                  alt="Wahad Shay Wordmark"
+                  className="splash-wordmark"
+                />
+              </div>
             </div>
 
-            {/* Stage 2: Wordmark slides in */}
-            <div ref={wordmarkRef} className="text-wrapper">
+            {/* Stage 3: Tagline fades in */}
+            <div ref={taglineRef} className="tagline-wrapper">
               <img
-                src="/wordmark.png"
-                alt="Wahad Shay Wordmark"
-                className="splash-wordmark"
+                src="/tagline.png"
+                alt="Wahad Shay Tagline"
+                className="splash-tagline"
               />
             </div>
           </div>
 
-          {/* Stage 3: Tagline fades in */}
-          <div ref={taglineRef} className="tagline-wrapper">
-            <img
-              src="/tagline.png"
-              alt="Wahad Shay Tagline"
-              className="splash-tagline"
-            />
+          {/* Mobile single logo */}
+          <div ref={mobileLogoRef} className="mobile-logo-wrapper">
+            <img src="/logo_wahad.png" alt="Wahad Shay Logo" className="splash-mobile-logo" />
           </div>
         </div>
       </div>

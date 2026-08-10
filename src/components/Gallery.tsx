@@ -77,8 +77,8 @@ export function Gallery() {
       </div>
 
       {/* Cinematic Media Reel */}
-      <div className="w-full relative z-10">
-        <div ref={carouselRef} className="overflow-hidden w-full cursor-grab active:cursor-grabbing px-6 md:px-12">
+      <div className="w-full max-w-[100vw] overflow-x-hidden relative z-10">
+        <div ref={carouselRef} className="overflow-hidden w-full max-w-[100vw] cursor-grab active:cursor-grabbing px-4 sm:px-6 md:px-12">
           <motion.div
             ref={innerRef}
             drag="x"
@@ -141,7 +141,7 @@ export function Gallery() {
       </div>
 
       {/* Progress Indicator */}
-      <div className="mx-auto max-w-7xl px-6 md:px-12 mt-12 flex items-center gap-6 justify-start relative z-10 opacity-70">
+      <div className="mx-auto max-w-7xl px-6 md:px-12 mt-12 flex items-center gap-6 justify-center relative z-10 opacity-70">
         <span className="font-numbers text-xs font-bold text-plum-dark">01</span>
         <div className="h-[2px] w-full max-w-[200px] bg-plum/10 rounded-full overflow-hidden relative">
           <motion.div 

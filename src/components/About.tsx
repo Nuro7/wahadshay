@@ -352,7 +352,7 @@ export function About() {
             </svg>
 
             {/* Overlapping Info Panel */}
-            <div className="relative z-20 mt-[-40px] md:mt-[-60px] max-w-2xl mx-auto px-4">
+            <div className="relative z-20 mt-0 md:mt-[-60px] max-w-2xl mx-auto px-4">
               <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
                 <div className="flex items-center justify-between mb-8">
                   <button
