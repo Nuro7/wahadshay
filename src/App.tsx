@@ -6,7 +6,7 @@ import About from "./components/About";
 import MissionVision from "./components/MissionVision";
 import Vision2030 from "./components/Vision2030";
 import SignatureExperience from "./components/SignatureExperience";
-import MenuIndex from "./components/menu/MenuIndex";
+import Menu from "./components/Menu";
 import MenuBrochure from "./components/menu/MenuBrochure";
 import Specials from "./components/Specials";
 import Franchise from "./components/Franchise";
@@ -121,7 +121,7 @@ function App() {
 
           {currentPage === "menu" && (
             <>
-              <MenuIndex />
+              <Menu />
             </>
           )}
 

@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex-1 w-full max-w-[100vw] bg-neutral-white text-text-primary relative overflow-x-hidden font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
+    <div className="flex-1 w-full bg-neutral-white text-text-primary relative font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
 
       {/* 1. Cinematic Ambient Orbs (Floating & Animated) */}
       <div 

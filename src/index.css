@@ -24,15 +24,24 @@
 }
 
 @layer base {
-  html, body, #root {
+  html {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  #root {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     width: 100%;
-  }
-  
-  #root {
-    flex: 1;
   }
 
   html {
@@ -564,5 +573,11 @@ body.splash-done #home {
   line-height: 1.6;
 }
 
-
-
+/* Hide scrollbar for elements with no-scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
