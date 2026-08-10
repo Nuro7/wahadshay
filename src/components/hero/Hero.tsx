@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Button from "../ui/Button";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const CanvasParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -123,7 +124,8 @@ const CounterItem = ({ label, target, suffix = "", delay = 0 }: { label: string;
 };
 
 export default function Hero() {
-  const heroRef = useRef<HTMLDivElement>(null);
+  const { t, language } = useLanguage();
+  const heroRef = useRef<HTMLElement>(null);
   const parallaxVideoRef = useRef<HTMLDivElement>(null);
   const lightingRef = useRef<HTMLDivElement>(null);
 
@@ -248,48 +250,44 @@ export default function Hero() {
       <CanvasParticles />
 
       {/* Content wrapper */}
-      <div className="relative z-10 mx-auto max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8">
+      <div className="relative z-10 mx-auto max-w-7xl w-full px-6 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-8" dir="ltr">
 
         {/* Left Side Copywriting */}
-        <div className="space-y-8 flex flex-col justify-center text-center lg:text-left items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
-          <div className="space-y-4 flex flex-col items-center lg:items-start text-center lg:text-left">
+        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-8 flex flex-col justify-center text-center lg:text-start items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
+          <div className="space-y-4 flex flex-col items-center lg:items-start text-center lg:text-start">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-[0.25em] text-yellow">
-              Taste the Extraordinary
+              {t('hero.badge')}
             </span>
 
             {/* Word-by-word reveal heading */}
             <h1 className="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold leading-[1.05] tracking-tight text-white flex flex-wrap justify-center lg:justify-start gap-x-[0.28em] gap-y-[0.1em]">
-              <span className="inline-block word-reveal">A</span>
-              <span className="inline-block word-reveal">World</span>
-              <span className="inline-block word-reveal">of</span>
-              <span className="inline-block word-reveal text-shimmer-gold font-black">
-                Flavor
-              </span>
-              <span className="inline-block word-reveal">in</span>
-              <span className="inline-block word-reveal">One</span>
-              <span className="inline-block word-reveal">Place</span>
+              {(t('hero.heading') as any).map((word: any, i: number) => (
+                <span key={i} className={`inline-block word-reveal ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                  {word.text}
+                </span>
+              ))}
             </h1>
 
             <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-sm sm:text-base md:text-lg font-medium leading-relaxed text-grey">
-              Globally inspired premium teas and artisan breads crafted with rich heritage, modern elegance, and warm hospitality.
+              {t('hero.subtitle')}
             </p>
           </div>
 
           {/* CTA Buttons */}
           <div className="hero-btn-container flex flex-wrap gap-4 justify-center lg:justify-start">
             <a href="#menu" className="btn">
-              <Button variant="primary">Explore Menu</Button>
+              <Button variant="primary">{t('hero.exploreMenu')}</Button>
             </a>
             <a href="#contact" className="btn">
-              <Button variant="secondary">Reserve Table</Button>
+              <Button variant="secondary">{t('hero.reserveTable')}</Button>
             </a>
           </div>
 
           {/* Counters Row */}
           <div className="pt-8 border-t border-white/10 flex flex-wrap gap-6 justify-center lg:justify-start max-w-lg w-full">
-            <CounterItem label="Countries Inspired" target={25} suffix="+" delay={1.3} />
-            <CounterItem label="Community" target={600} suffix="K+" delay={1.45} />
-            <CounterItem label="Future Outlets" target={100} suffix="+" delay={1.6} />
+            <CounterItem label={t('hero.countriesInspired')} target={25} suffix="+" delay={1.3} />
+            <CounterItem label={t('hero.community')} target={600} suffix="K+" delay={1.45} />
+            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} />
           </div>
         </div>
 
@@ -307,7 +305,7 @@ export default function Hero() {
         className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-80 cursor-pointer group"
       >
         <span className="font-body text-[9px] font-bold tracking-[0.25em] text-white uppercase group-hover:text-yellow transition-colors">
-          Scroll
+          {t('hero.scroll')}
         </span>
         <div className="w-[18px] h-[28px] rounded-full border border-white/40 group-hover:border-yellow/50 flex items-start justify-center p-1 transition-colors">
           <div className="w-[3px] h-[5px] rounded-full bg-yellow animate-scroll-dot" />

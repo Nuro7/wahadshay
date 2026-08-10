@@ -206,8 +206,7 @@ export function Preloader() {
         .logo-wrapper {
           height: 139px;
           width: auto;
-          filter: drop-shadow(0 4px 25px var(--splash-glow));
-          will-change: transform, opacity, filter;
+          will-change: transform, opacity;
           z-index: 12;
         }
 
@@ -216,12 +215,6 @@ export function Preloader() {
           width: auto;
           object-fit: contain;
           display: block;
-          animation: iconBreathing 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes iconBreathing {
-          0% { filter: brightness(1) drop-shadow(0 0 10px rgba(94, 38, 137, 0.3)); }
-          100% { filter: brightness(1.1) drop-shadow(0 0 25px rgba(94, 38, 137, 0.6)); }
         }
 
         /* Wordmark wrapper */

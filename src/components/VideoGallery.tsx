@@ -1,6 +1,7 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, X, Film, Volume2, VolumeX } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface VideoItem {
   id: string;
@@ -10,34 +11,28 @@ interface VideoItem {
   startTime: number; // simulated starting segment offset
 }
 
-const videosData: VideoItem[] = [
-  {
-    id: "karak-prep",
-    title: "Karak Brewing Ritual",
-    desc: "A cinematic look into our slow-brewing Karak tea, double-spiced with fresh cardamom.",
-    videoSrc: "/home.mp4",
-    startTime: 0,
-  },
-  {
-    id: "brioche-bake",
-    title: "Artisan Brioche Craft",
-    desc: "Capturing the rise and gold bake of our signature butter brioches in the stone oven.",
-    videoSrc: "/home.mp4",
-    startTime: 10,
-  },
-  {
-    id: "saffron-steep",
-    title: "Saffron Steep Ceremony",
-    desc: "Watching organic golden saffron filaments dissolve in hot, fine black tea.",
-    videoSrc: "/home.mp4",
-    startTime: 20,
-  },
+const videoSrcs = [
+  { videoSrc: "/home.mp4", startTime: 0 },
+  { videoSrc: "/home.mp4", startTime: 10 },
+  { videoSrc: "/home.mp4", startTime: 20 },
 ];
 
 export function VideoGallery() {
+  const { t, language } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});
+
+  const videosData = useMemo(() => {
+    const vids = t('about.videoGallery.videos') as Array<{ title: string, desc: string }>;
+    return vids.map((v, i) => ({
+      id: `vid-${i}`,
+      title: v.title,
+      desc: v.desc,
+      videoSrc: videoSrcs[i % videoSrcs.length].videoSrc,
+      startTime: videoSrcs[i % videoSrcs.length].startTime
+    }));
+  }, [t]);
 
   const handleMouseEnter = (id: string) => {
     const video = videoRefs.current[id];
@@ -65,13 +60,13 @@ export function VideoGallery() {
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto space-y-4">
           <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
-            Cinematic Log
+            {t('about.videoGallery.badge')}
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-black text-white mask-reveal">
-            <span className="text-shimmer-gold">Video Gallery</span>
+            <span className="text-shimmer-gold">{t('about.videoGallery.title')}</span>
           </h2>
           <p className="text-grey text-sm md:text-base font-body max-w-md mx-auto leading-relaxed">
-            Witness the craftsmanship behind every pour and bake in our high-definition cinematic previews.
+            {t('about.videoGallery.subtitle')}
           </p>
         </div>
 

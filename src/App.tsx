@@ -66,34 +66,39 @@ function App() {
 
       // Smooth scroll target resolution if a sub-hash section exists on the page
       setTimeout(() => {
-        if (page === "faq") {
-          const faqEl = document.getElementById("faq");
-          if (faqEl) faqEl.scrollIntoView({ behavior: "smooth" });
-        } else if (page === "specials") {
-          const specialsEl = document.getElementById("specials");
-          if (specialsEl) specialsEl.scrollIntoView({ behavior: "smooth" });
-        } else {
-          window.scrollTo({ top: 0, behavior: "instant" });
+        const scrollTarget = document.getElementById(page);
+        
+        if (scrollTarget) {
+          if ((window as any).lenis) {
+            (window as any).lenis.scrollTo(scrollTarget, { offset: page === 'faq' ? -100 : 0 });
+          } else {
+            scrollTarget.scrollIntoView({ behavior: "smooth" });
+          }
         }
       }, 50);
     };
 
-    // Initialize page on load
     handleHashChange();
-
     window.addEventListener("hashchange", handleHashChange);
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
+
+  // Force scroll to top on page change
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(0, { immediate: true });
+      }
+      window.scrollTo(0, 0);
+    });
+  }, [currentPage]);
 
   return (
     <>
       <Preloader />
       
       <Layout>
-        <Navbar 
-          currency={currency}
-          onCurrencyChange={(curr) => setCurrency(curr)}
-        />
+        <Navbar />
         
         <main className="flex-1 flex flex-col">
           {currentPage === "home" && (
@@ -102,6 +107,7 @@ function App() {
               <Specials currency={currency} />
               <Testimonials />
               <FranchiseTeaser />
+              <FranchiseSection />
             </>
           )}
 
@@ -116,8 +122,7 @@ function App() {
 
           {currentPage === "menu" && (
             <>
-              {/* <MenuIndex /> */}
-              <MenuBrochure />
+              <MenuIndex />
             </>
           )}
 
@@ -137,8 +142,8 @@ function App() {
 
           {currentPage === "contact" && (
             <>
-              <FAQ />
               <Contact />
+              <FAQ />
             </>
           )}
         </main>

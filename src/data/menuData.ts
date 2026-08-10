@@ -18,12 +18,14 @@ export interface Product {
   price: number;
   image: string;
   description: string;
+  arabicDescription?: string;
   featured: boolean;
 }
 
 export interface Category {
   id: string;
   name: string;
+  arabicName?: string;
   image?: string;
   heroImage: string;
   heroVideo?: string;
@@ -36,38 +38,31 @@ export const menuCategories: Category[] = [
   {
     id: "paratha-sandwiches",
     name: "Paratha Sandwiches",
+    arabicName: "سندويشات باراثا",
     heroImage: parathaImg,
     transitionStyle: "depth",
     products: [
-      { id: "ps1", name: "Paratha 1", price: 10, image: parathaImg, description: "Demo description for Paratha 1", featured: true },
-      { id: "ps2", name: "Paratha 2", price: 12, image: parathaImg, description: "Demo description for Paratha 2", featured: false },
-      { id: "ps3", name: "Paratha 3", price: 15, image: parathaImg, description: "Demo description for Paratha 3", featured: false }
+      { id: "ps1", name: "Paratha 1", arabicName: "باراثا 1", price: 10, image: parathaImg, description: "Demo description for Paratha 1", arabicDescription: "وصف تجريبي لباراثا 1", featured: true },
+      { id: "ps2", name: "Paratha 2", arabicName: "باراثا 2", price: 12, image: parathaImg, description: "Demo description for Paratha 2", arabicDescription: "وصف تجريبي لباراثا 2", featured: false },
+      { id: "ps3", name: "Paratha 3", arabicName: "باراثا 3", price: 15, image: parathaImg, description: "Demo description for Paratha 3", arabicDescription: "وصف تجريبي لباراثا 3", featured: false }
     ]
   },
   {
     id: "indomie-noodles",
     name: "Inomie Noodles",
+    arabicName: "نودلز إندومي",
     heroImage: indomieImg,
-    transitionStyle: "steam",
+    transitionStyle: "fade",
     products: [
-      { id: "in1", name: "Noodle 1", price: 15, image: indomieImg, description: "Demo description for Noodle 1", featured: true },
-      { id: "in2", name: "Noodle 2", price: 18, image: indomieImg, description: "Demo description for Noodle 2", featured: false },
-      { id: "in3", name: "Noodle 3", price: 20, image: indomieImg, description: "Demo description for Noodle 3", featured: false }
+      { id: "in1", name: "Indomie 1", arabicName: "إندومي 1", price: 12, image: indomieImg, description: "Demo description for Indomie 1", arabicDescription: "وصف تجريبي لإندومي 1", featured: true },
+      { id: "in2", name: "Indomie 2", arabicName: "إندومي 2", price: 14, image: indomieImg, description: "Demo description for Indomie 2", arabicDescription: "وصف تجريبي لإندومي 2", featured: false }
     ]
   },
   {
-    id: "burger-special",
-    name: "Burger Special",
+    id: "special-burgers",
+    name: "Special Burgers",
+    arabicName: "برغر خاص",
     heroImage: burgerSpImg,
-    transitionStyle: "depth",
-    products: [
-      { id: "bs1", name: "Burger 1", price: 25, image: burgerSpImg, description: "Demo description for Burger 1", featured: true },
-      { id: "bs2", name: "Burger 2", price: 28, image: burgerSpImg, description: "Demo description for Burger 2", featured: false },
-      { id: "bs3", name: "Burger 3", price: 30, image: burgerSpImg, description: "Demo description for Burger 3", featured: false }
-    ]
-  },
-  {
-    id: "combo-sandwich",
     name: "Combo Sandwich",
     heroImage: comboImg,
     transitionStyle: "floating",

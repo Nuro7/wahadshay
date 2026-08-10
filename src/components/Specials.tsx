@@ -1,30 +1,20 @@
 import teacupImg from "../assets/wahad_teacup.png";
 import burgerImg from "../assets/wahad_burger.png";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface SpecialsProps {
   currency: "AED" | "SAR";
 }
 
-const specials = [
-  {
-    tag: "Signature Pairing",
-    title: "Royal Karak & Cheese Brioche",
-    desc: "Our double-spiced cardamom karak tea paired with a warm, toasted brioche bun loaded with dripping triple cheddar cheese.",
-    image: burgerImg,
-    badge: "Most Popular",
-    price: 30,
-  },
-  {
-    tag: "House Special",
-    title: "Golden Saffron & Herb Bun",
-    desc: "A hot cup of slow-brewed golden saffron tea served alongside our signature baked rosemary herb bun.",
-    image: teacupImg,
-    badge: "Chef's Choice",
-    price: 28,
-  },
-];
-
 export function Specials({ currency }: SpecialsProps) {
+  const { t } = useLanguage();
+  
+  const translatedSpecials = t('specials.items') as any;
+  const specials = [
+    { ...translatedSpecials[0], image: burgerImg, price: 30 },
+    { ...translatedSpecials[1], image: teacupImg, price: 28 },
+  ];
+
   return (
     <section id="specials" className="py-24 md:py-32 bg-neutral-ivory relative overflow-hidden select-none">
       {/* Background soft glow orbs */}
@@ -36,13 +26,13 @@ export function Specials({ currency }: SpecialsProps) {
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
-            Weekly Highlights
+            {t('specials.weeklyHighlights')}
           </span>
           <h2 className="font-display text-4xl md:text-5xl font-black text-text-primary mask-reveal">
-            <span className="text-shimmer">Wahad Shay Specials</span>
+            <span className="text-shimmer">{t('specials.title')}</span>
           </h2>
           <p className="text-text-secondary text-base font-body max-w-lg mx-auto">
-            Carefully curated signature pairings designed to deliver a harmonious explosion of rich flavors.
+            {t('specials.subtitle')}
           </p>
         </div>
 
@@ -88,7 +78,7 @@ export function Specials({ currency }: SpecialsProps) {
                 </p>
 
                 <div className="flex items-center justify-between pt-4 border-t border-neutral-border">
-                  <span className="font-body text-xs text-text-secondary uppercase tracking-wider">Pairing Price</span>
+                  <span className="font-body text-xs text-text-secondary uppercase tracking-wider">{t('specials.pairingPrice')}</span>
                   <span className="font-numbers text-lg font-extrabold text-plum">
                     {currency} {spec.price}
                   </span>

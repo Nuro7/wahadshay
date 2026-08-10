@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Globe } from "lucide-react";
-
-interface NavbarProps {
-  currency: "AED" | "SAR";
-  onCurrencyChange: (curr: "AED" | "SAR") => void;
-}
+import { useLanguage } from "../../i18n/LanguageContext";
 
 const menuItems = ["Home", "About", "Menu", "Specials", "Franchise", "Gallery", "Contact"];
 
-export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
+export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const [activeHash, setActiveHash] = useState("#home");
 
@@ -37,29 +34,45 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
 
   return (
     <header 
-      className={`fixed inset-x-0 top-0 z-50 px-4 md:px-8 py-4 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 px-4 md:px-8 py-3 transition-all duration-500 ${
         isScrolled ? "translate-y-0" : "translate-y-1"
       }`}
     >
       <div 
-        className={`mx-auto max-w-7xl rounded-full border transition-all duration-500 flex items-center justify-between px-6 md:px-10 py-3 ${
+        className={`mx-auto max-w-7xl rounded-full border transition-all duration-500 flex items-center justify-between px-6 md:px-8 py-1 md:py-1.5 ${
           isScrolled 
             ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]" 
             : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
         }`}
       >
         {/* Official Brand Logo */}
-        <a href="#home" className="flex items-center shrink-0">
-          <img 
-            src="/logo_wahad.png" 
-            alt="Wahad Shay Logo" 
-            className="h-10 md:h-12 w-auto object-contain hover:scale-102 transition-transform duration-300"
-          />
-        </a>
+        <div className="flex shrink-0">
+          <a href="#home" className="relative flex items-center group">
+             {/* Base Logo */}
+             <img 
+               src="/logo_wahad.png" 
+               alt="Wahad Shay Logo" 
+               className="h-14 md:h-[72px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+             />
+             {/* Tagline Overlay (Turns black when scrolled) */}
+             <img 
+               src="/logo_wahad.png" 
+               alt="" 
+               aria-hidden="true"
+               className={`absolute inset-0 h-14 md:h-[72px] w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${
+                 isScrolled ? "opacity-100" : "opacity-0"
+               }`}
+               style={{
+                 filter: "invert(1) brightness(0.2)", // Turns white to dark without making it look fat/stroked
+                 clipPath: "inset(75% 0 0 0)" // Only shows the bottom 25% (the tagline)
+               }}
+             />
+          </a>
+        </div>
         
         {/* Desktop Navigation with Animated Underline */}
-        <nav className="hidden lg:flex items-center gap-8">
-          <ul className="flex items-center gap-6">
+        <nav className="hidden lg:flex items-center justify-center flex-1 px-4">
+          <ul className="flex items-center gap-[28px] lg:gap-[32px]">
             {menuItems.map((item) => {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
@@ -74,15 +87,20 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
                 >
                   <a
                     href={itemHash}
-                    className={`font-body text-xs font-semibold tracking-wider transition-colors duration-300 px-2 block uppercase ${
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState(null, '', itemHash);
+                      window.dispatchEvent(new HashChangeEvent("hashchange"));
+                    }}
+                    className={`font-body text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 px-1 block uppercase ${
                       isActive
-                        ? (isScrolled ? "text-plum font-bold" : "text-white font-bold")
+                        ? (isScrolled ? "text-plum font-semibold" : "text-white font-semibold")
                         : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
                     }`}
                   >
-                    {item}
+                    {t(`nav.${item.toLowerCase()}`)}
                   </a>
-                  <div className={`absolute left-2 right-2 bottom-0 h-[2px] transition-transform duration-300 origin-center ${
+                  <div className={`absolute left-1/2 -translate-x-1/2 bottom-[-4px] h-[2px] w-[40px] transition-transform duration-300 origin-center ${
                     isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                   } ${
                     isScrolled ? "bg-plum" : "bg-yellow"
@@ -94,43 +112,43 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
         </nav>
 
         {/* Action Controls (Currency Switcher & CTA button) */}
-        <div className="hidden sm:flex items-center gap-4">
+        <div className="hidden sm:flex items-center gap-4 shrink-0">
           {/* Currency Switcher */}
-          <div className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs border transition-colors ${
+          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[40px] text-[12px] font-medium border transition-colors ${
             isScrolled 
               ? "bg-neutral-white border-neutral-border text-text-primary" 
               : "bg-white/5 border-white/10 text-white/85"
           }`}>
             <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
             <button
-              onClick={() => onCurrencyChange("AED")}
+              onClick={() => setLanguage("EN")}
               className={`font-semibold cursor-pointer transition-colors ${
-                currency === "AED" 
+                language === "EN" 
                   ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
                   : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
               }`}
             >
-              AED
+              EN
             </button>
             <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
             <button
-              onClick={() => onCurrencyChange("SAR")}
+              onClick={() => setLanguage("AR")}
               className={`font-semibold cursor-pointer transition-colors ${
-                currency === "SAR" 
+                language === "AR" 
                   ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
                   : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
               }`}
             >
-              SAR
+              عربي
             </button>
           </div>
 
           {/* Action Call-to-action */}
           <a
             href="#contact"
-            className="rounded-full bg-yellow hover:bg-plum hover:text-white text-plum-dark text-xs font-black uppercase tracking-widest px-6 py-2.5 border border-transparent shadow-[0_4px_12px_rgba(245,189,32,0.1)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer block"
+            className="rounded-full bg-yellow hover:bg-plum hover:text-white text-plum-dark text-[13px] font-semibold uppercase tracking-wider px-7 h-[46px] flex items-center justify-center border border-transparent shadow-[0_4px_12px_rgba(245,189,32,0.1)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
-            Reserve Table
+            {t('nav.reserve')}
           </a>
         </div>
 
@@ -169,14 +187,19 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
                 <li key={item}>
                   <a
                     href={itemHash}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsOpen(false);
+                      window.history.pushState(null, '', itemHash);
+                      window.dispatchEvent(new HashChangeEvent("hashchange"));
+                    }}
                     className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${
                       isActive
                         ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
                         : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow")
                     }`}
                   >
-                    {item}
+                    {t(`nav.${item.toLowerCase()}`)}
                   </a>
                 </li>
               );
@@ -184,24 +207,24 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
           </ul>
           
           <div className="flex flex-col gap-4 border-t border-white/5 pt-4">
-            {/* Currency select */}
+            {/* Language select */}
             <div className={`flex justify-between items-center px-4 py-2 rounded-xl text-xs ${
               isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
             }`}>
-              <span className="font-body font-semibold">Store Currency</span>
+              <span className="font-body font-semibold">Language / لغة</span>
               <div className="flex gap-3">
                 <button
-                  onClick={() => { onCurrencyChange("AED"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${currency === "AED" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
+                  onClick={() => { setLanguage("EN"); setIsOpen(false); }}
+                  className={`font-semibold cursor-pointer ${language === "EN" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
                 >
-                  AED
+                  EN
                 </button>
                 <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
                 <button
-                  onClick={() => { onCurrencyChange("SAR"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${currency === "SAR" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
+                  onClick={() => { setLanguage("AR"); setIsOpen(false); }}
+                  className={`font-semibold cursor-pointer ${language === "AR" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
                 >
-                  SAR
+                  عربي
                 </button>
               </div>
             </div>
@@ -212,7 +235,7 @@ export function Navbar({ currency, onCurrencyChange }: NavbarProps) {
               onClick={() => setIsOpen(false)}
               className="w-full text-center py-3.5 rounded-xl bg-yellow text-plum-dark text-xs font-black uppercase tracking-widest cursor-pointer hover:bg-plum hover:text-white transition-colors block"
             >
-              Reserve Table
+              {t('nav.reserve')}
             </a>
           </div>
         </div>

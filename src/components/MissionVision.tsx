@@ -1,25 +1,11 @@
 import { Eye, Target, CheckCircle2, Lightbulb, Award, TrendingUp } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
-const coreValues = [
-  {
-    icon: CheckCircle2,
-    title: "Authentic exploration",
-  },
-  {
-    icon: Lightbulb,
-    title: "Thoughtful innovation",
-  },
-  {
-    icon: Award,
-    title: "Consistent quality",
-  },
-  {
-    icon: TrendingUp,
-    title: "Community-driven growth",
-  }
-];
+const coreIcons = [CheckCircle2, Lightbulb, Award, TrendingUp];
 
 export default function MissionVision() {
+  const { t } = useLanguage();
+  const coreValues = t('about.missionVision.coreValues') as string[];
   return (
     <section className="py-24 bg-neutral-ivory relative overflow-hidden select-none">
       <div className="mx-auto max-w-7xl px-6 relative z-10">
@@ -33,9 +19,9 @@ export default function MissionVision() {
                 <Eye size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Vision</h3>
+                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">{t('about.missionVision.visionTitle')}</h3>
                 <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
-                  To become a globally recognized food brand with 100 outlets worldwide.
+                  {t('about.missionVision.visionDesc')}
                 </p>
               </div>
             </div>
@@ -47,25 +33,25 @@ export default function MissionVision() {
                 <Target size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">Mission</h3>
+                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">{t('about.missionVision.missionTitle')}</h3>
                 <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
-                  Deliver trendy, globally researched dishes with premium presentation at accessible pricing.
+                  {t('about.missionVision.missionDesc')}
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="lg:border-l lg:border-plum/20 lg:pl-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
-            <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-10">Core Values</h3>
+          <div className="lg:border-l lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
+            <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-10">{t('about.missionVision.coreValuesTitle')}</h3>
             <div className="space-y-6">
-              {coreValues.map((value, idx) => {
-                const Icon = value.icon;
+              {coreValues.map((title, idx) => {
+                const Icon = coreIcons[idx % coreIcons.length];
                 return (
                   <div key={idx} className="flex items-center gap-5 group p-2 rounded-2xl hover:bg-white hover:shadow-sm transition-all duration-300 border border-transparent hover:border-neutral-border">
                     <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-plum/5 text-plum group-hover:bg-plum group-hover:text-yellow transition-colors duration-300">
                       <Icon size={22} className="stroke-[1.5]" />
                     </div>
-                    <span className="font-body text-text-primary text-lg md:text-xl font-semibold group-hover:text-plum transition-colors">{value.title}</span>
+                    <span className="font-body text-text-primary text-lg md:text-xl font-semibold group-hover:text-plum transition-colors">{title}</span>
                   </div>
                 );
               })}

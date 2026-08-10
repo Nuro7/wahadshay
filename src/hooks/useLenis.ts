@@ -13,6 +13,9 @@ export function useLenis() {
       touchMultiplier: 2,
     });
 
+    // Attach lenis instance to window for global access
+    (window as any).lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -22,6 +25,7 @@ export function useLenis() {
 
     return () => {
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 }

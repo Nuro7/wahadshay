@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Product } from "../../data/menuData";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 interface ProductCardProps {
   product: Product;
@@ -9,6 +10,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, featured }) => {
+  const { language, t } = useLanguage();
   return (
     <div className="relative">
       {/* Heart Icon (like the reference) */}
@@ -62,16 +64,19 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
                   </span>
                 </div>
                 <h3 className={`font-display text-[clamp(20px,2vw,28px)] font-black transition-colors duration-400 ${featured ? 'text-white' : 'text-plum'}`}>
-                  {product.name}
+                  {language === "AR" && product.arabicName ? product.arabicName : product.name}
                 </h3>
-                {product.arabicName && (
+                {language === "EN" && product.arabicName && (
                   <p className={`font-body mt-0.5 text-sm ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.arabicName}</p>
+                )}
+                {language === "AR" && (
+                  <p className={`font-body mt-0.5 text-sm ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.name}</p>
                 )}
               </div>
             </div>
             
             <p className={`text-sm md:text-base mt-3 line-clamp-2 leading-relaxed font-medium ${featured ? 'text-white/80' : 'text-text-secondary'}`}>
-              {product.description}
+              {language === "AR" && product.arabicDescription ? product.arabicDescription : product.description}
             </p>
             
             <div className="mt-6 flex items-center gap-6">
@@ -81,12 +86,13 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
               <motion.div 
                 variants={{
                   initial: { opacity: 0.9, x: 0 },
-                  hover: { opacity: 1, x: 5 }
+                  hover: { opacity: 1, x: language === "AR" ? -5 : 5 }
                 }}
                 transition={{ duration: 0.3 }}
                 className={`flex items-center gap-2 font-display font-bold text-[10px] md:text-[11px] tracking-wider uppercase px-4 py-2 rounded-full shadow-sm group-hover:shadow-md ${featured ? 'bg-yellow text-plum-dark' : 'bg-yellow text-plum-dark'}`}
               >
-                VIEW DETAILS <span className="text-lg leading-none mt-[-2px]">→</span>
+                {language === "AR" ? "عرض التفاصيل" : "VIEW DETAILS"} 
+                <span className={`text-lg leading-none mt-[-2px] ${language === "AR" ? 'rotate-180' : ''}`}>→</span>
               </motion.div>
             </div>
           </div>

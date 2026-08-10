@@ -1,4 +1,5 @@
 import { Star, Quote } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface Testimonial {
   name: string;
@@ -29,6 +30,9 @@ const testimonialsData: Testimonial[] = [
 ];
 
 export function Testimonials() {
+  const { t } = useLanguage();
+  const testimonialsData = t('testimonials.items') as any;
+
   return (
     <section id="testimonials" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
       {/* Ambient background glow orbs */}
@@ -40,21 +44,21 @@ export function Testimonials() {
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
-            Guest Experience
+            {t('testimonials.badge')}
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
-            <span className="text-shimmer">Customer Testimonials</span>
+            <span className="text-shimmer">{t('testimonials.title')}</span>
           </h2>
           <p className="text-text-secondary text-sm md:text-base font-body">
-            What our guests and network partners say about their Wahad Shay café experience.
+            {t('testimonials.subtitle')}
           </p>
         </div>
 
         {/* Testimonial Cards Row */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonialsData.map((t, idx) => (
+          {testimonialsData.map((item: any, idx: number) => (
             <div
-              key={t.name}
+              key={item.name}
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
               className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 md:p-10 flex flex-col justify-between h-[320px] relative`}
             >
@@ -65,23 +69,23 @@ export function Testimonials() {
 
               {/* Rating stars */}
               <div className="flex items-center gap-1">
-                {Array.from({ length: t.rating }).map((_, i) => (
+                {Array.from({ length: 5 }).map((_, i) => (
                   <Star key={i} size={14} className="fill-yellow text-yellow stroke-[1]" />
                 ))}
               </div>
 
               {/* Message */}
               <p className="text-text-primary/85 text-xs sm:text-sm leading-relaxed italic font-body my-6 flex-1">
-                "{t.text}"
+                "{item.text}"
               </p>
 
               {/* User Bio */}
               <div className="border-t border-neutral-border pt-4">
                 <h4 className="font-display text-sm font-bold text-plum group-hover:text-plum-dark transition-colors">
-                  {t.name}
+                  {item.name}
                 </h4>
                 <span className="text-[10px] text-text-secondary font-body uppercase font-bold tracking-wider mt-1 block">
-                  {t.role}
+                  {item.role}
                 </span>
               </div>
             </div>

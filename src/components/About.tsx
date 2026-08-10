@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Compass, ShieldCheck, Heart, ChevronLeft, ChevronRight, ArrowRight, Leaf } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 interface Milestone {
   year: string;
   title: string;
   desc: string;
+  shortTitle?: string;
 }
 
 const timelineData: Milestone[] = [
@@ -31,30 +33,10 @@ const timelineData: Milestone[] = [
   },
 ];
 
-const philosophyItems = [
-  {
-    icon: Compass,
-    title: "Authentic Sourcing",
-    desc: "We source premium organic saffron from trusted farmers and tea leaves from select high-altitude gardens.",
-  },
-  {
-    icon: Sparkles,
-    title: "Artisanal Craft",
-    desc: "Our brioche, croissants, and focaccia are baked fresh daily by master bakers using traditional slow fermentation.",
-  },
-  {
-    icon: Heart,
-    title: "Warm Hospitality",
-    desc: "We design spaces of serene comfort, combining warm beige materials and soft golden lighting for a cozy home feel.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Uncompromising Quality",
-    desc: "Every blend is double-spiced and every dish is checked for flavor, color, and absolute customer delight.",
-  },
-];
+const philosophyIcons = [Compass, Sparkles, Heart, ShieldCheck];
 
 export function About() {
+  const { t, language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -82,10 +64,13 @@ export function About() {
     return () => clearInterval(timer);
   }, [currentStep]);
 
+  const timelineData = t('about.timeline') as Milestone[];
+  const philosophyItems = t('about.philosophy') as any[];
+
   return (
     <>
       {/* 1. Our Story Section */}
-      <section id="about" className="py-24 md:py-36 bg-neutral-ivory relative overflow-hidden select-none">
+      <section id="about" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none">
         {/* Subtle botanical line texture can be simulated or added as background. For now we use very soft blurred orbs to keep it clean */}
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
@@ -98,29 +83,29 @@ export function About() {
                 <div className="flex items-center gap-4">
                   <span className="h-px w-8 bg-plum/40 block" />
                   <span className="text-plum text-[10px] font-bold uppercase tracking-[0.35em]">
-                    Our Story
+                    {t('about.storyBadge')}
                   </span>
                 </div>
                 
-                <h2 className="font-display text-[2.75rem] md:text-7xl font-black leading-[1.05] tracking-tight">
-                  <span className="text-gradient-plum">A Symphony</span> <span className="text-gradient-gold">of Tea</span>
+                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
+                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
                   <br />
-                  <span className="text-plum">&amp; Baked Craft</span>
+                  <span className="text-plum">{t('about.storyTitle3')}</span>
                 </h2>
               </div>
 
               <div className="space-y-6 max-w-xl">
                 <p className="text-text-primary/90 text-lg md:text-xl leading-relaxed font-body font-medium">
-                  Wahad Shay was born from a simple yet profound desire: to create a sanctuary where the ancient, rich traditions of slow-brewed tea meet the meticulous artistry of European baking. 
+                  {t('about.storyDesc1')}
                 </p>
                 <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
-                  From our signature cardamom-infused Karak to our melting cheddar brioches, every item on our menu is a testament to culinary craftsmanship. We import raw saffron directly, hand-crush whole spices, and allow our bread doughs to slow-ferment for over 24 hours to achieve an exquisite, pillowy structure.
+                  {t('about.storyDesc2')}
                 </p>
               </div>
 
-              <button className="group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4">
-                <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">Discover More</span>
-                <ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+              <button className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
+                <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
               </button>
             </div>
 
@@ -140,17 +125,17 @@ export function About() {
 
                 <div className="space-y-8 relative">
                   <span className="text-[9px] uppercase font-bold tracking-[0.4em] text-text-secondary/60">
-                    The Brand Motto
+                    {t('about.mottoBadge')}
                   </span>
                   
                   <blockquote className="font-display text-2xl md:text-3xl italic font-light leading-[1.4] text-text-primary px-4">
-                    "A World of Flavor in One Place. Prepared with passion, served with elegance."
+                    {t('about.mottoText')}
                   </blockquote>
                   
                   <div className="pt-8 flex flex-col items-center gap-4">
                     <div className="h-6 w-px bg-plum/20" />
                     <span className="font-display text-[10px] font-bold tracking-[0.3em] text-plum uppercase">
-                      Wahad Shay Luxury
+                      {t('about.mottoFooter')}
                     </span>
                   </div>
                 </div>
@@ -167,19 +152,19 @@ export function About() {
         <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-20">
           <div className="reveal text-center max-w-2xl mx-auto space-y-6">
             <span className="text-plum text-[10px] font-bold uppercase tracking-[0.3em] block">
-              Philosophy
+              {t('about.philBadge')}
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
-              What Defines Wahad Shay
+              {t('about.philTitle')}
             </h2>
             <p className="text-text-secondary text-base font-light max-w-md mx-auto">
-              We focus on four foundational pillars to deliver a memorable, luxury dining and café experience.
+              {t('about.philDesc')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {philosophyItems.map((item, idx) => {
-              const Icon = item.icon;
+              const Icon = philosophyIcons[idx % philosophyIcons.length];
               const numStr = `0${idx + 1}`;
               
               return (
@@ -218,11 +203,11 @@ export function About() {
                     </div>
 
                     {/* Bottom Action */}
-                    <div className="mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between">
+                    <div className={`mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                       <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum group-hover:text-plum-dark transition-colors">
-                        Discover
+                        {t('about.discover')}
                       </span>
-                      <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark" />
+                      <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
                   
@@ -246,10 +231,10 @@ export function About() {
         <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-24">
           <div className="reveal text-center max-w-2xl mx-auto space-y-6">
             <span className="text-yellow text-[10px] font-bold uppercase tracking-[0.3em] block">
-              The Wahad Shay Journey
+              {t('about.journeyBadge')}
             </span>
             <h2 className="font-display text-3xl md:text-5xl font-black text-white">
-              A Legacy in the Making
+              {t('about.journeyTitle')}
             </h2>
           </div>
 
@@ -294,12 +279,10 @@ export function About() {
               />
 
               {/* Location Pins & Years */}
-              {[
-                { year: "2018", title: "Genesis", x: 100, y: 130 },
-                { year: "2021", title: "Riyadh HQ", x: 320, y: 80 },
-                { year: "2024", title: "UAE Network", x: 550, y: 130 },
-                { year: "2026", title: "Digital Era", x: 700, y: 70 },
-              ].map((node, idx) => {
+              {timelineData.map((node: Milestone, idx: number) => {
+                const xPos = [100, 320, 550, 700][idx] || 100;
+                const yPos = [130, 80, 130, 70][idx] || 130;
+                const nodeX = language === 'AR' ? 800 - xPos : xPos;
                 const isActive = idx === currentStep;
                 const isCompleted = idx < currentStep;
                 return (
@@ -311,12 +294,12 @@ export function About() {
                     {/* Ring ripple on active pin */}
                     {isActive && (
                       <circle
-                        cx={node.x}
-                        cy={node.y}
+                        cx={nodeX}
+                        cy={yPos}
                         r="20"
                         className="fill-none stroke-yellow opacity-30"
                         style={{
-                          transformOrigin: `${node.x}px ${node.y}px`,
+                          transformOrigin: `${nodeX}px ${yPos}px`,
                           animation: "ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite",
                         }}
                       />
@@ -324,8 +307,8 @@ export function About() {
 
                     {/* Outer circle */}
                     <circle
-                      cx={node.x}
-                      cy={node.y}
+                      cx={nodeX}
+                      cy={yPos}
                       r="8"
                       className={`transition-all duration-500 ${
                         isActive 
@@ -339,14 +322,14 @@ export function About() {
 
                     {/* Text Label Year */}
                     <text
-                      x={node.x}
-                      y={node.y - 24}
+                      x={nodeX}
+                      y={yPos - 24}
                       textAnchor="middle"
                       className={`font-numbers text-sm transition-all duration-500 ${
                         isActive ? "fill-yellow font-black scale-110" : "fill-white/60 font-medium group-hover:fill-white"
                       }`}
                       style={{
-                         transformOrigin: `${node.x}px ${node.y - 24}px`
+                         transformOrigin: `${nodeX}px ${yPos - 24}px`
                       }}
                     >
                       {node.year}
@@ -354,14 +337,14 @@ export function About() {
 
                     {/* Title tooltip below node */}
                     <text
-                      x={node.x}
-                      y={node.y + 28}
+                      x={nodeX}
+                      y={yPos + 28}
                       textAnchor="middle"
                       className={`font-display text-[9px] tracking-[0.2em] uppercase transition-all duration-500 ${
                         isActive ? "fill-white font-bold" : "fill-white/40 font-medium group-hover:fill-white/80"
                       }`}
                     >
-                      {node.title}
+                      {node.shortTitle}
                     </text>
                   </g>
                 );

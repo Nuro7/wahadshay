@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Product } from "../../data/menuData";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 interface ProductDetailProps {
   product: Product | null;
@@ -8,6 +9,7 @@ interface ProductDetailProps {
 }
 
 export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }) => {
+  const { language } = useLanguage();
   // Prevent scrolling when modal is open
   useEffect(() => {
     if (product) {
@@ -73,11 +75,14 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
-                {product.arabicName && (
+                {language === "EN" && product.arabicName && (
                   <p className="font-body text-2xl text-plum/60 mb-2">{product.arabicName}</p>
                 )}
+                {language === "AR" && (
+                  <p className="font-body text-2xl text-plum/60 mb-2">{product.name}</p>
+                )}
                 <h2 className="font-display text-4xl md:text-6xl font-black text-plum mb-6 leading-none">
-                  {product.name}
+                  {language === "AR" && product.arabicName ? product.arabicName : product.name}
                 </h2>
                 
                 <div className="flex items-center gap-4 mb-8">
@@ -89,7 +94,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
                 <div className="w-16 h-1 bg-yellow mb-8 rounded-full" />
                 
                 <p className="text-text-secondary text-lg leading-relaxed mb-10 font-medium">
-                  {product.description}
+                  {language === "AR" && product.arabicDescription ? product.arabicDescription : product.description}
                 </p>
 
                 {/* Return to menu / Close Action */}
@@ -97,7 +102,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
                   onClick={onClose}
                   className="w-full md:w-auto px-10 py-4 bg-white border-2 border-plum text-plum font-bold tracking-[0.15em] text-sm uppercase rounded-full hover:bg-plum hover:text-white transition-colors duration-300 shadow-sm"
                 >
-                  Return to Menu
+                  {language === "AR" ? "العودة للقائمة" : "Return to Menu"}
                 </button>
               </motion.div>
             </div>

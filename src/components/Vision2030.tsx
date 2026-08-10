@@ -1,23 +1,9 @@
 import { Globe2, Users, Handshake } from "lucide-react";
+import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Vision2030() {
-  const phases = [
-    {
-      phase: "01",
-      title: "UAE Foundation",
-      description: "Establish a strong presence in the UAE with focus on brand awareness, menu refinement, and operational excellence."
-    },
-    {
-      phase: "02",
-      title: "GCC Expansion",
-      description: "Expand strategically into neighboring Gulf countries, adapting to local tastes while preserving the brand identity."
-    },
-    {
-      phase: "03",
-      title: "Milestone Growth",
-      description: "Reach 25+ branches by 2030 with standardized systems and consistent quality."
-    }
-  ];
+  const { t, language } = useLanguage();
+  const phases = t('about.vision2030.phases') as Array<{ phase: string, title: string, description: string }>;
 
   return (
     <section className="py-24 bg-beige relative overflow-hidden select-none z-10">
@@ -25,11 +11,11 @@ export default function Vision2030() {
         
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 reveal">
-          <h2 className="font-display text-5xl md:text-6xl font-extrabold text-plum">Vision 2030</h2>
+          <h2 className="font-display text-5xl md:text-6xl font-extrabold text-plum">{t('about.vision2030.title')}</h2>
           <div className="hidden md:block w-1.5 h-16 bg-plum rounded-full"></div>
           <div className="md:hidden h-1.5 w-16 bg-plum rounded-full"></div>
           <h3 className="font-display text-2xl md:text-3xl font-medium text-text-primary max-w-sm leading-snug">
-            Building a Globally Recognized Food Brand
+            {t('about.vision2030.subtitle')}
           </h3>
         </div>
 
@@ -54,9 +40,9 @@ export default function Vision2030() {
           ))}
           
           {/* Badge */}
-          <div className="hidden lg:flex absolute -right-6 -bottom-6 bg-yellow text-plum rounded-3xl p-6 shadow-2xl transform rotate-12 border-4 border-white z-20 items-center justify-center animate-float-burger">
+          <div className={`hidden lg:flex absolute ${language === 'AR' ? '-left-6' : '-right-6'} -bottom-6 bg-yellow text-plum rounded-3xl p-6 shadow-2xl transform rotate-12 border-4 border-white z-20 items-center justify-center animate-float-burger`}>
             <span className="font-display font-black text-2xl text-center leading-tight">
-              25+ Branches<br/>By 2030
+              {t('about.vision2030.badgeLine1')}<br/>{t('about.vision2030.badgeLine2')}
             </span>
           </div>
         </div>
@@ -74,9 +60,9 @@ export default function Vision2030() {
                 <Globe2 size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-3xl font-bold text-yellow mb-4">Long-Term Vision</h4>
+                <h4 className="font-display text-3xl font-bold text-yellow mb-4">{t('about.vision2030.longTermTitle')}</h4>
                 <p className="text-white/90 text-lg leading-relaxed">
-                  Scale globally to <span className="text-yellow font-bold">100 outlets</span>, making Wahad Shay: a leading ambassador of culturally inspired, trend-driven cuisine.
+                  {t('about.vision2030.longTermDesc1')}<span className="text-yellow font-bold">{t('about.vision2030.longTermDesc2')}</span>{t('about.vision2030.longTermDesc3')}
                 </p>
               </div>
             </div>
@@ -87,9 +73,9 @@ export default function Vision2030() {
                 <Handshake size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-3xl font-bold text-yellow mb-4">Join the Journey</h4>
+                <h4 className="font-display text-3xl font-bold text-yellow mb-4">{t('about.vision2030.joinTitle')}</h4>
                 <p className="text-white/90 text-lg leading-relaxed">
-                  Investment and partnership opportunities are available for those who share our vision.
+                  {t('about.vision2030.joinDesc')}
                 </p>
               </div>
             </div>

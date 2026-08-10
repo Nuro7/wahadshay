@@ -24,7 +24,7 @@ export const CategoryScene: React.FC<CategorySceneProps> = ({ category }) => {
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="font-display text-6xl md:text-8xl font-black text-plum tracking-tighter uppercase drop-shadow-md"
+            className="font-display text-4xl md:text-6xl font-black text-plum tracking-tighter uppercase drop-shadow-md"
           >
             {category.name}
           </motion.h2>

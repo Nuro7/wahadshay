@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import burgerImg from "../../assets/wahad_burger.png";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 export const MenuHero: React.FC = () => {
+  const { t } = useLanguage();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -14,7 +16,7 @@ export const MenuHero: React.FC = () => {
   const rotateImage = useTransform(scrollYProgress, [0, 1], [0, -5]);
 
   return (
-    <div ref={containerRef} className="relative pt-32 pb-16 md:pt-32 md:pb-32 overflow-hidden flex flex-col justify-center bg-beige">
+    <div ref={containerRef} className="relative pt-[160px] md:pt-[200px] pb-16 md:pb-32 overflow-hidden flex flex-col justify-center bg-beige">
       {/* Background aesthetics */}
       <motion.div style={{ y: yBg }} className="absolute inset-0 bg-plum/5 pointer-events-none" />
 
@@ -33,22 +35,22 @@ export const MenuHero: React.FC = () => {
         >
           <div className="inline-flex items-center gap-4">
             <span className="h-px w-8 bg-yellow" />
-            <span className="text-yellow text-sm font-bold uppercase tracking-[0.2em]">Explore Our Menu</span>
+            <span className="text-yellow text-sm font-bold uppercase tracking-[0.2em]">{t('menuHero.badge')}</span>
             <span className="h-px w-8 bg-yellow" />
           </div>
 
-          <h1 className="font-display text-6xl md:text-[clamp(90px,10vw,140px)] font-black leading-[0.9] uppercase tracking-tight flex flex-col mb-6">
-            <span className="text-plum">Our</span>
-            <span className="text-yellow">Menu</span>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] uppercase tracking-tight flex flex-col mb-6">
+            <span className="text-plum">{t('menuHero.title1')}</span>
+            <span className="text-yellow">{t('menuHero.title2')}</span>
           </h1>
 
           <p className="font-body text-3xl md:text-5xl text-plum mb-6 font-medium tracking-tight">
-            One Cup. Many Stories.
+            {t('menuHero.subtitle')}
           </p>
 
           <p className="font-body text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed flex flex-col">
-            <span>Globally inspired flavors crafted with passion.</span>
-            <span>Premium taste at prices for everyone.</span>
+            <span>{t('menuHero.desc1')}</span>
+            <span>{t('menuHero.desc2')}</span>
           </p>
         </motion.div>
 

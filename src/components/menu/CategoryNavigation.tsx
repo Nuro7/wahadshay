@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Category } from "../../data/menuData";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "../../i18n/LanguageContext";
 
 interface CategoryNavProps {
   categories: Category[];
@@ -14,6 +15,7 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
   activeCategoryId,
   onSelectCategory,
 }) => {
+  const { language } = useLanguage();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [showLeftScroll, setShowLeftScroll] = useState(false);
   const [showRightScroll, setShowRightScroll] = useState(true);
@@ -105,7 +107,9 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
                 <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center transition-all ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
                    <img src={cat.heroImage} alt={cat.name} className="w-full h-full object-contain drop-shadow-md" />
                 </div>
-                <span className={`mt-1 ${isActive ? 'mb-2' : ''} text-center leading-tight px-1`}>{cat.name}</span>
+                <span className={`mt-1 ${isActive ? 'mb-2' : ''} text-center leading-tight px-1`}>
+                  {language === "AR" && cat.arabicName ? cat.arabicName : cat.name}
+                </span>
               </div>
             </button>
           );

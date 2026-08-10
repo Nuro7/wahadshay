@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Instagram, ZoomIn, X, ChevronLeft, ChevronRight } from "lucide-react";
 import { FaInstagram } from "react-icons/fa6";
+import { useLanguage } from "../i18n/LanguageContext";
 import teacupImg from "../assets/wahad_teacup.png";
 import burgerImg from "../assets/wahad_burger.png";
 import cheeseImg from "../assets/cheese_dripping.png";
@@ -13,15 +14,20 @@ interface GalleryItem {
   handle: string;
 }
 
-const galleryItems: GalleryItem[] = [
-  { image: teacupImg, tag: "Signature Karak", handle: "@wahadshay" },
-  { image: cheeseImg, tag: "Cheese Melt Brioche", handle: "@wahadshay" },
-  { image: burgerImg, tag: "Smoked Turkey Croissant", handle: "@wahadshay" },
-  { image: friesImg, tag: "Loaded Cheese Fries", handle: "@wahadshay" },
-];
+const galleryImages = [teacupImg, cheeseImg, burgerImg, friesImg];
 
 export function Gallery() {
+  const { t, language } = useLanguage();
   const [activeIdx, setActiveIdx] = useState<number | null>(null);
+
+  const galleryItems = useMemo(() => {
+    const items = t('about.gallery.items') as Array<{ tag: string }>;
+    return items.map((item, index) => ({
+      image: galleryImages[index % galleryImages.length],
+      tag: item.tag,
+      handle: language === 'AR' ? "@واحد_شاي" : "@wahadshay"
+    }));
+  }, [t, language]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -53,7 +59,7 @@ export function Gallery() {
   };
 
   return (
-    <section id="gallery" className="py-24 md:py-32 bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="gallery" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none">
       {/* Background radial soft gold glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.02),transparent_65%)] pointer-events-none" />
 
@@ -62,13 +68,13 @@ export function Gallery() {
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
-            Visual Journal
+            {t('about.gallery.badge')}
           </span>
           <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
-            <span className="text-shimmer">Photo Gallery</span>
+            <span className="text-shimmer">{t('about.gallery.title')}</span>
           </h2>
           <p className="text-text-secondary text-sm md:text-base font-body">
-            Follow our digital aesthetic journey and share your moments at <span className="text-plum font-semibold">#WahadShay</span>.
+            {t('about.gallery.subtitle1')}<span className="text-plum font-semibold">{t('about.gallery.subtitle2')}</span>.
           </p>
         </div>
 
@@ -101,9 +107,9 @@ export function Gallery() {
                     {item.handle}
                   </span>
                 </div>
-                <div className="flex items-center gap-1 text-yellow text-[9px] font-bold uppercase tracking-widest pt-2">
+                <div className={`flex items-center gap-1 text-yellow text-[9px] font-bold uppercase tracking-widest pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                   <ZoomIn size={10} />
-                  <span>View Story</span>
+                  <span>{t('about.gallery.viewStory')}</span>
                 </div>
               </div>
             </div>
