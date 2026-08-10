@@ -29,29 +29,22 @@ export function Footer() {
   return (
     <footer className="bg-plum-dark pt-[75px] md:pt-[85px] pb-[30px] select-none">
       <div className="mx-auto max-w-7xl px-6 md:px-10 lg:px-14">
-        
+
         {/* Main Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[45%_25%_30%] gap-y-12 gap-x-12 lg:gap-x-16 pb-[60px] md:pb-[70px]">
-          
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-[40%_30%_30%] gap-y-10 gap-x-8 lg:gap-x-12 pb-10 md:pb-12">
+
           {/* Logo & Brand Story */}
-          <div className="flex flex-col">
-             <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6">
-               <img 
-                 src="/logo_wahad.png" 
-                 alt="Wahad Shay Logo" 
-                 className="w-[115px] md:w-[140px] h-auto object-contain"
-               />
-             </a>
-            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body mb-4 whitespace-pre-line">
+          <div className="flex flex-col items-start">
+            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ml-2 md:-ml-3 lg:-ml-4">
+              <img
+                src="/logo_wahad.png"
+                alt="Wahad Shay Logo"
+                className="w-[160px] md:w-[200px] lg:w-[240px] h-auto object-contain"
+              />
+            </a>
+            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left">
               {t('footer.brandStory')}
             </p>
-
-            {/* Developer Credit */}
-            <div className="mt-2">
-              <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-yellow text-[12px] md:text-[13px] font-medium tracking-[0.03em] hover:brightness-110 transition-all">
-                {t('footer.developedBy')}
-              </a>
-            </div>
           </div>
 
           {/* Explore Column */}
@@ -102,14 +95,26 @@ export function Footer() {
         <div className="border-t border-white/[0.14] w-full" />
 
         {/* Copyright Bar */}
-        <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          {/* Copyright */}
-          <p className="text-white/50 text-[11px] md:text-[12px] tracking-[0.06em] font-numbers font-medium uppercase">
-            {t('footer.copyright').replace('{year}', currentYear.toString())}
-          </p>
+        <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-5 w-full">
+          {/* Copyright (Left) */}
+          <div className="flex-1 flex justify-center md:justify-start w-full">
+            <p className="text-white/50 text-[11px] md:text-[12px] tracking-[0.06em] font-numbers font-medium uppercase text-center md:text-left">
+              {t('footer.copyright').replace('{year}', currentYear.toString())}
+            </p>
+          </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-[20px] text-white/60">
+          {/* Developer Credit (Center) */}
+          <div className="flex-1 flex justify-center w-full">
+            <span className="text-[#AFA6C8] text-[12px] md:text-[13px] font-body text-center">
+              Developed by{' '}
+              <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-medium inline-block">
+                Nuro 7
+              </a>
+            </span>
+          </div>
+
+          {/* Social Links (Right) */}
+          <div className="flex-1 flex justify-center md:justify-end items-center gap-[20px] text-white/60 w-full mt-2 md:mt-0">
             <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">
               <FaInstagram size={19} />
             </a>

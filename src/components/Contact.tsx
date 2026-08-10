@@ -43,83 +43,84 @@ export function Contact() {
         </div>
 
         {/* Contact Layout Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-20 items-start">
           
           {/* Contact Details & Links (2/5 span) */}
-          <div className={`reveal-${language === 'AR' ? 'right' : 'left'} reveal lg:col-span-2 space-y-8`}>
+          <div className={`reveal-${language === 'AR' ? 'right' : 'left'} reveal lg:col-span-2 space-y-10`}>
             <div className="space-y-4">
-              <h3 className="font-display text-2xl font-black text-plum">
+              <h3 className="font-display text-3xl font-black text-plum tracking-tight">
                 {t('contact.hqTitle')}
               </h3>
-              <p className="text-text-secondary text-sm leading-relaxed font-body">
+              <p className="text-text-secondary text-base leading-relaxed font-body max-w-sm">
                 {t('contact.hqDesc')}
               </p>
             </div>
 
             {/* Information Cards List */}
-            <div className="space-y-4 font-body">
+            <div className="space-y-5 font-body">
               {/* Address */}
-              <div className="flex gap-4 p-5 rounded-2xl bg-white border border-neutral-border shadow-sm hover:border-plum/20 transition-colors">
-                <div className="rounded-full bg-beige/40 p-3.5 text-plum border border-neutral-border w-fit shrink-0">
-                  <MapPin size={18} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group cursor-pointer transition-all duration-500">
+                <div className="rounded-2xl bg-plum/5 group-hover:bg-plum/10 p-4 text-plum border border-plum/10 transition-colors duration-500 w-fit shrink-0 micro-transition micro-icon">
+                  <MapPin size={22} className="stroke-[1.5]" />
                 </div>
                 <div>
-                  <h4 className="text-[10px] text-text-secondary uppercase font-bold tracking-widest">{t('contact.addressLabel')}</h4>
-                  <p className="text-text-primary text-sm mt-1">{t('contact.address')}</p>
+                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.addressLabel')}</h4>
+                  <p className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-plum transition-colors duration-300">{t('contact.address')}</p>
                   <a 
                     href="https://maps.google.com" 
                     target="_blank" 
                     rel="noreferrer" 
-                    className={`text-plum hover:text-plum-dark text-xs font-semibold inline-flex items-center gap-1 mt-2 transition-colors cursor-pointer ${language === 'AR' ? 'flex-row-reverse' : ''}`}
+                    className={`text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3 transition-colors ${language === 'AR' ? 'flex-row-reverse' : ''}`}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {t('contact.openInMaps')}
-                    <ArrowRight size={12} className={language === 'AR' ? 'rotate-180' : ''} />
+                    <ArrowRight size={14} className={`micro-transition group-hover:translate-x-1 ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                   </a>
                 </div>
               </div>
 
               {/* Operating Hours */}
-              <div className="flex gap-4 p-5 rounded-2xl bg-white border border-neutral-border shadow-sm">
-                <div className="rounded-full bg-beige/40 p-3.5 text-plum border border-neutral-border w-fit shrink-0">
-                  <Clock size={18} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group transition-all duration-500">
+                <div className="rounded-2xl bg-yellow/10 group-hover:bg-yellow/20 p-4 text-yellow-dark border border-yellow/20 transition-colors duration-500 w-fit shrink-0 micro-transition micro-icon" style={{ color: '#D49B1C' }}>
+                  <Clock size={22} className="stroke-[1.5]" />
                 </div>
                 <div>
-                  <h4 className="text-[10px] text-text-secondary uppercase font-bold tracking-widest">{t('contact.hoursLabel')}</h4>
-                  <p className="text-text-primary text-sm mt-1 leading-relaxed">
-                    {t('contact.hoursLine1')} <br />
-                    {t('contact.hoursLine2')}
+                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.hoursLabel')}</h4>
+                  <p className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-text-primary transition-colors duration-300">
+                    <span className="block mb-1">{t('contact.hoursLine1')}</span>
+                    <span className="block text-text-secondary">{t('contact.hoursLine2')}</span>
                   </p>
                 </div>
               </div>
             </div>
 
             {/* Quick Action Channels */}
-            <div className="space-y-4 border-t border-neutral-border pt-6">
-              <h4 className="font-display text-xs font-bold text-plum uppercase tracking-widest">
+            <div className="space-y-5 border-t border-neutral-border pt-8">
+              <h4 className="font-display text-[11px] font-black text-text-secondary uppercase tracking-[0.2em]">
                 {t('contact.quickActionLabel')}
               </h4>
-              <div className="flex flex-wrap gap-3 font-body">
+              <div className="flex flex-wrap gap-3.5 font-body">
                 <a
                   href="tel:+966112345678"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-neutral-light-beige border border-neutral-border text-text-primary text-xs font-semibold transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Phone size={14} className="text-plum" />
+                  <Phone size={16} className="text-plum" />
                   {t('contact.callHq')}
                 </a>
                 <a
                   href="mailto:info@wahadshay.com"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white hover:bg-neutral-light-beige border border-neutral-border text-text-primary text-xs font-semibold transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Mail size={14} className="text-plum" />
+                  <Mail size={16} className="text-plum" />
                   {t('contact.emailSupport')}
                 </a>
                 <a
                   href="https://wa.me/966112345678"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-plum/10 hover:bg-plum/20 border border-plum/20 text-plum text-xs font-semibold transition-all duration-300 cursor-pointer"
+                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-plum text-white border border-transparent font-bold text-xs shadow-md shadow-plum/20 hover:shadow-lg hover:shadow-plum/30 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <MessageSquare size={14} className="text-plum" />
+                  <MessageSquare size={16} className="text-white" />
                   {t('contact.whatsapp')}
                 </a>
               </div>
@@ -127,105 +128,117 @@ export function Contact() {
           </div>
 
           {/* Contact Inquiry Form (3/5 span) */}
-          <div className={`reveal-${language === 'AR' ? 'left' : 'right'} reveal lg:col-span-3 premium-card p-8 md:p-10 relative min-h-[460px] flex flex-col justify-center border-neutral-border bg-white shadow-md`}>
-            <AnimatePresence mode="wait">
-              {!formSubmitted ? (
-                <motion.form
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={handleSubmit}
-                  className="space-y-6 font-body"
-                >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="text-[10px] font-bold text-text-secondary uppercase tracking-wider block">{t('contact.form.nameLabel')}</label>
+          <div className={`reveal-${language === 'AR' ? 'left' : 'right'} reveal lg:col-span-3 luxury-card luxury-card-hover p-8 md:p-12 relative min-h-[500px] flex flex-col justify-center`}>
+            
+            {/* Ambient luxury inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white to-neutral-ivory/30 pointer-events-none" />
+            <div className="absolute -top-32 -right-32 w-64 h-64 bg-plum/5 rounded-full blur-[80px] pointer-events-none" />
+            
+            <div className="relative z-10 w-full h-full">
+              <AnimatePresence mode="wait">
+                {!formSubmitted ? (
+                  <motion.form
+                    key="form"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.4 }}
+                    onSubmit={handleSubmit}
+                    className="space-y-7 font-body"
+                  >
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
+                      <div className="space-y-2.5 group">
+                        <label htmlFor="name" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.nameLabel')}</label>
+                        <input
+                          type="text"
+                          id="name"
+                          required
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          placeholder={t('contact.form.namePlaceholder')}
+                        />
+                      </div>
+                      <div className="space-y-2.5 group">
+                        <label htmlFor="email" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.emailLabel')}</label>
+                        <input
+                          type="email"
+                          id="email"
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          placeholder={t('contact.form.emailPlaceholder')}
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-2.5 group">
+                      <label htmlFor="subject" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
                       <input
                         type="text"
-                        id="name"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full rounded-xl border border-neutral-border bg-neutral-white px-4 py-3 text-sm text-text-primary placeholder-text-secondary/45 focus:border-plum focus:outline-none focus:ring-1 focus:ring-plum transition-all duration-300"
-                        placeholder={t('contact.form.namePlaceholder')}
+                        id="subject"
+                        value={formData.subject}
+                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                        placeholder={t('contact.form.subjectPlaceholder')}
                       />
                     </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="text-[10px] font-bold text-text-secondary uppercase tracking-wider block">{t('contact.form.emailLabel')}</label>
-                      <input
-                        type="email"
-                        id="email"
+
+                    <div className="space-y-2.5 group">
+                      <label htmlFor="message" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
+                      <textarea
+                        id="message"
+                        rows={5}
                         required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        className="w-full rounded-xl border border-neutral-border bg-neutral-white px-4 py-3 text-sm text-text-primary placeholder-text-secondary/45 focus:border-plum focus:outline-none focus:ring-1 focus:ring-plum transition-all duration-300"
-                        placeholder={t('contact.form.emailPlaceholder')}
+                        value={formData.message}
+                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-4 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm resize-none"
+                        placeholder={t('contact.form.messagePlaceholder')}
                       />
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="subject" className="text-[10px] font-bold text-text-secondary uppercase tracking-wider block">{t('contact.form.subjectLabel')}</label>
-                    <input
-                      type="text"
-                      id="subject"
-                      value={formData.subject}
-                      onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full rounded-xl border border-neutral-border bg-neutral-white px-4 py-3 text-sm text-text-primary placeholder-text-secondary/45 focus:border-plum focus:outline-none focus:ring-1 focus:ring-plum transition-all duration-300"
-                      placeholder={t('contact.form.subjectPlaceholder')}
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="text-[10px] font-bold text-text-secondary uppercase tracking-wider block">{t('contact.form.messageLabel')}</label>
-                    <textarea
-                      id="message"
-                      rows={4}
-                      required
-                      value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      className="w-full rounded-xl border border-neutral-border bg-neutral-white px-4 py-3 text-sm text-text-primary placeholder-text-secondary/45 focus:border-plum focus:outline-none focus:ring-1 focus:ring-plum transition-all duration-300 resize-none"
-                      placeholder={t('contact.form.messagePlaceholder')}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full flex items-center justify-center gap-2 py-4 rounded-full bg-yellow text-plum-dark text-xs font-black uppercase tracking-widest hover:bg-plum hover:text-white transition-all duration-300 shadow-md cursor-pointer"
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full group relative overflow-hidden flex items-center justify-center gap-2 py-4 sm:py-5 rounded-xl bg-yellow text-plum-dark text-[13px] font-black uppercase tracking-[0.15em] hover:bg-plum hover:text-white hover:shadow-xl hover:shadow-plum/20 transition-all duration-500 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                    >
+                      <span className="relative z-10 flex items-center gap-2">
+                        {isSubmitting ? t('contact.form.submitting') : t('contact.form.submitBtn')}
+                        {!isSubmitting && <ArrowRight size={16} className={`transition-transform duration-300 group-hover:translate-x-1 ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />}
+                      </span>
+                    </button>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="text-center space-y-6 py-16 flex flex-col items-center justify-center h-full"
                   >
-                    {isSubmitting ? t('contact.form.submitting') : t('contact.form.submitBtn')}
-                  </button>
-                </motion.form>
-              ) : (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-center space-y-6 py-12"
-                >
-                  <div className="w-16 h-16 rounded-full bg-plum/10 border border-plum/30 flex items-center justify-center text-plum mx-auto">
-                    <Check size={28} />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="font-display text-xl font-bold text-plum uppercase tracking-wide">
-                      {t('contact.success.title')}
-                    </h3>
-                    <p className="text-text-secondary text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
-                      {t('contact.success.desc')}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => setFormSubmitted(false)}
-                    className="px-6 py-2.5 rounded-full border border-neutral-border text-text-primary text-xs font-semibold hover:bg-neutral-light-beige transition-colors cursor-pointer"
-                  >
-                    {t('contact.success.sendAnother')}
-                  </button>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                    <div className="w-20 h-20 rounded-full bg-plum/5 border border-plum/20 flex items-center justify-center text-plum relative mb-2">
+                      <div className="absolute inset-0 rounded-full bg-plum/10 animate-ping opacity-20" />
+                      <Check size={36} className="relative z-10" />
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="font-display text-2xl font-black text-plum tracking-tight">
+                        {t('contact.success.title')}
+                      </h3>
+                      <p className="text-text-secondary text-sm md:text-base max-w-sm mx-auto leading-relaxed font-body font-medium">
+                        {t('contact.success.desc')}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => setFormSubmitted(false)}
+                      className="mt-4 px-8 py-3.5 rounded-full border border-neutral-border text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-neutral-light-beige hover:border-plum/30 transition-all duration-300 cursor-pointer shadow-sm"
+                    >
+                      {t('contact.success.sendAnother')}
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
         </div>

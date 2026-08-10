@@ -78,41 +78,60 @@ export function Gallery() {
           </p>
         </div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Dynamic Animated Gallery Grid (Modern Bento Layout) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-2 gap-4 lg:gap-6 lg:h-[650px]">
           {galleryItems.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.7, delay: idx * 0.15, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -8 }}
               onClick={() => setActiveIdx(idx)}
-              className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover overflow-hidden group relative h-[280px] flex items-center justify-center p-8 cursor-pointer`}
+              className={`premium-card overflow-hidden group relative flex items-center justify-center p-8 cursor-pointer shadow-sm hover:shadow-2xl transition-all duration-500 rounded-[28px] ${
+                idx === 0 ? "lg:col-span-2 lg:row-span-1 h-[320px] lg:h-auto" :
+                idx === 1 ? "sm:col-span-2 lg:col-span-1 lg:row-span-2 h-[320px] lg:h-auto" :
+                "lg:col-span-1 lg:row-span-1 h-[320px] lg:h-auto"
+              }`}
             >
-              {/* Image asset with scale zoom on card hover */}
-              <img
+              {/* Subtle background glow on hover */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-plum/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              {/* Image asset with dynamic scale zoom on card hover */}
+              <motion.img
                 src={item.image}
                 alt={item.tag}
-                className="max-h-[160px] max-w-full object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.08)] group-hover:scale-110 transition-transform duration-500 will-change-transform"
+                className={`max-w-full object-contain filter drop-shadow-[0_20px_35px_rgba(0,0,0,0.12)] z-10 ${
+                  idx === 1 ? "max-h-[55%] lg:max-h-[65%]" : "max-h-[65%] lg:max-h-[75%]"
+                }`}
+                whileHover={{ scale: 1.15, rotate: idx % 2 === 0 ? 3 : -3 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
               />
 
               {/* Hover Dark Overlay showing Instagram logo and metadata */}
-              <div className="absolute inset-0 bg-plum/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center space-y-3 z-20">
-                <div className="rounded-full bg-white/10 p-3 border border-white/20 text-yellow">
-                  <FaInstagram size={20} />
-                </div>
-                <div className="text-center">
-                  <span className="font-display text-sm font-bold text-white block">
+              <div className="absolute inset-0 bg-plum/85 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center space-y-4 z-20 backdrop-blur-[4px]">
+                <motion.div 
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileHover={{ scale: 1, opacity: 1 }}
+                  className="rounded-full bg-white/20 p-4 border border-white/30 text-yellow shadow-2xl"
+                >
+                  <FaInstagram size={28} />
+                </motion.div>
+                <div className="text-center transform translate-y-6 group-hover:translate-y-0 transition-transform duration-400 ease-out">
+                  <span className="font-display text-lg md:text-xl font-black text-white block tracking-wide">
                     {item.tag}
                   </span>
-                  <span className="font-body text-[10px] text-white/70 tracking-wider block mt-0.5">
+                  <span className="font-body text-[12px] text-white/80 tracking-widest uppercase block mt-1.5">
                     {item.handle}
                   </span>
                 </div>
-                <div className={`flex items-center gap-1 text-yellow text-[9px] font-bold uppercase tracking-widest pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
-                  <ZoomIn size={10} />
+                <div className={`flex items-center gap-2 text-yellow text-[10px] md:text-[11px] font-bold uppercase tracking-widest pt-4 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-400 ease-out delay-75 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                  <ZoomIn size={14} />
                   <span>{t('about.gallery.viewStory')}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

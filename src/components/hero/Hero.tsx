@@ -128,6 +128,40 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const parallaxVideoRef = useRef<HTMLDivElement>(null);
   const lightingRef = useRef<HTMLDivElement>(null);
+  
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+  const [activeVideoIndex, setActiveVideoIndex] = useState(0);
+  const videos = ['/home.mp4', '/home1.mp4'];
+
+  const handleVideoEnd = (index: number) => {
+    if (index !== activeVideoIndex) return;
+    const nextIndex = (index + 1) % videos.length;
+    
+    // Pre-play the next video before the opacity transition begins
+    const nextVid = videoRefs.current[nextIndex];
+    if (nextVid) {
+      nextVid.currentTime = 0;
+      nextVid.play().catch(e => console.error("Video play failed", e));
+    }
+    
+    setActiveVideoIndex(nextIndex);
+  };
+
+  useEffect(() => {
+    // Pause inactive videos after the 1-second crossfade finishes to save resources
+    const timeouts = videos.map((_, idx) => {
+      const vid = videoRefs.current[idx];
+      if (!vid || idx === activeVideoIndex) return null;
+      
+      return setTimeout(() => {
+        vid.pause();
+      }, 1000);
+    });
+
+    return () => {
+      timeouts.forEach(t => t && clearTimeout(t));
+    };
+  }, [activeVideoIndex, videos]);
 
   useEffect(() => {
     let titleTimeline: gsap.core.Timeline | null = null;
@@ -221,16 +255,23 @@ export default function Hero() {
       {/* Background Video Layer */}
       <div
         ref={parallaxVideoRef}
-        className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none will-change-transform"
+        className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none bg-plum-dark will-change-transform"
       >
-        <video
-          src="/home.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover opacity-90 scale-[1.03]"
-        />
+        {videos.map((src, idx) => (
+          <video
+            key={src}
+            ref={(el) => (videoRefs.current[idx] = el)}
+            src={src}
+            autoPlay={idx === 0}
+            muted
+            playsInline
+            preload="auto"
+            onEnded={() => handleVideoEnd(idx)}
+            className={`absolute inset-0 w-full h-full object-cover scale-[1.03] transition-opacity duration-1000 ease-in-out ${
+              idx === activeVideoIndex ? 'opacity-90 z-10' : 'opacity-0 z-0'
+            }`}
+          />
+        ))}
         {/* Soft vignette overlays to preserve branding and layout legibility */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/95 via-[#2E1A47]/60 to-[#2E1A47]/95 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
       </div>

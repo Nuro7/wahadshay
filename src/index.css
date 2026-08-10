@@ -335,7 +335,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: metallic-shimmer 4s linear infinite;
+  animation: metallic-shimmer 8s linear infinite;
 }
 
 .text-shimmer-gold {
@@ -357,7 +357,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: metallic-shimmer 4s linear infinite;
+  animation: metallic-shimmer 8s linear infinite;
 }
 
 /* Premium Minimal Card System (Formerly Glassmorphism) */
