@@ -13,7 +13,6 @@ import Franchise from "./components/Franchise";
 import FranchiseSection from "./components/FranchiseSection";
 import Testimonials from "./components/Testimonials";
 import Gallery from "./components/Gallery";
-import VideoGallery from "./components/VideoGallery";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
@@ -136,7 +135,6 @@ function App() {
           {currentPage === "gallery" && (
             <>
               <Gallery />
-              <VideoGallery />
             </>
           )}
 
