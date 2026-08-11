@@ -105,6 +105,7 @@ function App() {
           {currentPage === "home" && (
             <>
               <Hero />
+              <About />
               <Testimonials />
               <FranchiseSection />
               <FranchiseTeaser />

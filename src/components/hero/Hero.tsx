@@ -319,9 +319,6 @@ export default function Hero() {
             <a href="#menu" className="btn">
               <Button variant="primary">{t('hero.exploreMenu')}</Button>
             </a>
-            <a href="#contact" className="btn">
-              <Button variant="secondary">{t('hero.reserveTable')}</Button>
-            </a>
           </div>
 
           {/* Counters Row */}
