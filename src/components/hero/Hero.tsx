@@ -131,10 +131,23 @@ export default function Hero() {
   
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const videos = ['/home.mp4', '/home1.mp4'];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const videos = isMobile ? ['/mobile .mp4'] : ['/home.mp4', '/home1.mp4'];
+  const activeVideoIdx = activeVideoIndex >= videos.length ? 0 : activeVideoIndex;
 
   const handleVideoEnd = (index: number) => {
-    if (index !== activeVideoIndex) return;
+    const currentActiveIdx = activeVideoIndex >= videos.length ? 0 : activeVideoIndex;
+    if (index !== currentActiveIdx) return;
     const nextIndex = (index + 1) % videos.length;
     
     // Pre-play the next video before the opacity transition begins
@@ -250,7 +263,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="home"
-      className="min-h-screen w-full bg-plum-dark flex items-center justify-center relative overflow-hidden pt-20 pb-16 md:pt-24 md:pb-20"
+      className="min-h-screen w-full bg-plum-dark flex items-start md:items-center justify-center relative overflow-hidden pt-28 pb-16 md:pt-24 md:pb-20"
     >
       {/* Background Video Layer */}
       <div
@@ -267,8 +280,9 @@ export default function Hero() {
             playsInline
             preload="auto"
             onEnded={() => handleVideoEnd(idx)}
+            loop={isMobile}
             className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${
-              idx === activeVideoIndex ? 'opacity-90 z-10' : 'opacity-0 z-0'
+              idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
             }`}
           />
         ))}
@@ -291,10 +305,10 @@ export default function Hero() {
       <CanvasParticles />
 
       {/* Content wrapper */}
-      <div className="relative z-10 premium-container grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12" dir="ltr">
+      <div className="relative z-10 premium-container grid grid-cols-1 lg:grid-cols-2 items-start md:items-center gap-8 lg:gap-12" dir="ltr">
 
         {/* Left Side Copywriting */}
-        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-8 flex flex-col justify-center text-center lg:text-start items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
+        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-center lg:text-start items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
           <div className="space-y-4 flex flex-col items-center lg:items-start text-center lg:text-start">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-[0.25em] text-yellow">
               {t('hero.badge')}
