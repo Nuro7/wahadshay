@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "../i18n/LanguageContext";
 
 // Import local premium assets
 import parathaImg from "../assets/demo/burger.png";
@@ -49,6 +50,7 @@ const allProducts: MenuItemData[] = [
 ];
 
 export function Menu() {
+  const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState("ALL");
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -138,42 +140,42 @@ export function Menu() {
             >
               <div className="hidden sm:block w-8 md:w-12 h-[2px] bg-yellow rounded-full"></div>
               <span className="text-yellow text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.25em] sm:tracking-[0.4em]">
-                ONE CUP, MANY STORIES
+                {t('menuHero.topTiny')}
               </span>
             </motion.div>
 
             {/* OUR MENU Title block */}
-            <div className="flex flex-col relative mb-5 items-center lg:items-start w-full">
+            <div className={`flex flex-col relative mb-5 items-center lg:items-start w-full ${language === 'AR' ? 'font-arabic' : ''}`}>
               <motion.h2
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="font-display text-[3.5rem] sm:text-6xl md:text-8xl lg:text-[130px] font-black text-white leading-[0.9] drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]"
+                className={`font-display text-[3.5rem] sm:text-6xl md:text-8xl lg:text-[130px] font-black text-white leading-[0.9] drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)] ${language === 'AR' ? 'lg:text-[100px]' : ''}`}
               >
-                OUR
+                {t('menuHero.our')}
               </motion.h2>
               <motion.h2
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="font-display text-[4.5rem] sm:text-7xl md:text-9xl lg:text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow to-[#B38700] leading-[0.9] drop-shadow-[0_15px_30px_rgba(240,185,11,0.2)] relative z-10 mt-1 lg:mt-0"
+                className={`font-display text-[4.5rem] sm:text-7xl md:text-9xl lg:text-[150px] font-black text-transparent bg-clip-text bg-gradient-to-b from-yellow to-[#B38700] leading-[0.9] drop-shadow-[0_15px_30px_rgba(240,185,11,0.2)] relative z-10 mt-1 lg:mt-0 ${language === 'AR' ? 'lg:text-[110px]' : ''}`}
               >
-                MENU
+                {t('menuHero.menuTitle')}
               </motion.h2>
             </div>
 
             {/* Subtitle text */}
-            <div className="text-[#E5E0EA] text-[17px] sm:text-xl md:text-3xl font-body leading-relaxed font-light drop-shadow-lg mx-auto lg:mx-0 mt-3 text-center lg:text-left relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-full">
+            <div className={`text-[#E5E0EA] text-[17px] sm:text-xl md:text-3xl font-body leading-relaxed font-light drop-shadow-lg mx-auto lg:mx-0 mt-3 text-center lg:text-left relative z-20 max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-full ${language === 'AR' ? 'font-arabic' : ''}`}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
               >
-                A taste of our craft,<br className="block sm:hidden" />
-                <span className="hidden sm:inline"> </span>made to be <span className="text-yellow font-medium relative inline-block">shared.
+                {t('menuHero.tasteOf')}<br className="block sm:hidden" />
+                <span className="hidden sm:inline"> </span>{t('menuHero.madeToBe')} <span className="text-yellow font-medium relative inline-block">{t('menuHero.shared')}
                   <motion.span
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
@@ -200,8 +202,8 @@ export function Menu() {
               <svg className="absolute inset-0 w-full h-full drop-shadow-md" viewBox="0 0 100 100">
                 <path id="curve-desktop" fill="transparent" d="M 15 50 a 35 35 0 1 1 70 0 a 35 35 0 1 1 -70 0" />
                 <text className="text-[7.5px] font-bold tracking-[0.25em] uppercase fill-white">
-                  <textPath href="#curve-desktop" startOffset="10%">WAHAD SHAY</textPath>
-                  <textPath href="#curve-desktop" startOffset="60%">MANY STORIES</textPath>
+                  <textPath href="#curve-desktop" startOffset="10%">{t('menuHero.badgeLine1')}</textPath>
+                  <textPath href="#curve-desktop" startOffset="60%">{t('menuHero.badgeLine2')}</textPath>
                 </text>
               </svg>
               <img src="/favicon.png" alt="Wahad Shay" className="w-14 h-14 object-contain z-10" />
@@ -250,7 +252,7 @@ export function Menu() {
                     transition={{ type: "spring", stiffness: 300, damping: 30 }}
                   />
                 )}
-                <span className="relative z-10">{cat}</span>
+                <span className={`relative z-10 ${language === 'AR' ? 'font-arabic' : ''}`}>{t(`menuCategories.${cat}`) || cat}</span>
               </button>
             ))}
           </div>
@@ -318,12 +320,12 @@ export function Menu() {
                   </div>
 
                   {/* Text Content */}
-                  <div className="flex flex-col flex-1 w-full text-center z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                  <div className={`flex flex-col flex-1 w-full text-center z-10 transition-transform duration-500 group-hover:-translate-y-1 ${language === 'AR' ? 'font-arabic' : ''}`}>
                     <h3 className={`font-display font-bold text-white group-hover:text-yellow transition-colors duration-300 leading-snug mb-2 sm:mb-3 ${isLarge ? 'text-[14px] sm:text-lg' : 'text-[13px] sm:text-base'}`}>
-                      {item.name}
+                      {t(`menuProducts.${item.id}.name`) || item.name}
                     </h3>
                     <p className="text-white/60 text-[11px] sm:text-[12px] leading-relaxed font-body font-light line-clamp-3 group-hover:text-white/80 transition-colors duration-300">
-                      {item.desc}
+                      {t(`menuProducts.${item.id}.desc`) || item.desc}
                     </p>
                   </div>
 
@@ -347,8 +349,8 @@ export function Menu() {
           transition={{ duration: 1, delay: 0.4 }}
           className="mt-32 text-center"
         >
-          <p className="font-display text-white/40 text-lg md:text-xl font-medium tracking-wide">
-            Made with passion. Served with love. Remembered always.
+          <p className={`font-display text-white/40 text-lg md:text-xl font-medium tracking-wide ${language === 'AR' ? 'font-arabic' : ''}`}>
+            {t('menuFooter')}
           </p>
         </motion.div>
 
