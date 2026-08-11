@@ -6,8 +6,8 @@ export default function Vision2030() {
   const phases = t('about.vision2030.phases') as Array<{ phase: string, title: string, description: string }>;
 
   return (
-    <section className="py-24 bg-beige relative overflow-hidden select-none z-10">
-      <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-16">
+    <section className="section-padding bg-beige relative overflow-hidden select-none z-10">
+      <div className="premium-container relative z-10 space-y-14">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 reveal">
@@ -60,8 +60,8 @@ export default function Vision2030() {
                 <Globe2 size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-3xl font-bold text-yellow mb-4">{t('about.vision2030.longTermTitle')}</h4>
-                <p className="text-white/90 text-lg leading-relaxed">
+                <h4 className="font-display text-2xl font-bold text-yellow mb-4">{t('about.vision2030.longTermTitle')}</h4>
+                <p className="text-white/90 text-base leading-relaxed">
                   {t('about.vision2030.longTermDesc1')}<span className="text-yellow font-bold">{t('about.vision2030.longTermDesc2')}</span>{t('about.vision2030.longTermDesc3')}
                 </p>
               </div>
@@ -73,8 +73,8 @@ export default function Vision2030() {
                 <Handshake size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-3xl font-bold text-yellow mb-4">{t('about.vision2030.joinTitle')}</h4>
-                <p className="text-white/90 text-lg leading-relaxed">
+                <h4 className="font-display text-2xl font-bold text-yellow mb-4">{t('about.vision2030.joinTitle')}</h4>
+                <p className="text-white/90 text-base leading-relaxed">
                   {t('about.vision2030.joinDesc')}
                 </p>
               </div>

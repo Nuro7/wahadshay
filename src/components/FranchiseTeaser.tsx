@@ -5,12 +5,12 @@ import { useLanguage } from "../i18n/LanguageContext";
 export function FranchiseTeaser() {
   const { t } = useLanguage();
   return (
-    <section className="py-24 bg-neutral-ivory border-t border-neutral-border/40 relative overflow-hidden select-none">
+    <section className="section-padding bg-neutral-ivory border-t border-neutral-border/40 relative overflow-hidden select-none">
       {/* Background ambient light */}
       <div className="absolute bottom-[10%] right-[-10%] w-[350px] h-[350px] bg-plum/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute top-[10%] left-[-10%] w-[250px] h-[250px] bg-yellow/2 rounded-full blur-[100px] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="premium-container relative z-10">
         <div className="reveal grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           
           {/* Left Column: Heading and info */}
@@ -47,19 +47,19 @@ export function FranchiseTeaser() {
           <div className="lg:col-span-2 grid grid-cols-2 gap-4 w-full">
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
               <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.outletsNum')}</span>
-              <span className="text-[9px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.outletsLabel')}</span>
+              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.outletsLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
               <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.guestsNum')}</span>
-              <span className="text-[9px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.guestsLabel')}</span>
+              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.guestsLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
               <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.growthNum')}</span>
-              <span className="text-[9px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.growthLabel')}</span>
+              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.growthLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
               <span className="font-numbers text-2xl md:text-3xl font-extrabold text-yellow-600">{t('franchiseTeaser.stats.trainingNum')}</span>
-              <span className="text-[9px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.trainingLabel')}</span>
+              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.trainingLabel')}</span>
             </div>
           </div>
 

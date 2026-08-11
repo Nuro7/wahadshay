@@ -129,7 +129,7 @@ function App() {
 
           {currentPage === "menu" && (
             <>
-              <Menu />
+              <Menu currency={currency} />
             </>
           )}
 

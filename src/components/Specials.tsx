@@ -16,19 +16,19 @@ export function Specials({ currency }: SpecialsProps) {
   ];
 
   return (
-    <section id="specials" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none min-h-screen">
+    <section id="specials" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none min-h-screen">
       {/* Background soft glow orbs */}
       <div className="absolute top-[30%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="premium-container relative z-10">
         
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24 space-y-4">
+        <div className="reveal text-center max-w-2xl mx-auto mb-14 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             {t('specials.weeklyHighlights')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-text-primary mask-reveal">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary mask-reveal">
             <span className="text-shimmer">{t('specials.title')}</span>
           </h2>
           <p className="text-text-secondary text-base font-body max-w-lg mx-auto">

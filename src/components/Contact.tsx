@@ -22,19 +22,19 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="contact" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
       {/* Background Soft Glow Orbs */}
       <div className="absolute top-[20%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="premium-container relative z-10">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             {t('contact.badge')}
           </span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-text-primary">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
             <span className="text-shimmer">{t('contact.title')}</span>
           </h2>
           <p className="text-text-secondary text-base font-body">
@@ -59,9 +59,9 @@ export function Contact() {
             {/* Information Cards List */}
             <div className="space-y-5 font-body">
               {/* Address */}
-              <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group cursor-pointer transition-all duration-500">
-                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon pt-0.5">
-                  <MapPin size={30} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-center gap-5 group cursor-pointer transition-all duration-500">
+                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon">
+                  <MapPin size={24} className="stroke-[1.5]" />
                 </div>
                 <div>
                   <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.addressLabel')}</h4>
@@ -80,9 +80,9 @@ export function Contact() {
               </div>
 
               {/* Operating Hours */}
-              <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group transition-all duration-500">
-                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon pt-0.5">
-                  <Clock size={30} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-center gap-5 group transition-all duration-500">
+                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon">
+                  <Clock size={24} className="stroke-[1.5]" />
                 </div>
                 <div>
                   <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.hoursLabel')}</h4>
@@ -102,26 +102,26 @@ export function Contact() {
               <div className="flex flex-wrap gap-3.5 font-body">
                 <a
                   href="tel:+966112345678"
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Phone size={16} className="text-plum" />
-                  {t('contact.callHq')}
+                  <Phone size={16} className="text-plum shrink-0" />
+                  <span className="hidden sm:inline">{t('contact.callHq')}</span>
                 </a>
                 <a
                   href="mailto:info@wahadshay.com"
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Mail size={16} className="text-plum" />
-                  {t('contact.emailSupport')}
+                  <Mail size={16} className="text-plum shrink-0" />
+                  <span className="hidden sm:inline">{t('contact.emailSupport')}</span>
                 </a>
                 <a
                   href="https://wa.me/966112345678"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2.5 px-5 py-3 rounded-xl bg-plum text-white border border-transparent font-bold text-xs shadow-md shadow-plum/20 hover:shadow-lg hover:shadow-plum/30 transition-all duration-300 hover:-translate-y-1"
+                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-plum text-white border border-transparent font-bold text-xs shadow-md shadow-plum/20 hover:shadow-lg hover:shadow-plum/30 transition-all duration-300 hover:-translate-y-1"
                 >
-                  <MessageSquare size={16} className="text-white" />
-                  {t('contact.whatsapp')}
+                  <MessageSquare size={16} className="text-white shrink-0" />
+                  <span className="hidden sm:inline">{t('contact.whatsapp')}</span>
                 </a>
               </div>
             </div>

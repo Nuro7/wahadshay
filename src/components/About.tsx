@@ -70,11 +70,11 @@ export function About() {
   return (
     <>
       {/* 1. Our Story Section */}
-      <section id="about" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none">
+      <section id="about" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
         {/* Subtle botanical line texture can be simulated or added as background. For now we use very soft blurred orbs to keep it clean */}
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
-        <div className="mx-auto max-w-7xl px-6 relative z-10">
+        <div className="premium-container relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
             
             {/* Left: Editorial Story */}
@@ -82,12 +82,12 @@ export function About() {
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
                   <span className="h-px w-8 bg-plum/40 block" />
-                  <span className="text-plum text-[10px] font-bold uppercase tracking-[0.35em]">
+                  <span className="text-plum text-[11px] font-bold uppercase tracking-[0.3em]">
                     {t('about.storyBadge')}
                   </span>
                 </div>
                 
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tight">
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight">
                   <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
                   <br />
                   <span className="text-plum">{t('about.storyTitle3')}</span>
@@ -95,7 +95,7 @@ export function About() {
               </div>
 
               <div className="space-y-6 max-w-xl">
-                <p className="text-text-primary/90 text-lg md:text-xl leading-relaxed font-body font-medium">
+                <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
                   {t('about.storyDesc1')}
                 </p>
                 <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
@@ -146,16 +146,17 @@ export function About() {
       </section>
 
       {/* 2. Brand Philosophy Section */}
-      <section className="py-24 md:py-36 bg-beige relative overflow-hidden select-none">
+      <section className="section-padding bg-beige relative overflow-hidden select-none">
         <div className="absolute bottom-[10%] left-[-15%] w-[600px] h-[600px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
         
-        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-20">
+        <div className="premium-container relative z-10 space-y-16">
           <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-plum text-[10px] font-bold uppercase tracking-[0.3em] block">
+            <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
               {t('about.philBadge')}
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
-              {t('about.philTitle')}
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+              <span className="text-gradient-plum">{t('about.philTitle1')}</span>{" "}
+              <span className="text-gradient-gold">{t('about.philTitle2')}</span>
             </h2>
             <p className="text-text-secondary text-base font-light max-w-md mx-auto">
               {t('about.philDesc')}
@@ -171,7 +172,7 @@ export function About() {
                 <div
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between h-[360px] relative`}
+                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative`}
                 >
                   {/* Huge Background Number */}
                   <span className="bg-number-watermark luxury-bg-num bottom-[-20%] right-[-10%] group-hover:opacity-10 transition-opacity duration-700">
@@ -224,16 +225,16 @@ export function About() {
       </section>
 
       {/* 3. Brand Timeline Section */}
-      <section className="pt-24 md:pt-36 pb-32 bg-plum-dark relative overflow-hidden select-none">
+      <section className="section-padding bg-plum-dark relative overflow-hidden select-none">
         {/* Subtle background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-plum/50 rounded-[100%] blur-[120px] pointer-events-none" />
         
-        <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-24">
+        <div className="premium-container relative z-10 space-y-20">
           <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-yellow text-[10px] font-bold uppercase tracking-[0.3em] block">
+            <span className="text-yellow text-[11px] font-bold uppercase tracking-[0.25em] block">
               {t('about.journeyBadge')}
             </span>
-            <h2 className="font-display text-3xl md:text-5xl font-black text-white">
+            <h2 className="font-display text-3xl md:text-4xl font-black text-white">
               {t('about.journeyTitle')}
             </h2>
           </div>

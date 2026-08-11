@@ -21,18 +21,18 @@ export function SignatureExperience() {
   const { t, language } = useLanguage();
   const experiences = t('about.signatureExperience.experiences') as Array<{ title: string, desc: string }>;
   return (
-    <section id="experience" className="py-24 md:py-36 bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="experience" className="section-padding bg-neutral-ivory relative overflow-hidden select-none">
       {/* Background radial highlight */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.02),transparent_70%)] pointer-events-none" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10 space-y-20">
+      <div className="premium-container relative z-10 space-y-16">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-          <span className="text-plum text-[10px] font-bold uppercase tracking-[0.3em] block">
+          <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
             {t('about.signatureExperience.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary mask-reveal">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary mask-reveal">
             <span className="text-shimmer">{t('about.signatureExperience.title')}</span>
           </h2>
           <p className="text-text-secondary text-base font-light max-w-lg mx-auto">
@@ -41,7 +41,7 @@ export function SignatureExperience() {
         </div>
 
         {/* Asymmetric Offerings Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 mt-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
           {experiences.map((exp, idx) => {
             const Icon = experienceIcons[idx % experienceIcons.length];
             const colSpan = colSpans[idx % colSpans.length];

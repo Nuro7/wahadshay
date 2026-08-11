@@ -35,11 +35,11 @@ export function Gallery() {
   const [activeVideo, setActiveVideo] = useState<MediaItem | null>(null);
 
   return (
-    <section id="gallery" className="pt-32 md:pt-40 pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="gallery" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
       
       {/* Header Area */}
       <div className="reveal text-center max-w-2xl mx-auto mb-12 md:mb-20 space-y-4 px-6 relative z-10">
-        <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary tracking-tight">
+        <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary tracking-tight">
           A TASTE OF OUR STORY
         </h2>
         <p className="text-text-secondary text-sm md:text-base font-body">
@@ -48,7 +48,7 @@ export function Gallery() {
       </div>
 
       {/* Masonry Grid Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 relative z-10">
+      <div className="premium-container relative z-10">
         <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 sm:gap-8">
           {mediaItems.map((item, idx) => (
             <motion.div

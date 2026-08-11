@@ -113,7 +113,7 @@ const CounterItem = ({ label, target, suffix = "", delay = 0 }: { label: string;
 
   return (
     <div ref={containerRef} style={{ opacity: 0 }} className="text-center lg:text-left flex-1 min-w-[120px] translate-y-4 stat-reveal">
-      <div className="font-numbers text-3xl md:text-4xl font-extrabold text-yellow tracking-tight">
+      <div className="font-numbers text-2xl md:text-3xl font-extrabold text-yellow tracking-tight">
         {count.toLocaleString()}{suffix}
       </div>
       <div className="font-body text-[10px] md:text-xs font-semibold tracking-wider text-grey uppercase mt-1">
@@ -330,7 +330,7 @@ export default function Hero() {
         </div>
 
         {/* Right Side Spacer: Empty space to let background show through */}
-        <div className="hidden lg:block h-[380px] sm:h-[450px] lg:h-[550px] w-full" />
+        <div className="hidden lg:block h-[380px] sm:h-[420px] lg:h-[480px] w-full" />
 
       </div>
 

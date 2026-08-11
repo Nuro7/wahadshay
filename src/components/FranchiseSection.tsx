@@ -109,7 +109,7 @@ export default function FranchiseSection() {
       style={{
         background: "var(--color-neutral-ivory)"
       }}
-      className="py-32 px-6 text-text-primary relative overflow-hidden select-none z-10"
+      className="section-padding px-0 text-text-primary relative overflow-hidden select-none z-10"
     >
       {/* Background radial gold glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.02),transparent_65%)] pointer-events-none z-0" />
@@ -132,13 +132,13 @@ export default function FranchiseSection() {
         <div className="absolute -top-[10%] right-[15%] w-[550px] h-[550px] bg-gradient-to-b from-plum/4 to-transparent rounded-full blur-[120px] animate-smoke-2" />
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="premium-container relative z-10">
         {/* Section Header */}
         <div className="reveal text-center mb-24 space-y-4">
           <p className="uppercase tracking-[8px] text-plum text-xs font-bold font-display">
             {t('about.franchiseSection.tag')}
           </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-text-primary font-display">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary font-display">
             <span className="text-shimmer">{t('about.franchiseSection.title')}</span>
           </h2>
           <p className="text-text-secondary max-w-xl mx-auto text-sm md:text-base font-light font-body">

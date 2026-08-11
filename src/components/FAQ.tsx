@@ -21,7 +21,7 @@ export function FAQ() {
   };
 
   return (
-    <section id="faq" className="py-24 md:py-32 bg-[#F8F5EF] relative overflow-hidden select-none">
+    <section id="faq" className="section-padding bg-[#F8F5EF] relative overflow-hidden select-none">
       {/* Background ambient orbs */}
       <div className="absolute top-[30%] right-[-10%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[20%] left-[-15%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none" />
@@ -33,7 +33,7 @@ export function FAQ() {
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             {t('faq.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
             <span className="text-shimmer">{t('faq.title')}</span>
           </h2>
           <p className="text-text-secondary text-sm md:text-base font-body">
@@ -87,7 +87,7 @@ export function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <div className="px-6 pb-6 pt-2 border-t border-neutral-border font-body text-xs sm:text-sm text-text-secondary leading-relaxed">
+                        <div className="px-6 pb-6 pt-2 border-t border-neutral-border font-body text-sm sm:text-base text-text-secondary leading-relaxed">
                           {item.answer}
                         </div>
                       </motion.div>

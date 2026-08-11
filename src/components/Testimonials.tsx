@@ -34,19 +34,19 @@ export function Testimonials() {
   const testimonialsData = t('testimonials.items') as any;
 
   return (
-    <section id="testimonials" className="py-24 md:py-32 bg-beige relative overflow-hidden select-none">
+    <section id="testimonials" className="section-padding bg-beige relative overflow-hidden select-none">
       {/* Ambient background glow orbs */}
       <div className="absolute top-[20%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/2 rounded-full blur-[110px] pointer-events-none animate-pulse" />
 
-      <div className="mx-auto max-w-7xl px-6 relative z-10">
+      <div className="premium-container relative z-10">
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
             {t('testimonials.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-text-primary">
+          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
             <span className="text-shimmer">{t('testimonials.title')}</span>
           </h2>
           <p className="text-text-secondary text-sm md:text-base font-body">
@@ -60,7 +60,7 @@ export function Testimonials() {
             <div
               key={item.name}
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-              className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 md:p-10 flex flex-col justify-between h-[320px] relative`}
+              className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[300px] relative`}
             >
               {/* Quote Mark Icon Accent */}
               <div className="absolute top-6 right-6 text-plum/10">
@@ -75,7 +75,7 @@ export function Testimonials() {
               </div>
 
               {/* Message */}
-              <p className="text-text-primary/85 text-xs sm:text-sm leading-relaxed italic font-body my-6 flex-1">
+              <p className="text-text-primary/85 text-sm leading-relaxed italic font-body my-6 flex-1">
                 "{item.text}"
               </p>
 

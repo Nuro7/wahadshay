@@ -33,43 +33,40 @@ export function Navbar() {
   }, []);
 
   return (
-    <header 
-      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 lg:px-12 py-3 transition-all duration-500 ${
-        isScrolled ? "translate-y-0" : "translate-y-1"
-      }`}
-    >
-      <div 
-        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-4 sm:px-6 md:px-8 py-1.5 md:py-2 ${
-          isScrolled 
-            ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]" 
-            : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
+    <header
+      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 py-3 transition-all duration-500 ${isScrolled ? "translate-y-0" : "translate-y-1"
         }`}
+    >
+      <div
+        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-4 sm:px-6 md:px-8 py-1.5 md:py-2 ${isScrolled
+            ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]"
+            : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
+          }`}
       >
         {/* Official Brand Logo */}
         <div className="flex shrink-0">
           <a href="#home" className="relative flex items-center group">
-             {/* Base Logo */}
-             <img 
-               src="/logo_wahad.png" 
-               alt="Wahad Shay Logo" 
-               className="h-10 sm:h-12 md:h-14 lg:h-[68px] w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
-             />
-             {/* Tagline Overlay (Turns black when scrolled) */}
-             <img 
-               src="/logo_wahad.png" 
-               alt="" 
-               aria-hidden="true"
-               className={`absolute inset-0 h-10 sm:h-12 md:h-14 lg:h-[68px] w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${
-                 isScrolled ? "opacity-100" : "opacity-0"
-               }`}
-               style={{
-                 filter: "invert(1) brightness(0.2)", // Turns white to dark without making it look fat/stroked
-                 clipPath: "inset(75% 0 0 0)" // Only shows the bottom 25% (the tagline)
-               }}
-             />
+            {/* Base Logo */}
+            <img
+              src="/logo_wahad.png"
+              alt="Wahad Shay Logo"
+              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+            />
+            {/* Tagline Overlay (Turns black when scrolled) */}
+            <img
+              src="/logo_wahad.png"
+              alt=""
+              aria-hidden="true"
+              className={`absolute inset-0 h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
+                }`}
+              style={{
+                filter: "invert(1) brightness(0.2)", // Turns white to dark without making it look fat/stroked
+                clipPath: "inset(75% 0 0 0)" // Only shows the bottom 25% (the tagline)
+              }}
+            />
           </a>
         </div>
-        
+
         {/* Desktop Navigation with Animated Underline */}
         <nav className="hidden lg:flex items-center justify-center flex-1 px-4">
           <ul className="flex items-center gap-[28px] lg:gap-[32px]">
@@ -78,9 +75,9 @@ export function Navbar() {
               const isActive =
                 activeHash === itemHash ||
                 (item === "Contact" && activeHash === "#faq");
-              
+
               return (
-                <li 
+                <li
                   key={item}
                   className="relative py-1 group"
                 >
@@ -91,19 +88,16 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`font-body text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 px-1 block uppercase ${
-                      isActive
+                    className={`font-body text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 px-1 block uppercase ${isActive
                         ? (isScrolled ? "text-plum font-semibold" : "text-white font-semibold")
                         : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
-                    }`}
+                      }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
                   </a>
-                  <div className={`absolute left-1/2 -translate-x-1/2 bottom-[-4px] h-[2px] w-[40px] transition-transform duration-300 origin-center ${
-                    isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  } ${
-                    isScrolled ? "bg-plum" : "bg-yellow"
-                  }`} />
+                  <div className={`absolute left-1/2 -translate-x-1/2 bottom-[-4px] h-[2px] w-[40px] transition-transform duration-300 origin-center ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    } ${isScrolled ? "bg-plum" : "bg-yellow"
+                    }`} />
                 </li>
               );
             })}
@@ -113,30 +107,27 @@ export function Navbar() {
         {/* Action Controls (Currency Switcher & CTA button) */}
         <div className="hidden sm:flex items-center gap-4 shrink-0">
           {/* Currency Switcher */}
-          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[40px] text-[12px] font-medium border transition-colors ${
-            isScrolled 
-              ? "bg-neutral-white border-neutral-border text-text-primary" 
+          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[40px] text-[12px] font-medium border transition-colors ${isScrolled
+              ? "bg-neutral-white border-neutral-border text-text-primary"
               : "bg-white/5 border-white/10 text-white/85"
-          }`}>
+            }`}>
             <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
             <button
               onClick={() => setLanguage("EN")}
-              className={`font-semibold cursor-pointer transition-colors ${
-                language === "EN" 
-                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
+              className={`font-semibold cursor-pointer transition-colors ${language === "EN"
+                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
                   : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
-              }`}
+                }`}
             >
               EN
             </button>
             <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
             <button
               onClick={() => setLanguage("AR")}
-              className={`font-semibold cursor-pointer transition-colors ${
-                language === "AR" 
-                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") 
+              className={`font-semibold cursor-pointer transition-colors ${language === "AR"
+                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
                   : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
-              }`}
+                }`}
             >
               عربي
             </button>
@@ -150,11 +141,10 @@ export function Navbar() {
           {/* Hamburger trigger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`rounded-full p-2.5 border transition-all cursor-pointer focus:outline-none ${
-              isScrolled 
-                ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum" 
+            className={`rounded-full p-2.5 border transition-all cursor-pointer focus:outline-none ${isScrolled
+                ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum"
                 : "bg-white/5 border-white/10 text-white/80 hover:text-white"
-            }`}
+              }`}
           >
             {isOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
@@ -163,18 +153,17 @@ export function Navbar() {
 
       {/* Mobile Drawer Navigation */}
       {isOpen && (
-        <div className={`absolute left-4 right-4 top-full mt-2 overflow-hidden rounded-3xl border backdrop-blur-xl p-6 shadow-2xl lg:hidden animate-fade-in origin-top ${
-          isScrolled 
-            ? "border-neutral-border bg-neutral-white/95 text-text-primary" 
+        <div className={`absolute left-4 right-4 top-full mt-2 overflow-hidden rounded-3xl border backdrop-blur-xl p-6 shadow-2xl lg:hidden animate-fade-in origin-top ${isScrolled
+            ? "border-neutral-border bg-neutral-white/95 text-text-primary"
             : "border-white/10 bg-plum-dark/95 text-white"
-        }`}>
+          }`}>
           <ul className="flex flex-col gap-4 text-center mb-6">
             {menuItems.map((item) => {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
                 activeHash === itemHash ||
                 (item === "Contact" && activeHash === "#faq");
-              
+
               return (
                 <li key={item}>
                   <a
@@ -185,11 +174,10 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${
-                      isActive
+                    className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${isActive
                         ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
                         : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow")
-                    }`}
+                      }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
                   </a>
@@ -197,12 +185,11 @@ export function Navbar() {
               );
             })}
           </ul>
-          
+
           <div className="flex flex-col gap-4 border-t border-white/5 pt-4">
             {/* Language select */}
-            <div className={`flex justify-between items-center px-4 py-2 rounded-xl text-xs ${
-              isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
-            }`}>
+            <div className={`flex justify-between items-center px-4 py-2 rounded-xl text-xs ${isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
+              }`}>
               <span className="font-body font-semibold">Language / لغة</span>
               <div className="flex gap-3">
                 <button

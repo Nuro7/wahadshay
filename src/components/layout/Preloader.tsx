@@ -126,7 +126,7 @@ export function Preloader() {
           inset: 0;
           width: 100%;
           height: 100%;
-          background: radial-gradient(circle at center, #5E2689 0%, #2E1A47 100%);
+          background: radial-gradient(circle at center, #4C1A6E 0%, #2E114D 60%, #150626 100%);
           z-index: 99999;
           display: flex;
           flex-direction: column;
@@ -374,6 +374,9 @@ export function Preloader() {
       >
         {/* Background glow shifting */}
         <div className="splash-bg-glow" />
+
+        {/* Seamless premium food pattern background */}
+        <div className="absolute inset-0 food-pattern-bg opacity-35 pointer-events-none mix-blend-overlay" />
 
         {/* Ambient floating orbs */}
         <div className="ambient-orbs">

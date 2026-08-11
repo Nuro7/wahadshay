@@ -13,7 +13,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseClasses =
-    "inline-flex items-center justify-center rounded-full px-8 py-3.5 text-base font-semibold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-plum cursor-pointer select-none font-body active:scale-[0.98] hover:-translate-y-[3px] transform will-change-transform";
+    "inline-flex items-center justify-center rounded-full px-8 py-3.5 text-[15px] font-semibold tracking-wide transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow focus:ring-offset-2 focus:ring-offset-plum cursor-pointer select-none font-body active:scale-[0.98] hover:-translate-y-[3px] transform will-change-transform";
 
   const variantClasses: Record<ButtonVariant, string> = {
     primary:
