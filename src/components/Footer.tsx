@@ -5,7 +5,7 @@ import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
   const [subscribed, setSubscribed] = useState(false);
   const [email, setEmail] = useState("");
@@ -96,26 +96,39 @@ export function Footer() {
         <div className="border-t border-white/[0.14] w-full" />
 
         {/* Copyright Bar */}
-        <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-5 w-full">
-          {/* Copyright (Left) */}
-          <div className="flex-1 flex justify-center md:justify-start w-full">
-            <p className="text-white/50 text-[11px] md:text-[12px] tracking-[0.06em] font-numbers font-medium uppercase text-center md:text-left">
-              {t('footer.copyright').replace('{year}', currentYear.toString())}
-            </p>
-          </div>
+        <div className="pt-6 md:pt-8 flex flex-col items-center justify-center gap-4 w-full text-center">
+          <p className="text-white/50 text-[11px] md:text-[12px] tracking-[0.06em] font-body font-medium uppercase leading-relaxed">
+            {language === 'AR' ? (
+              <>
+                © {currentYear}{' '}
+                <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-white/80 hover:text-yellow transition-colors font-semibold">
+                  واحد شاي
+                </a>
+                . جميع الحقوق محفوظة.
+                <span className="mx-2 text-white/20">|</span>
+                تم التطوير بواسطة{' '}
+                <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
+                  nuro 7
+                </a>
+              </>
+            ) : (
+              <>
+                © {currentYear}{' '}
+                <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-white/80 hover:text-yellow transition-colors font-semibold">
+                  WAHAD SHAY
+                </a>
+                . ALL RIGHTS RESERVED.
+                <span className="mx-2 text-white/20">|</span>
+                DEVELOPED BY{' '}
+                <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
+                  NURO 7
+                </a>
+              </>
+            )}
+          </p>
 
-          {/* Developer Credit (Center) */}
-          <div className="flex-1 flex justify-center w-full">
-            <span className="text-[#AFA6C8] text-[12px] md:text-[13px] font-body text-center">
-              Developed by{' '}
-              <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-medium inline-block">
-                Nuro 7
-              </a>
-            </span>
-          </div>
-
-          {/* Social Links (Right) */}
-          <div className="flex-1 flex justify-center md:justify-end items-center gap-[20px] text-white/60 w-full mt-2 md:mt-0">
+          {/* Social Links (Centered) */}
+          <div className="flex items-center justify-center gap-[24px] text-white/60 w-full mt-1">
             <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">
               <FaInstagram size={19} />
             </a>

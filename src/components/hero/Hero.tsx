@@ -309,7 +309,7 @@ export default function Hero() {
               ))}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-fluid-body font-medium text-grey">
+            <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-fluid-body font-medium text-grey text-justify">
               {t('hero.subtitle')}
             </p>
           </div>
