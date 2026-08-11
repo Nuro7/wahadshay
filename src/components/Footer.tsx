@@ -46,11 +46,6 @@ export function Footer() {
               {t('footer.brandStory')}
             </p>
 
-            {/* Direct Contact / Phone Number */}
-            <a href="tel:+971503977424" className="flex items-center gap-3 text-white hover:text-yellow transition-colors duration-300 group">
-              <Phone size={20} className="text-white/80 group-hover:text-yellow transition-colors" />
-              <span className="font-numbers text-lg md:text-xl font-medium tracking-wider">+971 50 397 7424</span>
-            </a>
           </div>
 
           {/* Explore Column */}

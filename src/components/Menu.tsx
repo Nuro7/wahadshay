@@ -212,7 +212,7 @@ export function Menu() {
 
 
         {/* Yellow cloud doodles at the bottom edge */}
-        <div className="absolute -bottom-4 left-0 w-full lg:w-[120%] lg:-left-[10%] h-48 lg:h-64 z-20 pointer-events-none opacity-80 mix-blend-screen overflow-hidden flex items-end justify-center">
+        <div className="hidden md:flex absolute -bottom-4 left-0 w-full lg:w-[120%] lg:-left-[10%] h-48 lg:h-64 z-20 pointer-events-none opacity-80 mix-blend-screen overflow-hidden items-end justify-center">
           <motion.svg
             viewBox="0 0 1000 150"
             preserveAspectRatio="none"
