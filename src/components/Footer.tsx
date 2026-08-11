@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowRight, Check, Phone } from "lucide-react";
 import { FaInstagram, FaFacebook, FaXTwitter } from "react-icons/fa6";
 import { useLanguage } from "../i18n/LanguageContext";
 
@@ -35,16 +35,22 @@ export function Footer() {
 
           {/* Logo & Brand Story */}
           <div className="flex flex-col items-start">
-            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7">
+            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ml-4 md:-ml-5">
               <img
                 src="/logo_wahad.png"
                 alt="Wahad Shay Logo"
-                className="h-10 sm:h-12 md:h-16 w-auto object-contain"
+                className="h-10 sm:h-12 md:h-14 lg:h-[68px] w-auto object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
               />
             </a>
-            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left">
+            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left mb-6">
               {t('footer.brandStory')}
             </p>
+
+            {/* Direct Contact / Phone Number */}
+            <a href="tel:+971503977424" className="flex items-center gap-3 text-white hover:text-yellow transition-colors duration-300 group">
+              <Phone size={20} className="text-white/80 group-hover:text-yellow transition-colors" />
+              <span className="font-numbers text-lg md:text-xl font-medium tracking-wider">+971 50 397 7424</span>
+            </a>
           </div>
 
           {/* Explore Column */}

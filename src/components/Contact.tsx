@@ -60,8 +60,8 @@ export function Contact() {
             <div className="space-y-5 font-body">
               {/* Address */}
               <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group cursor-pointer transition-all duration-500">
-                <div className="rounded-2xl bg-plum/5 group-hover:bg-plum/10 p-4 text-plum border border-plum/10 transition-colors duration-500 w-fit shrink-0 micro-transition micro-icon">
-                  <MapPin size={22} className="stroke-[1.5]" />
+                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon pt-0.5">
+                  <MapPin size={30} className="stroke-[1.5]" />
                 </div>
                 <div>
                   <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.addressLabel')}</h4>
@@ -81,8 +81,8 @@ export function Contact() {
 
               {/* Operating Hours */}
               <div className="glass-card glass-card-hover p-6 rounded-2xl flex gap-5 group transition-all duration-500">
-                <div className="rounded-2xl bg-yellow/10 group-hover:bg-yellow/20 p-4 text-yellow-dark border border-yellow/20 transition-colors duration-500 w-fit shrink-0 micro-transition micro-icon" style={{ color: '#D49B1C' }}>
-                  <Clock size={22} className="stroke-[1.5]" />
+                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon pt-0.5">
+                  <Clock size={30} className="stroke-[1.5]" />
                 </div>
                 <div>
                   <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.hoursLabel')}</h4>

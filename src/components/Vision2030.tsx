@@ -11,12 +11,12 @@ export default function Vision2030() {
         
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 reveal">
-          <h2 className="font-display text-5xl md:text-6xl font-extrabold text-plum">{t('about.vision2030.title')}</h2>
+          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-plum">{t('about.vision2030.title')}</h2>
           <div className="hidden md:block w-1.5 h-16 bg-plum rounded-full"></div>
           <div className="md:hidden h-1.5 w-16 bg-plum rounded-full"></div>
-          <h3 className="font-display text-2xl md:text-3xl font-medium text-text-primary max-w-sm leading-snug">
+          <p className="font-body text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
             {t('about.vision2030.subtitle')}
-          </h3>
+          </p>
         </div>
 
         {/* Phases */}

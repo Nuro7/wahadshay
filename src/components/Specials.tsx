@@ -16,7 +16,7 @@ export function Specials({ currency }: SpecialsProps) {
   ];
 
   return (
-    <section id="specials" className="py-24 md:py-32 bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="specials" className="pt-[160px] md:pt-[200px] pb-24 md:pb-32 bg-neutral-ivory relative overflow-hidden select-none min-h-screen">
       {/* Background soft glow orbs */}
       <div className="absolute top-[30%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />

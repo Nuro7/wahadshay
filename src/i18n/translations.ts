@@ -8,7 +8,7 @@ export const translations: any = {
       franchise: "Franchise",
       gallery: "Gallery",
       contact: "Contact",
-      reserve: "Reserve Table"
+      reserve: "Contact Us"
     },
     footer: {
       brandStory: '"A World of Flavor in One Place. Prepared with passion, served with elegance."\nWahad Shay stands as a premier regional sanctuary where authentic tea rituals and European bakery crafts coalesce.',
@@ -390,7 +390,7 @@ export const translations: any = {
       franchise: "الامتياز",
       gallery: "المعرض",
       contact: "اتصل بنا",
-      reserve: "احجز طاولة"
+      reserve: "اتصل بنا"
     },
     footer: {
       brandStory: '"عالم من النكهات في مكان واحد. تم تحضيره بشغف، وتم تقديمه بأناقة."\nيقف واحد شاي كملاذ إقليمي متميز حيث تتلاقى طقوس الشاي الأصيلة مع المخبوزات الأوروبية.',

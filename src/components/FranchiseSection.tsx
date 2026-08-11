@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import type React from "react";
-import { MapPin } from "lucide-react";
+import { MapPin, X, Navigation } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Branch {
   city: string;
@@ -61,6 +62,7 @@ const GoldParticles = () => {
 export default function FranchiseSection() {
   const { t, language } = useLanguage();
   const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+  const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -495,7 +497,16 @@ export default function FranchiseSection() {
                 }
 
                 return (
-                  <g key={b.city} className="transition-all duration-300">
+                  <g 
+                    key={b.city} 
+                    className="transition-all duration-300 cursor-pointer"
+                    onClick={() => setSelectedBranch(b)}
+                    onMouseEnter={() => setHoveredCard(b.city)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {/* Invisible clickable area to ensure reliable clicks */}
+                    <circle cx={b.mapX} cy={b.mapY - 10} r="25" fill="transparent" />
+
                     {/* Ring ping ripple animation (drawn as an SVG expanding circle) */}
                     <circle
                       cx={b.mapX}
@@ -517,7 +528,7 @@ export default function FranchiseSection() {
                       y={b.mapY - 20}
                       width="20"
                       height="20"
-                      className="pointer-events-none"
+                      className="pointer-events-auto"
                     >
                       <div
                         className={`flex items-center justify-center w-full h-full drop-shadow-[0_2px_6px_rgba(94,38,137,0.15)] transition-transform duration-300 ${
@@ -533,17 +544,13 @@ export default function FranchiseSection() {
                       x={textX}
                       y={textY}
                       textAnchor={textAnchor}
-                      className="font-display font-black transition-all duration-300 select-none"
+                      className="font-display font-black transition-all duration-300 select-none pointer-events-auto"
                       fill={isActive ? "var(--color-plum)" : "var(--color-text-primary)"}
                       style={{
                         fontSize: "13px",
                         letterSpacing: "0.05em",
-                        cursor: "pointer",
                         textShadow: isActive ? "0 0 8px rgba(94,38,137,0.3)" : "0 1px 3px rgba(255,255,255,0.9)",
-                        pointerEvents: "auto"
                       }}
-                      onMouseEnter={() => setHoveredCard(b.city)}
-                      onMouseLeave={() => setHoveredCard(null)}
                     >
                       {b.city}
                     </text>
@@ -555,56 +562,75 @@ export default function FranchiseSection() {
         </div>
       </div>
 
-        {/* Location Grid Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-24">
-          {branches.map((b, i) => (
-            <div
-              key={b.city}
-              style={{ "--stagger-idx": i + 1 } as React.CSSProperties}
-              onMouseEnter={() => setHoveredCard(b.city)}
-              onMouseLeave={() => setHoveredCard(null)}
-              className="reveal premium-card premium-card-hover group relative p-8 flex flex-col justify-between h-[230px] overflow-hidden"
-            >
-              {/* Top border glowing slide animation */}
-              <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-plum to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 ease-out origin-center" />
+        {/* Branch Details Modal */}
+        <AnimatePresence>
+          {selectedBranch && (
+            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-plum-dark/60 backdrop-blur-sm">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-border"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={() => setSelectedBranch(null)}
+                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors z-20 cursor-pointer"
+                >
+                  <X size={20} />
+                </button>
 
-              <div className="space-y-5">
-                <div className="flex items-center justify-between">
-                  <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
-                    📍 NETWORK
-                  </span>
-                  
-                  {b.status === "Open" ? (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 border border-plum/30 text-plum">
-                      <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
-                      OPEN
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 border border-yellow/30 text-yellow-800">
-                      <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
-                      COMING SOON
-                    </span>
-                  )}
-                </div>
-
-                <div className="space-y-1">
-                  <h3 className="text-3xl font-extrabold tracking-tight text-text-primary font-display transition-colors duration-300 group-hover:text-plum micro-title micro-transition">
-                    {b.city}
+                {/* Modal Header */}
+                <div className="relative h-40 bg-plum-dark overflow-hidden flex flex-col items-center justify-center">
+                  <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'%3E%3Cpath d=\'M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z\' fill=\'%23F5BD20\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')] bg-[length:80px_80px]" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-plum-dark via-plum-dark/50 to-transparent" />
+                  <MapPin size={40} className="text-yellow relative z-10 opacity-90 drop-shadow-md mb-2" />
+                  <h3 className="text-2xl font-extrabold tracking-tight text-white font-display relative z-10 drop-shadow-md">
+                    {selectedBranch.city}
                   </h3>
-                  <p className="text-text-secondary text-sm font-light font-body group-hover:text-text-primary transition-colors duration-300">
-                    {b.area}
-                  </p>
                 </div>
-              </div>
 
-              <div className="border-t border-neutral-border pt-4 mt-auto">
-                <p className="text-[10px] text-text-secondary/70 font-light tracking-wide font-body">
-                  WAHAD SHAY LUXURY EXPERIENCE
-                </p>
-              </div>
+                {/* Modal Content */}
+                <div className="p-8 space-y-6 text-center">
+                  <div>
+                    <div className="flex items-center justify-center gap-2 mb-3">
+                      <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
+                        📍 NETWORK
+                      </span>
+                      {selectedBranch.status === "Open" ? (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
+                          <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
+                          OPEN
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-yellow-800 border border-yellow/30">
+                          <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
+                          COMING SOON
+                        </span>
+                      )}
+                    </div>
+                    
+                    <p className="text-text-secondary text-base font-medium font-body mb-4">
+                      {selectedBranch.area}
+                    </p>
+                    
+                    <p className="text-sm text-text-secondary/80 font-body leading-relaxed">
+                      Experience the signature Wahad Shay ambiance and our exclusive tea blends right in the heart of {selectedBranch.city}.
+                    </p>
+                  </div>
+
+                  <div className="border-t border-neutral-border/60 pt-6">
+                    <button className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer">
+                      <Navigation size={16} />
+                      Get Directions
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-          ))}
-        </div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   );

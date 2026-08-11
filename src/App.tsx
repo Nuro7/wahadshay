@@ -47,8 +47,10 @@ function App() {
       const page = hash.replace("#", "");
 
       let targetPage = "home";
-      if (["home", "specials"].includes(page)) {
+      if (["home"].includes(page)) {
         targetPage = "home";
+      } else if (["specials"].includes(page)) {
+        targetPage = "specials";
       } else if (["about"].includes(page)) {
         targetPage = "about";
       } else if (["menu"].includes(page)) {
@@ -103,10 +105,15 @@ function App() {
           {currentPage === "home" && (
             <>
               <Hero />
-              <Specials currency={currency} />
               <Testimonials />
-              <FranchiseTeaser />
               <FranchiseSection />
+              <FranchiseTeaser />
+            </>
+          )}
+
+          {currentPage === "specials" && (
+            <>
+              <Specials currency={currency} />
             </>
           )}
 

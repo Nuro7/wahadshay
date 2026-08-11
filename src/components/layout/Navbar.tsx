@@ -77,7 +77,6 @@ export function Navbar() {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
                 activeHash === itemHash ||
-                (item === "Home" && activeHash === "#specials") ||
                 (item === "Contact" && activeHash === "#faq");
               
               return (
@@ -145,7 +144,7 @@ export function Navbar() {
 
           {/* Action Call-to-action */}
           <a
-            href="#contact"
+            href="tel:+971503977424"
             className="rounded-full bg-yellow hover:bg-plum hover:text-white text-plum-dark text-[13px] font-semibold uppercase tracking-wider px-7 h-[46px] flex items-center justify-center border border-transparent shadow-[0_4px_12px_rgba(245,189,32,0.1)] transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
           >
             {t('nav.reserve')}
@@ -153,7 +152,7 @@ export function Navbar() {
         </div>
 
         {/* Small Screen Control & Menu Toggle */}
-        <div className="flex lg:hidden items-center gap-3">
+        <div className="flex lg:hidden items-center gap-3 shrink-0">
           {/* Hamburger trigger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -180,7 +179,6 @@ export function Navbar() {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
                 activeHash === itemHash ||
-                (item === "Home" && activeHash === "#specials") ||
                 (item === "Contact" && activeHash === "#faq");
               
               return (
@@ -231,7 +229,7 @@ export function Navbar() {
 
             {/* CTA Reserve Table */}
             <a
-              href="#contact"
+              href="tel:+971503977424"
               onClick={() => setIsOpen(false)}
               className="w-full text-center py-3.5 rounded-xl bg-yellow text-plum-dark text-xs font-black uppercase tracking-widest cursor-pointer hover:bg-plum hover:text-white transition-colors block"
             >

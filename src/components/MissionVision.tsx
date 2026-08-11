@@ -19,7 +19,7 @@ export default function MissionVision() {
                 <Eye size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">{t('about.missionVision.visionTitle')}</h3>
+                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-4">{t('about.missionVision.visionTitle')}</h3>
                 <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
                   {t('about.missionVision.visionDesc')}
                 </p>
@@ -33,7 +33,7 @@ export default function MissionVision() {
                 <Target size={36} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-4">{t('about.missionVision.missionTitle')}</h3>
+                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-4">{t('about.missionVision.missionTitle')}</h3>
                 <p className="text-text-primary text-lg md:text-xl font-medium max-w-md leading-relaxed font-body">
                   {t('about.missionVision.missionDesc')}
                 </p>
@@ -42,7 +42,7 @@ export default function MissionVision() {
           </div>
 
           <div className="lg:border-l lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
-            <h3 className="font-display text-4xl md:text-5xl font-extrabold text-plum mb-10">{t('about.missionVision.coreValuesTitle')}</h3>
+            <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-10">{t('about.missionVision.coreValuesTitle')}</h3>
             <div className="space-y-6">
               {coreValues.map((title, idx) => {
                 const Icon = coreIcons[idx % coreIcons.length];
