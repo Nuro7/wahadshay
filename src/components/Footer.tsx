@@ -39,7 +39,7 @@ export function Footer() {
               <img
                 src="/logo_wahad.png"
                 alt="Wahad Shay Logo"
-                className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
+                className="h-16 sm:h-16 md:h-12 lg:h-14 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
               />
             </a>
             <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left mb-6">

@@ -153,11 +153,33 @@ export function Navbar() {
 
       {/* Mobile Drawer Navigation */}
       {isOpen && (
-        <div className={`absolute left-4 right-4 top-full mt-2 overflow-hidden rounded-3xl border backdrop-blur-xl p-6 shadow-2xl lg:hidden animate-fade-in origin-top ${isScrolled
-            ? "border-neutral-border bg-neutral-white/95 text-text-primary"
-            : "border-white/10 bg-plum-dark/95 text-white"
-          }`}>
-          <ul className="flex flex-col gap-4 text-center mb-6">
+        <div className={`fixed inset-0 w-screen h-screen lg:hidden flex flex-col items-center justify-center p-8 z-[9999] animate-fade-in ${
+          isScrolled
+            ? "bg-neutral-white text-text-primary"
+            : "bg-plum-dark text-white"
+        }`}>
+          {/* Close Button inside Drawer */}
+          <button
+            onClick={() => setIsOpen(false)}
+            className={`absolute top-6 right-6 p-3 rounded-full border transition-all cursor-pointer ${
+              isScrolled
+                ? "border-neutral-border text-text-primary hover:text-plum bg-neutral-light-beige"
+                : "border-white/10 text-white/80 hover:text-white bg-white/5"
+            }`}
+          >
+            <X size={20} />
+          </button>
+
+          {/* Centered Logo in Drawer */}
+          <div className="mb-8">
+            <img 
+              src="/logo_wahad.png" 
+              alt="Wahad Shay Logo" 
+              className={`h-16 w-auto object-contain ${isScrolled ? "invert brightness-0" : ""}`}
+            />
+          </div>
+
+          <ul className="flex flex-col gap-5 text-center mb-8 w-full max-w-[280px]">
             {menuItems.map((item) => {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
@@ -165,7 +187,7 @@ export function Navbar() {
                 (item === "Contact" && activeHash === "#faq");
 
               return (
-                <li key={item}>
+                <li key={item} className="w-full">
                   <a
                     href={itemHash}
                     onClick={(e) => {
@@ -174,10 +196,11 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`block font-body text-base font-semibold tracking-wider transition-colors uppercase ${isActive
-                        ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
+                    className={`block font-body text-lg font-bold tracking-widest transition-colors uppercase py-2 rounded-2xl ${
+                      isActive
+                        ? (isScrolled ? "bg-plum/10 text-plum font-extrabold" : "bg-yellow/10 text-yellow font-extrabold")
                         : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/80 hover:text-yellow")
-                      }`}
+                    }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
                   </a>
@@ -186,29 +209,28 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="flex flex-col gap-4 border-t border-white/5 pt-4">
+          <div className="w-full max-w-[280px] border-t border-neutral-border/30 pt-5">
             {/* Language select */}
-            <div className={`flex justify-between items-center px-4 py-2 rounded-xl text-xs ${isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
-              }`}>
+            <div className={`flex justify-between items-center px-4 py-3 rounded-2xl text-xs ${
+              isScrolled ? "bg-neutral-light-beige text-text-primary" : "bg-white/5 text-white/80"
+            }`}>
               <span className="font-body font-semibold">Language / لغة</span>
               <div className="flex gap-3">
                 <button
                   onClick={() => { setLanguage("EN"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${language === "EN" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
+                  className={`font-semibold cursor-pointer py-1 px-2.5 rounded-lg ${language === "EN" ? (isScrolled ? "bg-plum text-white font-bold" : "bg-yellow text-plum-dark font-bold") : ""}`}
                 >
                   EN
                 </button>
                 <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
                 <button
                   onClick={() => { setLanguage("AR"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer ${language === "AR" ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold") : ""}`}
+                  className={`font-semibold cursor-pointer py-1 px-2.5 rounded-lg ${language === "AR" ? (isScrolled ? "bg-plum text-white font-bold" : "bg-yellow text-plum-dark font-bold") : ""}`}
                 >
                   عربي
                 </button>
               </div>
             </div>
-
-
           </div>
         </div>
       )}

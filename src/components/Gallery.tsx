@@ -37,6 +37,9 @@ export function Gallery() {
   return (
     <section id="gallery" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
       
+      {/* Repeating Food Pattern Backdrop */}
+      <div className="absolute inset-0 food-pattern-bg opacity-[0.07] pointer-events-none" />
+      
       {/* Header Area */}
       <div className="reveal text-center max-w-2xl mx-auto mb-12 md:mb-20 space-y-4 px-6 relative z-10">
         <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary tracking-tight">

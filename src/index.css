@@ -592,13 +592,13 @@ body.splash-done #home {
 
 /* Consistent Section Vertical Rhythm */
 .section-padding {
-  padding-top: clamp(4rem, 8vw, 6rem);
-  padding-bottom: clamp(4rem, 8vw, 6rem);
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
 .section-padding-landing {
-  padding-top: clamp(8rem, 14vw, 10rem);
-  padding-bottom: clamp(4rem, 8vw, 6rem);
+  padding-top: clamp(3.5rem, 7vw, 5rem);
+  padding-bottom: clamp(2.5rem, 5vw, 3.5rem);
 }
 
 /* Hide scrollbar for elements with no-scrollbar */

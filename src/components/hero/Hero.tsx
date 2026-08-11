@@ -267,7 +267,7 @@ export default function Hero() {
             playsInline
             preload="auto"
             onEnded={() => handleVideoEnd(idx)}
-            className={`absolute inset-0 w-full h-full object-cover scale-[1.03] transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${
               idx === activeVideoIndex ? 'opacity-90 z-10' : 'opacity-0 z-0'
             }`}
           />
