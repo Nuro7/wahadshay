@@ -265,7 +265,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="home"
-      className="min-h-screen min-h-[100svh] w-full bg-plum-dark flex flex-col justify-between items-center relative overflow-hidden pt-[calc(env(safe-area-inset-top,24px)+72px)] pb-[calc(env(safe-area-inset-bottom,20px)+36px)] px-4 xs:px-5 md:pt-24 md:pb-20 lg:flex-row lg:items-center"
+      className="min-h-screen min-h-[100svh] w-full bg-plum-dark flex flex-col justify-between items-center relative overflow-hidden pt-[calc(env(safe-area-inset-top,24px)+72px)] pb-[calc(env(safe-area-inset-bottom,20px)+64px)] px-4 xs:px-5 md:pt-24 md:pb-20 lg:flex-row lg:items-center"
     >
       {/* Background Video Layer */}
       <div
