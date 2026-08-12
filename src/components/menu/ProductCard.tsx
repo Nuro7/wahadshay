@@ -98,7 +98,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
           </div>
 
           {/* Image Container */}
-          <div className={`relative flex items-center justify-center ${featured ? "w-full lg:w-[45%] h-[200px] lg:h-[280px]" : "h-[220px] mt-2"} z-10`}>
+          <div className={`relative flex items-center justify-center ${featured ? "w-full lg:w-[45%] h-[200px] lg:h-[280px]" : "h-[200px] md:h-[260px] lg:h-[285px] mt-2"} z-10`}>
             <div className={`absolute inset-0 rounded-full blur-[40px] transition-colors duration-500 ${featured ? 'bg-yellow/10 group-hover:bg-yellow/20' : 'bg-plum/5 group-hover:bg-plum/10'}`} />
             <motion.img
               src={product.image}

@@ -169,7 +169,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`category-btn relative flex items-center justify-center px-6 py-3 rounded-full font-display text-[13px] md:text-sm font-bold uppercase tracking-widest transition-all duration-300 cursor-pointer shrink-0 border border-transparent overflow-hidden ${activeTab === cat
+                className={`category-btn relative flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-full font-display text-[11px] md:text-sm font-bold uppercase tracking-wider md:tracking-widest transition-all duration-300 cursor-pointer shrink-0 border border-transparent overflow-hidden ${activeTab === cat
                   ? "category-active text-plum-dark"
                   : "text-text-secondary hover:text-plum border-neutral-border hover:border-plum/20 bg-white shadow-sm"
                   }`}
@@ -209,7 +209,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
                     ease: [0.25, 0.1, 0.25, 1.0]
                   }}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group relative p-5 flex flex-col items-center text-center min-h-[350px] overflow-hidden w-[calc(50%-8px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] shrink-0`}
+                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group relative p-5 flex flex-col items-center text-center min-h-[350px] overflow-hidden w-full sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(25%-18px)] shrink-0`}
                 >
                   {/* Animated soft gradient background glow */}
                   <div className="absolute -right-[30%] -bottom-[30%] w-[180px] h-[180px] bg-plum/3 rounded-full blur-[50px] group-hover:bg-plum/6 transition-all duration-700 pointer-events-none" />
@@ -220,7 +220,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
                   </span>
 
                   {/* Image Container with Floating hover reveal */}
-                  <div className="relative w-full h-[100px] flex items-center justify-center mt-2 shrink-0">
+                  <div className="relative w-full h-[100px] md:h-[130px] lg:h-[160px] flex items-center justify-center mt-2 shrink-0">
                     <div className="absolute w-20 h-20 rounded-full bg-[radial-gradient(circle_at_center,rgba(94,38,137,0.06)_0%,transparent_60%)] blur-md scale-0 group-hover:scale-130 transition-transform duration-500 pointer-events-none" />
                     <img
                       src={item.image}

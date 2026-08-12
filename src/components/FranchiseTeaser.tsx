@@ -19,8 +19,8 @@ export function FranchiseTeaser() {
               {t('franchiseTeaser.badge')}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary leading-tight">
-              <span className="text-shimmer">{t('franchiseTeaser.title1')}</span> <br />
-              <span className="text-plum font-extrabold">{t('franchiseTeaser.title2')}</span>
+              <span className="text-shimmer block md:inline">{t('franchiseTeaser.title1')}</span>
+              <span className="text-plum font-extrabold block md:inline md:ml-2">{t('franchiseTeaser.title2')}</span>
             </h2>
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-body max-w-xl mx-auto lg:mx-0">
               {t('franchiseTeaser.subtitle')}

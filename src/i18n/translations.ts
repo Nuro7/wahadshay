@@ -10,6 +10,11 @@ export const translations: any = {
       contact: "Contact",
       reserve: "Contact Us"
     },
+    mobileMenu: {
+      title: "Menu",
+      subtitle: "Explore categories",
+      contactNow: "Contact Now"
+    },
     footer: {
       brandStory: '"A World of Flavor in One Place. Prepared with passion, served with elegance."\nWahad Shay stands as a premier regional sanctuary where authentic tea rituals and European bakery crafts coalesce.',
       explore: "Explore",
@@ -88,10 +93,10 @@ export const translations: any = {
     },
     franchiseTeaser: {
       badge: "Partner With Us",
-      title1: "Join the Wahad Shay",
-      title2: "Luxury Franchise Network",
+      title1: "Join Our",
+      title2: "Franchise Network",
       subtitle: "Become part of a rapidly growing premium tea lounge network in the UAE. We provide comprehensive operational support, luxury interior blueprints, and our signature Malabar spice blends.",
-      cta: "Explore Interactive Network Map",
+      cta: "Explore Network Map",
       stats: {
         outletsNum: "4 Outlets",
         outletsLabel: "Active Outlets",
@@ -282,8 +287,8 @@ export const translations: any = {
       },
       franchise: {
         badge: "Partner With Us",
-        title1: "Grow the Wahad Shay",
-        title2: "Luxury Network",
+        title1: "Grow Our",
+        title2: "Franchise Network",
         desc: "Join a rapidly expanding brand offering a premium, cozy atmosphere. We supply the operational support, design standards, and proprietary spice blends.",
         applyBtn: "Apply for Franchise",
         steps: [
@@ -430,6 +435,11 @@ export const translations: any = {
       contact: "اتصل بنا",
       reserve: "اتصل بنا"
     },
+    mobileMenu: {
+      title: "القائمة",
+      subtitle: "استكشف الفئات",
+      contactNow: "اتصل الآن"
+    },
     footer: {
       brandStory: '"عالم من النكهات في مكان واحد. تم تحضيره بشغف، وتم تقديمه بأناقة."\nيقف واحد شاي كملاذ إقليمي متميز حيث تتلاقى طقوس الشاي الأصيلة مع المخبوزات الأوروبية.',
       explore: "استكشف",
@@ -507,10 +517,10 @@ export const translations: any = {
     },
     franchiseTeaser: {
       badge: "شارك معنا",
-      title1: "انضم إلى شبكة",
-      title2: "امتياز واحد شاي الفاخرة",
+      title1: "انضم إلى",
+      title2: "شبكة امتيازنا",
       subtitle: "كن جزءًا من شبكة صالات الشاي الفاخرة سريعة النمو في الإمارات. نقدم دعماً تشغيلياً شاملاً، وتصاميم داخلية فاخرة، وخلطات توابل مالابار المميزة لدينا.",
-      cta: "استكشف خريطة الشبكة التفاعلية",
+      cta: "استكشف خريطة الشبكة",
       stats: {
         outletsNum: "4 فروع",
         outletsLabel: "فروع نشطة",
@@ -702,7 +712,7 @@ export const translations: any = {
       franchise: {
         badge: "كن شريكاً معنا",
         title1: "وسّع شبكة",
-        title2: "واحد شاي الفاخرة",
+        title2: "امتيازنا الفاخرة",
         desc: "انضم إلى علامة تجارية سريعة التوسع تقدم أجواء دافئة وفاخرة. نحن نقدم الدعم التشغيلي، معايير التصميم، وخلطات التوابل الخاصة.",
         applyBtn: "قدم بطلب امتياز",
         steps: [

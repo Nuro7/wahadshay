@@ -20,8 +20,8 @@ export function Franchise() {
               {t('about.franchise.badge')}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary leading-tight mask-reveal">
-              <span className="text-shimmer">{t('about.franchise.title1')}</span> <br />
-              <span className="text-plum">{t('about.franchise.title2')}</span>
+              <span className="text-shimmer block md:inline">{t('about.franchise.title1')}</span>
+              <span className="text-plum block md:inline md:ml-2">{t('about.franchise.title2')}</span>
             </h2>
             <p className="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-body">
               {t('about.franchise.desc')}

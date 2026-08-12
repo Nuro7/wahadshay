@@ -48,10 +48,11 @@ export function SignatureExperience() {
             const numStr = `0${idx + 1}`;
             
             return (
-              <div
+              <a
+                href="#menu"
                 key={exp.title}
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                className={`reveal luxury-card luxury-card-hover group p-8 md:p-12 flex flex-col justify-between min-h-[340px] relative overflow-hidden ${colSpan}`}
+                className={`reveal luxury-card luxury-card-hover group p-8 md:p-12 flex flex-col justify-between min-h-[340px] relative overflow-hidden block ${colSpan}`}
               >
                 {/* Large Background Watermark Icon */}
                 <div className="bg-icon-watermark right-[-5%] bottom-[-10%] group-hover:text-plum transition-colors duration-700">
@@ -87,7 +88,7 @@ export function SignatureExperience() {
                     <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 ${language === 'AR' ? 'rotate-180' : ''}`} />
                   </div>
                 </div>
-              </div>
+              </a>
             );
           })}
         </div>

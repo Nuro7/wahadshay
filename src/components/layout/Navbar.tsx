@@ -34,11 +34,11 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 py-3 transition-all duration-500 ${isScrolled ? "translate-y-0" : "translate-y-1"
+      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 py-2 md:py-3 transition-all duration-500 ${isScrolled ? "translate-y-0" : "translate-y-1"
         }`}
     >
       <div
-        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-4 sm:px-6 md:px-8 py-1.5 md:py-2 ${isScrolled
+        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-3 sm:px-6 md:px-8 py-1 md:py-2 ${isScrolled
             ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]"
             : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
           }`}
@@ -50,14 +50,14 @@ export function Navbar() {
             <img
               src="/logo_wahad.png"
               alt="Wahad Shay Logo"
-              className="h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
+              className="h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
             />
             {/* Tagline Overlay (Turns black when scrolled) */}
             <img
               src="/logo_wahad.png"
               alt=""
               aria-hidden="true"
-              className={`absolute inset-0 h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
                 }`}
               style={{
                 filter: "invert(1) brightness(0.2)", // Turns white to dark without making it look fat/stroked
@@ -141,7 +141,7 @@ export function Navbar() {
           {/* Hamburger trigger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`rounded-full p-2.5 border transition-all cursor-pointer focus:outline-none ${isScrolled
+            className={`rounded-full w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center border transition-all cursor-pointer focus:outline-none ${isScrolled
                 ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum"
                 : "bg-white/5 border-white/10 text-white/80 hover:text-white"
               }`}
@@ -153,25 +153,29 @@ export function Navbar() {
 
       {/* Mobile Drawer Navigation */}
       {isOpen && (
-        <div className="fixed inset-0 w-screen h-screen lg:hidden flex flex-col items-center justify-center p-8 z-[9999] animate-fade-in bg-plum-dark text-white">
-          {/* Close Button inside Drawer */}
-          <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-6 right-6 p-3 rounded-full border transition-all cursor-pointer border-white/10 text-white/80 hover:text-white bg-white/5"
-          >
-            <X size={20} />
-          </button>
-
-          {/* Centered Logo in Drawer */}
-          <div className="mb-6">
-            <img 
-              src="/logo_wahad.png" 
-              alt="Wahad Shay Logo" 
-              className="h-11 w-auto object-contain transition-all duration-300"
-            />
+        <div className="fixed inset-0 w-screen h-screen lg:hidden flex flex-col bg-white text-text-primary z-[9999] animate-fade-in">
+          {/* Header Section */}
+          <div className="flex items-start justify-between pt-6 px-6 pb-4 border-b border-neutral-border/40">
+            <div className="flex flex-col text-start">
+              <h2 className="text-2xl font-bold font-display text-text-primary">
+                {t("mobileMenu.title")}
+              </h2>
+              <p className="text-sm text-text-secondary mt-1 font-body">
+                {t("mobileMenu.subtitle")}
+              </p>
+            </div>
+            
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-1.5 text-text-primary hover:text-plum transition-colors cursor-pointer focus:outline-none rounded-full hover:bg-neutral-light-beige"
+              aria-label="Close menu"
+            >
+              <X size={24} />
+            </button>
           </div>
 
-          <ul className="flex flex-col gap-3.5 text-center mb-6 w-full max-w-[240px]">
+          {/* Navigation Links List */}
+          <ul className="flex-1 overflow-y-auto px-6 py-2 flex flex-col">
             {menuItems.map((item) => {
               const itemHash = `#${item.toLowerCase()}`;
               const isActive =
@@ -179,7 +183,7 @@ export function Navbar() {
                 (item === "Contact" && activeHash === "#faq");
 
               return (
-                <li key={item} className="w-full">
+                <li key={item} className="border-b border-neutral-border/40 py-4">
                   <a
                     href={itemHash}
                     onClick={(e) => {
@@ -188,10 +192,10 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`block font-body text-sm font-bold tracking-[0.18em] transition-colors uppercase py-1.5 rounded-xl ${
+                    className={`block text-start text-[16px] tracking-[0.02em] uppercase transition-colors ${
                       isActive
-                        ? "bg-yellow/10 text-yellow font-extrabold"
-                        : "text-white/80 hover:text-yellow"
+                        ? "text-text-primary font-bold"
+                        : "text-text-secondary font-medium hover:text-text-primary"
                     }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
@@ -201,25 +205,38 @@ export function Navbar() {
             })}
           </ul>
 
-          <div className="w-full max-w-[240px] border-t border-white/10 pt-4">
-            {/* Language select */}
-            <div className="flex justify-between items-center px-4 py-2.5 rounded-xl text-[11px] bg-white/5 text-white/80">
-              <span className="font-body font-semibold">Language / لغة</span>
-              <div className="flex gap-3">
-                <button
-                  onClick={() => { setLanguage("EN"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer py-1 px-2.5 rounded-lg ${language === "EN" ? "bg-yellow text-plum-dark font-bold" : ""}`}
-                >
-                  EN
-                </button>
-                <span className="text-white/20">|</span>
-                <button
-                  onClick={() => { setLanguage("AR"); setIsOpen(false); }}
-                  className={`font-semibold cursor-pointer py-1 px-2.5 rounded-lg ${language === "AR" ? "bg-yellow text-plum-dark font-bold" : ""}`}
-                >
-                  عربي
-                </button>
-              </div>
+          {/* Bottom Action Section */}
+          <div className="mt-auto px-6 pb-8 pt-4 border-t border-neutral-border/40 bg-white">
+            {/* Contact Now Button */}
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+                window.history.pushState(null, '', '#contact');
+                window.dispatchEvent(new HashChangeEvent("hashchange"));
+              }}
+              className="block w-full bg-yellow hover:bg-plum text-plum-dark hover:text-white font-semibold py-4 rounded-xl text-center text-[15px] tracking-wide transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.2)] hover:shadow-[0_8px_20px_rgba(94,38,137,0.25)] cursor-pointer"
+            >
+              {t("mobileMenu.contactNow")}
+            </a>
+
+            {/* Language Selector */}
+            <div className="flex justify-center items-center gap-3 mt-4 text-[13px] font-semibold text-text-secondary">
+              <span className="font-body text-xs text-text-secondary/70">Language / لغة:</span>
+              <button
+                onClick={() => { setLanguage("EN"); setIsOpen(false); }}
+                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "EN" ? "text-plum font-bold border-b border-plum" : "hover:text-text-primary"}`}
+              >
+                EN
+              </button>
+              <span className="text-neutral-300">|</span>
+              <button
+                onClick={() => { setLanguage("AR"); setIsOpen(false); }}
+                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "AR" ? "text-plum font-bold border-b border-plum" : "hover:text-text-primary"}`}
+              >
+                عربي
+              </button>
             </div>
           </div>
         </div>

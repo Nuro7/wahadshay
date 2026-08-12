@@ -80,7 +80,7 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
       <div
         ref={scrollRef}
         onScroll={checkScroll}
-        className="flex items-center gap-4 md:gap-6 overflow-x-auto px-12 md:px-16 w-full py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+        className="flex items-center gap-3 md:gap-6 overflow-x-auto px-6 md:px-16 w-full py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
       >
         {categories.map((cat) => {
           const isActive = activeCategoryId === cat.id;
@@ -88,26 +88,26 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`group relative flex flex-col items-center justify-center gap-3 w-20 h-[104px] md:w-24 md:h-[116px] rounded-[2rem] font-display text-[10px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 shadow-sm ${
+              className={`group relative flex flex-col items-center justify-center gap-2 w-16 h-[88px] md:w-24 md:h-[116px] rounded-[1.5rem] md:rounded-[2rem] font-display text-[9px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 shadow-sm ${
                 isActive
-                  ? "category-active bg-plum-dark text-white shadow-[0_8px_16px_rgba(94,38,137,0.3)] -translate-y-2"
+                  ? "category-active bg-plum-dark text-white shadow-[0_8px_16px_rgba(94,38,137,0.3)] -translate-y-1.5"
                   : "bg-white text-plum-dark/70 hover:bg-white hover:text-plum hover:-translate-y-1 hover:shadow-md"
               }`}
             >
               {isActive && (
                 <motion.div
                   layoutId="activeCategoryBorder"
-                  className="absolute bottom-3 left-1/2 -translate-x-1/2 w-8 h-1 bg-yellow rounded-full"
+                  className="absolute bottom-2 md:bottom-3 left-1/2 -translate-x-1/2 w-6 h-1 md:w-8 md:h-1 bg-yellow rounded-full"
                   initial={false}
                   transition={{ type: "spring", stiffness: 300, damping: 30 }}
                 />
               )}
               
-              <div className="relative z-10 flex flex-col items-center gap-2 mt-1">
-                <div className={`w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center transition-all ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
+              <div className="relative z-10 flex flex-col items-center gap-1 md:gap-2 mt-0.5 md:mt-1">
+                <div className={`w-8 h-8 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center transition-all ${isActive ? 'scale-110' : 'group-hover:scale-110'}`}>
                    <img src={cat.heroImage} alt={cat.name} className="w-full h-full object-contain drop-shadow-md" />
                 </div>
-                <span className={`mt-1 ${isActive ? 'mb-2' : ''} text-center leading-tight px-1`}>
+                <span className={`mt-0.5 ${isActive ? 'mb-1 md:mb-2' : ''} text-center leading-tight px-1`}>
                   {language === "AR" && cat.arabicName ? cat.arabicName : cat.name}
                 </span>
               </div>

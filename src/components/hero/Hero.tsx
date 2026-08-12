@@ -1,7 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Fragment } from "react";
 import gsap from "gsap";
 import Button from "../ui/Button";
 import { useLanguage } from "../../i18n/LanguageContext";
+
+
 
 const CanvasParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -71,7 +73,7 @@ const CanvasParticles = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-45 z-0" />;
 };
 
-const CounterItem = ({ label, target, suffix = "", delay = 0 }: { label: string; target: number; suffix?: string; delay?: number }) => {
+const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: { label: string; target: number; suffix?: string; delay?: number; isLast?: boolean }) => {
   const [count, setCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -112,11 +114,11 @@ const CounterItem = ({ label, target, suffix = "", delay = 0 }: { label: string;
   }, [target, delay]);
 
   return (
-    <div ref={containerRef} style={{ opacity: 0 }} className="text-center lg:text-left flex-1 min-w-[120px] translate-y-4 stat-reveal">
-      <div className="font-numbers text-2xl md:text-3xl font-extrabold text-yellow tracking-tight">
+    <div ref={containerRef} style={{ opacity: 0 }} className={`text-center flex flex-col items-center justify-center translate-y-4 stat-reveal flex-1 w-full ${!isLast ? "border-r border-white/10" : ""}`}>
+      <div className="font-numbers text-xl xs:text-2xl sm:text-3xl font-extrabold text-yellow tracking-tight whitespace-nowrap">
         {count.toLocaleString()}{suffix}
       </div>
-      <div className="font-body text-[10px] md:text-xs font-semibold tracking-wider text-grey uppercase mt-1">
+      <div className="font-body text-[9px] xs:text-[10px] sm:text-xs font-semibold tracking-wider text-white/75 uppercase mt-1 px-1 line-clamp-2 leading-tight">
         {label}
       </div>
     </div>
@@ -128,7 +130,7 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const parallaxVideoRef = useRef<HTMLDivElement>(null);
   const lightingRef = useRef<HTMLDivElement>(null);
-  
+
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -149,14 +151,14 @@ export default function Hero() {
     const currentActiveIdx = activeVideoIndex >= videos.length ? 0 : activeVideoIndex;
     if (index !== currentActiveIdx) return;
     const nextIndex = (index + 1) % videos.length;
-    
+
     // Pre-play the next video before the opacity transition begins
     const nextVid = videoRefs.current[nextIndex];
     if (nextVid) {
       nextVid.currentTime = 0;
       nextVid.play().catch(e => console.error("Video play failed", e));
     }
-    
+
     setActiveVideoIndex(nextIndex);
   };
 
@@ -165,7 +167,7 @@ export default function Hero() {
     const timeouts = videos.map((_, idx) => {
       const vid = videoRefs.current[idx];
       if (!vid || idx === activeVideoIndex) return null;
-      
+
       return setTimeout(() => {
         vid.pause();
       }, 1000);
@@ -263,7 +265,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="home"
-      className="min-h-screen w-full bg-plum-dark flex items-start md:items-center justify-center relative overflow-hidden pt-28 pb-16 md:pt-24 md:pb-20"
+      className="min-h-screen min-h-[100svh] w-full bg-plum-dark flex flex-col justify-between items-center relative overflow-hidden pt-[calc(env(safe-area-inset-top,24px)+72px)] pb-[calc(env(safe-area-inset-bottom,20px)+24px)] px-4 xs:px-5 md:pt-24 md:pb-20 lg:flex-row lg:items-center"
     >
       {/* Background Video Layer */}
       <div
@@ -281,13 +283,12 @@ export default function Hero() {
             preload="auto"
             onEnded={() => handleVideoEnd(idx)}
             loop={isMobile}
-            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${
-              idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
-            }`}
+            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
+              }`}
           />
         ))}
         {/* Soft vignette overlays to preserve branding and layout legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/95 via-[#2E1A47]/60 to-[#2E1A47]/95 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/80 via-[#2E1A47]/40 to-[#2E1A47]/90 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
       </div>
 
       {/* Cinematic Lighting Layers */}
@@ -305,56 +306,100 @@ export default function Hero() {
       <CanvasParticles />
 
       {/* Content wrapper */}
-      <div className="relative z-10 premium-container grid grid-cols-1 lg:grid-cols-2 items-start md:items-center gap-8 lg:gap-12" dir="ltr">
+      <div className="relative z-10 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between h-full w-full gap-6 lg:gap-12" dir="ltr">
 
         {/* Left Side Copywriting */}
-        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-center lg:text-start items-center lg:items-start max-w-2xl mx-auto lg:mx-0">
-          <div className="space-y-4 flex flex-col items-center lg:items-start text-center lg:text-start">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold uppercase tracking-[0.25em] text-yellow">
+        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-left lg:text-start items-start lg:items-start max-w-2xl mx-auto lg:mx-0 w-full">
+          <div className="space-y-4 flex flex-col items-start lg:items-start text-left lg:text-left w-full">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] xs:text-xs font-bold uppercase tracking-[0.25em] text-yellow whitespace-nowrap mb-2">
               {t('hero.badge')}
             </span>
 
-            {/* Word-by-word reveal heading */}
-            <h1 className="font-display heading-fluid-h1 font-extrabold text-white flex flex-wrap justify-center lg:justify-start gap-x-[0.28em] gap-y-[0.1em]">
-              {(t('hero.heading') as any).map((word: any, i: number) => (
-                <span key={i} className={`inline-block word-reveal ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
-                  {word.text}
-                </span>
-              ))}
+            {/* Word-by-word reveal heading grouped by lines for perfect text left alignment */}
+            <h1 className="font-display heading-fluid-h1 font-extrabold text-white text-left leading-[1.1] md:leading-[1.15] w-full">
+              {language === 'AR' ? (
+                <>
+                  <span className="block lg:inline lg:mr-[0.28em]">
+                    {(t('hero.heading') as any).slice(0, 3).map((word: any, idx: number) => (
+                      <span key={idx} className={`inline-block word-reveal ml-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                        {word.text}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="block lg:inline">
+                    {(t('hero.heading') as any).slice(3, 6).map((word: any, idx: number) => (
+                      <span key={idx} className={`inline-block word-reveal ml-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                        {word.text}
+                      </span>
+                    ))}
+                  </span>
+                </>
+              ) : (
+                <>
+                  <span className="block lg:inline lg:mr-[0.28em]">
+                    {(t('hero.heading') as any).slice(0, 4).map((word: any, idx: number) => (
+                      <span key={idx} className={`inline-block word-reveal mr-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                        {word.text}
+                      </span>
+                    ))}
+                  </span>
+                  <span className="block lg:inline">
+                    {(t('hero.heading') as any).slice(4, 7).map((word: any, idx: number) => (
+                      <span key={idx} className={`inline-block word-reveal mr-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                        {word.text}
+                      </span>
+                    ))}
+                  </span>
+                </>
+              )}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-lg text-fluid-body font-medium text-grey text-justify">
+            <p style={{ opacity: 0 }} className="hero-subtitle max-w-[340px] xs:max-w-[360px] lg:max-w-lg text-[15px] sm:text-[16px] md:text-fluid-body font-medium text-grey text-left leading-relaxed">
               {t('hero.subtitle')}
             </p>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="hero-btn-container flex flex-wrap gap-4 justify-center lg:justify-start">
-            <a href="#menu" className="btn">
-              <Button variant="primary">{t('hero.exploreMenu')}</Button>
+          {/* CTA Buttons - Compact, solid yellow button aligned to the left */}
+          <div className="hero-btn-container flex justify-start lg:justify-start w-full">
+            <a href="#menu" className="w-fit">
+              <button className="bg-yellow text-plum-dark rounded-full h-[36px] sm:h-[40px] px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold tracking-wide active:scale-[0.97] transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_15px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
+                {t('hero.exploreMenu')}
+              </button>
             </a>
           </div>
 
-          {/* Counters Row */}
-          <div className="pt-8 border-t border-white/10 flex flex-wrap gap-6 justify-center lg:justify-start max-w-lg w-full">
+          {/* Desktop Counters Row (Hidden on Mobile) */}
+          <div className="hidden lg:grid grid-cols-3 w-full pt-8 border-t border-white/10">
             <CounterItem label={t('hero.countriesInspired')} target={25} suffix="+" delay={1.3} />
             <CounterItem label={t('hero.community')} target={600} suffix="K+" delay={1.45} />
-            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} />
+            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} isLast={true} />
           </div>
         </div>
 
-        {/* Right Side Spacer: Empty space to let background show through */}
+        {/* Right Side Spacer: Empty space to let background show through (Desktop only) */}
         <div className="hidden lg:block h-[380px] sm:h-[420px] lg:h-[480px] w-full" />
+
+        {/* Mobile Product Composition Spacer (Leaves room for the ambient video background showing the Karak cup pour) */}
+        <div className="w-full flex-1 min-h-[160px] max-h-[300px] lg:hidden pointer-events-none" />
+
+        {/* Mobile Counters Row (Visible on Mobile only, placed at the bottom) */}
+        <div className="flex lg:hidden w-full pt-4 border-t border-white/10 max-w-[340px] xs:max-w-[360px] sm:max-w-lg">
+          <div className="grid grid-cols-3 w-full">
+            <CounterItem label={t('hero.countriesInspired')} target={25} suffix="+" delay={1.3} />
+            <CounterItem label={t('hero.community')} target={600} suffix="K+" delay={1.45} />
+            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} isLast={true} />
+          </div>
+        </div>
 
       </div>
 
       {/* Smooth transition fading Hero into the next section */}
       <div className="absolute bottom-0 left-0 w-full h-[250px] bg-gradient-to-t from-plum-dark to-transparent pointer-events-none z-10" />
 
-      {/* Mouse Scroll Indicator */}
-      <a 
+      {/* Mouse Scroll Indicator (Desktop Only) */}
+      <a
         href="#about"
-        className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 opacity-80 cursor-pointer group"
+        className="hidden md:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex-col items-center gap-1.5 opacity-80 cursor-pointer group"
       >
         <span className="font-body text-[9px] font-bold tracking-[0.25em] text-white uppercase group-hover:text-yellow transition-colors">
           {t('hero.scroll')}

@@ -35,7 +35,7 @@ const timelineData: Milestone[] = [
 
 const philosophyIcons = [Compass, Sparkles, Heart, ShieldCheck];
 
-export function About() {
+export function About({ isHomePage = false }: { isHomePage?: boolean }) {
   const { t, language } = useLanguage();
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
@@ -103,10 +103,10 @@ export function About() {
                 </p>
               </div>
 
-              <button className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+              <a href={isHomePage ? "#about" : "#menu"} className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
                 <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
-              </button>
+              </a>
             </div>
 
             {/* Right: Brand Motto Card */}
@@ -169,10 +169,11 @@ export function About() {
               const numStr = `0${idx + 1}`;
               
               return (
-                <div
+                <a
+                  href={isHomePage ? "#about" : "#menu"}
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative`}
+                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative block`}
                 >
                   {/* Huge Background Number */}
                   <span className="bg-number-watermark luxury-bg-num bottom-[-20%] right-[-10%] group-hover:opacity-10 transition-opacity duration-700">
@@ -213,11 +214,11 @@ export function About() {
                   </div>
                   
                   {/* Varying subtle accent borders based on index */}
-                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-plum/30 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
+                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-plum/3 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
                   {idx === 1 && <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow/60 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />}
-                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-plum/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
+                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-plum/3 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
                   {idx === 3 && <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-yellow/60 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-500" />}
-                </div>
+                </a>
               );
             })}
           </div>

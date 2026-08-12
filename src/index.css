@@ -21,6 +21,18 @@
   --color-neutral-border: #E7DED2;
   --color-text-primary: #2B2520;
   --color-text-secondary: #6D655D;
+
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes slide-up {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
 }
 
 @layer base {
@@ -555,8 +567,8 @@ body.splash-done #home {
 }
 
 .heading-fluid-h1 {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
-  line-height: 1.08;
+  font-size: clamp(1.65rem, 8vw, 3.75rem);
+  line-height: 1.1;
   letter-spacing: -0.02em;
 }
 
