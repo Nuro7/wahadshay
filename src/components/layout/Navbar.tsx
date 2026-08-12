@@ -155,15 +155,7 @@ export function Navbar() {
       {isOpen && (
         <div className="fixed inset-0 w-screen h-screen lg:hidden flex flex-col bg-white text-text-primary z-[9999] animate-fade-in">
           {/* Header Section */}
-          <div className="flex items-start justify-between pt-6 px-6 pb-4 border-b border-neutral-border/40">
-            <div className="flex flex-col text-start">
-              <h2 className="text-2xl font-bold font-display text-text-primary">
-                {t("mobileMenu.title")}
-              </h2>
-              <p className="text-sm text-text-secondary mt-1 font-body">
-                {t("mobileMenu.subtitle")}
-              </p>
-            </div>
+          <div className="flex items-start justify-end pt-6 px-6 pb-4 border-b border-neutral-border/40">
             
             <button
               onClick={() => setIsOpen(false)}

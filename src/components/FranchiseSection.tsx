@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import type React from "react";
+import { createPortal } from "react-dom";
 import { MapPin, X, Navigation } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
@@ -688,74 +689,77 @@ export default function FranchiseSection() {
         </div>
 
         {/* Branch Details Modal */}
-        <AnimatePresence>
-          {selectedBranch && (
-            <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-plum-dark/60 backdrop-blur-sm">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-border"
-              >
-                {/* Close Button */}
-                <button
-                  onClick={() => setSelectedBranch(null)}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors z-20 cursor-pointer"
+        {typeof document !== 'undefined' && createPortal(
+          <AnimatePresence>
+            {selectedBranch && (
+              <div className="fixed inset-0 flex items-center justify-center p-4 bg-plum-dark/60 backdrop-blur-sm" style={{ zIndex: 99999 }}>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                  transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-border"
                 >
-                  <X size={20} />
-                </button>
+                  {/* Close Button */}
+                  <button
+                    onClick={() => setSelectedBranch(null)}
+                    className="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/40 text-white backdrop-blur-md transition-colors z-20 cursor-pointer"
+                  >
+                    <X size={20} />
+                  </button>
 
-                {/* Modal Header */}
-                <div className="relative h-40 bg-plum-dark overflow-hidden flex flex-col items-center justify-center">
-                  <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'%3E%3Cpath d=\'M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z\' fill=\'%23F5BD20\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')] bg-[length:80px_80px]" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-plum-dark via-plum-dark/50 to-transparent" />
-                  <MapPin size={40} className="text-yellow relative z-10 opacity-90 drop-shadow-md mb-2" />
-                  <h3 className="text-2xl font-extrabold tracking-tight text-white font-display relative z-10 drop-shadow-md">
-                    {t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city}
-                  </h3>
-                </div>
+                  {/* Modal Header */}
+                  <div className="relative h-40 bg-plum-dark overflow-hidden flex flex-col items-center justify-center">
+                    <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'%3E%3Cpath d=\'M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z\' fill=\'%23F5BD20\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')] bg-[length:80px_80px]" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-dark via-plum-dark/50 to-transparent" />
+                    <MapPin size={40} className="text-yellow relative z-10 opacity-90 drop-shadow-md mb-2" />
+                    <h3 className="text-2xl font-extrabold tracking-tight text-white font-display relative z-10 drop-shadow-md">
+                      {t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city}
+                    </h3>
+                  </div>
 
-                {/* Modal Content */}
-                <div className="p-8 space-y-6 text-center">
-                  <div>
-                    <div className="flex items-center justify-center gap-2 mb-3">
-                      <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
-                        {t('about.franchiseSection.modal.network') || '📍 NETWORK'}
-                      </span>
-                      {selectedBranch.status === "Open" ? (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
-                          <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
-                          {t('about.franchiseSection.modal.statusOpen') || 'OPEN'}
+                  {/* Modal Content */}
+                  <div className="p-8 space-y-6 text-center">
+                    <div>
+                      <div className="flex items-center justify-center gap-2 mb-3">
+                        <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
+                          {t('about.franchiseSection.modal.network') || '📍 NETWORK'}
                         </span>
-                      ) : (
-                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-yellow-800 border border-yellow/30">
-                          <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
-                          {t('about.franchiseSection.modal.statusComingSoon') || 'COMING SOON'}
-                        </span>
-                      )}
+                        {selectedBranch.status === "Open" ? (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
+                            <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
+                            {t('about.franchiseSection.modal.statusOpen') || 'OPEN'}
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-yellow-800 border border-yellow/30">
+                            <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
+                            {t('about.franchiseSection.modal.statusComingSoon') || 'COMING SOON'}
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-text-secondary text-base font-medium font-body mb-4">
+                        {t(`areas.${selectedBranch.area.toLowerCase().replace(' ', '')}`) || selectedBranch.area}
+                      </p>
+
+                      <p className="text-sm text-text-secondary/80 font-body leading-relaxed">
+                        {t('about.franchiseSection.modal.desc').replace('{city}', t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city)}
+                      </p>
                     </div>
 
-                    <p className="text-text-secondary text-base font-medium font-body mb-4">
-                      {t(`areas.${selectedBranch.area.toLowerCase().replace(' ', '')}`) || selectedBranch.area}
-                    </p>
-
-                    <p className="text-sm text-text-secondary/80 font-body leading-relaxed">
-                      {t('about.franchiseSection.modal.desc').replace('{city}', t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city)}
-                    </p>
+                    <div className="border-t border-neutral-border/60 pt-6">
+                      <button className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer">
+                        <Navigation size={16} />
+                        {t('about.franchiseSection.modal.getDirections') || 'Get Directions'}
+                      </button>
+                    </div>
                   </div>
-
-                  <div className="border-t border-neutral-border/60 pt-6">
-                    <button className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer">
-                      <Navigation size={16} />
-                      {t('about.franchiseSection.modal.getDirections') || 'Get Directions'}
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
       </div>
     </section>
   );
