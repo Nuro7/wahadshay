@@ -101,7 +101,7 @@ function App() {
       <Layout>
         <Navbar />
         
-        <main className="flex-1 flex flex-col">
+        <main className={`flex-1 flex flex-col ${currentPage !== 'home' ? 'pt-8 md:pt-10' : ''}`}>
           {currentPage === "home" && (
             <>
               <Hero />
