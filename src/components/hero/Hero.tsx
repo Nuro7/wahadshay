@@ -265,7 +265,7 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="home"
-      className="min-h-screen min-h-[100svh] w-full bg-plum-dark flex flex-col justify-between items-center relative overflow-hidden pt-[calc(env(safe-area-inset-top,24px)+72px)] pb-[calc(env(safe-area-inset-bottom,20px)+24px)] px-4 xs:px-5 md:pt-24 md:pb-20 lg:flex-row lg:items-center"
+      className="min-h-screen min-h-[100svh] w-full bg-plum-dark flex flex-col justify-between items-center relative overflow-hidden pt-[calc(env(safe-area-inset-top,24px)+72px)] pb-[calc(env(safe-area-inset-bottom,20px)+36px)] px-4 xs:px-5 md:pt-24 md:pb-20 lg:flex-row lg:items-center"
     >
       {/* Background Video Layer */}
       <div
@@ -306,7 +306,7 @@ export default function Hero() {
       <CanvasParticles />
 
       {/* Content wrapper */}
-      <div className="relative z-10 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between h-full w-full gap-6 lg:gap-12" dir="ltr">
+      <div className="relative z-20 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between flex-1 w-full gap-6 lg:gap-12" dir="ltr">
 
         {/* Left Side Copywriting */}
         <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-start rtl:text-end items-start rtl:items-end max-w-2xl mx-auto lg:mx-0 w-full">
@@ -380,7 +380,7 @@ export default function Hero() {
         <div className="hidden lg:block h-[380px] sm:h-[420px] lg:h-[480px] w-full" />
 
         {/* Mobile Product Composition Spacer (Leaves room for the ambient video background showing the Karak cup pour) */}
-        <div className="w-full flex-1 min-h-[160px] max-h-[300px] lg:hidden pointer-events-none" />
+        <div className="w-full flex-1 min-h-[160px] lg:hidden pointer-events-none" />
 
         {/* Mobile Counters Row (Visible on Mobile only, placed at the bottom) */}
         <div className="flex lg:hidden w-full pt-4 border-t border-white/10 max-w-[340px] xs:max-w-[360px] sm:max-w-lg">
