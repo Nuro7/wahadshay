@@ -66,6 +66,9 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
 
   const timelineData = t('about.timeline') as Milestone[];
   const philosophyItems = t('about.philosophy') as any[];
+  const timelinePath = language === 'AR'
+    ? "M 700,130 C 600,30 580,190 480,80 C 380,-30 350,190 250,130 C 150,70 140,30 100,70"
+    : "M 100,130 C 200,30 220,190 320,80 C 420,-30 450,190 550,130 C 650,70 660,30 700,70";
 
   return (
     <>
@@ -103,9 +106,9 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </p>
               </div>
 
-              <a href={isHomePage ? "#about" : "#menu"} className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+              <a href={isHomePage ? "#about" : "#menu"} className="group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4">
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
-                <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
+                <ArrowRight size={16} className="transform transition-transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </a>
             </div>
 
@@ -205,11 +208,11 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                     </div>
 
                     {/* Bottom Action */}
-                    <div className={`mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                    <div className="mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between">
                       <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum group-hover:text-plum-dark transition-colors">
                         {t('about.discover')}
                       </span>
-                      <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180' : ''}`} />
+                      <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark rtl:rotate-180" />
                     </div>
                   </div>
                   
@@ -248,7 +251,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
             >
               {/* Dotted Pathway Track (Gold) */}
               <path
-                d="M 100,130 C 200,30 220,190 320,80 C 420,-30 450,190 550,130 C 650,70 660,30 700,70"
+                d={timelinePath}
                 fill="none"
                 stroke="rgba(245, 189, 32, 0.2)"
                 strokeWidth="2"
@@ -258,7 +261,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
 
               {/* active progress line segment (Solid Gold) */}
               <path
-                d="M 100,130 C 200,30 220,190 320,80 C 420,-30 450,190 550,130 C 650,70 660,30 700,70"
+                d={timelinePath}
                 fill="none"
                 stroke="var(--color-yellow)"
                 strokeWidth="2"
@@ -273,7 +276,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 r="4"
                 fill="var(--color-white)"
                 style={{
-                  offsetPath: "path('M 100,130 C 200,30 220,190 320,80 C 420,-30 450,190 550,130 C 650,70 660,30 700,70')",
+                  offsetPath: `path('${timelinePath}')`,
                   offsetDistance: `${(currentStep / (timelineData.length - 1)) * 100}%`,
                   transition: "offset-distance 0.8s cubic-bezier(0.25, 1, 0.5, 1)",
                   filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))"
@@ -364,7 +367,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       currentStep === 0 ? "opacity-30 cursor-not-allowed" : ""
                     }`}
                   >
-                    <ChevronLeft size={20} />
+                    <ChevronLeft size={20} className="rtl:rotate-180" />
                   </button>
                   <span className="font-display text-[10px] font-bold tracking-[0.3em] text-yellow uppercase">
                     {timelineData[currentStep].year}
@@ -376,7 +379,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       currentStep === timelineData.length - 1 ? "opacity-30 cursor-not-allowed" : ""
                     }`}
                   >
-                    <ChevronRight size={20} />
+                    <ChevronRight size={20} className="rtl:rotate-180" />
                   </button>
                 </div>
 

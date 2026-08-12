@@ -331,6 +331,13 @@ export const translations: any = {
           q2Desc: "Leasing terms finalized",
           q3Title: "Q3: Muscat & Doha",
           q3Desc: "Regional partner talks"
+        },
+        modal: {
+          network: "📍 NETWORK",
+          statusOpen: "OPEN",
+          statusComingSoon: "COMING SOON",
+          getDirections: "Get Directions",
+          desc: "Experience the signature Wahad Shay ambiance and our exclusive tea blends right in the heart of {city}."
         }
       },
       gallery: {
@@ -339,6 +346,20 @@ export const translations: any = {
         subtitle1: "Follow our digital aesthetic journey and share your moments at ",
         subtitle2: "#WahadShay",
         viewStory: "View Story",
+        tasteTitle: "A TASTE OF OUR STORY",
+        tasteSubtitle: "Tea, craft, and moments shared.",
+        viewStoryAction: "VIEW STORY",
+        watchAction: "WATCH",
+        categories: {
+          tea: "TEA",
+          atmosphere: "ATMOSPHERE",
+          bakery: "BAKERY",
+          craft: "CRAFT",
+          culture: "CULTURE",
+          cafe: "CAFE",
+          moments: "MOMENTS",
+          taste: "TASTE"
+        },
         items: [
           { tag: "Signature Karak" },
           { tag: "Cheese Melt Brioche" },
@@ -422,6 +443,18 @@ export const translations: any = {
           answer: "Our flagship hq in Riyadh and all branches across the UAE operate from Saturday to Thursday: 8:00 AM - 12:00 AM, and Fridays from 4:00 PM - 12:00 AM."
         }
       ]
+    },
+    cities: {
+      ajman: "Ajman",
+      dubai: "Dubai",
+      sharjah: "Sharjah",
+      abudhabi: "Abu Dhabi"
+    },
+    areas: {
+      aljurf: "Al Jurf",
+      albarsha: "Al Barsha",
+      muwaileh: "Muwaileh",
+      alfalah: "Al Falah"
     }
   },
   AR: {
@@ -755,6 +788,13 @@ export const translations: any = {
           q2Desc: "تم الانتهاء من شروط التأجير",
           q3Title: "الربع الثالث: مسقط والدوحة",
           q3Desc: "محادثات مع شركاء إقليميين"
+        },
+        modal: {
+          network: "📍 الشبكة",
+          statusOpen: "مفتوح",
+          statusComingSoon: "قريباً",
+          getDirections: "الحصول على الاتجاهات",
+          desc: "استمتع بأجواء واحد شاي المميزة وخلطات الشاي الحصرية لدينا في قلب {city}."
         }
       },
       gallery: {
@@ -763,6 +803,20 @@ export const translations: any = {
         subtitle1: "تابع رحلتنا الجمالية الرقمية وشارك لحظاتك على ",
         subtitle2: "#واحد_شاي",
         viewStory: "عرض القصة",
+        tasteTitle: "لمحة من قصتنا",
+        tasteSubtitle: "الشاي، الحرفة، واللحظات المشتركة.",
+        viewStoryAction: "عرض القصة",
+        watchAction: "مشاهدة",
+        categories: {
+          tea: "الشاي",
+          atmosphere: "الأجواء",
+          bakery: "المخبوزات",
+          craft: "الحرفة",
+          culture: "الثقافة",
+          cafe: "المقهى",
+          moments: "اللحظات",
+          taste: "المذاق"
+        },
         items: [
           { tag: "كرك مميز" },
           { tag: "بريوش الجبن الذائب" },
@@ -846,6 +900,18 @@ export const translations: any = {
           answer: "يعمل مقرنا الرئيسي في الرياض وجميع الفروع في جميع أنحاء الإمارات من السبت إلى الخميس: 8:00 صباحاً - 12:00 منتصف الليل، وأيام الجمعة من 4:00 مساءً - 12:00 منتصف الليل."
         }
       ]
+    },
+    cities: {
+      ajman: "عجمان",
+      dubai: "دبي",
+      sharjah: "الشارقة",
+      abudhabi: "أبوظبي"
+    },
+    areas: {
+      aljurf: "الجرف",
+      albarsha: "البرشاء",
+      muwaileh: "مويلح",
+      alfalah: "الفلاح"
     }
   }
 };

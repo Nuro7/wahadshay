@@ -81,11 +81,11 @@ export function SignatureExperience() {
                     </p>
                   </div>
 
-                  <div className={`mt-10 pt-6 border-t border-neutral-border/50 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                  <div className="mt-10 pt-6 border-t border-neutral-border/50 flex items-center justify-between">
                     <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum">
                       {t('about.signatureExperience.discover')}
                     </span>
-                    <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 ${language === 'AR' ? 'rotate-180' : ''}`} />
+                    <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 rtl:rotate-180" />
                   </div>
                 </div>
               </a>

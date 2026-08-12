@@ -15,19 +15,19 @@ export function Franchise() {
         
         {/* Section Heading & Flex Layout */}
         <div className="reveal grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-center mb-16 md:mb-20">
-          <div className="lg:col-span-2 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-2 space-y-6 text-center lg:text-start">
             <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               {t('about.franchise.badge')}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary leading-tight mask-reveal">
               <span className="text-shimmer block md:inline">{t('about.franchise.title1')}</span>
-              <span className="text-plum block md:inline md:ml-2">{t('about.franchise.title2')}</span>
+              <span className="text-plum block md:inline md:ms-2">{t('about.franchise.title2')}</span>
             </h2>
             <p className="text-text-secondary text-sm sm:text-base md:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-body">
               {t('about.franchise.desc')}
             </p>
           </div>
-          <div className="text-center lg:text-right">
+          <div className="text-center lg:text-end">
             <a href="#contact">
               <Button variant="primary" className="shadow-[0_4px_15px_rgba(245,189,32,0.1)]">
                 {t('about.franchise.applyBtn')}

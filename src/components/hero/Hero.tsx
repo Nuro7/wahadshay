@@ -114,7 +114,7 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
   }, [target, delay]);
 
   return (
-    <div ref={containerRef} style={{ opacity: 0 }} className={`text-center flex flex-col items-center justify-center translate-y-4 stat-reveal flex-1 w-full ${!isLast ? "border-r border-white/10" : ""}`}>
+    <div ref={containerRef} style={{ opacity: 0 }} className={`text-center flex flex-col items-center justify-center translate-y-4 stat-reveal flex-1 w-full ${!isLast ? "border-e border-white/10" : ""}`}>
       <div className="font-numbers text-xl xs:text-2xl sm:text-3xl font-extrabold text-yellow tracking-tight whitespace-nowrap">
         {count.toLocaleString()}{suffix}
       </div>
@@ -309,26 +309,26 @@ export default function Hero() {
       <div className="relative z-10 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between h-full w-full gap-6 lg:gap-12" dir="ltr">
 
         {/* Left Side Copywriting */}
-        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-left lg:text-start items-start lg:items-start max-w-2xl mx-auto lg:mx-0 w-full">
-          <div className="space-y-4 flex flex-col items-start lg:items-start text-left lg:text-left w-full">
+        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-start rtl:text-end items-start rtl:items-end max-w-2xl mx-auto lg:mx-0 w-full">
+          <div className="space-y-4 flex flex-col items-start rtl:items-end text-start rtl:text-end w-full">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] xs:text-xs font-bold uppercase tracking-[0.25em] text-yellow whitespace-nowrap mb-2">
               {t('hero.badge')}
             </span>
 
             {/* Word-by-word reveal heading grouped by lines for perfect text left alignment */}
-            <h1 className="font-display heading-fluid-h1 font-extrabold text-white text-left leading-[1.1] md:leading-[1.15] w-full">
+            <h1 className="font-display heading-fluid-h1 font-extrabold text-white text-start rtl:text-end leading-[1.1] md:leading-[1.15] w-full">
               {language === 'AR' ? (
                 <>
-                  <span className="block lg:inline lg:mr-[0.28em]">
+                  <span className="block lg:inline lg:me-[0.28em]">
                     {(t('hero.heading') as any).slice(0, 3).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal ml-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                      <span key={idx} className={`inline-block word-reveal ms-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
                         {word.text}
                       </span>
                     ))}
                   </span>
                   <span className="block lg:inline">
                     {(t('hero.heading') as any).slice(3, 6).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal ml-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                      <span key={idx} className={`inline-block word-reveal ms-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
                         {word.text}
                       </span>
                     ))}
@@ -336,16 +336,16 @@ export default function Hero() {
                 </>
               ) : (
                 <>
-                  <span className="block lg:inline lg:mr-[0.28em]">
+                  <span className="block lg:inline lg:me-[0.28em]">
                     {(t('hero.heading') as any).slice(0, 4).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal mr-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                      <span key={idx} className={`inline-block word-reveal me-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
                         {word.text}
                       </span>
                     ))}
                   </span>
                   <span className="block lg:inline">
                     {(t('hero.heading') as any).slice(4, 7).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal mr-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                      <span key={idx} className={`inline-block word-reveal me-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
                         {word.text}
                       </span>
                     ))}
@@ -354,13 +354,13 @@ export default function Hero() {
               )}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-[340px] xs:max-w-[360px] lg:max-w-lg text-[15px] sm:text-[16px] md:text-fluid-body font-medium text-grey text-left leading-relaxed">
+            <p style={{ opacity: 0 }} className="hero-subtitle max-w-[340px] xs:max-w-[360px] lg:max-w-lg text-[15px] sm:text-[16px] md:text-fluid-body font-medium text-grey text-start rtl:text-end leading-relaxed">
               {t('hero.subtitle')}
             </p>
           </div>
 
           {/* CTA Buttons - Compact, solid yellow button aligned to the left */}
-          <div className="hero-btn-container flex justify-start lg:justify-start w-full">
+          <div className="hero-btn-container flex justify-start rtl:justify-end w-full">
             <a href="#menu" className="w-fit">
               <button className="bg-yellow text-plum-dark rounded-full h-[36px] sm:h-[40px] px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold tracking-wide active:scale-[0.97] transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_15px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
                 {t('hero.exploreMenu')}

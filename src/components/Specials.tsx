@@ -48,7 +48,7 @@ export function Specials({ currency }: SpecialsProps) {
               <div className="absolute -right-[30%] -bottom-[30%] w-[250px] h-[250px] bg-plum/3 rounded-full blur-[70px] group-hover:bg-plum/6 transition-all duration-700 pointer-events-none" />
               
               {/* Badge */}
-              <span className="absolute top-4 right-4 bg-yellow text-plum-dark text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full z-20">
+              <span className="absolute top-4 end-4 bg-yellow text-plum-dark text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full z-20">
                 {spec.badge}
               </span>
 
@@ -63,7 +63,7 @@ export function Specials({ currency }: SpecialsProps) {
               </div>
 
               {/* Details */}
-              <div className="space-y-4 text-center sm:text-left flex-1">
+              <div className="space-y-4 text-center sm:text-start flex-1">
                 <div className="space-y-1">
                   <span className="text-[10px] font-extrabold text-plum uppercase tracking-[0.2em] block">
                     {spec.tag}

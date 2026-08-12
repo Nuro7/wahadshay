@@ -677,7 +677,7 @@ export default function FranchiseSection() {
                           letterSpacing: "0.05em",
                         }}
                       >
-                        {b.city}
+                        {t(`cities.${b.city.toLowerCase().replace(' ', '')}`) || b.city}
                       </text>
                     </g>
                   );
@@ -712,7 +712,7 @@ export default function FranchiseSection() {
                   <div className="absolute inset-0 bg-gradient-to-t from-plum-dark via-plum-dark/50 to-transparent" />
                   <MapPin size={40} className="text-yellow relative z-10 opacity-90 drop-shadow-md mb-2" />
                   <h3 className="text-2xl font-extrabold tracking-tight text-white font-display relative z-10 drop-shadow-md">
-                    {selectedBranch.city}
+                    {t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city}
                   </h3>
                 </div>
 
@@ -721,34 +721,34 @@ export default function FranchiseSection() {
                   <div>
                     <div className="flex items-center justify-center gap-2 mb-3">
                       <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
-                        📍 NETWORK
+                        {t('about.franchiseSection.modal.network') || '📍 NETWORK'}
                       </span>
                       {selectedBranch.status === "Open" ? (
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
                           <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
-                          OPEN
+                          {t('about.franchiseSection.modal.statusOpen') || 'OPEN'}
                         </span>
                       ) : (
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-yellow-800 border border-yellow/30">
                           <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
-                          COMING SOON
+                          {t('about.franchiseSection.modal.statusComingSoon') || 'COMING SOON'}
                         </span>
                       )}
                     </div>
 
                     <p className="text-text-secondary text-base font-medium font-body mb-4">
-                      {selectedBranch.area}
+                      {t(`areas.${selectedBranch.area.toLowerCase().replace(' ', '')}`) || selectedBranch.area}
                     </p>
 
                     <p className="text-sm text-text-secondary/80 font-body leading-relaxed">
-                      Experience the signature Wahad Shay ambiance and our exclusive tea blends right in the heart of {selectedBranch.city}.
+                      {t('about.franchiseSection.modal.desc').replace('{city}', t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city)}
                     </p>
                   </div>
 
                   <div className="border-t border-neutral-border/60 pt-6">
                     <button className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer">
                       <Navigation size={16} />
-                      Get Directions
+                      {t('about.franchiseSection.modal.getDirections') || 'Get Directions'}
                     </button>
                   </div>
                 </div>

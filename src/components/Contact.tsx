@@ -70,11 +70,11 @@ export function Contact() {
                     href="https://maps.google.com" 
                     target="_blank" 
                     rel="noreferrer" 
-                    className={`text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3 transition-colors ${language === 'AR' ? 'flex-row-reverse' : ''}`}
+                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3 transition-colors"
                     onClick={(e) => e.stopPropagation()}
                   >
                     {t('contact.openInMaps')}
-                    <ArrowRight size={14} className={`micro-transition group-hover:translate-x-1 ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
+                    <ArrowRight size={14} className="micro-transition rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
                   </a>
                 </div>
               </div>
@@ -205,7 +205,7 @@ export function Contact() {
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         {isSubmitting ? t('contact.form.submitting') : t('contact.form.submitBtn')}
-                        {!isSubmitting && <ArrowRight size={16} className={`transition-transform duration-300 group-hover:translate-x-1 ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />}
+                        {!isSubmitting && <ArrowRight size={16} className="transition-transform duration-300 rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />}
                       </span>
                     </button>
                   </motion.form>

@@ -61,9 +61,9 @@ export function FAQ() {
                   {/* Trigger Header */}
                   <button
                     onClick={() => toggleFAQ(idx)}
-                    className={`w-full flex items-center justify-between p-6 text-left cursor-pointer focus:outline-none select-none ${language === 'AR' ? 'flex-row-reverse' : ''}`}
+                    className="w-full flex items-center justify-between p-6 text-start cursor-pointer focus:outline-none select-none"
                   >
-                    <div className={`flex items-center gap-4 ${language === 'AR' ? 'pl-4' : 'pr-4'} ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                    <div className="flex items-center gap-4 pe-4">
                       <HelpCircle size={18} className={`shrink-0 transition-colors ${isOpen ? "text-plum" : "text-text-secondary"}`} />
                       <span className="font-display text-sm sm:text-base font-bold text-text-primary hover:text-plum transition-colors">
                         {item.question}

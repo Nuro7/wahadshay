@@ -35,14 +35,14 @@ export function Footer() {
 
           {/* Logo & Brand Story */}
           <div className="flex flex-col items-start">
-            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ml-4 md:-ml-5">
+            <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ms-4 md:-ms-5">
               <img
                 src="/logo_wahad.png"
                 alt="Wahad Shay Logo"
-                className="h-16 sm:h-16 md:h-12 lg:h-14 w-auto object-contain object-left group-hover:scale-[1.02] transition-transform duration-300"
+                className="h-16 sm:h-16 md:h-12 lg:h-14 w-auto object-contain object-left rtl:object-right group-hover:scale-[1.02] transition-transform duration-300"
               />
             </a>
-            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-left mb-6">
+            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-start mb-6">
               {t('footer.brandStory')}
             </p>
 

@@ -43,10 +43,10 @@ export function Gallery() {
       {/* Header Area */}
       <div className="reveal text-center max-w-2xl mx-auto mb-12 md:mb-20 space-y-4 px-6 relative z-10">
         <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary tracking-tight">
-          A TASTE OF OUR STORY
+          {t('about.gallery.tasteTitle') || 'A TASTE OF OUR STORY'}
         </h2>
         <p className="text-text-secondary text-sm md:text-base font-body">
-          Tea, craft, and moments shared.
+          {t('about.gallery.tasteSubtitle') || 'Tea, craft, and moments shared.'}
         </p>
       </div>
 
@@ -96,10 +96,10 @@ export function Gallery() {
                   </div>
                 )}
                 <span className="font-display font-black text-white text-2xl tracking-[0.15em] uppercase drop-shadow-md">
-                  {item.label}
+                  {t(`about.gallery.categories.${item.label.toLowerCase()}`) || item.label}
                 </span>
                 <span className="font-body font-bold text-xs text-yellow tracking-[0.25em] uppercase mt-3 drop-shadow-md">
-                  {item.actionText}
+                  {item.type === 'video' ? (t('about.gallery.watchAction') || 'WATCH') : (t('about.gallery.viewStoryAction') || 'VIEW STORY')}
                 </span>
               </div>
             </motion.div>

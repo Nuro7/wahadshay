@@ -41,7 +41,7 @@ export default function MissionVision() {
             </div>
           </div>
 
-          <div className="lg:border-l lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
+          <div className="lg:border-s lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
             <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-10">{t('about.missionVision.coreValuesTitle')}</h3>
             <div className="space-y-6">
               {coreValues.map((title, idx) => {

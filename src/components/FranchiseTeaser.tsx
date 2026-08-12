@@ -14,13 +14,13 @@ export function FranchiseTeaser() {
         <div className="reveal grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
           
           {/* Left Column: Heading and info */}
-          <div className="lg:col-span-3 space-y-6 text-center lg:text-left">
+          <div className="lg:col-span-3 space-y-6 text-center lg:text-start">
             <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               {t('franchiseTeaser.badge')}
             </span>
             <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary leading-tight">
               <span className="text-shimmer block md:inline">{t('franchiseTeaser.title1')}</span>
-              <span className="text-plum font-extrabold block md:inline md:ml-2">{t('franchiseTeaser.title2')}</span>
+              <span className="text-plum font-extrabold block md:inline md:ms-2">{t('franchiseTeaser.title2')}</span>
             </h2>
             <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-body max-w-xl mx-auto lg:mx-0">
               {t('franchiseTeaser.subtitle')}
