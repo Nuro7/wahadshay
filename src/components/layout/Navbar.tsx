@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "../../i18n/LanguageContext";
 
-const menuItems = ["Home", "About", "Menu", "Specials", "Franchise", "Gallery", "Contact"];
+const menuItems = ["Home", "About", "Specials", "Franchise", "Gallery", "Contact"];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,8 +39,8 @@ export function Navbar() {
     >
       <div
         className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-3 sm:px-6 md:px-8 py-1 md:py-2 ${isScrolled
-            ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]"
-            : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
+          ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]"
+          : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
           }`}
       >
         {/* Official Brand Logo */}
@@ -89,8 +89,8 @@ export function Navbar() {
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
                     className={`font-body text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 px-1 block uppercase ${isActive
-                        ? (isScrolled ? "text-plum font-semibold" : "text-white font-semibold")
-                        : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
+                      ? (isScrolled ? "text-plum font-semibold" : "text-white font-semibold")
+                      : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
                       }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
@@ -108,15 +108,15 @@ export function Navbar() {
         <div className="hidden sm:flex items-center gap-4 shrink-0">
           {/* Currency Switcher */}
           <div className={`flex items-center gap-1.5 rounded-full px-4 h-[40px] text-[12px] font-medium border transition-colors ${isScrolled
-              ? "bg-neutral-white border-neutral-border text-text-primary"
-              : "bg-white/5 border-white/10 text-white/85"
+            ? "bg-neutral-white border-neutral-border text-text-primary"
+            : "bg-white/5 border-white/10 text-white/85"
             }`}>
             <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
             <button
               onClick={() => setLanguage("EN")}
               className={`font-semibold cursor-pointer transition-colors ${language === "EN"
-                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                  : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+                ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
+                : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
                 }`}
             >
               EN
@@ -125,8 +125,8 @@ export function Navbar() {
             <button
               onClick={() => setLanguage("AR")}
               className={`font-semibold cursor-pointer transition-colors ${language === "AR"
-                  ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                  : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+                ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
+                : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
                 }`}
             >
               عربي
@@ -142,8 +142,8 @@ export function Navbar() {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`rounded-full w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center border transition-all cursor-pointer focus:outline-none ${isScrolled
-                ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum"
-                : "bg-white/5 border-white/10 text-white/80 hover:text-white"
+              ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum"
+              : "bg-white/5 border-white/10 text-white/80 hover:text-white"
               }`}
           >
             {isOpen ? <X size={18} /> : <Menu size={18} />}
@@ -156,7 +156,7 @@ export function Navbar() {
         <div className="fixed inset-0 w-screen h-screen lg:hidden flex flex-col bg-white text-text-primary z-[9999] animate-fade-in">
           {/* Header Section */}
           <div className="flex items-start justify-end pt-6 px-6 pb-4 border-b border-neutral-border/40">
-            
+
             <button
               onClick={() => setIsOpen(false)}
               className="p-1.5 text-text-primary hover:text-plum transition-colors cursor-pointer focus:outline-none rounded-full hover:bg-neutral-light-beige"
@@ -184,11 +184,10 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`block text-start text-[16px] tracking-[0.02em] uppercase transition-colors ${
-                      isActive
-                        ? "text-text-primary font-bold"
-                        : "text-text-secondary font-medium hover:text-text-primary"
-                    }`}
+                    className={`block text-start text-[16px] tracking-[0.02em] uppercase transition-colors ${isActive
+                      ? "text-text-primary font-bold"
+                      : "text-text-secondary font-medium hover:text-text-primary"
+                      }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
                   </a>

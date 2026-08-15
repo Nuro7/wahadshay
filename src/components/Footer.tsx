@@ -61,9 +61,6 @@ export function Footer() {
                 <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.aboutUs')}</a>
               </li>
               <li>
-                <a href="#menu" onClick={(e) => handleLinkClick(e, '#menu')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.theMenu')}</a>
-              </li>
-              <li>
                 <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.ourFranchise')}</a>
               </li>
               <li>

@@ -106,7 +106,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </p>
               </div>
 
-              <a href={isHomePage ? "#about" : "#menu"} className="group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4">
+              <a href={isHomePage ? "#about" : "#specials"} className="group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4">
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
                 <ArrowRight size={16} className="transform transition-transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </a>
@@ -173,7 +173,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
               
               return (
                 <a
-                  href={isHomePage ? "#about" : "#menu"}
+                  href={isHomePage ? "#about" : "#specials"}
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
                   className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative block`}

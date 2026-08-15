@@ -361,7 +361,7 @@ export default function Hero() {
 
           {/* CTA Buttons - Compact, solid yellow button aligned to the left */}
           <div className="hero-btn-container flex justify-start rtl:justify-end w-full">
-            <a href="#menu" className="w-fit">
+            <a href="#specials" className="w-fit">
               <button className="bg-yellow text-plum-dark rounded-full h-[36px] sm:h-[40px] px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold tracking-wide active:scale-[0.97] transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_15px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
                 {t('hero.exploreMenu')}
               </button>

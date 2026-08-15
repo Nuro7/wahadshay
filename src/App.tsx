@@ -6,8 +6,6 @@ import About from "./components/About";
 import MissionVision from "./components/MissionVision";
 import Vision2030 from "./components/Vision2030";
 import SignatureExperience from "./components/SignatureExperience";
-import Menu from "./components/Menu";
-import MenuBrochure from "./components/menu/MenuBrochure";
 import Specials from "./components/Specials";
 import Franchise from "./components/Franchise";
 import FranchiseSection from "./components/FranchiseSection";
@@ -30,7 +28,7 @@ function App() {
   useScrollReveal();
 
   // Currency State management
-  const [currency, setCurrency] = useState<"AED" | "SAR">("AED");
+  const [currency] = useState<"AED" | "SAR">("AED");
 
   // Routing State management
   const [currentPage, setCurrentPage] = useState<string>("home");
@@ -53,8 +51,6 @@ function App() {
         targetPage = "specials";
       } else if (["about"].includes(page)) {
         targetPage = "about";
-      } else if (["menu"].includes(page)) {
-        targetPage = "menu";
       } else if (["franchise"].includes(page)) {
         targetPage = "franchise";
       } else if (["gallery"].includes(page)) {
@@ -124,12 +120,6 @@ function App() {
               <MissionVision />
               <Vision2030 />
               <SignatureExperience />
-            </>
-          )}
-
-          {currentPage === "menu" && (
-            <>
-              <Menu currency={currency} />
             </>
           )}
 

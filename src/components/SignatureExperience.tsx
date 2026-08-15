@@ -49,7 +49,7 @@ export function SignatureExperience() {
             
             return (
               <a
-                href="#menu"
+                href="#specials"
                 key={exp.title}
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
                 className={`reveal luxury-card luxury-card-hover group p-8 md:p-12 flex flex-col justify-between min-h-[340px] relative overflow-hidden block ${colSpan}`}

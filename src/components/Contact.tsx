@@ -7,18 +7,29 @@ import { useLanguage } from "../i18n/LanguageContext";
 export function Contact() {
   const { t, language } = useLanguage();
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", subject: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (!formData.name || !formData.email || !formData.phone || !formData.message) return;
     setIsSubmitting(true);
+
+    const emailTo = "Info@wahadshaycafe.com";
+    const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
+    const emailBody = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
+    );
+
+    const mailtoUrl = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
+
+    window.location.href = mailtoUrl;
+
     setTimeout(() => {
       setIsSubmitting(false);
       setFormSubmitted(true);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    }, 1200);
   };
 
   return (
@@ -108,7 +119,7 @@ export function Contact() {
                   <span className="hidden sm:inline">{t('contact.callHq')}</span>
                 </a>
                 <a
-                  href="mailto:info@wahadshay.com"
+                  href="mailto:Info@wahadshaycafe.com"
                   className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
                   <Mail size={16} className="text-plum shrink-0" />
@@ -171,19 +182,31 @@ export function Contact() {
                           placeholder={t('contact.form.emailPlaceholder')}
                         />
                       </div>
+                      <div className="space-y-2.5 group">
+                        <label htmlFor="phone" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.phoneLabel')}</label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          required
+                          value={formData.phone}
+                          onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          placeholder={t('contact.form.phonePlaceholder')}
+                        />
+                      </div>
+                      <div className="space-y-2.5 group">
+                        <label htmlFor="subject" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
+                        <input
+                          type="text"
+                          id="subject"
+                          value={formData.subject}
+                          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          placeholder={t('contact.form.subjectPlaceholder')}
+                        />
+                      </div>
                     </div>
 
-                    <div className="space-y-2.5 group">
-                      <label htmlFor="subject" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
-                      <input
-                        type="text"
-                        id="subject"
-                        value={formData.subject}
-                        onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
-                        placeholder={t('contact.form.subjectPlaceholder')}
-                      />
-                    </div>
 
                     <div className="space-y-2.5 group">
                       <label htmlFor="message" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
