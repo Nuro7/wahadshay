@@ -6,21 +6,103 @@ import { useLanguage } from "../i18n/LanguageContext";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Branch {
+  id: string;
+  name: string;
   city: string;
   area: string;
   status: "Open" | "Coming Soon";
-  x: string; // Percent for map pin placement
+  mapLink: string;
+  x: string;
   y: string;
-  mapX: number; // SVG coordinate for connection line
+  mapX: number;
   mapY: number;
-  textOffset: string; // Offset class to prevent overlap on map
+  labelX: number;
+  labelY: number;
+  textAnchor: string;
+  textOffset: string;
 }
 
 const branches: Branch[] = [
-  { city: "Ajman", area: "Al Jurf", status: "Open", x: "62%", y: "50%", mapX: 495, mapY: 315, textOffset: "bottom-full left-1/2 -translate-x-1/2 mb-2.5" },
-  { city: "Dubai", area: "Al Barsha", status: "Coming Soon", x: "58%", y: "58%", mapX: 464, mapY: 362, textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5" },
-  { city: "Sharjah", area: "Muwaileh", status: "Coming Soon", x: "60%", y: "53%", mapX: 480, mapY: 331, textOffset: "left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap" },
-  { city: "Abu Dhabi", area: "Al Falah", status: "Open", x: "42%", y: "63%", mapX: 336, mapY: 393, textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5" },
+  {
+    id: "ajman-hamidiya",
+    name: "Hamidiya 2",
+    city: "Ajman",
+    area: "Hamidiya 2",
+    status: "Open",
+    mapLink: "https://maps.app.goo.gl/iLMkUuH1znTLXTrv7",
+    x: "62%",
+    y: "50%",
+    mapX: 495,
+    mapY: 315,
+    labelX: 512,
+    labelY: 319,
+    textAnchor: "start",
+    textOffset: "bottom-full left-1/2 -translate-x-1/2 mb-2.5",
+  },
+  {
+    id: "ajman-rawda",
+    name: "Al Rawda",
+    city: "Ajman",
+    area: "Al Rawda",
+    status: "Coming Soon",
+    mapLink: "https://www.google.com/maps?q=25.387664794921875,55.505889892578125&z=17&hl=en",
+    x: "64%",
+    y: "44%",
+    mapX: 515,
+    mapY: 285,
+    labelX: 532,
+    labelY: 289,
+    textAnchor: "start",
+    textOffset: "bottom-full left-1/2 -translate-x-1/2 mb-2.5",
+  },
+  {
+    id: "sharjah-muwaileh",
+    name: "Muwaileh",
+    city: "Sharjah",
+    area: "Muwaileh",
+    status: "Coming Soon",
+    mapLink: "https://www.google.com/maps/search/CHUNKIES%2F%20Kader%20Abdul%20Kader%20Cafe/@25.310611724853516,55.450016021728516,17z?hl=en",
+    x: "58%",
+    y: "55%",
+    mapX: 468,
+    mapY: 342,
+    labelX: 452,
+    labelY: 346,
+    textAnchor: "end",
+    textOffset: "left-full top-1/2 -translate-y-1/2 ml-3 whitespace-nowrap",
+  },
+  {
+    id: "abudhabi-alfalah",
+    name: "Al Falah St",
+    city: "Abu Dhabi",
+    area: "Al Falah Street",
+    status: "Open",
+    mapLink: "https://maps.app.goo.gl/3ia7anHBa87BQpxi9",
+    x: "40%",
+    y: "61%",
+    mapX: 326,
+    mapY: 385,
+    labelX: 310,
+    labelY: 389,
+    textAnchor: "end",
+    textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5",
+  },
+  {
+    id: "abudhabi-alwahda",
+    name: "Al Wahda Mall",
+    city: "Abu Dhabi",
+    area: "Opp. Al Wahda Mall",
+    status: "Open",
+    mapLink: "https://maps.app.goo.gl/HtHLeQNaqkc9EqUi8",
+    x: "45%",
+    y: "67%",
+    mapX: 355,
+    mapY: 425,
+    labelX: 370,
+    labelY: 429,
+    textAnchor: "start",
+    textOffset: "top-full left-1/2 -translate-x-1/2 mt-2.5",
+  },
 ];
 
 // Continuous golden floating particles component
@@ -85,25 +167,31 @@ export default function FranchiseSection() {
     setMousePosition({ x: 0, y: 0 });
   };
 
-  // Defined curved SVG lines connecting locations
+  // Defined curved SVG lines connecting all 5 outlet locations into a complete network
   const routes = [
     {
-      id: "ajman-dubai",
-      path: "M 495 315 Q 480 338 464 362",
-      from: "Ajman",
-      to: "Dubai",
+      id: "abudhabi-wahda-alfalah",
+      path: "M 355 425 Q 338 408 326 385",
+      from: "Abu Dhabi",
+      to: "Abu Dhabi",
     },
     {
-      id: "dubai-sharjah",
-      path: "M 464 362 Q 472 345 480 331",
-      from: "Dubai",
+      id: "abudhabi-sharjah",
+      path: "M 326 385 Q 395 360 468 342",
+      from: "Abu Dhabi",
       to: "Sharjah",
     },
     {
-      id: "dubai-abudhabi",
-      path: "M 464 362 Q 395 385 336 393",
-      from: "Dubai",
-      to: "Abu Dhabi",
+      id: "sharjah-ajman-hamidiya",
+      path: "M 468 342 Q 482 328 495 315",
+      from: "Sharjah",
+      to: "Ajman",
+    },
+    {
+      id: "ajman-hamidiya-rawda",
+      path: "M 495 315 Q 505 299 515 285",
+      from: "Ajman",
+      to: "Ajman",
     },
   ];
 
@@ -597,37 +685,14 @@ export default function FranchiseSection() {
                   })}
                 </g>
 
-                {/* Render Location Markers directly inside the SVG space to ensure perfect alignment */}
-                {branches.map((b, i) => {
+                {/* Render Location Markers for all 5 outlets */}
+                {branches.map((b) => {
                   const isActive = hoveredCard === b.city;
                   const isOpen = b.status === "Open";
 
-                  // SVG coordinate offsets for city names to prevent overlap:
-                  // Ajman: text above (mapX, mapY - 24)
-                  // Dubai: text below (mapX, mapY + 28)
-                  // Sharjah: text to the right (mapX + 16, mapY + 4)
-                  // Abu Dhabi: text below (mapX, mapY + 28)
-                  let textX = b.mapX;
-                  let textY = b.mapY;
-                  let textAnchor = "middle";
-
-                  if (b.city === "Ajman") {
-                    textX = b.mapX + 16;
-                    textY = b.mapY + 4;
-                    textAnchor = "start";
-                  } else if (b.city === "Dubai") {
-                    textY = b.mapY + 28;
-                  } else if (b.city === "Sharjah") {
-                    textX = b.mapX + 16;
-                    textY = b.mapY + 4;
-                    textAnchor = "start";
-                  } else if (b.city === "Abu Dhabi") {
-                    textY = b.mapY + 28;
-                  }
-
                   return (
                     <g
-                      key={b.city}
+                      key={b.id}
                       className="transition-all duration-300 cursor-pointer"
                       onClick={() => setSelectedBranch(b)}
                       onMouseEnter={() => setHoveredCard(b.city)}
@@ -636,7 +701,7 @@ export default function FranchiseSection() {
                       {/* Invisible clickable area to ensure reliable clicks */}
                       <circle cx={b.mapX} cy={b.mapY - 10} r="25" fill="transparent" />
 
-                      {/* Ring ping ripple animation (drawn as an SVG expanding circle) */}
+                      {/* Ring ping ripple animation */}
                       <circle
                         cx={b.mapX}
                         cy={b.mapY}
@@ -666,25 +731,77 @@ export default function FranchiseSection() {
                         </div>
                       </foreignObject>
 
-                      {/* City Label Text */}
+                      {/* Location Name Label */}
                       <text
-                        x={textX}
-                        y={textY}
-                        textAnchor={textAnchor}
+                        x={b.labelX}
+                        y={b.labelY}
+                        textAnchor={b.textAnchor as any}
                         stroke="none"
-                        className="font-display font-black transition-all duration-300 select-none pointer-events-auto text-[18px] sm:text-[15px] md:text-[13px]"
-                        fill="#FFFFFF"
+                        className={`font-display font-extrabold transition-all duration-300 select-none pointer-events-auto text-[14px] sm:text-[13px] ${isActive ? "fill-yellow" : "fill-white"
+                          }`}
                         style={{
-                          letterSpacing: "0.05em",
+                          letterSpacing: "0.04em",
+                          filter: "drop-shadow(0 2px 5px rgba(0,0,0,0.85))",
                         }}
                       >
-                        {t(`cities.${b.city.toLowerCase().replace(' ', '')}`) || b.city}
+                        {b.name}
                       </text>
                     </g>
                   );
                 })}
+
               </svg>
             </div>
+          </div>
+
+          {/* Outlet Cards Grid with Centered Alignment & Deep Purple Text */}
+          <div className="mt-10 md:mt-16 flex flex-wrap justify-center gap-6 font-body text-start">
+            {branches.map((b) => (
+              <div
+                key={b.id}
+                onClick={() => setSelectedBranch(b)}
+                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300 border border-neutral-border/80 bg-white/95 shadow-sm hover:shadow-lg cursor-pointer"
+              >
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-plum">
+                      {b.city}
+                    </span>
+                    {b.status === "Open" ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
+                        <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
+                        Open
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-amber-800 border border-yellow/30">
+                        <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
+                        Coming Soon
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="font-display text-lg font-black text-plum-dark group-hover:text-plum transition-colors leading-tight">
+                    {b.name}
+                  </h3>
+                  <p className="text-xs text-plum-dark/70 font-medium">
+                    {b.area}, {b.city}
+                  </p>
+                </div>
+
+                <div className="pt-5 mt-4 border-t border-neutral-border/60 flex items-center justify-between">
+                  <a
+                    href={b.mapLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 transition-colors"
+                  >
+                    <MapPin size={14} />
+                    Open in Google Maps
+                    <Navigation size={12} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -698,7 +815,7 @@ export default function FranchiseSection() {
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.95, y: 20 }}
                   transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-border"
+                  className="relative w-full max-w-sm bg-white rounded-3xl shadow-2xl overflow-hidden border border-neutral-border text-start"
                 >
                   {/* Close Button */}
                   <button
@@ -709,12 +826,12 @@ export default function FranchiseSection() {
                   </button>
 
                   {/* Modal Header */}
-                  <div className="relative h-40 bg-plum-dark overflow-hidden flex flex-col items-center justify-center">
+                  <div className="relative h-40 bg-plum-dark overflow-hidden flex flex-col items-center justify-center text-center">
                     <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'80\' height=\'80\' viewBox=\'0 0 80 80\'%3E%3Cpath d=\'M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z\' fill=\'%23F5BD20\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E')] bg-[length:80px_80px]" />
                     <div className="absolute inset-0 bg-gradient-to-t from-plum-dark via-plum-dark/50 to-transparent" />
                     <MapPin size={40} className="text-yellow relative z-10 opacity-90 drop-shadow-md mb-2" />
                     <h3 className="text-2xl font-extrabold tracking-tight text-white font-display relative z-10 drop-shadow-md">
-                      {t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city}
+                      {selectedBranch.city}
                     </h3>
                   </div>
 
@@ -738,20 +855,24 @@ export default function FranchiseSection() {
                         )}
                       </div>
 
-                      <p className="text-text-secondary text-base font-medium font-body mb-4">
-                        {t(`areas.${selectedBranch.area.toLowerCase().replace(' ', '')}`) || selectedBranch.area}
+                      <p className="text-text-primary font-extrabold text-lg font-display mb-1">
+                        {selectedBranch.name}
                       </p>
-
-                      <p className="text-sm text-text-secondary/80 font-body leading-relaxed">
-                        {t('about.franchiseSection.modal.desc').replace('{city}', t(`cities.${selectedBranch.city.toLowerCase().replace(' ', '')}`) || selectedBranch.city)}
+                      <p className="text-text-secondary text-sm font-medium font-body mb-3">
+                        {selectedBranch.area}, {selectedBranch.city}
                       </p>
                     </div>
 
                     <div className="border-t border-neutral-border/60 pt-6">
-                      <button className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer">
+                      <a
+                        href={selectedBranch.mapLink}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer"
+                      >
                         <Navigation size={16} />
                         {t('about.franchiseSection.modal.getDirections') || 'Get Directions'}
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </motion.div>

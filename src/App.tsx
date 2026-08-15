@@ -27,8 +27,6 @@ function App() {
   // Initialize vanilla scroll reveal animation system
   useScrollReveal();
 
-  // Currency State management
-  const [currency] = useState<"AED" | "SAR">("AED");
 
   // Routing State management
   const [currentPage, setCurrentPage] = useState<string>("home");
@@ -110,7 +108,7 @@ function App() {
 
           {currentPage === "specials" && (
             <>
-              <Specials currency={currency} />
+              <Specials />
             </>
           )}
 

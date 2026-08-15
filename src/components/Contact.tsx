@@ -78,7 +78,7 @@ export function Contact() {
                   <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.addressLabel')}</h4>
                   <p className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-plum transition-colors duration-300">{t('contact.address')}</p>
                   <a 
-                    href="https://maps.google.com" 
+                    href="https://maps.app.goo.gl/3ia7anHBa87BQpxi9" 
                     target="_blank" 
                     rel="noreferrer" 
                     className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3 transition-colors"

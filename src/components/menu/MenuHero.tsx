@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import burgerImg from "../../assets/wahad_burger.png";
+import burgerImg from "../../assets/Hot Chicken Burger.jpg";
 import { useLanguage } from "../../i18n/LanguageContext";
 
 export const MenuHero: React.FC = () => {

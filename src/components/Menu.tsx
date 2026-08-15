@@ -6,10 +6,10 @@ import { Leaf, Utensils, Coffee, Sparkles } from "lucide-react";
 // Import local premium assets
 import parathaImg from "../assets/demo/burger.png";
 import plateImg from "../assets/demo/combo.png";
-import dipBurgerImg from "../assets/dip_burger.png";
-import loadedFriesImg from "../assets/loaded_fries.png";
-import wahadBurgerImg from "../assets/wahad_burger.png";
-import cheeseImg from "../assets/cheese_dripping.png";
+import dipBurgerImg from "../assets/Juicy Dip.jpg";
+import loadedFriesImg from "../assets/Hot Chicken Rice.jpg";
+import wahadBurgerImg from "../assets/Hot Chicken Burger.jpg";
+import cheeseImg from "../assets/Mini Bites.jpg";
 
 const categories = [
   "ALL",

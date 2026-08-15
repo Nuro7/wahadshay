@@ -3,10 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, X } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-import teacupImg from "../assets/wahad_teacup.png";
-import burgerImg from "../assets/wahad_burger.png";
-import cheeseImg from "../assets/cheese_dripping.png";
-import friesImg from "../assets/loaded_fries.png";
+import hotChickenBurgerImg from "../assets/Hot Chicken Burger.jpg";
+import hotChickenRiceImg from "../assets/Hot Chicken Rice.jpg";
+import juicyDipImg from "../assets/Juicy Dip.jpg";
+import miniBitesImg from "../assets/Mini Bites.jpg";
+import specialItemImg from "../assets/Hot Chicken.jpg";
 
 type MediaType = 'image' | 'video';
 
@@ -20,14 +21,14 @@ interface MediaItem {
 }
 
 const mediaItems: MediaItem[] = [
-  { id: '1', type: 'image', src: teacupImg, label: 'TEA', actionText: 'VIEW STORY', aspectRatio: 'aspect-[3/4]' },
+  { id: '1', type: 'image', src: hotChickenBurgerImg, label: 'BURGER', actionText: 'VIEW STORY', aspectRatio: 'aspect-[3/4]' },
   { id: '4', type: 'video', src: '/home.mp4', label: 'ATMOSPHERE', actionText: 'WATCH', aspectRatio: 'aspect-[4/3]' },
-  { id: '2', type: 'image', src: cheeseImg, label: 'BAKERY', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
-  { id: '5', type: 'image', src: friesImg, label: 'CRAFT', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
+  { id: '2', type: 'image', src: juicyDipImg, label: 'JUICY DIP', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
+  { id: '5', type: 'image', src: hotChickenRiceImg, label: 'RICE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
   { id: '6', type: 'video', src: '/home1.mp4', label: 'CULTURE', actionText: 'WATCH', aspectRatio: 'aspect-[3/4]' },
-  { id: '3', type: 'image', src: burgerImg, label: 'CAFE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/3]' },
-  { id: '7', type: 'image', src: teacupImg, label: 'MOMENTS', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
-  { id: '8', type: 'image', src: cheeseImg, label: 'TASTE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
+  { id: '3', type: 'image', src: miniBitesImg, label: 'BITES', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/3]' },
+  { id: '7', type: 'image', src: specialItemImg, label: 'SPECIAL', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
+  { id: '8', type: 'image', src: hotChickenBurgerImg, label: 'TASTE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
 ];
 
 export function Gallery() {
