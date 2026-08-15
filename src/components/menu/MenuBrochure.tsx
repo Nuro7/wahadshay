@@ -1,13 +1,13 @@
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Pizza, Coffee, Croissant, Beef, Sandwich, Salad, ChefHat, IceCream } from "lucide-react";
-import burgerImg from "../../assets/demo/burger.png";
-import parathaImg from "../../assets/demo/paratha.png";
-import indomieImg from "../../assets/demo/indomie.png";
-import comboImg from "../../assets/demo/combo.png";
-import wrapImg from "../../assets/demo/wrap.png";
-import plateImg from "../../assets/demo/plate.png";
-import wahadImg from "../../assets/demo/wahad.png";
+import burgerImg from "../../assets/hot_chicken_burger.jpg";
+import parathaImg from "../../assets/hot_chicken.jpg";
+import indomieImg from "../../assets/hot_chicken_rice.jpg";
+import comboImg from "../../assets/mini_bites.jpg";
+import wrapImg from "../../assets/juicy_dip.jpg";
+import plateImg from "../../assets/hot_chicken_rice.jpg";
+import wahadImg from "../../assets/hot_chicken.jpg";
 
 // Reusing some demo images to represent the items in the brochure
 const P06_BURGER = burgerImg;

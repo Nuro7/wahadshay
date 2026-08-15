@@ -4,12 +4,12 @@ import { useLanguage } from "../i18n/LanguageContext";
 import { Leaf, Utensils, Coffee, Sparkles } from "lucide-react";
 
 // Import local premium assets
-import parathaImg from "../assets/demo/burger.png";
-import plateImg from "../assets/demo/combo.png";
-import dipBurgerImg from "../assets/Juicy Dip.jpg";
-import loadedFriesImg from "../assets/Hot Chicken Rice.jpg";
-import wahadBurgerImg from "../assets/Hot Chicken Burger.jpg";
-import cheeseImg from "../assets/Mini Bites.jpg";
+import parathaImg from "../assets/hot_chicken.jpg";
+import plateImg from "../assets/hot_chicken_rice.jpg";
+import dipBurgerImg from "../assets/juicy_dip.jpg";
+import loadedFriesImg from "../assets/hot_chicken_rice.jpg";
+import wahadBurgerImg from "../assets/hot_chicken_burger.jpg";
+import cheeseImg from "../assets/mini_bites.jpg";
 
 const categories = [
   "ALL",

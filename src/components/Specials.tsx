@@ -1,8 +1,8 @@
-import hotChickenBurgerImg from "../assets/Hot Chicken Burger.jpg";
-import hotChickenRiceImg from "../assets/Hot Chicken Rice.jpg";
-import juicyDipImg from "../assets/Juicy Dip.jpg";
-import miniBitesImg from "../assets/Mini Bites.jpg";
-import specialItemImg from "../assets/Hot Chicken.jpg";
+import hotChickenBurgerImg from "../assets/hot_chicken_burger.jpg";
+import hotChickenRiceImg from "../assets/hot_chicken_rice.jpg";
+import juicyDipImg from "../assets/juicy_dip.jpg";
+import miniBitesImg from "../assets/mini_bites.jpg";
+import specialItemImg from "../assets/hot_chicken.jpg";
 import { useLanguage } from "../i18n/LanguageContext";
 import { Sparkles } from "lucide-react";
 

@@ -1,15 +1,15 @@
-import parathaImg from "../assets/demo/paratha.png";
-import indomieImg from "../assets/demo/indomie.png";
-import burgerSpImg from "../assets/demo/burger.png";
-import comboImg from "../assets/demo/combo.png";
-import wrapImg from "../assets/demo/wrap.png";
-import plateImg from "../assets/demo/plate.png";
-import wahadImg from "../assets/demo/wahad.png";
-import saladImg from "../assets/demo/salad.png";
-import soupImg from "../assets/demo/soup.png";
-import juiceImg from "../assets/demo/juice.png";
-import milkshakeImg from "../assets/demo/milkshake.png";
-import dessertImg from "../assets/demo/dessert.png";
+import parathaImg from "../assets/hot_chicken.jpg";
+import indomieImg from "../assets/hot_chicken_rice.jpg";
+import burgerSpImg from "../assets/hot_chicken_burger.jpg";
+import comboImg from "../assets/mini_bites.jpg";
+import wrapImg from "../assets/juicy_dip.jpg";
+import plateImg from "../assets/hot_chicken_rice.jpg";
+import wahadImg from "../assets/hot_chicken.jpg";
+import saladImg from "../assets/mini_bites.jpg";
+import soupImg from "../assets/hot_chicken_rice.jpg";
+import juiceImg from "../assets/juicy_dip.jpg";
+import milkshakeImg from "../assets/hot_chicken_burger.jpg";
+import dessertImg from "../assets/mini_bites.jpg";
 
 export interface Product {
   id: string;
