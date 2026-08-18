@@ -72,22 +72,22 @@ export const translations: any = {
     testimonials: {
       badge: "Guest Experience",
       title: "Customer Testimonials",
-      subtitle: "What our guests and network partners say about their Wahad Shay café experience.",
+      subtitle: "What our guests say about their Wahad Shay café experience.",
       items: [
         {
-          name: "Yousef Al-Mutawa",
-          role: "Food & Hospitality Critic, Dubai",
-          text: "Wahad Shay has elevated the tea lounge experience to pure art. The Karak Special is double-spiced perfection, and the cheese brioche melts like butter in the sun. Truly Rolls-Royce digital hospitality."
+          name: "Regular Customer",
+          role: "Al Wahda",
+          text: "I’ve visited Wahad Shay Al Wahda a few times now, and what stands out is how different the food feels from the usual café options. The Mac Tower was honestly a surprise—not just in presentation, but in the taste as well. The Mini Bites were also really enjoyable. The staff are friendly, attentive and quick with the service, which makes the whole experience even better. You can tell there’s a lot of thought behind both the food and presentation."
         },
         {
-          name: "Sarah Lindqvist",
-          role: "Artisan Baker & Enthusiast, Riyadh",
-          text: "The fermentation of their smoked turkey croissant is flawless—airy, flaky layers with the exact right bite. Combined with the saffron infusion, it is a culinary harmony you don't find elsewhere."
+          name: "Happy Customer",
+          role: "Al Falah",
+          text: "I tried Wahad Shay Al Falah recently and really enjoyed the experience. The wraps and sandwiches were fresh, well prepared and had their own unique flavours. Nothing felt ordinary or like a standard fast-food item. I also liked how neatly everything was presented. The service was warm and professional, and the team made sure everything was served properly. Definitely a place I would visit again."
         },
         {
-          name: "Faisal Bin Salman",
-          role: "Franchise Investor, Abu Dhabi",
-          text: "Partnering with Wahad Shay was a seamless experience. Their operations, store design support, and proprietary spice blends are world-class. Our Abu Dhabi branch has become a community landmark."
+          name: "Happy Customer",
+          role: "Ajman",
+          text: "Wahad Shay has a really nice combination of good food and good service. I tried the burgers and was impressed by the flavour and presentation—they felt different from what you normally get at a café. The food was fresh, portions were good, and the staff were genuinely welcoming. It’s clear that Wahad Shay focuses on creating its own style rather than simply serving the usual items."
         }
       ]
     },
@@ -155,11 +155,11 @@ export const translations: any = {
     menuFooter: "Made with passion. Served with love. Remembered always.",
     about: {
       storyBadge: "Our Story",
-      storyTitle1: "A Symphony",
-      storyTitle2: "of Tea",
-      storyTitle3: "& Baked Craft",
-      storyDesc1: "Wahad Shay was born from a simple yet profound desire: to create a sanctuary where the ancient, rich traditions of slow-brewed tea meet the meticulous artistry of European baking.",
-      storyDesc2: "From our signature cardamom-infused Karak to our melting cheddar brioches, every item on our menu is a testament to culinary craftsmanship. We import raw saffron directly, hand-crush whole spices, and allow our bread doughs to slow-ferment for over 24 hours to achieve an exquisite, pillowy structure.",
+      storyTitle1: "Crafted with Passion,",
+      storyTitle2: "",
+      storyTitle3: "Served with Heart",
+      storyDesc1: "Wahad Shay was born from a simple belief – food should bring people together. We set out to create a café experience where bold flavours, quality ingredients and warm hospitality come together in every cup and every bite.",
+      storyDesc2: "",
       discoverMore: "Discover More",
       mottoBadge: "The Brand Motto",
       mottoText: "\"A World of Flavor in One Place. Prepared with passion, served with elegance.\"",
@@ -531,22 +531,22 @@ export const translations: any = {
     testimonials: {
       badge: "تجربة الضيوف",
       title: "آراء العملاء",
-      subtitle: "ما يقوله ضيوفنا وشركاء الشبكة عن تجربتهم في مقهى واحد شاي.",
+      subtitle: "ما يقوله ضيوفنا عن تجربتهم في مقهى واحد شاي.",
       items: [
         {
-          name: "يوسف المطوع",
-          role: "ناقد طعام وضيافة، دبي",
-          text: "لقد ارتقى واحد شاي بتجربة صالة الشاي إلى فن خالص. كرك مميز هو كمال مضاعف التوابل، وبريوش الجبن يذوب كالزبدة في الشمس. ضيافة رقمية من طراز رولز رويس حقًا."
+          name: "عميل دائم",
+          role: "فرع الوحدة",
+          text: "لقد زرت واحد شاي فرع الوحدة عدة مرات الآن، وما يميز المكان هو كيف يبدو الطعام مختلفًا عن خيارات المقاهي المعتادة. كانت ماك تاور مفاجأة بحق — ليس فقط في التقديم، ولكن في المذاق أيضًا. كانت الميني بايتس ممتعة للغاية أيضًا. طاقم العمل ودود ومهتم وسريع في الخدمة، مما يجعل التجربة بأكملها أفضل. يمكنك أن تلاحظ أن هناك الكثير من التفكير والعناية وراء كل من الطعام والتقديم."
         },
         {
-          name: "سارة ليندكفيست",
-          role: "خبازة حرفية وعاشقة، الرياض",
-          text: "تخمير كرواسون الديك الرومي المدخن لديهم لا تشوبه شائبة - طبقات هشة وخفيفة مع قرمشة مثالية. مقترنة بنقيع الزعفران، إنها تناغم طهي لا تجده في أي مكان آخر."
+          name: "عميل سعيد",
+          role: "فرع الفلاح",
+          text: "جربت واحد شاي فرع الفلاح مؤخرًا واستمتعت حقًا بالتجربة. كانت الوجبات والساندويتشات طازجة ومعدة جيدًا ولها نكهاتها الفريدة الخاصة. لم يشعرني أي شيء بأنه عادي أو مثل وجبات الوجبات السريعة التقليدية. أعجبني أيضًا مدى ترتيب وأناقة تقديم كل شيء. كانت الخدمة دافئة واحترافية، وحرص الفريق على تقديم كل شيء بشكل ممتاز. بالتأكيد مكان سأزوره مرة أخرى."
         },
         {
-          name: "فيصل بن سلمان",
-          role: "مستثمر امتياز، أبو ظبي",
-          text: "كانت الشراكة مع واحد شاي تجربة سلسة. عملياتهم ودعم تصميم المتاجر وخلطات التوابل الخاصة بهم ذات مستوى عالمي. أصبح فرعنا في أبو ظبي معلمًا مجتمعيًا."
+          name: "عميل سعيد",
+          role: "عجمان",
+          text: "يمتلك واحد شاي مزيجًا رائعًا حقًا بين الطعام الجيد والخدمة الممتازة. جربت البرجر وانبهرت بالنكهة والتقديم — كانت مختلفة عما تحصل عليه عادةً في المقهى. كان الطعام طازجًا، والوجبات مشبعة وممتازة، وكان طاقم العمل مرحبًا للغاية. من الواضح أن واحد شاي يركز على إنشاء أسلوبه الخاص بدلاً من مجرد تقديم الأصناف المعتادة."
         }
       ]
     },
@@ -614,11 +614,11 @@ export const translations: any = {
     menuFooter: "صُنع بشغف. قُدم بحب. يُتذكر دائماً.",
     about: {
       storyBadge: "قصتنا",
-      storyTitle1: "سيمفونية",
-      storyTitle2: "الشاي",
-      storyTitle3: "والمخبوزات الحرفية",
-      storyDesc1: "وُلِد واحد شاي من رغبة بسيطة وعميقة: إنشاء ملاذ تلتقي فيه التقاليد القديمة والغنية للشاي المخمر ببطء مع الفن الدقيق للمخبوزات الأوروبية.",
-      storyDesc2: "بدءًا من الكرك المميز بالهيل وحتى بريوش الشيدر الذائب، فإن كل عنصر في قائمتنا هو شهادة على براعة الطهي. نحن نستورد الزعفران الخام مباشرة، ونسحق التوابل الكاملة يدويًا، ونترك عجينة الخبز لدينا لتتخمر ببطء لأكثر من 24 ساعة لتحقيق بنية رائعة وناعمة.",
+      storyTitle1: "صُنِعَ بشَغَف،",
+      storyTitle2: "",
+      storyTitle3: "وُقُدِّمَ بمَحَبَّة",
+      storyDesc1: "وُلِدَ واحد شاي من إيمان بسيط – الطعام يجب أن يجمع الناس معاً. انطلقنا لنبتكر تجربة مقهى تتلاقى فيها النكهات الجريئة، والمكونات عالية الجودة، والضيافة الدافئة في كل كوب وكل قضمة.",
+      storyDesc2: "",
       discoverMore: "اكتشف المزيد",
       mottoBadge: "شعار العلامة التجارية",
       mottoText: "\"عالم من النكهات في مكان واحد. محضر بشغف، يُقدم بأناقة.\"",

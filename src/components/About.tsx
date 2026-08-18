@@ -78,11 +78,11 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
         <div className="premium-container relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left: Editorial Story */}
-            <div className="reveal-left reveal space-y-10 lg:col-span-7">
-              <div className="space-y-6">
+            <div className="reveal-left reveal space-y-8 lg:col-span-7">
+              <div className="space-y-4">
                 <div className="flex items-center gap-4">
                   <span className="h-px w-8 bg-plum/40 block" />
                   <span className="text-plum text-[11px] font-bold uppercase tracking-[0.3em]">
@@ -91,59 +91,69 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </div>
                 
                 <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight">
-                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
-                  <br />
-                  <span className="text-plum">{t('about.storyTitle3')}</span>
+                  <span className="text-shimmer">{t('about.storyTitle1')}</span>
+                  {t('about.storyTitle2') && <><span className="text-shimmer-gold"> {t('about.storyTitle2')}</span></>}
+                  {t('about.storyTitle3') && (
+                    <>
+                      <br />
+                      <span className="text-shimmer">{t('about.storyTitle3')}</span>
+                    </>
+                  )}
                 </h2>
               </div>
 
-              <div className="space-y-6 max-w-xl">
-                <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
-                  {t('about.storyDesc1')}
-                </p>
-                <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
-                  {t('about.storyDesc2')}
-                </p>
+              <div className="space-y-4 max-w-xl">
+                {t('about.storyDesc1') && (
+                  <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
+                    {t('about.storyDesc1')}
+                  </p>
+                )}
+                {t('about.storyDesc2') && (
+                  <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
+                    {t('about.storyDesc2')}
+                  </p>
+                )}
               </div>
 
-              <a href={isHomePage ? "#about" : "#specials"} className="group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4">
+              <a href={isHomePage ? "#about" : "#specials"} className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-2">
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
                 <ArrowRight size={16} className="transform transition-transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
               </a>
             </div>
 
-            {/* Right: Brand Motto Card */}
-            <div className="reveal-right reveal relative lg:col-span-5 h-full flex items-center">
-              <div className="w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm p-10 md:p-14 text-center relative z-10 border border-neutral-border/60 flex flex-col justify-center gap-12 aspect-[4/5] shadow-lg rounded-2xl overflow-hidden">
-                {/* Decorative Top */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-plum/30 to-transparent rounded-t-2xl" />
+            {/* Right: Enlarged Height Brand Motto Card */}
+            <div className="reveal-right reveal relative lg:col-span-5 flex items-center justify-center lg:justify-start">
+              <div className="w-full max-w-md bg-white/90 backdrop-blur-md py-12 md:py-14 px-8 md:px-10 text-center relative z-10 border border-neutral-border/70 flex flex-col justify-center min-h-[340px] md:min-h-[360px] shadow-sm rounded-2xl overflow-hidden">
+                {/* Decorative Top Line */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-plum/40 to-transparent rounded-t-2xl" />
                 
-                {/* Thematic Botanical Patterns */}
-                <div className="absolute top-[-10%] right-[-15%] opacity-[0.04] text-plum transform rotate-45 pointer-events-none">
-                  <Leaf size={280} strokeWidth={0.5} />
+                {/* Thematic Botanical Background Leaf Accent */}
+                <div className="absolute top-[-10%] right-[-10%] opacity-[0.04] text-plum transform rotate-45 pointer-events-none">
+                  <Leaf size={240} strokeWidth={0.5} />
                 </div>
-                <div className="absolute bottom-[-10%] left-[-15%] opacity-[0.03] text-yellow transform -rotate-12 pointer-events-none">
-                  <Leaf size={320} strokeWidth={0.5} />
+                <div className="absolute bottom-[-10%] left-[-10%] opacity-[0.03] text-yellow transform -rotate-12 pointer-events-none">
+                  <Leaf size={260} strokeWidth={0.5} />
                 </div>
 
-                <div className="space-y-8 relative">
-                  <span className="text-[9px] uppercase font-bold tracking-[0.4em] text-text-secondary/60">
+                <div className="space-y-6 md:space-y-8 relative">
+                  <span className="text-[9.5px] uppercase font-bold tracking-[0.4em] text-text-secondary/70 block">
                     {t('about.mottoBadge')}
                   </span>
                   
-                  <blockquote className="font-display text-2xl md:text-3xl italic font-light leading-[1.4] text-text-primary px-4">
+                  <blockquote className="font-display text-lg md:text-xl italic font-light leading-relaxed text-text-primary px-3">
                     {t('about.mottoText')}
                   </blockquote>
                   
-                  <div className="pt-8 flex flex-col items-center gap-4">
-                    <div className="h-6 w-px bg-plum/20" />
-                    <span className="font-display text-[10px] font-bold tracking-[0.3em] text-plum uppercase">
+                  <div className="pt-4 flex flex-col items-center gap-3">
+                    <div className="h-6 w-px bg-plum/25" />
+                    <span className="font-display text-[10.5px] font-bold tracking-[0.3em] text-plum uppercase">
                       {t('about.mottoFooter')}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>

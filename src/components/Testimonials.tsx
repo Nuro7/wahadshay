@@ -10,22 +10,19 @@ interface Testimonial {
 
 const testimonialsData: Testimonial[] = [
   {
-    name: "Yousef Al-Mutawa",
-    role: "Food & Hospitality Critic, Dubai",
-    text: "Wahad Shay has elevated the tea lounge experience to pure art. The Karak Special is double-spiced perfection, and the cheese brioche melts like butter in the sun. Truly Rolls-Royce digital hospitality.",
+    name: "Regular Customer",
+    role: "Al Wahda",
+    text: "I’ve visited Wahad Shay Al Wahda a few times now, and what stands out is how different the food feels from the usual café options. The Mac Tower was honestly a surprise—not just in presentation, but in the taste as well. The Mini Bites were also really enjoyable. The staff are friendly, attentive and quick with the service, which makes the whole experience even better. You can tell there’s a lot of thought behind both the food and presentation.",
     rating: 5,
   },
   {
-    name: "Sarah Lindqvist",
-    role: "Artisan Baker & Enthusiast, Riyadh",
-    text: "The fermentation of their smoked turkey croissant is flawless—airy, flaky layers with the exact right bite. Combined with the saffron infusion, it is a culinary harmony you don't find elsewhere.",
+    name: "Happy Customer",
+    role: "Al Falah",
+    text: "I tried Wahad Shay Al Falah recently and really enjoyed the experience. The wraps and sandwiches were fresh, well prepared and had their own unique flavours. Nothing felt ordinary or like a standard fast-food item. I also liked how neatly everything was presented. The service was warm and professional, and the team made sure everything was served properly. Definitely a place I would visit again.",
     rating: 5,
   },
   {
-    name: "Faisal Bin Salman",
-    role: "Franchise Investor, Abu Dhabi",
-    text: "Partnering with Wahad Shay was a seamless experience. Their operations, store design support, and proprietary spice blends are world-class. Our Abu Dhabi branch has become a community landmark.",
-    rating: 5,
+
   },
 ];
 
@@ -40,7 +37,7 @@ export function Testimonials() {
       <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/2 rounded-full blur-[110px] pointer-events-none animate-pulse" />
 
       <div className="premium-container relative z-10">
-        
+
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">

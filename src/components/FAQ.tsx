@@ -27,7 +27,7 @@ export function FAQ() {
       <div className="absolute bottom-[20%] left-[-15%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="mx-auto max-w-4xl px-6 relative z-10">
-        
+
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
           <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
@@ -51,12 +51,11 @@ export function FAQ() {
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
                 className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal`}
               >
-                <div 
-                  className={`border rounded-3xl overflow-hidden bg-white transition-all duration-300 ${
-                    isOpen 
-                      ? "border-plum/30 shadow-[0_10px_25px_rgba(94,38,137,0.04)]" 
+                <div
+                  className={`border rounded-3xl overflow-hidden bg-white transition-all duration-300 ${isOpen
+                      ? "border-plum/30 shadow-[0_10px_25px_rgba(94,38,137,0.04)]"
                       : "border-neutral-border bg-white"
-                  }`}
+                    }`}
                 >
                   {/* Trigger Header */}
                   <button
