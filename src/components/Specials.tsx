@@ -78,8 +78,8 @@ export function Specials() {
           </p>
         </div>
 
-        {/* Specials Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+        {/* Specials Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10">
           {specials.map((spec, idx) => {
             const isLastOdd = idx === specials.length - 1 && specials.length % 2 !== 0;
 
@@ -87,49 +87,59 @@ export function Specials() {
               <div
                 key={spec.title}
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal premium-card premium-card-hover group relative p-8 md:p-10 flex flex-col sm:flex-row items-center gap-8 overflow-hidden ${
-                  isLastOdd ? "lg:col-span-2 lg:max-w-2xl lg:mx-auto w-full" : ""
+                className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group relative p-3.5 sm:p-5 md:p-6 flex flex-col sm:flex-row items-stretch gap-4 sm:gap-6 md:gap-7 overflow-hidden rounded-3xl ${
+                  isLastOdd ? "lg:col-span-2 lg:max-w-3xl lg:mx-auto w-full" : ""
                 }`}
               >
                 {/* Animated soft gradient background glow */}
-                <div className="absolute -right-[30%] -bottom-[30%] w-[250px] h-[250px] bg-plum/3 rounded-full blur-[70px] group-hover:bg-plum/6 transition-all duration-700 pointer-events-none" />
+                <div className="absolute -right-[20%] -bottom-[20%] w-[250px] h-[250px] bg-plum/4 rounded-full blur-[70px] group-hover:bg-plum/8 transition-all duration-700 pointer-events-none" />
 
-                {/* Badge */}
-                <span className="absolute top-4 end-4 bg-yellow text-plum-dark text-[9px] font-black uppercase tracking-widest px-3 py-1 rounded-full z-20">
-                  {spec.badge}
-                </span>
+                {/* Hero Image Container */}
+                <div className="w-full h-56 sm:h-60 sm:w-[210px] md:w-[230px] lg:w-[250px] sm:h-auto sm:self-stretch shrink-0 relative rounded-2xl overflow-hidden bg-[#241038]/5 shadow-md">
+                  {/* Subtle inner ambient glow */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-plum/10 via-yellow/15 to-transparent blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
-                {/* Image Container with Enhanced Height & Glow Highlight */}
-                <div className="w-[160px] sm:w-[180px] md:w-[220px] shrink-0 relative flex items-center justify-center">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-plum/10 via-yellow/15 to-transparent blur-lg scale-110 opacity-70 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  {/* Badge floating inside the top-end corner of the image */}
+                  <div className="absolute top-3 end-3 z-20">
+                    <span className="bg-yellow text-plum-dark text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] flex items-center gap-1 backdrop-blur-sm border border-yellow/30">
+                      <Sparkles size={11} className="text-plum-dark" />
+                      {spec.badge}
+                    </span>
+                  </div>
+
+                  {/* Food Image */}
                   <img
                     src={spec.image}
                     alt={spec.title}
-                    className="w-full h-48 sm:h-52 md:h-56 object-cover rounded-2xl border-2 border-white/80 shadow-xl group-hover:translate-y-[-6px] group-hover:scale-[1.04] transition-all duration-500 will-change-transform relative z-10"
+                    className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform ${
+                      spec.image === miniBitesImg ? "object-[center_35%]" : "object-center"
+                    }`}
                   />
+
+                  {/* Bottom Image Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none sm:hidden" />
                 </div>
 
                 {/* Details */}
-                <div className="space-y-4 text-center sm:text-start flex-1">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-extrabold text-plum uppercase tracking-[0.2em] block">
+                <div className="flex-1 flex flex-col justify-between text-start p-1 sm:p-0 space-y-3">
+                  <div className="space-y-1.5">
+                    <span className="text-[10px] sm:text-[11px] font-black text-plum uppercase tracking-[0.2em] block font-display">
                       {spec.tag}
                     </span>
                     <h3 className="font-display text-xl sm:text-2xl font-black text-text-primary group-hover:text-plum transition-colors leading-tight">
                       {spec.title}
                     </h3>
+                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-body font-light line-clamp-2 sm:line-clamp-3 pt-0.5">
+                      {spec.desc}
+                    </p>
                   </div>
 
-                  <p className="text-text-secondary text-xs sm:text-sm leading-relaxed line-clamp-3 font-body">
-                    {spec.desc}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-neutral-border">
-                    <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-wider flex items-center gap-1.5">
-                      <Sparkles size={13} className="text-plum shrink-0" />
+                  <div className="flex items-center justify-between pt-3.5 border-t border-neutral-border/80 mt-auto">
+                    <span className="font-body text-xs font-bold text-plum/90 uppercase tracking-wider flex items-center gap-1.5">
+                      <Sparkles size={13} className="text-yellow shrink-0" />
                       {spec.pairing}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold text-plum uppercase tracking-wider bg-plum/5 px-3 py-1 rounded-full border border-plum/10">
+                    <span className="inline-flex items-center text-[10px] sm:text-[11px] font-bold text-plum uppercase tracking-wider bg-plum/5 px-3 py-1 rounded-full border border-plum/10 shrink-0">
                       {spec.highlight}
                     </span>
                   </div>
