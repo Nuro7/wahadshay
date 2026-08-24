@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, Compass, ShieldCheck, Heart, ChevronLeft, ChevronRight, ArrowRight, Leaf } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
@@ -76,7 +76,7 @@ const StorefrontIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   >
     <path d="M3 6.5L5.5 3h13L21 6.5" />
     <path d="M3 6.5h18" />
-    <path d="M3 6.5c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2" />
+    <path d="M3 6.5c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2" />
     <path d="M4 8.5V20a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8.5" />
     <path d="M8.5 21v-5a2 2 0 0 1 4 0v5" />
     <rect x="14.5" y="12" width="3" height="3" rx="0.5" />
@@ -114,131 +114,116 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
   return (
     <>
       {/* 1. Our Story Section */}
-      <section id="about" className="section-padding-landing bg-[#F8F5EF] relative overflow-hidden select-none">
-        
-        {/* Subtle Islamic Geometric Lattice Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none z-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z M30 12 L48 30 L30 48 L12 30 Z' fill='%235E2689' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-            backgroundSize: "60px 60px"
-          }}
-        />
-
-        {/* Ambient Glow Orbs */}
-        <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/5 rounded-full blur-[160px] pointer-events-none" />
-        <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
+      <section id="about" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
+        {/* Subtle botanical line texture can be simulated or added as background. For now we use very soft blurred orbs to keep it clean */}
+        <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
         <div className="premium-container relative z-10">
-          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
             
             {/* Left: Editorial Story */}
-            <div className="reveal-left reveal space-y-8 lg:col-span-7">
-              <div className="space-y-4">
-                <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
-                  {t('about.storyBadge')}
-                </span>
-                <h2 className="font-display text-4xl sm:text-5xl font-black text-text-primary leading-[1.1] mask-reveal">
-                  <span className="text-shimmer block">{t('about.storyTitle1')}</span>
-                  <span className="text-plum block mt-1">{t('about.storyTitle2')}</span>
+            <div className="reveal-left reveal space-y-10 lg:col-span-7">
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <span className="h-px w-8 bg-plum/40 block" />
+                  <span className="text-plum text-[11px] font-bold uppercase tracking-[0.3em]">
+                    {t('about.storyBadge')}
+                  </span>
+                </div>
+                
+                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight">
+                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
+                  <br />
+                  <span className="text-plum">{t('about.storyTitle3')}</span>
                 </h2>
               </div>
-              
-              <div className="space-y-6 text-text-secondary text-base sm:text-lg leading-relaxed font-body font-light">
-                <p>
-                  {t('about.storyP1')}
+
+              <div className="space-y-6 max-w-xl">
+                <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
+                  {t('about.storyDesc1')}
                 </p>
-                <p>
-                  {t('about.storyP2')}
+                <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
+                  {t('about.storyDesc2')}
                 </p>
               </div>
 
-              {/* Luxury Quote/Stats Badge */}
-              <div className="pt-2">
-                <div className="inline-flex items-center gap-6 p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-neutral-border shadow-[0_4px_25px_rgba(43,37,32,0.03)] group hover:shadow-[0_8px_30px_rgba(94,38,137,0.08)] transition-all duration-300">
-                  <div className="w-12 h-12 rounded-full bg-plum/10 flex items-center justify-center text-plum group-hover:scale-110 transition-transform duration-300">
-                    <Leaf size={24} className="stroke-[1.5]" />
-                  </div>
-                  <div>
-                    <h4 className="font-display font-bold text-text-primary text-base sm:text-lg">
-                      {t('about.mottoHeader')}
-                    </h4>
-                    <p className="text-xs text-text-secondary font-body">
-                      {t('about.mottoFooter')}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <a href={isHomePage ? "#about" : "#menu"} className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
+                <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
+              </a>
             </div>
 
-            {/* Right: Decorative Image Montage / Floating Card */}
-            <div className="reveal-right reveal lg:col-span-5 relative">
-              <div className="relative mx-auto max-w-md">
-                {/* Back glow */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-plum/20 to-yellow/20 rounded-3xl blur-2xl transform rotate-3 scale-95" />
+            {/* Right: Brand Motto Card */}
+            <div className="reveal-right reveal relative lg:col-span-5 h-full flex items-center">
+              <div className="w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm p-10 md:p-14 text-center relative z-10 border border-neutral-border/60 flex flex-col justify-center gap-12 aspect-[4/5] shadow-lg rounded-2xl overflow-hidden">
+                {/* Decorative Top */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-plum/30 to-transparent rounded-t-2xl" />
                 
-                {/* Main Card */}
-                <div className="relative rounded-3xl overflow-hidden border border-neutral-border bg-white shadow-2xl p-8 space-y-6">
-                  <div className="aspect-[4/3] rounded-2xl overflow-hidden relative bg-plum-dark/5 flex items-center justify-center">
-                    <img
-                      src="/assets/hot_chicken_rice-sZ9Yi7ot.jpg"
-                      alt="Wahad Shay Atmosphere"
-                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-plum-dark/40 via-transparent to-transparent" />
-                  </div>
-                  <div className="text-center space-y-2">
-                    <span className="font-numbers text-xs text-plum font-bold tracking-widest uppercase block">
-                      EST. 2018
+                {/* Thematic Botanical Patterns */}
+                <div className="absolute top-[-10%] right-[-15%] opacity-[0.04] text-plum transform rotate-45 pointer-events-none">
+                  <Leaf size={280} strokeWidth={0.5} />
+                </div>
+                <div className="absolute bottom-[-10%] left-[-15%] opacity-[0.03] text-yellow transform -rotate-12 pointer-events-none">
+                  <Leaf size={320} strokeWidth={0.5} />
+                </div>
+
+                <div className="space-y-8 relative">
+                  <span className="text-[9px] uppercase font-bold tracking-[0.4em] text-text-secondary/60">
+                    {t('about.mottoBadge')}
+                  </span>
+                  
+                  <blockquote className="font-display text-2xl md:text-3xl italic font-light leading-[1.4] text-text-primary px-4">
+                    {t('about.mottoText')}
+                  </blockquote>
+                  
+                  <div className="pt-8 flex flex-col items-center gap-4">
+                    <div className="h-6 w-px bg-plum/20" />
+                    <span className="font-display text-[10px] font-bold tracking-[0.3em] text-plum uppercase">
+                      {t('about.mottoFooter')}
                     </span>
-                    <h3 className="font-display text-xl font-bold text-text-primary">
-                      {t('about.storyBadge')}
-                    </h3>
                   </div>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* 2. Four Pillars / Philosophy Section */}
-      <section className="section-padding-landing bg-[#F4EFE7] relative overflow-hidden select-none">
+      {/* 2. Brand Philosophy Section */}
+      <section className="section-padding bg-beige relative overflow-hidden select-none">
+        <div className="absolute bottom-[10%] left-[-15%] w-[600px] h-[600px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
         
-        {/* Diamond Lattice Pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02] pointer-events-none z-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='%232E1A47' fill-opacity='0.8' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-            backgroundSize: "40px 40px"
-          }}
-        />
-
         <div className="premium-container relative z-10 space-y-16">
-          <div className="reveal text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+          <div className="reveal text-center max-w-2xl mx-auto space-y-6">
+            <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
               {t('about.philBadge')}
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl font-black text-text-primary">
-              <span>{t('about.philTitle1')}</span> <span className="text-plum">{t('about.philTitle2')}</span>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+              <span className="text-gradient-plum">{t('about.philTitle1')}</span>{" "}
+              <span className="text-gradient-gold">{t('about.philTitle2')}</span>
             </h2>
-            <p className="text-text-secondary text-sm sm:text-base font-body leading-relaxed font-light">
+            <p className="text-text-secondary text-base font-light max-w-md mx-auto">
               {t('about.philDesc')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {philosophyItems.map((item: any, idx: number) => {
+            {philosophyItems.map((item, idx) => {
               const Icon = philosophyIcons[idx % philosophyIcons.length];
               const numStr = `0${idx + 1}`;
+              
               return (
                 <a
-                  href="#specials"
+                  href={isHomePage ? "#about" : "#menu"}
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className="reveal premium-card premium-card-hover group p-8 flex flex-col justify-between min-h-[300px] relative transition-all duration-500 hover:-translate-y-2 block"
+                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative block`}
                 >
+                  {/* Huge Background Number */}
+                  <span className="bg-number-watermark luxury-bg-num bottom-[-20%] right-[-10%] group-hover:opacity-10 transition-opacity duration-700">
+                    {numStr}
+                  </span>
+
                   <div className="relative z-10 flex flex-col h-full">
                     {/* Top Section */}
                     <div className="flex items-start justify-between mb-10">
@@ -264,13 +249,19 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                     </div>
 
                     {/* Bottom Action */}
-                    <div className="mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between">
+                    <div className={`mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                       <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum group-hover:text-plum-dark transition-colors">
                         {t('about.discover')}
                       </span>
-                      <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark rtl:rotate-180" />
+                      <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180' : ''}`} />
                     </div>
                   </div>
+                  
+                  {/* Varying subtle accent borders based on index */}
+                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-plum/3 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
+                  {idx === 1 && <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow/60 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />}
+                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-plum/3 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
+                  {idx === 3 && <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-yellow/60 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-500" />}
                 </a>
               );
             })}
