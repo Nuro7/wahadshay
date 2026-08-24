@@ -1,6 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Play, X } from "lucide-react";
+import React from "react";
+import { Play, ExternalLink, Sparkles } from "lucide-react";
+import { FaInstagram } from "react-icons/fa6";
 import { useLanguage } from "../i18n/LanguageContext";
 
 import hotChickenBurgerImg from "../assets/hot_chicken_burger.jpg";
@@ -9,135 +9,263 @@ import juicyDipImg from "../assets/juicy_dip.jpg";
 import miniBitesImg from "../assets/mini_bites.jpg";
 import specialItemImg from "../assets/hot_chicken.jpg";
 
-type MediaType = 'image' | 'video';
-
 interface MediaItem {
   id: string;
-  type: MediaType;
+  type: "video" | "image";
   src: string;
-  label: string;
-  actionText: string;
-  aspectRatio: string;
+  instagramUrl: string;
+  titleEn: string;
+  titleAr: string;
+  subtitleEn: string;
+  subtitleAr: string;
 }
 
 const mediaItems: MediaItem[] = [
-  { id: '1', type: 'image', src: hotChickenBurgerImg, label: 'BURGER', actionText: 'VIEW STORY', aspectRatio: 'aspect-[3/4]' },
-  { id: '4', type: 'video', src: '/home.mp4', label: 'ATMOSPHERE', actionText: 'WATCH', aspectRatio: 'aspect-[4/3]' },
-  { id: '2', type: 'image', src: juicyDipImg, label: 'JUICY DIP', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
-  { id: '5', type: 'image', src: hotChickenRiceImg, label: 'RICE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
-  { id: '6', type: 'video', src: '/home1.mp4', label: 'CULTURE', actionText: 'WATCH', aspectRatio: 'aspect-[3/4]' },
-  { id: '3', type: 'image', src: miniBitesImg, label: 'BITES', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/3]' },
-  { id: '7', type: 'image', src: specialItemImg, label: 'SPECIAL', actionText: 'VIEW STORY', aspectRatio: 'aspect-square' },
-  { id: '8', type: 'image', src: hotChickenBurgerImg, label: 'TASTE', actionText: 'VIEW STORY', aspectRatio: 'aspect-[4/5]' },
+  {
+    id: "1",
+    type: "video",
+    src: "/home.mp4",
+    instagramUrl: "https://www.instagram.com/reel/DcRJOKCsIo6/",
+    titleEn: "Café Atmosphere & Rituals",
+    titleAr: "أجواء المقهى والطقوس",
+    subtitleEn: "Authentic Chai Experience",
+    subtitleAr: "تجربة الشاي الأصيلة"
+  },
+  {
+    id: "2",
+    type: "video",
+    src: "/home1.mp4",
+    instagramUrl: "https://www.instagram.com/reel/DbTE8qztb6Q/",
+    titleEn: "Juicy Dip & Sandwiches",
+    titleAr: "جوسي ديب وساندويتشات",
+    subtitleEn: "Spiced Melts & Rich Gravy",
+    subtitleAr: "نكهات غنية وتغميسات فاخرة"
+  },
+  {
+    id: "3",
+    type: "video",
+    src: "/home.mp4",
+    instagramUrl: "https://www.instagram.com/reel/DbI0f8-s2DD/",
+    titleEn: "Kitchen Craft & Passion",
+    titleAr: "حرفة المطبخ والشغف",
+    subtitleEn: "Fresh Preparation Daily",
+    subtitleAr: "إعداد طازج يوميًا بأعلى المعايير"
+  },
+  {
+    id: "4",
+    type: "video",
+    src: "/mobile .mp4",
+    instagramUrl: "https://www.instagram.com/reel/DY72O-qsBeV/",
+    titleEn: "Hot Chicken Burger",
+    titleAr: "برجر الدجاج الحار",
+    subtitleEn: "Signature Brioche & Glazed Crisp",
+    subtitleAr: "بريوش مميز مع قرمشة متبلة"
+  },
+  {
+    id: "5",
+    type: "video",
+    src: "/home1.mp4",
+    instagramUrl: "https://www.instagram.com/reel/DYhYMCTPtS5/",
+    titleEn: "Hot Chicken Rice Bowl",
+    titleAr: "أرز الدجاج الحار",
+    subtitleEn: "Aromatic Basmati & Roasted Spices",
+    subtitleAr: "أرز بسمتي عطري مع بهارات محمصة"
+  },
+  {
+    id: "6",
+    type: "image",
+    src: miniBitesImg,
+    instagramUrl: "https://www.instagram.com/wahadshay.ae/",
+    titleEn: "Mini Bites Selection",
+    titleAr: "تشكيلة ميني بايتس",
+    subtitleEn: "Perfect Companions to Chai",
+    subtitleAr: "الرفيق المثالي لكوب الشاي"
+  }
 ];
 
 export function Gallery() {
-  const { t } = useLanguage();
-  const [activeVideo, setActiveVideo] = useState<MediaItem | null>(null);
+  const { t, language } = useLanguage();
 
   return (
-    <section id="gallery" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="gallery" className="section-padding bg-neutral-ivory relative overflow-hidden select-none">
       
-      {/* Repeating Food Pattern Backdrop */}
-      <div className="absolute inset-0 food-pattern-bg opacity-[0.07] pointer-events-none" />
+      {/* Background Subtle Line Art Texture */}
+      <div className="absolute inset-0 food-pattern-bg opacity-[0.04] pointer-events-none" />
       
-      {/* Header Area */}
-      <div className="reveal text-center max-w-2xl mx-auto mb-12 md:mb-20 space-y-4 px-6 relative z-10">
-        <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary tracking-tight">
-          {t('about.gallery.tasteTitle') || 'A TASTE OF OUR STORY'}
-        </h2>
-        <p className="text-text-secondary text-sm md:text-base font-body">
-          {t('about.gallery.tasteSubtitle') || 'Tea, craft, and moments shared.'}
-        </p>
-      </div>
+      {/* Ambient Diffused Glow Orbs */}
+      <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
 
-      {/* Masonry Grid Area */}
-      <div className="premium-container relative z-10">
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 sm:gap-8">
-          {mediaItems.map((item, idx) => (
-            <motion.div
+      <div className="premium-container relative z-10 space-y-12 md:space-y-16">
+        
+        {/* ======================================================== */}
+        {/* SECTION HEADER: Matches Official Brand Theme & Shimmer */}
+        {/* ======================================================== */}
+        <div className="reveal text-center max-w-3xl mx-auto space-y-4">
+          
+          {/* Hairline Tag Badge */}
+          <div className="flex items-center justify-center gap-3">
+            <span className="h-px w-8 bg-plum/40 block" />
+            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em]">
+              {t("about.gallery.badge") || "VISUAL JOURNAL"}
+            </span>
+            <span className="h-px w-8 bg-plum/40 block" />
+          </div>
+
+          {/* Headline with Signature Metallic Shimmer */}
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary tracking-tight leading-[1.12]">
+            <span className="text-shimmer block sm:inline">
+              {language === "AR" ? "لمحة من" : "A Taste of"}
+            </span>{" "}
+            <span className="text-plum font-extrabold block sm:inline">
+              {language === "AR" ? "قصتنا وتجربتنا" : "Our Story"}
+            </span>
+          </h2>
+
+          <p className="text-text-secondary text-sm sm:text-base font-body font-light leading-relaxed max-w-xl mx-auto">
+            {t("about.gallery.tasteSubtitle") || "Tea, craft, and moments shared across every cup and bite."}
+          </p>
+
+          {/* Minimalist Brand Divider */}
+          <div className="flex items-center justify-center gap-3 pt-2 max-w-xs mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-plum/20 to-plum/40 flex-1" />
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-pulse" />
+            <div className="h-px bg-gradient-to-l from-transparent via-plum/20 to-plum/40 flex-1" />
+          </div>
+        </div>
+
+        {/* ======================================================== */}
+        {/* DIRECT INSTAGRAM VIDEO REEL CARDS (Clean Video with Direct Link) */}
+        {/* ======================================================== */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          {mediaItems.map((item) => (
+            <a
               key={item.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "50px" }}
-              transition={{ duration: 0.6, delay: (idx % 3) * 0.15, ease: [0.16, 1, 0.3, 1] }}
-              onClick={() => {
-                if (item.type === 'video') setActiveVideo(item);
-              }}
-              className={`break-inside-avoid relative overflow-hidden rounded-[24px] shadow-sm hover:shadow-2xl transition-all duration-500 bg-white/60 border border-white/60 group cursor-pointer w-full ${item.aspectRatio} flex items-center justify-center mb-6 sm:mb-8`}
+              href={item.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="luxury-card group relative overflow-hidden rounded-3xl bg-black border border-neutral-border/80 shadow-[0_6px_25px_rgba(43,37,32,0.04)] hover:shadow-[0_20px_45px_rgba(94,38,137,0.18)] transition-all duration-500 cursor-pointer h-[480px] sm:h-[520px] flex flex-col justify-end block"
+              aria-label={item.titleEn}
             >
-              {item.type === 'image' ? (
-                <motion.img
-                  src={item.src}
-                  alt={item.label}
-                  className="max-h-[80%] max-w-[85%] object-contain filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.2)] z-0 pointer-events-none group-hover:scale-110 transition-transform duration-700 ease-out"
-                  draggable={false}
-                />
-              ) : (
-                <div className="absolute inset-0 w-full h-full overflow-hidden rounded-[24px]">
+              {item.type === "video" ? (
+                <>
+                  {/* Pure HTML5 Video Stream Preview */}
                   <video
                     src={item.src}
                     autoPlay
-                    muted
                     loop
+                    muted
                     playsInline
-                    className="w-full h-full object-cover z-0 opacity-90 pointer-events-none group-hover:scale-110 transition-transform duration-700 ease-out"
+                    preload="auto"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out z-0"
                   />
+
+                  {/* Dark Cinematic Vignette */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#140620]/95 via-[#140620]/20 to-[#140620]/40 z-10 pointer-events-none" />
+
+                  {/* Top Badge */}
+                  <div className="absolute top-4 inset-x-4 flex items-center justify-between z-20 pointer-events-none">
+                    <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-yellow shadow-xs flex items-center gap-1.5">
+                      <FaInstagram size={13} className="text-yellow" />
+                      <span>{language === "AR" ? "ريلز إنستغرام" : "INSTAGRAM REEL"}</span>
+                    </span>
+
+                    <div className="w-9 h-9 rounded-full bg-white/20 group-hover:bg-yellow group-hover:text-plum-dark text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 shadow-xs group-hover:scale-110">
+                      <ExternalLink size={15} />
+                    </div>
+                  </div>
+
+                  {/* Center Play Button Icon on Hover */}
+                  <div className="absolute inset-0 flex items-center justify-center z-15 pointer-events-none">
+                    <div className="w-14 h-14 rounded-full bg-yellow/90 text-plum-dark flex items-center justify-center shadow-[0_4px_25px_rgba(245,189,32,0.4)] group-hover:scale-115 group-hover:bg-yellow transition-all duration-300">
+                      <Play size={24} fill="currentColor" className="translate-x-0.5" />
+                    </div>
+                  </div>
+
+                  {/* Bottom Content Bar */}
+                  <div className="p-6 z-20 relative space-y-2 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                    <span className="text-yellow text-[11px] font-bold tracking-widest uppercase block">
+                      {language === "AR" ? item.subtitleAr : item.subtitleEn}
+                    </span>
+                    <h3 className="font-display font-black text-white text-xl sm:text-2xl leading-tight">
+                      {language === "AR" ? item.titleAr : item.titleEn}
+                    </h3>
+
+                    {/* Direct Instagram Action Pill */}
+                    <div className="pt-2 flex items-center gap-2">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-xs shadow-md group-hover:shadow-lg transition-all">
+                        <FaInstagram size={14} />
+                        <span>{language === "AR" ? "مشاهدة الفيديو على إنستغرام" : "Watch on Instagram"}</span>
+                        <ExternalLink size={12} />
+                      </span>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                /* Still Photo Card */
+                <div className="w-full h-full p-6 flex flex-col items-center justify-between relative bg-gradient-to-br from-white via-neutral-ivory to-white">
+                  <div className="w-full flex justify-between items-center z-20">
+                    <span className="px-3 py-1 rounded-full bg-plum/5 border border-plum/10 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-plum shadow-xs">
+                      {language === "AR" ? "طبق مميز" : "SIGNATURE DISH"}
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-plum/5 text-plum flex items-center justify-center">
+                      <ExternalLink size={14} />
+                    </div>
+                  </div>
+
+                  <img
+                    src={item.src}
+                    alt={language === "AR" ? item.titleAr : item.titleEn}
+                    className="max-h-[60%] max-w-[85%] object-contain filter drop-shadow-[0_15px_25px_rgba(43,37,32,0.18)] group-hover:scale-105 transition-transform duration-500 pointer-events-none"
+                    draggable={false}
+                  />
+
+                  <div className="w-full text-start z-20 space-y-1">
+                    <span className="text-plum text-[11px] font-bold uppercase tracking-wider block">
+                      {language === "AR" ? item.subtitleAr : item.subtitleEn}
+                    </span>
+                    <h3 className="font-display font-black text-text-primary text-xl leading-tight">
+                      {language === "AR" ? item.titleAr : item.titleEn}
+                    </h3>
+                  </div>
                 </div>
               )}
-
-              {/* Subtle dark gradient overlay on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-plum-dark/90 via-plum-dark/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none rounded-[24px]" />
-
-              {/* Hover Content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-6 group-hover:translate-y-0 pointer-events-none">
-                {item.type === 'video' && (
-                  <div className="w-14 h-14 rounded-full border border-white/40 bg-white/20 backdrop-blur-md flex items-center justify-center mb-4 shadow-xl">
-                    <Play size={24} className="text-yellow ml-1" fill="currentColor" />
-                  </div>
-                )}
-                <span className="font-display font-black text-white text-2xl tracking-[0.15em] uppercase drop-shadow-md">
-                  {t(`about.gallery.categories.${item.label.toLowerCase()}`) || item.label}
-                </span>
-                <span className="font-body font-bold text-xs text-yellow tracking-[0.25em] uppercase mt-3 drop-shadow-md">
-                  {item.type === 'video' ? (t('about.gallery.watchAction') || 'WATCH') : (t('about.gallery.viewStoryAction') || 'VIEW STORY')}
-                </span>
-              </div>
-            </motion.div>
+            </a>
           ))}
         </div>
+
+        {/* ======================================================== */}
+        {/* BOTTOM INSTAGRAM / MOMENTS BANNER */}
+        {/* ======================================================== */}
+        <div className="reveal bg-white/90 border border-neutral-border rounded-3xl p-6 sm:p-8 backdrop-blur-md shadow-xs flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-start">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-plum/5 border border-plum/10 text-plum flex items-center justify-center flex-shrink-0">
+              <FaInstagram size={22} />
+            </div>
+            <div>
+              <h4 className="font-display font-black text-lg text-text-primary">
+                {language === "AR" ? "تابع حسابنا الرسمي على إنستغرام" : "Follow Our Official Instagram"}
+              </h4>
+              <p className="text-text-secondary text-xs sm:text-sm font-body font-light">
+                {language === "AR" ? "استكشف أحدث الأطباق والأجواء والريلز عبر @wahadshay.ae" : "Explore our latest dishes, rituals and reels at @wahadshay.ae"}
+              </p>
+            </div>
+          </div>
+
+          <a
+            href="https://www.instagram.com/wahadshay.ae/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-6 py-3 rounded-full bg-plum hover:bg-plum-dark text-white font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2 flex-shrink-0"
+          >
+            <FaInstagram size={16} />
+            <span>{language === "AR" ? "متابعة @wahadshay.ae" : "Follow @wahadshay.ae"}</span>
+            <ExternalLink size={14} />
+          </a>
+        </div>
+
       </div>
 
-      {/* Custom Fullscreen Video Lightbox */}
-      <AnimatePresence>
-        {activeVideo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center bg-plum-dark/95 backdrop-blur-2xl">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-5xl aspect-video px-4 md:px-8"
-            >
-              <button
-                onClick={() => setActiveVideo(null)}
-                className="absolute -top-14 right-4 md:right-8 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer border border-white/20 backdrop-blur-md"
-              >
-                <X size={24} />
-              </button>
-              
-              <div className="w-full h-full rounded-[24px] overflow-hidden bg-black shadow-2xl border border-white/10">
-                <video
-                  src={activeVideo.src}
-                  controls
-                  autoPlay
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </section>
   );
 }

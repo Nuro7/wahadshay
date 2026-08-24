@@ -126,7 +126,7 @@ export function Footer() {
 
           {/* Social Links (Centered) */}
           <div className="flex items-center justify-center gap-[24px] text-white/60 w-full mt-1">
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">
+            <a href="https://www.instagram.com/wahadshay.ae/" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block" aria-label="Instagram">
               <FaInstagram size={19} />
             </a>
             <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">

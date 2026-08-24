@@ -119,72 +119,75 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
         <div className="premium-container relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+          <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left: Editorial Story */}
-            <div className="reveal-left reveal space-y-10 lg:col-span-7">
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
+            <div className="reveal-left reveal space-y-8 lg:col-span-7">
+              <div className="space-y-4">
+                <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-plum/40 block" />
-                  <span className="text-plum text-[11px] font-bold uppercase tracking-[0.3em]">
+                  <span className="text-plum text-xs font-bold uppercase tracking-[0.25em]">
                     {t('about.storyBadge')}
                   </span>
                 </div>
                 
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.12] tracking-tight">
                   <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
                   <br />
                   <span className="text-plum">{t('about.storyTitle3')}</span>
                 </h2>
               </div>
 
-              <div className="space-y-6 max-w-xl">
-                <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
+              <div className="space-y-4">
+                <p className="text-text-primary/90 text-base sm:text-lg leading-relaxed font-body font-medium">
                   {t('about.storyDesc1')}
                 </p>
-                <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
-                  {t('about.storyDesc2')}
-                </p>
+                {t('about.storyDesc2') && (
+                  <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-body font-light">
+                    {t('about.storyDesc2')}
+                  </p>
+                )}
               </div>
 
-              <a href={isHomePage ? "#about" : "#menu"} className={`group flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-4 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+              <a href={isHomePage ? "#about" : "#menu"} className={`group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
                 <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
               </a>
             </div>
 
             {/* Right: Brand Motto Card */}
-            <div className="reveal-right reveal relative lg:col-span-5 h-full flex items-center">
-              <div className="w-full max-w-md mx-auto bg-white/80 backdrop-blur-sm p-10 md:p-14 text-center relative z-10 border border-neutral-border/60 flex flex-col justify-center gap-12 aspect-[4/5] shadow-lg rounded-2xl overflow-hidden">
+            <div className="reveal-right reveal relative lg:col-span-5 flex items-center justify-center">
+              <div className="w-full bg-white/90 backdrop-blur-md p-7 sm:p-8 text-center relative z-10 border border-neutral-border/80 flex flex-col justify-center gap-5 shadow-[0_8px_30px_rgba(46,26,71,0.06)] hover:shadow-[0_12px_40px_rgba(46,26,71,0.1)] rounded-3xl overflow-hidden transition-all duration-300">
                 {/* Decorative Top */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-plum/30 to-transparent rounded-t-2xl" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2.5px] bg-gradient-to-r from-transparent via-plum/50 to-transparent rounded-t-3xl" />
                 
                 {/* Thematic Botanical Patterns */}
-                <div className="absolute top-[-10%] right-[-15%] opacity-[0.04] text-plum transform rotate-45 pointer-events-none">
-                  <Leaf size={280} strokeWidth={0.5} />
+                <div className="absolute top-[-10%] right-[-15%] opacity-[0.03] text-plum transform rotate-45 pointer-events-none">
+                  <Leaf size={220} strokeWidth={0.5} />
                 </div>
-                <div className="absolute bottom-[-10%] left-[-15%] opacity-[0.03] text-yellow transform -rotate-12 pointer-events-none">
-                  <Leaf size={320} strokeWidth={0.5} />
+                <div className="absolute bottom-[-10%] left-[-15%] opacity-[0.025] text-yellow transform -rotate-12 pointer-events-none">
+                  <Leaf size={240} strokeWidth={0.5} />
                 </div>
 
-                <div className="space-y-8 relative">
-                  <span className="text-[9px] uppercase font-bold tracking-[0.4em] text-text-secondary/60">
+                <div className="space-y-4 relative">
+                  <span className="text-[10px] uppercase font-bold tracking-[0.35em] text-text-secondary/70">
                     {t('about.mottoBadge')}
                   </span>
                   
-                  <blockquote className="font-display text-2xl md:text-3xl italic font-light leading-[1.4] text-text-primary px-4">
+                  <blockquote className="font-display text-xl sm:text-2xl italic font-light leading-relaxed text-text-primary px-2">
                     {t('about.mottoText')}
                   </blockquote>
                   
-                  <div className="pt-8 flex flex-col items-center gap-4">
-                    <div className="h-6 w-px bg-plum/20" />
-                    <span className="font-display text-[10px] font-bold tracking-[0.3em] text-plum uppercase">
+                  <div className="pt-2 flex flex-col items-center gap-2">
+                    <div className="h-5 w-px bg-plum/25" />
+                    <span className="font-display text-[11px] font-bold tracking-[0.25em] text-plum uppercase">
                       {t('about.mottoFooter')}
                     </span>
                   </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -270,42 +273,44 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
       </section>
 
       {/* 3. Brand Timeline Section ("Our Journey, Growing Together") */}
-      <section className="py-16 md:py-24 bg-[#1A0A28] relative overflow-hidden select-none">
+      <section className="section-padding bg-[#180A26] relative overflow-hidden select-none border-t border-white/5">
         
-        {/* Luxury Islamic Geometric Lattice Pattern in Dark Section */}
-        <div
-          className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z' fill='%23F5BD20' fill-opacity='0.8' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-            backgroundSize: "80px 80px"
-          }}
-        />
+        {/* Soft luxury diffused ambient glow orbs */}
+        <div className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-plum/30 rounded-full blur-[170px] pointer-events-none" />
+        <div className="absolute bottom-0 right-[-10%] w-[450px] h-[450px] bg-yellow/10 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute top-0 left-[-10%] w-[400px] h-[400px] bg-plum/20 rounded-full blur-[130px] pointer-events-none" />
 
-        {/* Ambient Rich Glow Accents */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#5E2689]/35 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#F5BD20]/8 rounded-full blur-[130px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#5E2689]/25 rounded-full blur-[120px] pointer-events-none" />
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 md:space-y-16">
+        <div className="premium-container relative z-10 space-y-12 md:space-y-16">
           
           {/* Header */}
           <div className="reveal text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-[#F5BD20] text-xs font-bold uppercase tracking-[0.25em] block">
-              {t('about.journeyBadge') || 'THE WAHAD SHAY JOURNEY'}
-            </span>
+            
+            {/* Tag Badge with Hairline Accents */}
+            <div className="flex items-center justify-center gap-3">
+              <span className="h-px w-8 bg-yellow/50 block" />
+              <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em]">
+                {t('about.journeyBadge') || 'THE WAHAD SHAY JOURNEY'}
+              </span>
+              <span className="h-px w-8 bg-yellow/50 block" />
+            </div>
+
+            {/* Headline with metallic gold shimmer */}
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
-              {t('about.journeyTitle') || 'Our Journey, Growing Together'}
+              <span className="text-shimmer-gold">
+                {t('about.journeyTitle') || 'Our Journey, Growing Together'}
+              </span>
             </h2>
-            <p className="text-neutral-300 text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto font-body">
+
+            <p className="text-white/70 text-sm sm:text-base font-body font-light leading-relaxed max-w-xl mx-auto">
               <span>{t('about.journeySubtitle1') || 'From our first branch to the future ahead —'}</span>{' '}
               <span className="block sm:inline">{t('about.journeySubtitle2') || 'every milestone is a step closer to serving you better.'}</span>
             </p>
 
-            {/* Divider with Plus Accent */}
+            {/* Refined Minimal Divider */}
             <div className="flex items-center justify-center gap-3 pt-2 max-w-xs mx-auto">
-              <div className="h-[1px] bg-gradient-to-r from-transparent to-[#F5BD20]/50 flex-1" />
-              <span className="text-[#F5BD20] text-xs font-bold">+</span>
-              <div className="h-[1px] bg-gradient-to-l from-transparent to-[#F5BD20]/50 flex-1" />
+              <div className="h-px bg-gradient-to-r from-transparent via-yellow/40 to-yellow/60 flex-1" />
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-pulse" />
+              <div className="h-px bg-gradient-to-l from-transparent via-yellow/40 to-yellow/60 flex-1" />
             </div>
           </div>
 
@@ -356,7 +361,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                     >
                       {/* Date Label above node */}
                       <span className={`font-display text-[11px] font-bold uppercase tracking-wider transition-all duration-300 h-6 flex items-center ${
-                        isActive ? "text-[#F5BD20] scale-110 drop-shadow-[0_0_8px_rgba(245,189,32,0.6)] font-black" : "text-[#F5BD20]/80 group-hover:text-[#F5BD20]"
+                        isActive ? "text-yellow scale-110 drop-shadow-[0_0_8px_rgba(245,189,32,0.6)] font-black" : "text-yellow/80 group-hover:text-yellow"
                       }`}>
                         {node.year}
                       </span>
@@ -365,28 +370,28 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       <div className="relative my-2 flex items-center justify-center h-5">
                         {/* Active Ring Pulse */}
                         {isActive && (
-                          <span className="absolute w-7 h-7 rounded-full border-2 border-[#F5BD20] animate-ping opacity-40 pointer-events-none" />
+                          <span className="absolute w-7 h-7 rounded-full border-2 border-yellow animate-ping opacity-40 pointer-events-none" />
                         )}
 
                         {/* Node Dot */}
                         <div
                           className={`w-4 h-4 rounded-full transition-all duration-300 ${
                             isOpen
-                              ? "bg-[#F5BD20] shadow-[0_0_12px_rgba(245,189,32,0.8)]"
-                              : "bg-[#1E0D2E] border-2 border-[#F5BD20]"
-                          } ${isActive ? "scale-125 ring-4 ring-[#F5BD20]/30" : "group-hover:scale-110"}`}
+                              ? "bg-yellow shadow-[0_0_12px_rgba(245,189,32,0.8)]"
+                              : "bg-[#180A26] border-2 border-yellow"
+                          } ${isActive ? "scale-125 ring-4 ring-yellow/30" : "group-hover:scale-110"}`}
                         />
                       </div>
 
                       {/* Dashed Stem Line */}
-                      <div className="w-0 h-6 border-l-2 border-dashed border-[#F5BD20]/40 group-hover:border-[#F5BD20] transition-colors" />
+                      <div className="w-0 h-6 border-l-2 border-dashed border-yellow/40 group-hover:border-yellow transition-colors" />
 
-                      {/* Storefront Icon Circular Badge */}
+                      {/* Storefront Icon Circular/Square Luxury Badge */}
                       <div
-                        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                           isActive
-                            ? "bg-[#33184A] border-2 border-[#F5BD20] text-[#F5BD20] shadow-[0_0_25px_rgba(245,189,32,0.45)] scale-110 ring-4 ring-[#F5BD20]/20"
-                            : "bg-[#28133C] border border-[#F5BD20]/30 text-[#F5BD20]/80 group-hover:border-[#F5BD20] group-hover:text-[#F5BD20] group-hover:scale-105"
+                            ? "bg-gradient-to-br from-[#3D1A5C] to-[#250E3A] border-2 border-yellow text-yellow shadow-[0_0_25px_rgba(245,189,32,0.45)] scale-110 ring-4 ring-yellow/20"
+                            : "bg-[#28133C]/90 border border-yellow/25 text-yellow/80 backdrop-blur-md group-hover:border-yellow group-hover:text-yellow group-hover:scale-105 group-hover:shadow-[0_8px_20px_rgba(245,189,32,0.25)]"
                         }`}
                       >
                         <StorefrontIcon className="w-7 h-7" />
@@ -394,13 +399,13 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
 
                       {/* Branch Title */}
                       <h4 className={`font-display text-[12px] sm:text-[13px] font-bold uppercase tracking-wider mt-3.5 transition-colors leading-snug ${
-                        isActive ? "text-white font-extrabold" : "text-white/80 group-hover:text-white"
+                        isActive ? "text-white font-black" : "text-white/80 group-hover:text-white"
                       }`}>
                         {node.branchName || node.title}
                       </h4>
 
                       {/* Branch Short Description */}
-                      <p className="text-[11px] text-neutral-300/80 leading-relaxed max-w-[145px] mx-auto mt-1 font-body">
+                      <p className="text-[11px] text-white/60 leading-relaxed max-w-[145px] mx-auto mt-1 font-body font-light">
                         {node.desc}
                       </p>
                     </div>
@@ -409,67 +414,170 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
               </div>
             </div>
 
-            {/* Mobile Vertical Milestones List */}
-            <div className="md:hidden space-y-4">
-              {timelineList.map((node: Milestone, idx: number) => {
-                const isActive = idx === currentStep;
-                return (
-                  <div
-                    key={idx}
-                    onClick={() => handleStepChange(idx)}
-                    className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center gap-4 ${
-                      isActive
-                        ? "bg-[#28133C] border-[#F5BD20] shadow-lg ring-1 ring-[#F5BD20]/30"
-                        : "bg-[#220F35]/60 border-white/10 hover:border-[#F5BD20]/40"
-                    }`}
-                  >
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                      isActive ? "bg-[#33184A] text-[#F5BD20] border-2 border-[#F5BD20] shadow-[0_0_15px_rgba(245,189,32,0.3)]" : "bg-[#28133C] text-[#F5BD20]/80 border border-[#F5BD20]/30"
-                    }`}>
-                      <StorefrontIcon className="w-6 h-6" />
+            {/* Mobile Vertical Milestones Journey Chain */}
+            <div className="md:hidden relative">
+              <div className="space-y-3.5 sm:space-y-4 relative">
+                {timelineList.map((node: Milestone, idx: number) => {
+                  const isActive = idx === currentStep;
+                  const isOpen = node.status === "open" || idx < 3;
+                  const isFirst = idx === 0;
+                  const isLast = idx === timelineList.length - 1;
+                  const nextIsOpen = idx < timelineList.length - 1 && (timelineList[idx + 1].status === "open" || idx + 1 < 3);
+
+                  return (
+                    <div
+                      key={idx}
+                      className="relative flex items-stretch gap-3 sm:gap-4"
+                    >
+                      {/* Vertical Chain Rail Column */}
+                      <div className="relative w-7 sm:w-8 flex flex-col items-center justify-center flex-shrink-0">
+                        {/* Top vertical connector line segment (from previous node to this node) */}
+                        {!isFirst && (
+                          <div
+                            className={`absolute top-0 bottom-1/2 w-[2.5px] -translate-x-1/2 left-1/2 ${
+                              isOpen
+                                ? "bg-yellow shadow-[0_0_8px_rgba(245,189,32,0.6)]"
+                                : "border-l-2 border-dashed border-yellow/50 bg-transparent"
+                            }`}
+                          />
+                        )}
+
+                        {/* Bottom vertical connector line segment (from this node to next node) */}
+                        {!isLast && (
+                          <div
+                            className={`absolute top-1/2 bottom-0 w-[2.5px] -translate-x-1/2 left-1/2 ${
+                              isOpen && nextIsOpen
+                                ? "bg-yellow shadow-[0_0_8px_rgba(245,189,32,0.6)]"
+                                : "border-l-2 border-dashed border-yellow/50 bg-transparent"
+                            }`}
+                          />
+                        )}
+
+                        {/* Dashed Horizontal Stem Connector to Card */}
+                        <div
+                          className={`absolute top-1/2 -translate-y-1/2 h-0 border-t-2 border-dashed ${
+                            isActive ? "border-yellow" : "border-yellow/40"
+                          } ${
+                            language === 'AR'
+                              ? "right-1/2 w-6 mr-1"
+                              : "left-1/2 w-6 ml-1"
+                          }`}
+                        />
+
+                        {/* Node Dot on the Chain */}
+                        <div
+                          onClick={() => handleStepChange(idx)}
+                          className="relative z-10 w-7 h-7 flex items-center justify-center cursor-pointer group"
+                        >
+                          {/* Active Ring Pulse */}
+                          {isActive && (
+                            <span className="absolute inset-0 rounded-full border-2 border-yellow animate-ping opacity-50 pointer-events-none" />
+                          )}
+
+                          {/* Glow halo when active */}
+                          {isActive && (
+                            <span className="absolute -inset-1 rounded-full bg-yellow/25 blur-xs pointer-events-none" />
+                          )}
+
+                          {/* Node circle */}
+                          <div
+                            className={`w-3.5 h-3.5 rounded-full transition-all duration-300 ${
+                              isOpen
+                                ? "bg-yellow shadow-[0_0_10px_rgba(245,189,32,0.9)]"
+                                : "bg-[#180A26] border-2 border-yellow shadow-[0_0_6px_rgba(245,189,32,0.3)]"
+                            } ${
+                              isActive
+                                ? "scale-125 ring-4 ring-yellow/30 bg-yellow"
+                                : "group-hover:scale-110 opacity-90"
+                            }`}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Milestone Card */}
+                      <div
+                        onClick={() => handleStepChange(idx)}
+                        className={`flex-1 p-3.5 sm:p-4 rounded-2xl border transition-all duration-300 cursor-pointer flex items-center gap-3.5 sm:gap-4 relative overflow-hidden group select-none ${
+                          isActive
+                            ? "bg-gradient-to-br from-[#3A185B] via-[#2A1042] to-[#1D0830] border-yellow shadow-[0_0_25px_rgba(245,189,32,0.3)] ring-1 ring-yellow/40 scale-[1.01]"
+                            : "bg-[#220F35]/75 border-white/10 hover:border-yellow/40 hover:bg-[#2A1342]/90"
+                        }`}
+                      >
+                        {/* Decorative Active Indicator Bar */}
+                        {isActive && (
+                          <div className={`absolute top-0 bottom-0 w-1 bg-yellow ${language === 'AR' ? 'right-0' : 'left-0'}`} />
+                        )}
+
+                        {/* Storefront Icon */}
+                        <div
+                          className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 transition-all duration-300 ${
+                            isActive
+                              ? "bg-gradient-to-br from-[#4D1F74] to-[#2B0E44] text-yellow border-2 border-yellow shadow-[0_0_15px_rgba(245,189,32,0.4)] scale-105"
+                              : "bg-[#28133C] text-yellow/80 border border-yellow/25 group-hover:border-yellow/60 group-hover:text-yellow"
+                          }`}
+                        >
+                          <StorefrontIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                        </div>
+
+                        {/* Card Content */}
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[10px] sm:text-[11px] font-bold text-yellow uppercase tracking-wider font-display block">
+                              {node.year}
+                            </span>
+                            {/* Step number badge */}
+                            <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${
+                              isActive
+                                ? "text-yellow border-yellow/50 bg-yellow/10"
+                                : "text-white/40 border-white/10 bg-white/5"
+                            }`}>
+                              0{idx + 1}
+                            </span>
+                          </div>
+
+                          <h4 className={`font-display font-bold text-sm sm:text-base transition-colors leading-tight mt-0.5 ${
+                            isActive ? "text-white font-black" : "text-white/90 group-hover:text-white"
+                          }`}>
+                            {node.branchName || node.title}
+                          </h4>
+
+                          <p className="text-xs text-white/70 mt-1 font-body font-light line-clamp-2 leading-relaxed">
+                            {node.desc}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <span className="text-[10px] font-bold text-[#F5BD20] uppercase tracking-wider block">
-                        {node.year}
-                      </span>
-                      <h4 className="font-display font-bold text-sm text-white">
-                        {node.branchName || node.title}
-                      </h4>
-                      <p className="text-xs text-neutral-300/80 mt-0.5 font-body">
-                        {node.desc}
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
 
             {/* Active Detail Card at Bottom with Left / Right Switchers */}
-            <div className="mt-10 md:mt-14">
-              <div className="bg-gradient-to-br from-[#2D1648]/95 via-[#230F38]/95 to-[#19092B]/95 border border-[#F5BD20]/30 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.55),0_0_30px_rgba(94,38,137,0.2)] backdrop-blur-xl relative overflow-hidden flex items-center justify-between gap-4">
+            <div className="mt-8 md:mt-10 flex justify-center">
+              <div className="w-full max-w-2xl bg-gradient-to-br from-[#2D1648]/95 via-[#220E38]/95 to-[#160726]/95 border border-yellow/30 rounded-2xl md:rounded-3xl p-5 sm:p-6 md:p-7 shadow-[0_20px_50px_rgba(0,0,0,0.55),0_0_35px_rgba(94,38,137,0.2)] backdrop-blur-xl relative overflow-hidden flex items-center justify-between gap-3 sm:gap-5">
                 
                 {/* Decorative Ambient Card Light */}
-                <div className="absolute top-0 right-1/4 w-[300px] h-[300px] bg-[#F5BD20]/5 rounded-full blur-3xl pointer-events-none" />
+                <div className="absolute top-0 right-1/4 w-[250px] h-[250px] bg-yellow/5 rounded-full blur-3xl pointer-events-none" />
 
                 {/* Prev Button */}
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/25 bg-white/5 hover:bg-[#F5BD20] hover:text-[#2E1A47] hover:border-[#F5BD20] text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
+                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/5 hover:bg-yellow hover:text-plum-dark hover:border-yellow text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
                   aria-label="Previous Milestone"
                 >
-                  <ChevronLeft size={22} className="rtl:rotate-180" />
+                  <ChevronLeft size={18} className="rtl:rotate-180" />
                 </button>
 
                 {/* Center Animated Milestone Card */}
-                <div className="flex-1 px-2 sm:px-6 z-10">
+                <div className="flex-1 px-1 sm:px-3 z-10">
                   <AnimatePresence mode="wait" custom={direction}>
                     <motion.div
                       key={currentStep}
                       custom={direction}
                       variants={{
                         enter: (dir: number) => ({
-                          x: dir > 0 ? 30 : -30,
+                          x: dir > 0 ? 20 : -20,
                           opacity: 0,
                         }),
                         center: {
@@ -477,37 +585,37 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                           opacity: 1,
                         },
                         exit: (dir: number) => ({
-                          x: dir > 0 ? -30 : 30,
+                          x: dir > 0 ? -20 : 20,
                           opacity: 0,
                         }),
                       }}
                       initial="enter"
                       animate="center"
                       exit="exit"
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                      className="flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 text-center sm:text-start"
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6 text-center sm:text-start"
                     >
-                      {/* Glowing Storefront Circle Badge */}
-                      <div className="w-22 h-22 sm:w-28 sm:h-28 rounded-full border-2 border-[#F5BD20]/50 bg-[#2E1A47] text-[#F5BD20] flex items-center justify-center shadow-[0_0_35px_rgba(245,189,32,0.25)] flex-shrink-0">
-                        <StorefrontIcon className="w-11 h-11 sm:w-14 sm:h-14" />
+                      {/* Glowing Storefront Rounded Square Badge */}
+                      <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-gradient-to-br from-[#3E1B60] to-[#250E3A] border-2 border-yellow/60 text-yellow flex items-center justify-center shadow-[0_0_25px_rgba(245,189,32,0.25)] flex-shrink-0 ring-2 ring-yellow/10">
+                        <StorefrontIcon className="w-8 h-8 sm:w-10 sm:h-10" />
                       </div>
 
                       {/* Content */}
-                      <div className="space-y-1.5 flex-1">
-                        <span className="text-[#F5BD20] text-xs font-bold uppercase tracking-widest block">
+                      <div className="space-y-1 flex-1">
+                        <span className="text-yellow text-[11px] font-bold uppercase tracking-widest font-display block">
                           {activeMilestone.year}
                         </span>
-                        <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                        <h3 className="font-display text-lg sm:text-2xl font-black text-white leading-tight mt-0.5">
                           {activeMilestone.title}
                         </h3>
                         
                         {/* Golden Horizontal Bar */}
-                        <div className="w-10 h-[2.5px] bg-[#F5BD20] my-2.5 mx-auto sm:mx-0 rounded-full" />
+                        <div className="w-8 h-[2px] bg-gradient-to-r from-yellow to-yellow/40 my-1.5 mx-auto sm:mx-0 rounded-full" />
 
-                        <p className="text-neutral-200 text-sm sm:text-base font-medium leading-relaxed">
+                        <p className="text-white/90 text-xs sm:text-sm font-medium leading-relaxed font-body">
                           {activeMilestone.cardSubtitle || activeMilestone.desc}
                         </p>
-                        <p className="text-neutral-400 text-xs sm:text-sm font-normal leading-relaxed font-body pt-0.5">
+                        <p className="text-white/60 text-[11px] sm:text-xs font-light leading-relaxed font-body">
                           {activeMilestone.cardDesc || activeMilestone.desc}
                         </p>
                       </div>
@@ -519,10 +627,10 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/25 bg-white/5 hover:bg-[#F5BD20] hover:text-[#2E1A47] hover:border-[#F5BD20] text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
+                  className="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-white/20 bg-white/5 hover:bg-yellow hover:text-plum-dark hover:border-yellow text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
                   aria-label="Next Milestone"
                 >
-                  <ChevronRight size={22} className="rtl:rotate-180" />
+                  <ChevronRight size={18} className="rtl:rotate-180" />
                 </button>
 
               </div>
