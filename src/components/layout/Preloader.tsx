@@ -15,93 +15,122 @@ export function Preloader() {
     document.documentElement.style.overflow = "hidden";
     document.body.classList.remove("splash-done");
 
+    const isMobileDevice = window.innerWidth <= 768;
+
     const tl = gsap.timeline({
       onComplete: () => {
         setIsDestroyed(true);
         document.body.style.overflow = "";
         document.documentElement.style.overflow = "";
         document.body.classList.add("splash-done");
-        window.dispatchEvent(new Event("splash-complete"));
       }
     });
 
-    // Set initial states
-    gsap.set(iconRef.current, {
-      opacity: 0,
-      scale: 0.7,
-      y: 20,
-      rotation: 2,
-      // Start shifted right to center of viewport
-      x: window.innerWidth > 480 ? 100 : 0
-    });
-    gsap.set(wordmarkRef.current, {
-      opacity: 0,
-      x: 30,
-      filter: "blur(12px)"
-    });
-    gsap.set(taglineRef.current, {
-      opacity: 0,
-      y: 12,
-      filter: "blur(8px)"
-    });
-    gsap.set(mobileLogoRef.current, {
-      opacity: 0,
-      scale: 0.85,
-      y: 20
-    });
+    if (isMobileDevice) {
+      // Set initial states for mobile
+      gsap.set(mobileLogoRef.current, {
+        opacity: 0,
+        scale: 0.86,
+        y: 15
+      });
 
-    // STAGE 1: Icon entrance (0s to 1.2s)
-    tl.to(iconRef.current, {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      rotation: 0,
-      duration: 1.2,
-      ease: "power3.out"
-    });
-    
-    // Animate mobile logo concurrently
-    tl.to(mobileLogoRef.current, {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      duration: 1.4,
-      ease: "power3.out"
-    }, 0);
+      // STAGE 1: Mobile Logo Entrance (0s -> 0.8s)
+      tl.to(mobileLogoRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power3.out"
+      });
 
-    // STAGE 2: Icon slides left, Wordmark enters (1.2s to 2.2s)
-    tl.addLabel("stage2", 1.2);
-    if (window.innerWidth > 480) {
+      // STAGE 2: Subtle golden aura & gentle pulse (0.8s -> 1.5s)
+      tl.to(mobileLogoRef.current, {
+        scale: 1.025,
+        duration: 0.7,
+        ease: "sine.inOut"
+      });
+
+      // STAGE 3: Trigger hero reveal right as preloader begins dissolving
+      tl.call(() => {
+        document.body.classList.add("splash-done");
+        window.dispatchEvent(new Event("splash-complete"));
+      }, [], 1.4);
+
+      // STAGE 4: Smooth dissolve directly into the Hero background (1.4s -> 2.0s)
+      tl.to(containerRef.current, {
+        opacity: 0,
+        scale: 1.03,
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, 1.4);
+
+    } else {
+      // Desktop sequence
+      gsap.set(iconRef.current, {
+        opacity: 0,
+        scale: 0.7,
+        y: 20,
+        rotation: 2,
+        x: window.innerWidth > 480 ? 100 : 0
+      });
+      gsap.set(wordmarkRef.current, {
+        opacity: 0,
+        x: 30,
+        filter: "blur(12px)"
+      });
+      gsap.set(taglineRef.current, {
+        opacity: 0,
+        y: 12,
+        filter: "blur(8px)"
+      });
+
+      // STAGE 1: Icon entrance (0s to 0.9s)
+      tl.to(iconRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        rotation: 0,
+        duration: 0.9,
+        ease: "power3.out"
+      });
+
+      // STAGE 2: Icon slides left, Wordmark enters (0.9s to 1.7s)
       tl.to(iconRef.current, {
         x: 0,
-        duration: 1.0,
+        duration: 0.8,
         ease: "power4.out"
-      }, "stage2");
+      }, 0.9);
+      tl.to(wordmarkRef.current, {
+        opacity: 1,
+        x: 0,
+        filter: "blur(0px)",
+        duration: 0.8,
+        ease: "power4.out"
+      }, 0.9);
+
+      // STAGE 3: Tagline fades in (1.7s to 2.3s)
+      tl.to(taglineRef.current, {
+        opacity: 0.85,
+        y: 0,
+        filter: "blur(0px)",
+        duration: 0.6,
+        ease: "power2.out"
+      }, 1.7);
+
+      // STAGE 4: Trigger hero reveal right as preloader begins dissolving
+      tl.call(() => {
+        document.body.classList.add("splash-done");
+        window.dispatchEvent(new Event("splash-complete"));
+      }, [], 2.4);
+
+      // STAGE 5: Smooth dissolve exit (2.4s to 3.0s)
+      tl.to(containerRef.current, {
+        opacity: 0,
+        scale: 1.03,
+        duration: 0.6,
+        ease: "power2.inOut"
+      }, 2.4);
     }
-    tl.to(wordmarkRef.current, {
-      opacity: 1,
-      x: 0,
-      filter: "blur(0px)",
-      duration: 1.0,
-      ease: "power4.out"
-    }, "stage2");
-
-    // STAGE 3: Tagline fades in (2.2s to 3.0s)
-    tl.to(taglineRef.current, {
-      opacity: 0.75,
-      y: 0,
-      filter: "blur(0px)",
-      duration: 0.8,
-      ease: "power2.out"
-    }, 2.2);
-
-    // STAGE 4: Exit Animation (4.0s)
-    tl.to(containerRef.current, {
-      yPercent: -100,
-      opacity: 0,
-      duration: 0.9,
-      ease: "power4.inOut"
-    }, 4.0);
 
     return () => {
       tl.kill();
@@ -294,24 +323,15 @@ export function Preloader() {
             display: flex !important;
             align-items: center;
             justify-content: center;
+            height: clamp(90px, 24vw, 130px);
+            padding: 0 1.5rem;
           }
-          .logo-wrapper {
-            height: 100px;
-          }
-          .splash-icon {
+          .splash-mobile-logo {
             height: 100%;
-          }
-          .text-wrapper {
-            height: 80px;
-          }
-          .splash-wordmark {
-            height: 100%;
-          }
-          .logo-wrapper.reveal-stage2 {
-            transform: translateX(-80px);
-          }
-          .text-wrapper {
-            left: 20px;
+            width: auto;
+            max-width: 80vw;
+            object-fit: contain;
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
           }
         }
 

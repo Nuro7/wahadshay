@@ -183,26 +183,8 @@ export function Franchise() {
             </div>
           </div>
 
-          {/* Right Column: CTA Button + 3-Pillars Feature Card */}
-          <div className="reveal-right reveal lg:col-span-7 flex flex-col items-start lg:items-end">
-            
-            {/* Top Right "Apply for Franchise" Button */}
-            <button
-              type="button"
-              onClick={() => setIsModalOpen(true)}
-              className="group relative inline-flex items-center gap-3.5 px-8 py-4 rounded-full bg-gradient-to-r from-yellow via-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-sm sm:text-base shadow-[0_4px_20px_rgba(245,189,32,0.35)] hover:shadow-[0_8px_30px_rgba(245,189,32,0.5)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer mb-6"
-            >
-              <div className="w-7 h-7 rounded-full bg-plum-dark flex items-center justify-center text-white flex-shrink-0 group-hover:rotate-12 transition-transform duration-300 shadow-xs">
-                {/* Storefront Icon */}
-                <svg className="w-4 h-4 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 9l1-5h16l1 5" />
-                  <path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0" />
-                  <path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9" />
-                  <path d="M9 21v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6" />
-                </svg>
-              </div>
-              <span className="tracking-wide">{t("about.franchise.applyBtn") || "Apply for Franchise"}</span>
-            </button>
+          {/* Right Column: 3-Pillars Feature Card with Integrated CTA Footer */}
+          <div className="reveal-right reveal lg:col-span-7 flex flex-col lg:mt-6">
 
             {/* 3-Column Luxury Feature Card */}
             <div className="w-full bg-white/95 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 sm:p-8 border border-neutral-border shadow-[0_8px_30px_rgba(43,37,32,0.04)] relative overflow-hidden">
@@ -266,6 +248,36 @@ export function Franchise() {
                 </div>
 
               </div>
+
+              {/* Integrated Card Action Footer */}
+              <div className="mt-6 pt-6 border-t border-neutral-border/70 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="flex items-center gap-2.5 text-center sm:text-start rtl:sm:text-end">
+                  <span className="w-2 h-2 rounded-full bg-yellow animate-pulse flex-shrink-0 hidden sm:inline-block" />
+                  <p className="text-text-primary text-xs sm:text-sm font-semibold font-display">
+                    {language === "AR"
+                      ? "جاهز لبدء رحلة شراكتك مع واحد شاي؟"
+                      : "Ready to launch your Wahad Shay partnership?"}
+                  </p>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-gradient-to-r from-yellow via-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-xs sm:text-sm shadow-[0_4px_18px_rgba(245,189,32,0.3)] hover:shadow-[0_8px_25px_rgba(245,189,32,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex-shrink-0 w-full sm:w-auto"
+                >
+                  <div className="w-6 h-6 rounded-full bg-plum-dark flex items-center justify-center text-white flex-shrink-0 group-hover:rotate-12 transition-transform duration-300 shadow-xs">
+                    {/* Storefront Icon */}
+                    <svg className="w-3.5 h-3.5 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 9l1-5h16l1 5" />
+                      <path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0" />
+                      <path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9" />
+                      <path d="M9 21v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6" />
+                    </svg>
+                  </div>
+                  <span className="tracking-wide">{t("about.franchise.applyBtn") || "Apply for Franchise"}</span>
+                </button>
+              </div>
+
             </div>
 
           </div>

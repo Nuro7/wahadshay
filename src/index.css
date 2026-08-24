@@ -541,17 +541,9 @@
   animation: pin-glow-gold 2s ease-in-out infinite;
 }
 
-/* Preloader & Hero Reveal Integration */
-body:not(.splash-done) #home {
-  opacity: 0 !important;
-  transform: translateY(30px) !important;
-  pointer-events: none;
-}
-body.splash-done #home {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-  transition-delay: 150ms;
+/* Preloader & Hero Seamless Styling */
+#home {
+  background-color: var(--color-plum-dark);
 }
 
 /* 

@@ -6,7 +6,7 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   return (
-    <div className="flex-1 w-full bg-neutral-white text-text-primary relative overflow-clip font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
+    <div className="flex-1 w-full bg-plum-dark text-text-primary relative overflow-clip font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
 
       {/* Ambient Orbs Wrapper to contain overflow and prevent scrollWidth expansion */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

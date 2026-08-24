@@ -106,7 +106,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
         <div className="absolute inset-0 food-pattern-bg" />
         <div className="absolute top-[30%] left-[-15%] w-[60vw] h-[60vw] bg-plum/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-[20%] right-[-10%] w-[50vw] h-[50vw] bg-yellow/2 rounded-full blur-[120px]" />
-        
+
         {/* Subtle brand graphic / abstract shape in background */}
         <div className="absolute top-1/2 right-0 opacity-[0.03] w-96 h-96 border-[1px] border-yellow rounded-full scale-150 translate-x-1/4" />
 
@@ -213,7 +213,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
                 >
                   {/* Animated soft gradient background glow */}
                   <div className="absolute -right-[30%] -bottom-[30%] w-[180px] h-[180px] bg-plum/3 rounded-full blur-[50px] group-hover:bg-plum/6 transition-all duration-700 pointer-events-none" />
-                  
+
                   {/* Category Badge on Top-Right/Left */}
                   <span className={`absolute top-3 ${isArabic ? 'left-3' : 'right-3'} bg-yellow text-plum-dark text-[8.5px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full z-20`}>
                     {t(`menuCategories.${item.category}`) || item.category}

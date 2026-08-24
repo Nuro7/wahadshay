@@ -133,13 +133,12 @@ export default function Hero() {
 
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" ? window.innerWidth < 768 : false);
 
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
@@ -161,6 +160,13 @@ export default function Hero() {
 
     setActiveVideoIndex(nextIndex);
   };
+
+  useEffect(() => {
+    const vid = videoRefs.current[activeVideoIdx];
+    if (vid) {
+      vid.play().catch(() => {});
+    }
+  }, [activeVideoIdx, isMobile]);
 
   useEffect(() => {
     // Pause inactive videos after the 1-second crossfade finishes to save resources
@@ -281,9 +287,14 @@ export default function Hero() {
             muted
             playsInline
             preload="auto"
+            onLoadedData={(e) => {
+              if (idx === activeVideoIdx) {
+                (e.currentTarget as HTMLVideoElement).play().catch(() => {});
+              }
+            }}
             onEnded={() => handleVideoEnd(idx)}
             loop={isMobile}
-            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
+            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out bg-plum-dark ${idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
               }`}
           />
         ))}

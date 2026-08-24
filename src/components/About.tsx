@@ -210,7 +210,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 w-full">
             {philosophyItems.map((item, idx) => {
               const Icon = philosophyIcons[idx % philosophyIcons.length];
               const numStr = `0${idx + 1}`;
@@ -220,51 +220,46 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                   href={isHomePage ? "#about" : "#menu"}
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative block`}
+                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-6 xs:p-7 md:p-8 rounded-2xl sm:rounded-3xl bg-white border border-neutral-border shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.08)] flex flex-col justify-between relative overflow-hidden transition-all duration-300`}
                 >
-                  {/* Huge Background Number */}
-                  <span className="bg-number-watermark luxury-bg-num bottom-[-20%] right-[-10%] group-hover:opacity-10 transition-opacity duration-700">
-                    {numStr}
-                  </span>
-
-                  <div className="relative z-10 flex flex-col h-full">
-                    {/* Top Section */}
-                    <div className="flex items-start justify-between mb-10">
-                      <div className="flex flex-col gap-2">
-                        <span className="font-numbers text-base font-black text-plum/80 tracking-widest">
+                  <div className="flex flex-col flex-1">
+                    {/* Top Row: Number with underline (left) & Circle icon (right) */}
+                    <div className="flex items-center justify-between mb-6 sm:mb-7">
+                      <div className="flex flex-col">
+                        <span className="font-numbers text-lg xs:text-xl font-bold text-plum tracking-tight leading-none">
                           {numStr}
                         </span>
-                        <div className="w-6 h-px bg-yellow/60" />
+                        <div className="w-6 h-0.5 bg-yellow/80 rounded-full mt-1.5" />
                       </div>
-                      <div className="text-plum bg-plum/5 p-3 rounded-full luxury-icon transition-transform duration-500 ease-out border border-plum/10 group-hover:bg-plum/10 group-hover:border-plum/20">
-                        <Icon size={24} className="stroke-[1.5]" />
+                      <div className="w-10 h-10 xs:w-11 xs:h-11 rounded-full bg-plum/5 border border-plum/10 flex items-center justify-center text-plum group-hover:scale-105 group-hover:bg-plum/10 group-hover:border-plum/20 transition-all duration-300 shadow-2xs">
+                        <Icon size={20} className="stroke-[1.6]" />
                       </div>
                     </div>
 
-                    {/* Content Section */}
-                    <div className="mt-auto space-y-5">
-                      <h3 className="font-display text-2xl font-bold text-text-primary leading-tight group-hover:text-plum transition-colors duration-300">
-                        {item.title}
-                      </h3>
-                      <p className="text-text-secondary text-sm leading-relaxed font-light">
-                        {item.desc}
-                      </p>
-                    </div>
+                    {/* Title */}
+                    <h3 className="font-display text-xl xs:text-[22px] sm:text-2xl font-bold text-text-primary leading-snug tracking-tight group-hover:text-plum transition-colors duration-300 mb-2.5 sm:mb-3">
+                      {item.title}
+                    </h3>
 
-                    {/* Bottom Action */}
-                    <div className={`mt-8 pt-6 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
-                      <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum group-hover:text-plum-dark transition-colors">
-                        {t('about.discover')}
-                      </span>
-                      <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180' : ''}`} />
-                    </div>
+                    {/* Description */}
+                    <p className="text-text-secondary text-[13.5px] xs:text-sm sm:text-[14.5px] leading-[1.6] font-body font-light">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Action Area with Divider */}
+                  <div className={`mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                    <span className="text-[10.5px] xs:text-[11px] uppercase font-bold tracking-[0.2em] text-plum group-hover:text-plum-dark transition-colors">
+                      {t('about.discover') || "DISCOVER"}
+                    </span>
+                    <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-300 group-hover:translate-x-1 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                   </div>
                   
-                  {/* Varying subtle accent borders based on index */}
-                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-plum/3 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
-                  {idx === 1 && <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow/60 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />}
-                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-plum/3 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
-                  {idx === 3 && <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-yellow/60 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-500" />}
+                  {/* Subtle accent indicator */}
+                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1 bg-plum/30 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
+                  {idx === 1 && <div className="absolute top-0 left-0 right-0 h-1 bg-yellow/60 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />}
+                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1 bg-plum/30 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
+                  {idx === 3 && <div className="absolute right-0 top-0 bottom-0 w-1 bg-yellow/60 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-500" />}
                 </a>
               );
             })}
