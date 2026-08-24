@@ -744,7 +744,7 @@ export default function FranchiseSection() {
                           filter: "drop-shadow(0 2px 5px rgba(0,0,0,0.85))",
                         }}
                       >
-                        {b.name}
+                        {language === 'AR' && b.nameAr ? b.nameAr : b.name}
                       </text>
                     </g>
                   );
@@ -753,59 +753,9 @@ export default function FranchiseSection() {
               </svg>
             </div>
           </div>
-
-          {/* Outlet Cards Grid with Centered Alignment & Deep Purple Text */}
-          <div className="mt-10 md:mt-16 flex flex-wrap justify-center gap-6 font-body text-start">
-            {branches.map((b) => (
-              <div
-                key={b.id}
-                onClick={() => setSelectedBranch(b)}
-                className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm glass-card glass-card-hover p-6 rounded-2xl flex flex-col justify-between group transition-all duration-300 border border-neutral-border/80 bg-white/95 shadow-sm hover:shadow-lg cursor-pointer"
-              >
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-plum">
-                      {b.city}
-                    </span>
-                    {b.status === "Open" ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
-                        <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
-                        Open
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-amber-800 border border-yellow/30">
-                        <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
-                        Coming Soon
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="font-display text-lg font-black text-plum-dark group-hover:text-plum transition-colors leading-tight">
-                    {b.name}
-                  </h3>
-                  <p className="text-xs text-plum-dark/70 font-medium">
-                    {b.area}, {b.city}
-                  </p>
-                </div>
-
-                <div className="pt-5 mt-4 border-t border-neutral-border/60 flex items-center justify-between">
-                  <a
-                    href={b.mapLink}
-                    target="_blank"
-                    rel="noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 transition-colors"
-                  >
-                    <MapPin size={14} />
-                    Open in Google Maps
-                    <Navigation size={12} className="rtl:rotate-180 group-hover:translate-x-0.5 transition-transform" />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* Branch Details Modal */}
+          {/* Branch Details Modal */}
         {typeof document !== 'undefined' && createPortal(
           <AnimatePresence>
             {selectedBranch && (

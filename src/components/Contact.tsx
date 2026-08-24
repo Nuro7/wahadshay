@@ -10,26 +10,58 @@ export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.phone || !formData.message) return;
     setIsSubmitting(true);
 
     const emailTo = "Info@wahadshaycafe.com";
-    const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
-    const emailBody = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
-    );
 
-    const mailtoUrl = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
+    try {
+      const response = await fetch(`https://formsubmit.co/ajax/${emailTo}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          Name: formData.name,
+          Email: formData.email,
+          Phone: formData.phone,
+          Subject: formData.subject || "Website Contact Inquiry",
+          Message: formData.message,
+          _subject: `New Inquiry: ${formData.subject || formData.name} - Wahad Shay`,
+          _template: "table",
+          _captcha: "false"
+        })
+      });
 
-    window.location.href = mailtoUrl;
-
-    setTimeout(() => {
-      setIsSubmitting(false);
+      if (response.ok) {
+        setFormSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      } else {
+        // Fallback to mail client if service returns non-ok
+        const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
+        const emailBody = encodeURIComponent(
+          `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
+        );
+        window.location.href = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
+        setFormSubmitted(true);
+        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      // Fallback to mail client if network fails
+      const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
+      const emailBody = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
+      );
+      window.location.href = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
       setFormSubmitted(true);
       setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-    }, 1200);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

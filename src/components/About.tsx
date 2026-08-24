@@ -6,76 +6,128 @@ import { useLanguage } from "../i18n/LanguageContext";
 interface Milestone {
   year: string;
   title: string;
+  branchName?: string;
   desc: string;
+  cardSubtitle?: string;
+  cardDesc?: string;
+  status?: "open" | "upcoming";
   shortTitle?: string;
 }
 
-const timelineData: Milestone[] = [
+const defaultTimelineData: Milestone[] = [
   {
-    year: "2018",
-    title: "The Genesis",
-    desc: "Founded with a vision to marry traditional tea preparation with premium European artisan baking.",
+    year: "JUNE 2025",
+    title: "Al Hamidiya Branch",
+    branchName: "HAMIDIYA BRANCH",
+    desc: "Our journey begins. Hamidiya welcomed us first.",
+    cardSubtitle: "A milestone that marked our beginning.",
+    cardDesc: "Hamidiya is where our signature chai rituals first came to life, bringing people together over warmth and tradition.",
+    status: "open"
   },
   {
-    year: "2021",
-    title: "Riyadh Flagship",
-    desc: "Launched our first flagship tea lounge on King Abdulaziz Road, Riyadh, introducing our signature double-spiced Karak.",
+    year: "JANUARY 2026",
+    title: "Al Falah Branch",
+    branchName: "AL FALAH BRANCH",
+    desc: "A new chapter of flavour and community in Al Falah.",
+    cardSubtitle: "A milestone that brought our craft to the capital.",
+    cardDesc: "Al Falah branch welcomed guests with our signature tea blends and fresh artisan bakes in a cozy, modern lounge atmosphere.",
+    status: "open"
   },
   {
-    year: "2024",
-    title: "UAE Network Launch",
-    desc: "Expanded across the borders, establishing initial boutique Lounges in Ajman, Sharjah, and Abu Dhabi.",
+    year: "APRIL 2026",
+    title: "Al Wahda Branch",
+    branchName: "AL WAHDA BRANCH",
+    desc: "Expanding our experience to the heart of Al Wahda.",
+    cardSubtitle: "A milestone that brought us closer to you.",
+    cardDesc: "Al Wahda is where great food and unforgettable moments meet.",
+    status: "open"
   },
   {
-    year: "2026",
-    title: "The Digital Era",
-    desc: "Introduced smart franchise models, modern digital lounges, and premium client-side experiences globally.",
+    year: "OPENING SOON",
+    title: "Al Rawda Branch",
+    branchName: "AL RAWDA BRANCH",
+    desc: "A new destination is on the way.",
+    cardSubtitle: "Expanding to new vibrant neighborhoods.",
+    cardDesc: "Our upcoming Al Rawda branch is designed with luxurious warm interiors to create the perfect community sanctuary.",
+    status: "upcoming"
   },
+  {
+    year: "OPENING SOON",
+    title: "Sharjah Branch",
+    branchName: "SHARJAH BRANCH",
+    desc: "More flavours, more memories. Coming soon to Sharjah.",
+    cardSubtitle: "Carrying our legacy to the cultural capital.",
+    cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
+    status: "upcoming"
+  }
 ];
 
 const philosophyIcons = [Compass, Sparkles, Heart, ShieldCheck];
 
+const StorefrontIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
+  <svg
+    className={className}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M3 6.5L5.5 3h13L21 6.5" />
+    <path d="M3 6.5h18" />
+    <path d="M3 6.5c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2c0 1.2 1 2 2.25 2s2.25-.8 2.25-2" />
+    <path d="M4 8.5V20a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8.5" />
+    <path d="M8.5 21v-5a2 2 0 0 1 4 0v5" />
+    <rect x="14.5" y="12" width="3" height="3" rx="0.5" />
+  </svg>
+);
+
 export function About({ isHomePage = false }: { isHomePage?: boolean }) {
   const { t, language } = useLanguage();
-  const [currentStep, setCurrentStep] = useState(0);
+  const [currentStep, setCurrentStep] = useState(2);
   const [direction, setDirection] = useState(0);
+
+  const timelineList = (t('about.timeline') as Milestone[]) || defaultTimelineData;
+  const activeMilestone = timelineList[currentStep] || timelineList[0] || defaultTimelineData[0];
+  const philosophyItems = t('about.philosophy') as any[];
 
   const handleStepChange = (newStep: number) => {
     setDirection(newStep > currentStep ? 1 : -1);
     setCurrentStep(newStep);
   };
 
-  const handleNext = () => {
-    if (currentStep < timelineData.length - 1) {
-      handleStepChange(currentStep + 1);
-    }
+  const handleNext = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const nextStep = (currentStep + 1) % timelineList.length;
+    setDirection(1);
+    setCurrentStep(nextStep);
   };
 
-  const handlePrev = () => {
-    if (currentStep > 0) {
-      handleStepChange(currentStep - 1);
-    }
+  const handlePrev = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    const prevStep = (currentStep - 1 + timelineList.length) % timelineList.length;
+    setDirection(-1);
+    setCurrentStep(prevStep);
   };
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleStepChange((currentStep + 1) % timelineData.length);
-    }, 3000);
-    return () => clearInterval(timer);
-  }, [currentStep]);
-
-  const timelineData = t('about.timeline') as Milestone[];
-  const philosophyItems = t('about.philosophy') as any[];
-  const timelinePath = language === 'AR'
-    ? "M 700,130 C 600,30 580,190 480,80 C 380,-30 350,190 250,130 C 150,70 140,30 100,70"
-    : "M 100,130 C 200,30 220,190 320,80 C 420,-30 450,190 550,130 C 650,70 660,30 700,70";
 
   return (
     <>
       {/* 1. Our Story Section */}
-      <section id="about" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
-        {/* Subtle botanical line texture can be simulated or added as background. For now we use very soft blurred orbs to keep it clean */}
-        <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
+      <section id="about" className="section-padding-landing bg-[#F8F5EF] relative overflow-hidden select-none">
+        
+        {/* Subtle Islamic Geometric Lattice Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none z-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 L60 30 L30 60 L0 30 Z M30 12 L48 30 L30 48 L12 30 Z' fill='%235E2689' fill-opacity='0.6' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+            backgroundSize: "60px 60px"
+          }}
+        />
+
+        {/* Ambient Glow Orbs */}
+        <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/5 rounded-full blur-[160px] pointer-events-none" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[450px] h-[450px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
         
         <div className="premium-container relative z-10">
           <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -83,72 +135,65 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
             {/* Left: Editorial Story */}
             <div className="reveal-left reveal space-y-8 lg:col-span-7">
               <div className="space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="h-px w-8 bg-plum/40 block" />
-                  <span className="text-plum text-[11px] font-bold uppercase tracking-[0.3em]">
-                    {t('about.storyBadge')}
-                  </span>
-                </div>
-                
-                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black leading-[1.08] tracking-tight">
-                  <span className="text-shimmer">{t('about.storyTitle1')}</span>
-                  {t('about.storyTitle2') && <><span className="text-shimmer-gold"> {t('about.storyTitle2')}</span></>}
-                  {t('about.storyTitle3') && (
-                    <>
-                      <br />
-                      <span className="text-shimmer">{t('about.storyTitle3')}</span>
-                    </>
-                  )}
+                <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+                  {t('about.storyBadge')}
+                </span>
+                <h2 className="font-display text-4xl sm:text-5xl font-black text-text-primary leading-[1.1] mask-reveal">
+                  <span className="text-shimmer block">{t('about.storyTitle1')}</span>
+                  <span className="text-plum block mt-1">{t('about.storyTitle2')}</span>
                 </h2>
               </div>
-
-              <div className="space-y-4 max-w-xl">
-                {t('about.storyDesc1') && (
-                  <p className="text-text-primary/90 text-base md:text-lg leading-relaxed font-body font-medium">
-                    {t('about.storyDesc1')}
-                  </p>
-                )}
-                {t('about.storyDesc2') && (
-                  <p className="text-text-secondary text-sm md:text-base leading-loose font-body font-light">
-                    {t('about.storyDesc2')}
-                  </p>
-                )}
+              
+              <div className="space-y-6 text-text-secondary text-base sm:text-lg leading-relaxed font-body font-light">
+                <p>
+                  {t('about.storyP1')}
+                </p>
+                <p>
+                  {t('about.storyP2')}
+                </p>
               </div>
 
-              <a href={isHomePage ? "#about" : "#specials"} className="group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-2">
-                <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
-                <ArrowRight size={16} className="transform transition-transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
-              </a>
+              {/* Luxury Quote/Stats Badge */}
+              <div className="pt-2">
+                <div className="inline-flex items-center gap-6 p-6 rounded-2xl bg-white/80 backdrop-blur-md border border-neutral-border shadow-[0_4px_25px_rgba(43,37,32,0.03)] group hover:shadow-[0_8px_30px_rgba(94,38,137,0.08)] transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full bg-plum/10 flex items-center justify-center text-plum group-hover:scale-110 transition-transform duration-300">
+                    <Leaf size={24} className="stroke-[1.5]" />
+                  </div>
+                  <div>
+                    <h4 className="font-display font-bold text-text-primary text-base sm:text-lg">
+                      {t('about.mottoHeader')}
+                    </h4>
+                    <p className="text-xs text-text-secondary font-body">
+                      {t('about.mottoFooter')}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Right: Enlarged Height Brand Motto Card */}
-            <div className="reveal-right reveal relative lg:col-span-5 flex items-center justify-center lg:justify-start">
-              <div className="w-full max-w-md bg-white/90 backdrop-blur-md py-12 md:py-14 px-8 md:px-10 text-center relative z-10 border border-neutral-border/70 flex flex-col justify-center min-h-[340px] md:min-h-[360px] shadow-sm rounded-2xl overflow-hidden">
-                {/* Decorative Top Line */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-[2px] bg-gradient-to-r from-transparent via-plum/40 to-transparent rounded-t-2xl" />
+            {/* Right: Decorative Image Montage / Floating Card */}
+            <div className="reveal-right reveal lg:col-span-5 relative">
+              <div className="relative mx-auto max-w-md">
+                {/* Back glow */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-plum/20 to-yellow/20 rounded-3xl blur-2xl transform rotate-3 scale-95" />
                 
-                {/* Thematic Botanical Background Leaf Accent */}
-                <div className="absolute top-[-10%] right-[-10%] opacity-[0.04] text-plum transform rotate-45 pointer-events-none">
-                  <Leaf size={240} strokeWidth={0.5} />
-                </div>
-                <div className="absolute bottom-[-10%] left-[-10%] opacity-[0.03] text-yellow transform -rotate-12 pointer-events-none">
-                  <Leaf size={260} strokeWidth={0.5} />
-                </div>
-
-                <div className="space-y-6 md:space-y-8 relative">
-                  <span className="text-[9.5px] uppercase font-bold tracking-[0.4em] text-text-secondary/70 block">
-                    {t('about.mottoBadge')}
-                  </span>
-                  
-                  <blockquote className="font-display text-lg md:text-xl italic font-light leading-relaxed text-text-primary px-3">
-                    {t('about.mottoText')}
-                  </blockquote>
-                  
-                  <div className="pt-4 flex flex-col items-center gap-3">
-                    <div className="h-6 w-px bg-plum/25" />
-                    <span className="font-display text-[10.5px] font-bold tracking-[0.3em] text-plum uppercase">
-                      {t('about.mottoFooter')}
+                {/* Main Card */}
+                <div className="relative rounded-3xl overflow-hidden border border-neutral-border bg-white shadow-2xl p-8 space-y-6">
+                  <div className="aspect-[4/3] rounded-2xl overflow-hidden relative bg-plum-dark/5 flex items-center justify-center">
+                    <img
+                      src="/assets/hot_chicken_rice-sZ9Yi7ot.jpg"
+                      alt="Wahad Shay Atmosphere"
+                      className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-plum-dark/40 via-transparent to-transparent" />
+                  </div>
+                  <div className="text-center space-y-2">
+                    <span className="font-numbers text-xs text-plum font-bold tracking-widest uppercase block">
+                      EST. 2018
                     </span>
+                    <h3 className="font-display text-xl font-bold text-text-primary">
+                      {t('about.storyBadge')}
+                    </h3>
                   </div>
                 </div>
               </div>
@@ -158,41 +203,42 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
         </div>
       </section>
 
-      {/* 2. Brand Philosophy Section */}
-      <section className="section-padding bg-beige relative overflow-hidden select-none">
-        <div className="absolute bottom-[10%] left-[-15%] w-[600px] h-[600px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
+      {/* 2. Four Pillars / Philosophy Section */}
+      <section className="section-padding-landing bg-[#F4EFE7] relative overflow-hidden select-none">
         
+        {/* Diamond Lattice Pattern */}
+        <div
+          className="absolute inset-0 opacity-[0.02] pointer-events-none z-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='%232E1A47' fill-opacity='0.8' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+            backgroundSize: "40px 40px"
+          }}
+        />
+
         <div className="premium-container relative z-10 space-y-16">
-          <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
+          <div className="reveal text-center max-w-2xl mx-auto space-y-4">
+            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
               {t('about.philBadge')}
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              <span className="text-gradient-plum">{t('about.philTitle1')}</span>{" "}
-              <span className="text-gradient-gold">{t('about.philTitle2')}</span>
+            <h2 className="font-display text-3xl sm:text-4xl font-black text-text-primary">
+              <span>{t('about.philTitle1')}</span> <span className="text-plum">{t('about.philTitle2')}</span>
             </h2>
-            <p className="text-text-secondary text-base font-light max-w-md mx-auto">
+            <p className="text-text-secondary text-sm sm:text-base font-body leading-relaxed font-light">
               {t('about.philDesc')}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-            {philosophyItems.map((item, idx) => {
+            {philosophyItems.map((item: any, idx: number) => {
               const Icon = philosophyIcons[idx % philosophyIcons.length];
               const numStr = `0${idx + 1}`;
-              
               return (
                 <a
-                  href={isHomePage ? "#about" : "#specials"}
+                  href="#specials"
                   key={item.title}
                   style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                  className={`reveal-${idx % 2 === 0 ? "left" : "right"} reveal luxury-card luxury-card-hover group p-8 md:p-10 flex flex-col justify-between min-h-[340px] relative block`}
+                  className="reveal premium-card premium-card-hover group p-8 flex flex-col justify-between min-h-[300px] relative transition-all duration-500 hover:-translate-y-2 block"
                 >
-                  {/* Huge Background Number */}
-                  <span className="bg-number-watermark luxury-bg-num bottom-[-20%] right-[-10%] group-hover:opacity-10 transition-opacity duration-700">
-                    {numStr}
-                  </span>
-
                   <div className="relative z-10 flex flex-col h-full">
                     {/* Top Section */}
                     <div className="flex items-start justify-between mb-10">
@@ -225,12 +271,6 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 group-hover:text-plum-dark rtl:rotate-180" />
                     </div>
                   </div>
-                  
-                  {/* Varying subtle accent borders based on index */}
-                  {idx === 0 && <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-plum/3 scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />}
-                  {idx === 1 && <div className="absolute top-0 left-0 right-0 h-1.5 bg-yellow/60 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500" />}
-                  {idx === 2 && <div className="absolute bottom-0 left-0 right-0 h-1.5 bg-plum/3 scale-x-0 group-hover:scale-x-100 transition-transform origin-right duration-500" />}
-                  {idx === 3 && <div className="absolute right-0 top-0 bottom-0 w-1.5 bg-yellow/60 scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom duration-500" />}
                 </a>
               );
             })}
@@ -238,196 +278,267 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
         </div>
       </section>
 
-      {/* 3. Brand Timeline Section */}
-      <section className="section-padding bg-plum-dark relative overflow-hidden select-none">
-        {/* Subtle background glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-plum/50 rounded-[100%] blur-[120px] pointer-events-none" />
+      {/* 3. Brand Timeline Section ("Our Journey, Growing Together") */}
+      <section className="py-16 md:py-24 bg-[#1A0A28] relative overflow-hidden select-none">
         
-        <div className="premium-container relative z-10 space-y-20">
-          <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-yellow text-[11px] font-bold uppercase tracking-[0.25em] block">
-              {t('about.journeyBadge')}
+        {/* Luxury Islamic Geometric Lattice Pattern in Dark Section */}
+        <div
+          className="absolute inset-0 opacity-[0.04] pointer-events-none z-0"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 L80 40 L40 80 L0 40 Z M40 15 L65 40 L40 65 L15 40 Z' fill='%23F5BD20' fill-opacity='0.8' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+            backgroundSize: "80px 80px"
+          }}
+        />
+
+        {/* Ambient Rich Glow Accents */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[550px] bg-[#5E2689]/35 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[450px] h-[450px] bg-[#F5BD20]/8 rounded-full blur-[130px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#5E2689]/25 rounded-full blur-[120px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12 md:space-y-16">
+          
+          {/* Header */}
+          <div className="reveal text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-[#F5BD20] text-xs font-bold uppercase tracking-[0.25em] block">
+              {t('about.journeyBadge') || 'THE WAHAD SHAY JOURNEY'}
             </span>
-            <h2 className="font-display text-3xl md:text-4xl font-black text-white">
-              {t('about.journeyTitle')}
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+              {t('about.journeyTitle') || 'Our Journey, Growing Together'}
             </h2>
-          </div>
+            <p className="text-neutral-300 text-sm sm:text-base font-normal leading-relaxed max-w-2xl mx-auto font-body">
+              <span>{t('about.journeySubtitle1') || 'From our first branch to the future ahead —'}</span>{' '}
+              <span className="block sm:inline">{t('about.journeySubtitle2') || 'every milestone is a step closer to serving you better.'}</span>
+            </p>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* SVG Timeline */}
-            <svg 
-              viewBox="0 0 800 220" 
-              className="w-full h-auto overflow-visible select-none drop-shadow-2xl"
-            >
-              {/* Dotted Pathway Track (Gold) */}
-              <path
-                d={timelinePath}
-                fill="none"
-                stroke="rgba(245, 189, 32, 0.2)"
-                strokeWidth="2"
-                strokeDasharray="4 8"
-                className="transition-all duration-500"
-              />
-
-              {/* active progress line segment (Solid Gold) */}
-              <path
-                d={timelinePath}
-                fill="none"
-                stroke="var(--color-yellow)"
-                strokeWidth="2"
-                strokeDasharray="760"
-                strokeDashoffset={760 - (currentStep / (timelineData.length - 1)) * 760}
-                className="transition-all duration-700 ease-in-out"
-                style={{ filter: "drop-shadow(0 0 8px rgba(245, 189, 32, 0.4))" }}
-              />
-
-              {/* Traveling Glow Dot */}
-              <circle
-                r="4"
-                fill="var(--color-white)"
-                style={{
-                  offsetPath: `path('${timelinePath}')`,
-                  offsetDistance: `${(currentStep / (timelineData.length - 1)) * 100}%`,
-                  transition: "offset-distance 0.8s cubic-bezier(0.25, 1, 0.5, 1)",
-                  filter: "drop-shadow(0 0 10px rgba(255, 255, 255, 0.8))"
-                }}
-              />
-
-              {/* Location Pins & Years */}
-              {timelineData.map((node: Milestone, idx: number) => {
-                const xPos = [100, 320, 550, 700][idx] || 100;
-                const yPos = [130, 80, 130, 70][idx] || 130;
-                const nodeX = language === 'AR' ? 800 - xPos : xPos;
-                const isActive = idx === currentStep;
-                const isCompleted = idx < currentStep;
-                return (
-                  <g 
-                    key={node.year} 
-                    onClick={() => handleStepChange(idx)}
-                    className="cursor-pointer group"
-                  >
-                    {/* Ring ripple on active pin */}
-                    {isActive && (
-                      <circle
-                        cx={nodeX}
-                        cy={yPos}
-                        r="20"
-                        className="fill-none stroke-yellow opacity-30"
-                        style={{
-                          transformOrigin: `${nodeX}px ${yPos}px`,
-                          animation: "ping 2.5s cubic-bezier(0, 0, 0.2, 1) infinite",
-                        }}
-                      />
-                    )}
-
-                    {/* Outer circle */}
-                    <circle
-                      cx={nodeX}
-                      cy={yPos}
-                      r="8"
-                      className={`transition-all duration-500 ${
-                        isActive 
-                          ? "fill-plum-dark stroke-yellow stroke-[3px]" 
-                          : isCompleted
-                            ? "fill-yellow stroke-yellow"
-                            : "fill-plum-dark stroke-yellow/40 hover:stroke-yellow"
-                      }`}
-                      style={isActive ? { filter: "drop-shadow(0 0 12px rgba(245, 189, 32, 0.6))" } : {}}
-                    />
-
-                    {/* Text Label Year */}
-                    <text
-                      x={nodeX}
-                      y={yPos - 24}
-                      textAnchor="middle"
-                      className={`font-numbers text-sm transition-all duration-500 ${
-                        isActive ? "fill-yellow font-black scale-110" : "fill-white/60 font-medium group-hover:fill-white"
-                      }`}
-                      style={{
-                         transformOrigin: `${nodeX}px ${yPos - 24}px`
-                      }}
-                    >
-                      {node.year}
-                    </text>
-
-                    {/* Title tooltip below node */}
-                    <text
-                      x={nodeX}
-                      y={yPos + 28}
-                      textAnchor="middle"
-                      className={`font-display text-[9px] tracking-[0.2em] uppercase transition-all duration-500 ${
-                        isActive ? "fill-white font-bold" : "fill-white/40 font-medium group-hover:fill-white/80"
-                      }`}
-                    >
-                      {node.shortTitle}
-                    </text>
-                  </g>
-                );
-              })}
-            </svg>
-
-            {/* Overlapping Info Panel */}
-            <div className="relative z-20 mt-0 md:mt-[-60px] max-w-2xl mx-auto px-4">
-              <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
-                <div className="flex items-center justify-between mb-8">
-                  <button
-                    onClick={handlePrev}
-                    disabled={currentStep === 0}
-                    className={`p-2 rounded-full border border-white/10 text-white/50 transition-all duration-300 cursor-pointer hover:bg-white/10 hover:text-white ${
-                      currentStep === 0 ? "opacity-30 cursor-not-allowed" : ""
-                    }`}
-                  >
-                    <ChevronLeft size={20} className="rtl:rotate-180" />
-                  </button>
-                  <span className="font-display text-[10px] font-bold tracking-[0.3em] text-yellow uppercase">
-                    {timelineData[currentStep].year}
-                  </span>
-                  <button
-                    onClick={handleNext}
-                    disabled={currentStep === timelineData.length - 1}
-                    className={`p-2 rounded-full border border-white/10 text-white/50 transition-all duration-300 cursor-pointer hover:bg-white/10 hover:text-white ${
-                      currentStep === timelineData.length - 1 ? "opacity-30 cursor-not-allowed" : ""
-                    }`}
-                  >
-                    <ChevronRight size={20} className="rtl:rotate-180" />
-                  </button>
-                </div>
-
-                <AnimatePresence mode="wait" custom={direction}>
-                  <motion.div
-                    key={currentStep}
-                    custom={direction}
-                    variants={{
-                      enter: (dir: number) => ({
-                        x: dir > 0 ? 40 : -40,
-                        opacity: 0,
-                      }),
-                      center: {
-                        x: 0,
-                        opacity: 1,
-                      },
-                      exit: (dir: number) => ({
-                        x: dir > 0 ? -40 : 40,
-                        opacity: 0,
-                      }),
-                    }}
-                    initial="enter"
-                    animate="center"
-                    exit="exit"
-                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                    className="space-y-4"
-                  >
-                    <h4 className="font-display text-2xl md:text-3xl font-bold text-white leading-tight">
-                      {timelineData[currentStep].title}
-                    </h4>
-                    <p className="text-white/70 text-sm md:text-base font-light leading-relaxed max-w-md mx-auto">
-                      {timelineData[currentStep].desc}
-                    </p>
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+            {/* Divider with Plus Accent */}
+            <div className="flex items-center justify-center gap-3 pt-2 max-w-xs mx-auto">
+              <div className="h-[1px] bg-gradient-to-r from-transparent to-[#F5BD20]/50 flex-1" />
+              <span className="text-[#F5BD20] text-xs font-bold">+</span>
+              <div className="h-[1px] bg-gradient-to-l from-transparent to-[#F5BD20]/50 flex-1" />
             </div>
           </div>
+
+          {/* Timeline Visual Wave & Milestones */}
+          <div className="relative max-w-6xl mx-auto">
+            
+            {/* Desktop & Tablet Timeline Grid */}
+            <div className="hidden md:block relative pt-6 pb-2">
+              
+              {/* Connecting Sine Wave Behind Nodes */}
+              <div className="absolute top-[52px] left-[10%] right-[10%] h-8 pointer-events-none z-0">
+                <svg viewBox="0 0 800 40" className="w-full h-full overflow-visible" preserveAspectRatio="none">
+                  {/* Solid Gold Wave for Open branches */}
+                  <path
+                    d={language === 'AR'
+                      ? "M 800,20 Q 700,5 600,20 T 400,20"
+                      : "M 0,20 Q 100,5 200,20 T 400,20"}
+                    fill="none"
+                    stroke="#F5BD20"
+                    strokeWidth="2.5"
+                    style={{ filter: "drop-shadow(0 0 8px rgba(245, 189, 32, 0.6))" }}
+                  />
+                  {/* Dashed Gold Wave for Upcoming branches */}
+                  <path
+                    d={language === 'AR'
+                      ? "M 400,20 Q 300,5 200,20 T 0,20"
+                      : "M 400,20 Q 500,5 600,20 T 800,20"}
+                    fill="none"
+                    stroke="#F5BD20"
+                    strokeWidth="2"
+                    strokeDasharray="5 6"
+                    className="opacity-50"
+                  />
+                </svg>
+              </div>
+
+              {/* 5 Milestone Columns */}
+              <div className="grid grid-cols-5 gap-3 relative z-10">
+                {timelineList.map((node: Milestone, idx: number) => {
+                  const isActive = idx === currentStep;
+                  const isOpen = node.status === "open" || idx < 3;
+
+                  return (
+                    <div
+                      key={idx}
+                      onClick={() => handleStepChange(idx)}
+                      className="flex flex-col items-center text-center group cursor-pointer select-none"
+                    >
+                      {/* Date Label above node */}
+                      <span className={`font-display text-[11px] font-bold uppercase tracking-wider transition-all duration-300 h-6 flex items-center ${
+                        isActive ? "text-[#F5BD20] scale-110 drop-shadow-[0_0_8px_rgba(245,189,32,0.6)] font-black" : "text-[#F5BD20]/80 group-hover:text-[#F5BD20]"
+                      }`}>
+                        {node.year}
+                      </span>
+
+                      {/* Wave Node Dot on Curve */}
+                      <div className="relative my-2 flex items-center justify-center h-5">
+                        {/* Active Ring Pulse */}
+                        {isActive && (
+                          <span className="absolute w-7 h-7 rounded-full border-2 border-[#F5BD20] animate-ping opacity-40 pointer-events-none" />
+                        )}
+
+                        {/* Node Dot */}
+                        <div
+                          className={`w-4 h-4 rounded-full transition-all duration-300 ${
+                            isOpen
+                              ? "bg-[#F5BD20] shadow-[0_0_12px_rgba(245,189,32,0.8)]"
+                              : "bg-[#1E0D2E] border-2 border-[#F5BD20]"
+                          } ${isActive ? "scale-125 ring-4 ring-[#F5BD20]/30" : "group-hover:scale-110"}`}
+                        />
+                      </div>
+
+                      {/* Dashed Stem Line */}
+                      <div className="w-0 h-6 border-l-2 border-dashed border-[#F5BD20]/40 group-hover:border-[#F5BD20] transition-colors" />
+
+                      {/* Storefront Icon Circular Badge */}
+                      <div
+                        className={`w-14 h-14 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isActive
+                            ? "bg-[#33184A] border-2 border-[#F5BD20] text-[#F5BD20] shadow-[0_0_25px_rgba(245,189,32,0.45)] scale-110 ring-4 ring-[#F5BD20]/20"
+                            : "bg-[#28133C] border border-[#F5BD20]/30 text-[#F5BD20]/80 group-hover:border-[#F5BD20] group-hover:text-[#F5BD20] group-hover:scale-105"
+                        }`}
+                      >
+                        <StorefrontIcon className="w-7 h-7" />
+                      </div>
+
+                      {/* Branch Title */}
+                      <h4 className={`font-display text-[12px] sm:text-[13px] font-bold uppercase tracking-wider mt-3.5 transition-colors leading-snug ${
+                        isActive ? "text-white font-extrabold" : "text-white/80 group-hover:text-white"
+                      }`}>
+                        {node.branchName || node.title}
+                      </h4>
+
+                      {/* Branch Short Description */}
+                      <p className="text-[11px] text-neutral-300/80 leading-relaxed max-w-[145px] mx-auto mt-1 font-body">
+                        {node.desc}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile Vertical Milestones List */}
+            <div className="md:hidden space-y-4">
+              {timelineList.map((node: Milestone, idx: number) => {
+                const isActive = idx === currentStep;
+                return (
+                  <div
+                    key={idx}
+                    onClick={() => handleStepChange(idx)}
+                    className={`p-4 rounded-2xl border transition-all cursor-pointer flex items-center gap-4 ${
+                      isActive
+                        ? "bg-[#28133C] border-[#F5BD20] shadow-lg ring-1 ring-[#F5BD20]/30"
+                        : "bg-[#220F35]/60 border-white/10 hover:border-[#F5BD20]/40"
+                    }`}
+                  >
+                    <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
+                      isActive ? "bg-[#33184A] text-[#F5BD20] border-2 border-[#F5BD20] shadow-[0_0_15px_rgba(245,189,32,0.3)]" : "bg-[#28133C] text-[#F5BD20]/80 border border-[#F5BD20]/30"
+                    }`}>
+                      <StorefrontIcon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[10px] font-bold text-[#F5BD20] uppercase tracking-wider block">
+                        {node.year}
+                      </span>
+                      <h4 className="font-display font-bold text-sm text-white">
+                        {node.branchName || node.title}
+                      </h4>
+                      <p className="text-xs text-neutral-300/80 mt-0.5 font-body">
+                        {node.desc}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Active Detail Card at Bottom with Left / Right Switchers */}
+            <div className="mt-10 md:mt-14">
+              <div className="bg-gradient-to-br from-[#2D1648]/95 via-[#230F38]/95 to-[#19092B]/95 border border-[#F5BD20]/30 rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_25px_60px_rgba(0,0,0,0.55),0_0_30px_rgba(94,38,137,0.2)] backdrop-blur-xl relative overflow-hidden flex items-center justify-between gap-4">
+                
+                {/* Decorative Ambient Card Light */}
+                <div className="absolute top-0 right-1/4 w-[300px] h-[300px] bg-[#F5BD20]/5 rounded-full blur-3xl pointer-events-none" />
+
+                {/* Prev Button */}
+                <button
+                  type="button"
+                  onClick={handlePrev}
+                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/25 bg-white/5 hover:bg-[#F5BD20] hover:text-[#2E1A47] hover:border-[#F5BD20] text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
+                  aria-label="Previous Milestone"
+                >
+                  <ChevronLeft size={22} className="rtl:rotate-180" />
+                </button>
+
+                {/* Center Animated Milestone Card */}
+                <div className="flex-1 px-2 sm:px-6 z-10">
+                  <AnimatePresence mode="wait" custom={direction}>
+                    <motion.div
+                      key={currentStep}
+                      custom={direction}
+                      variants={{
+                        enter: (dir: number) => ({
+                          x: dir > 0 ? 30 : -30,
+                          opacity: 0,
+                        }),
+                        center: {
+                          x: 0,
+                          opacity: 1,
+                        },
+                        exit: (dir: number) => ({
+                          x: dir > 0 ? -30 : 30,
+                          opacity: 0,
+                        }),
+                      }}
+                      initial="enter"
+                      animate="center"
+                      exit="exit"
+                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      className="flex flex-col sm:flex-row items-center sm:items-center gap-6 sm:gap-8 text-center sm:text-start"
+                    >
+                      {/* Glowing Storefront Circle Badge */}
+                      <div className="w-22 h-22 sm:w-28 sm:h-28 rounded-full border-2 border-[#F5BD20]/50 bg-[#2E1A47] text-[#F5BD20] flex items-center justify-center shadow-[0_0_35px_rgba(245,189,32,0.25)] flex-shrink-0">
+                        <StorefrontIcon className="w-11 h-11 sm:w-14 sm:h-14" />
+                      </div>
+
+                      {/* Content */}
+                      <div className="space-y-1.5 flex-1">
+                        <span className="text-[#F5BD20] text-xs font-bold uppercase tracking-widest block">
+                          {activeMilestone.year}
+                        </span>
+                        <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+                          {activeMilestone.title}
+                        </h3>
+                        
+                        {/* Golden Horizontal Bar */}
+                        <div className="w-10 h-[2.5px] bg-[#F5BD20] my-2.5 mx-auto sm:mx-0 rounded-full" />
+
+                        <p className="text-neutral-200 text-sm sm:text-base font-medium leading-relaxed">
+                          {activeMilestone.cardSubtitle || activeMilestone.desc}
+                        </p>
+                        <p className="text-neutral-400 text-xs sm:text-sm font-normal leading-relaxed font-body pt-0.5">
+                          {activeMilestone.cardDesc || activeMilestone.desc}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
+
+                {/* Next Button */}
+                <button
+                  type="button"
+                  onClick={handleNext}
+                  className="w-11 h-11 sm:w-13 sm:h-13 rounded-full border border-white/25 bg-white/5 hover:bg-[#F5BD20] hover:text-[#2E1A47] hover:border-[#F5BD20] text-white flex items-center justify-center transition-all duration-300 cursor-pointer flex-shrink-0 active:scale-95 shadow-md z-20"
+                  aria-label="Next Milestone"
+                >
+                  <ChevronRight size={22} className="rtl:rotate-180" />
+                </button>
+
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </section>
     </>

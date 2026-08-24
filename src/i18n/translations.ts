@@ -94,7 +94,7 @@ export const translations: any = {
     franchiseTeaser: {
       badge: "Partner With Us",
       title1: "Join Our",
-      title2: "Franchise Network",
+      title2: "Wahad Shay Network",
       subtitle: "Become part of a rapidly growing premium tea lounge network in the UAE. We provide comprehensive operational support, luxury interior blueprints, and our signature Malabar spice blends.",
       cta: "Explore Network Map",
       stats: {
@@ -169,32 +169,55 @@ export const translations: any = {
       philTitle2: "Wahad Shay",
       philDesc: "We focus on four foundational pillars to deliver a memorable, luxury dining and café experience.",
       discover: "Discover",
-      journeyBadge: "The Wahad Shay Journey",
-      journeyTitle: "A Legacy in the Making",
+      journeyBadge: "THE WAHAD SHAY JOURNEY",
+      journeyTitle: "Our Journey, Growing Together",
+      journeySubtitle1: "From our first branch to the future ahead —",
+      journeySubtitle2: "every milestone is a step closer to serving you better.",
       timeline: [
         {
-          year: "2018",
-          title: "The Genesis",
-          desc: "Founded with a vision to marry traditional tea preparation with premium European artisan baking.",
-          shortTitle: "Genesis"
+          year: "JUNE 2025",
+          title: "Al Hamidiya Branch",
+          branchName: "HAMIDIYA BRANCH",
+          desc: "Our journey begins. Hamidiya welcomed us first.",
+          cardSubtitle: "A milestone that marked our beginning.",
+          cardDesc: "Hamidiya is where our signature chai rituals first came to life, bringing people together over warmth and tradition.",
+          status: "open"
         },
         {
-          year: "2021",
-          title: "Riyadh Flagship",
-          desc: "Launched our first flagship tea lounge on King Abdulaziz Road, Riyadh, introducing our signature double-spiced Karak.",
-          shortTitle: "Riyadh HQ"
+          year: "JANUARY 2026",
+          title: "Al Falah Branch",
+          branchName: "AL FALAH BRANCH",
+          desc: "A new chapter of flavour and community in Al Falah.",
+          cardSubtitle: "A milestone that brought our craft to the capital.",
+          cardDesc: "Al Falah branch welcomed guests with our signature tea blends and fresh artisan bakes in a cozy, modern lounge atmosphere.",
+          status: "open"
         },
         {
-          year: "2024",
-          title: "UAE Network Launch",
-          desc: "Expanded across the borders, establishing initial boutique Lounges in Ajman, Sharjah, and Abu Dhabi.",
-          shortTitle: "UAE Network"
+          year: "APRIL 2026",
+          title: "Al Wahda Branch",
+          branchName: "AL WAHDA BRANCH",
+          desc: "Expanding our experience to the heart of Al Wahda.",
+          cardSubtitle: "A milestone that brought us closer to you.",
+          cardDesc: "Al Wahda is where great food and unforgettable moments meet.",
+          status: "open"
         },
         {
-          year: "2026",
-          title: "The Digital Era",
-          desc: "Introduced smart franchise models, modern digital lounges, and premium client-side experiences globally.",
-          shortTitle: "Digital Era"
+          year: "OPENING SOON",
+          title: "Al Rawda Branch",
+          branchName: "AL RAWDA BRANCH",
+          desc: "A new destination is on the way.",
+          cardSubtitle: "Expanding to new vibrant neighborhoods.",
+          cardDesc: "Our upcoming Al Rawda branch is designed with luxurious warm interiors to create the perfect community sanctuary.",
+          status: "upcoming"
+        },
+        {
+          year: "OPENING SOON",
+          title: "Sharjah Branch",
+          branchName: "SHARJAH BRANCH",
+          desc: "More flavours, more memories. Coming soon to Sharjah.",
+          cardSubtitle: "Carrying our legacy to the cultural capital.",
+          cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
+          status: "upcoming"
         }
       ],
       philosophy: [
@@ -286,38 +309,84 @@ export const translations: any = {
         ]
       },
       franchise: {
-        badge: "Partner With Us",
-        title1: "Grow Our",
-        title2: "Franchise Network",
-        desc: "Join a rapidly expanding brand offering a premium, cozy atmosphere. We supply the operational support, design standards, and proprietary spice blends.",
+        badge: "PARTNER WITH WAHAD SHAY",
+        title1: "Be a Part of",
+        title2: "Wahad Shay",
+        subtitle: "A proven model. A strong brand. A partnership built for success.",
+        quote: "Wahad Shay offers more than a business – we offer a partnership. Managed on our proven SOPs & systems to deliver the same quality and experience across every location.",
         applyBtn: "Apply for Franchise",
+        features: [
+          {
+            title: "Managed on Wahad Shay's Proven SOPs & Systems",
+            desc: "End-to-end operations guidance and support."
+          },
+          {
+            title: "Masalas & Recipes Controlled Centrally",
+            desc: "Standardized taste, quality and consistency."
+          },
+          {
+            title: "Same Quality & Experience Across Every Location",
+            desc: "One brand promise, delivered everywhere."
+          }
+        ],
+        processTitle: "OUR FRANCHISE PROCESS",
         steps: [
           {
             title: "Submit Inquiry",
-            desc: "Fill out our franchise application form with details on your background, business experience, and proposed territory."
+            desc: "Fill out our franchise application form with details about you, your experience, and the proposed location."
           },
           {
-            title: "Market Feasibility",
-            desc: "Our real estate analysis team assists in studying local demographics, verifying footfall, and selecting premium retail nodes."
+            title: "Evaluation & Approval",
+            desc: "We evaluate the location feasibility, business potential and alignment with our brand standards."
           },
           {
-            title: "Lounge Construction",
-            desc: "Receive bespoke aesthetic layout blueprints, approved contractor lists, and luxury interior design blueprints."
+            title: "Setup & Training",
+            desc: "We assist with outlet design, setup and staff training. You get access to our SOPs, systems and complete support."
           },
           {
-            title: "Inaugural Launch",
-            desc: "Deploy initial inventory packages, execute coffee/tea academy training, and celebrate your lounge's grand opening."
+            title: "Operations & Growth",
+            desc: "Centralized operational support ensures consistent standards, smooth day-to-day performance, and continued growth of the outlet."
           }
-        ]
+        ],
+        bottomBanner: {
+          text1: "With Wahad Shay, you're never on your own.",
+          text2: "We grow together, We win together."
+        },
+        modal: {
+          title: "Franchise Application",
+          subtitle: "Partner with Wahad Shay and bring authentic luxury chai & café culture to your region.",
+          name: "Full Name",
+          namePlaceholder: "e.g. Tariq Al Mansoori",
+          email: "Email Address",
+          emailPlaceholder: "tariq@example.com",
+          phone: "Phone / WhatsApp",
+          phonePlaceholder: "+971 50 123 4567",
+          location: "Proposed City / Country",
+          locationPlaceholder: "e.g. Dubai, Abu Dhabi, Riyadh",
+          experience: "Do you have prior F&B or retail experience?",
+          experienceYes: "Yes, I have F&B experience",
+          experienceNo: "No, this will be my first venture",
+          timeline: "Expected Investment Timeline",
+          timelineImmediate: "Immediate (1-3 months)",
+          timelineMedium: "3-6 months",
+          timelineFuture: "6-12 months",
+          message: "Additional Information or Questions",
+          messagePlaceholder: "Tell us about your proposed site, business background, or questions...",
+          submitBtn: "Submit Application",
+          submitting: "Submitting...",
+          successTitle: "Application Submitted Successfully!",
+          successDesc: "Thank you for your interest in partnering with Wahad Shay. Our franchise expansion team will review your application and get in touch within 24-48 hours.",
+          closeBtn: "Close"
+        }
       },
       franchiseSection: {
         tag: "WAHAD SHAY",
-        title: "Our Franchise Network",
+        title: "Our Wahad Shay Network",
         subtitle: "Growing Across the UAE with Authentic Malabar Flavours.",
         stats: {
           title: "Network Stats",
           activeOutlets: "Active Outlets",
-          activeOutletsVal: "4 Lounges",
+          activeOutletsVal: "5 Outlets",
           weeklyTraffic: "Weekly Foot Traffic",
           weeklyTrafficVal: "12,500+ guests",
           growthRate: "Growth Rate",
@@ -325,12 +394,12 @@ export const translations: any = {
         },
         roadmap: {
           title: "Roadmap 2026",
-          q1Title: "Q1: Dubai Al Barsha",
+          q1Title: "Q1: Ajman Al Rawda",
           q1Desc: "Site fit-out in progress",
           q2Title: "Q2: Sharjah Muwaileh",
           q2Desc: "Leasing terms finalized",
-          q3Title: "Q3: Muscat & Doha",
-          q3Desc: "Regional partner talks"
+          q3Title: "Q3: Dubai Al Barsha",
+          q3Desc: "Site selection & partner talks"
         },
         modal: {
           network: "📍 NETWORK",
@@ -629,31 +698,54 @@ export const translations: any = {
       philDesc: "نحن نركز على أربعة ركائز أساسية لتقديم تجربة طعام ومقهى فاخرة لا تُنسى.",
       discover: "اكتشف",
       journeyBadge: "رحلة واحد شاي",
-      journeyTitle: "إرث قيد التكوين",
+      journeyTitle: "رحلتنا، ننمو معاً",
+      journeySubtitle1: "من أول فرع لنا إلى المستقبل الواعد —",
+      journeySubtitle2: "كل محطة تقربنا خطوة لخدمتكم بشكل أفضل.",
       timeline: [
         {
-          year: "2018",
-          title: "التأسيس",
-          desc: "تأسست برؤية دمج تحضير الشاي التقليدي مع المخبوزات الحرفية الأوروبية الفاخرة.",
-          shortTitle: "التأسيس"
+          year: "يونيو 2025",
+          title: "فرع الحميدية",
+          branchName: "فرع الحميدية",
+          desc: "انطلقت رحلتنا. الحميدية استقبلتنا أولاً.",
+          cardSubtitle: "محطة بارزة شهدت انطلاقتنا الأولى.",
+          cardDesc: "الحميدية هي المكان الذي انطلقت منه طقوس الشاي المميزة، لتجمع الناس على الدفء والأصالة.",
+          status: "open"
         },
         {
-          year: "2021",
-          title: "المتجر الرئيسي في الرياض",
-          desc: "أطلقنا أول صالة شاي رئيسية لنا على طريق الملك عبد العزيز بالرياض، وقدمنا الكرك المميز ذو التوابل المضاعفة.",
-          shortTitle: "مقر الرياض"
+          year: "يناير 2026",
+          title: "فرع الفلاح",
+          branchName: "فرع الفلاح",
+          desc: "فصل جديد من النكهات ومجتمع واحد شاي في الفلاح.",
+          cardSubtitle: "محطة نقلت حرفتنا إلى قلب العاصمة.",
+          cardDesc: "استقبل فرع الفلاح ضيوفنا بخلطات الشاي المميزة والمخبوزات الطازجة في صالة عصرية ومريحة.",
+          status: "open"
         },
         {
-          year: "2024",
-          title: "إطلاق شبكة الإمارات",
-          desc: "توسعنا عبر الحدود، وأنشأنا أول صالات بوتيك في عجمان، الشارقة، وأبو ظبي.",
-          shortTitle: "شبكة الإمارات"
+          year: "أبريل 2026",
+          title: "فرع الوحدة",
+          branchName: "فرع الوحدة",
+          desc: "توسيع تجربتنا في قلب منطقة الوحدة.",
+          cardSubtitle: "محطة قربتنا أكثر إليكم.",
+          cardDesc: "فرع الوحدة حيث يلتقي الطعام الرائع واللحظات التي لا تُنسى.",
+          status: "open"
         },
         {
-          year: "2026",
-          title: "العصر الرقمي",
-          desc: "قدمنا نماذج امتياز ذكية، صالات رقمية حديثة، وتجارب فاخرة للعملاء على مستوى العالم.",
-          shortTitle: "العصر الرقمي"
+          year: "قريباً",
+          title: "فرع الروضة",
+          branchName: "فرع الروضة",
+          desc: "وجهة جديدة في طريقها إليكم.",
+          cardSubtitle: "التوسع إلى أحياء جديدة نابضة بالحياة.",
+          cardDesc: "فرع الروضة القادم مصمم بديكورات داخلية دافئة وفاخرة ليكون الملاذ المثالي لروادنا.",
+          status: "upcoming"
+        },
+        {
+          year: "قريباً",
+          title: "فرع الشارقة",
+          branchName: "فرع الشارقة",
+          desc: "مزيد من النكهات والذكريات. قريباً في الشارقة.",
+          cardSubtitle: "نحمل إرثنا إلى عاصمة الثقافة.",
+          cardDesc: "تقديم شاي الكرك المميز والشاي المختص والمخبوزات الحرفية إلى إمارة الشارقة.",
+          status: "upcoming"
         }
       ],
       philosophy: [
@@ -745,38 +837,84 @@ export const translations: any = {
         ]
       },
       franchise: {
-        badge: "كن شريكاً معنا",
-        title1: "وسّع شبكة",
-        title2: "امتيازنا الفاخرة",
-        desc: "انضم إلى علامة تجارية سريعة التوسع تقدم أجواء دافئة وفاخرة. نحن نقدم الدعم التشغيلي، معايير التصميم، وخلطات التوابل الخاصة.",
-        applyBtn: "قدم بطلب امتياز",
+        badge: "كن شريكاً مع واحد شاي",
+        title1: "كن جزءاً من",
+        title2: "واحد شاي",
+        subtitle: "نموذج مثبت. علامة تجارية قوية. شراكة مبنية على النجاح.",
+        quote: "يقدم واحد شاي أكثر من مجرد عمل تجاري – نحن نقدم شراكة حقيقية. تُدار وفق إجراءات تشغيل قياسية وأنظمة مثبتة لتقديم نفس الجودة والتجربة في كل موقع.",
+        applyBtn: "تقديم طلب امتياز",
+        features: [
+          {
+            title: "تُدار وفق إجراءات وأنظمة مثبتة لواحد شاي",
+            desc: "توجيه ودعم تشغيلي متكامل وشامل."
+          },
+          {
+            title: "خلطات البهارات والوصفات خاضعة للرقابة المركزية",
+            desc: "مذاق قياسي، وجودة وثبات مضمون في كل كوب."
+          },
+          {
+            title: "نفس الجودة والتجربة في جميع الفروع",
+            desc: "وعد واحد للعلامة التجارية، يُقدم في كل مكان."
+          }
+        ],
+        processTitle: "خطوات برنامج الامتياز",
         steps: [
           {
-            title: "إرسال طلب",
-            desc: "املأ استمارة طلب الامتياز الخاصة بنا بتفاصيل عن خلفيتك، خبرتك العملية، والمنطقة المقترحة."
+            title: "تقديم الاستفسار",
+            desc: "املأ استمارة طلب الامتياز بمعلوماتك وخبراتك والمنطقة والموقع المقترح."
           },
           {
-            title: "دراسة الجدوى",
-            desc: "يساعد فريق تحليل العقارات لدينا في دراسة الديموغرافيا المحلية، التحقق من حركة المرور، واختيار المواقع التجارية المميزة."
+            title: "التقييم والموافقة",
+            desc: "نقوم بدراسة جدوى الموقع والإمكانات التجارية ومدى التوافق مع معايير علامتنا."
           },
           {
-            title: "بناء الصالة",
-            desc: "احصل على مخططات التصميم الجمالي المخصصة، وقوائم المقاولين المعتمدين، وتصاميم داخلية فاخرة."
+            title: "التجهيز والتدريب",
+            desc: "نساعدك في تصميم الفرع، التجهيزات، وتدريب الكادر مع إمكانية الوصول لأنظمتنا ودعمنا الكامل."
           },
           {
-            title: "الافتتاح الرسمي",
-            desc: "توزيع حزم المخزون الأولية، تنفيذ تدريب أكاديمية القهوة/الشاي، والاحتفال بالافتتاح الكبير للفرع."
+            title: "التشغيل والنمو",
+            desc: "يضمن الدعم التشغيلي المركزي استمرار الجودة وسلاسة الأداء اليومي والنمو المتواصل للفرع."
           }
-        ]
+        ],
+        bottomBanner: {
+          text1: "مع واحد شاي، لست وحدك أبداً.",
+          text2: "ننمو سوياً، وننجح سوياً."
+        },
+        modal: {
+          title: "طلب الانضمام للامتياز",
+          subtitle: "شارك واحد شاي وانقل ثقافة الشاي والمقهى الفاخر إلى منطقتك.",
+          name: "الاسم الكامل",
+          namePlaceholder: "مثال: طارق المنصوري",
+          email: "البريد الإلكتروني",
+          emailPlaceholder: "tariq@example.com",
+          phone: "رقم الهاتف / واتساب",
+          phonePlaceholder: "+971 50 123 4567",
+          location: "المدينة / الدولة المقترحة",
+          locationPlaceholder: "مثال: دبي، أبوظبي، الرياض",
+          experience: "هل لديك خبرة سابقة في مجال الأغذية والمشروبات أو التجزئة؟",
+          experienceYes: "نعم، لدي خبرة سابقة",
+          experienceNo: "لا، هذا مشروعي الأول",
+          timeline: "الجدول الزمني المتوقع للاستثمار",
+          timelineImmediate: "فوري (1-3 أشهر)",
+          timelineMedium: "3-6 أشهر",
+          timelineFuture: "6-12 شهر",
+          message: "معلومات إضافية أو استفسارات",
+          messagePlaceholder: "أخبرنا عن الموقع المقترح، خلفيتك التجارية، أو أي استفسارات...",
+          submitBtn: "إرسال الطلب",
+          submitting: "جارٍ الإرسال...",
+          successTitle: "تم إرسال الطلب بنجاح!",
+          successDesc: "شكراً لاهتمامك بالشراكة مع واحد شاي. سيقوم فريق توسع الامتياز بمراجعة طلبك والتواصل معك خلال 24-48 ساعة.",
+          closeBtn: "إغلاق"
+        }
       },
       franchiseSection: {
         tag: "واحد شاي",
-        title: "شبكة امتيازاتنا",
+        title: "شبكة واحد شاي",
         subtitle: "ننمو في جميع أنحاء الإمارات بنكهات مالابار الأصيلة.",
         stats: {
           title: "إحصائيات الشبكة",
           activeOutlets: "الفروع النشطة",
-          activeOutletsVal: "4 صالات",
+          activeOutletsVal: "5 فروع",
           weeklyTraffic: "حركة الزوار الأسبوعية",
           weeklyTrafficVal: "أكثر من 12,500 ضيف",
           growthRate: "معدل النمو",
@@ -784,12 +922,12 @@ export const translations: any = {
         },
         roadmap: {
           title: "خارطة طريق 2026",
-          q1Title: "الربع الأول: دبي البرشاء",
+          q1Title: "الربع الأول: عجمان الروضة",
           q1Desc: "تجهيز الموقع قيد التقدم",
           q2Title: "الربع الثاني: الشارقة مويلح",
           q2Desc: "تم الانتهاء من شروط التأجير",
-          q3Title: "الربع الثالث: مسقط والدوحة",
-          q3Desc: "محادثات مع شركاء إقليميين"
+          q3Title: "الربع الثالث: دبي البرشاء",
+          q3Desc: "اختيار الموقع ومحادثات الشراكة"
         },
         modal: {
           network: "📍 الشبكة",

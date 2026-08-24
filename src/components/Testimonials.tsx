@@ -22,7 +22,10 @@ const testimonialsData: Testimonial[] = [
     rating: 5,
   },
   {
-
+    name: "Happy Customer",
+    role: "Ajman",
+    text: "Wahad Shay has a really nice combination of good food and good service. I tried the burgers and was impressed by the flavour and presentation—they felt different from what you normally get at a café. The food was fresh, portions were good, and the staff were genuinely welcoming. It’s clear that Wahad Shay focuses on creating its own style rather than simply serving the usual items.",
+    rating: 5,
   },
 ];
 
