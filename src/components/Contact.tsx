@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight, Instagram, Twitter, Check } from "lucide-react";
-import Button from "./ui/Button";
+import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export function Contact() {
@@ -102,37 +101,70 @@ export function Contact() {
             {/* Information Cards List */}
             <div className="space-y-5 font-body">
               {/* Address */}
-              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-center gap-5 group cursor-pointer transition-all duration-500">
-                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon">
-                  <MapPin size={24} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-start gap-4 sm:gap-5 group transition-all duration-500">
+                <div className="w-10 h-10 rounded-xl bg-plum/5 border border-plum/10 flex items-center justify-center text-plum group-hover:bg-plum group-hover:text-white transition-all duration-300 shrink-0 mt-0.5 shadow-2xs">
+                  <MapPin size={20} className="stroke-[1.6]" />
                 </div>
-                <div>
-                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.addressLabel')}</h4>
-                  <p className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-plum transition-colors duration-300">{t('contact.address')}</p>
+                <div className="flex-1">
+                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-2">{t('contact.addressLabel')}</h4>
+                  <div className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-plum transition-colors duration-300 space-y-1">
+                    <p className="font-bold text-text-primary text-[14.5px] leading-snug">
+                      {t('contact.addressLine1') || "Al Yasat Tower, 3rd Floor, Office No. 304"}
+                    </p>
+                    <p className="text-text-secondary text-[13.5px]">
+                      {t('contact.addressLine2') || "Electra Street, Behind Season Hotel"}
+                    </p>
+                    <p className="text-text-secondary text-[13.5px]">
+                      {t('contact.addressLine3') || "Al Danah Zone 1, Abu Dhabi"}
+                    </p>
+                  </div>
                   <a 
-                    href="https://maps.app.goo.gl/3ia7anHBa87BQpxi9" 
+                    href="https://www.google.com/maps/search/?api=1&query=Al+Yasat+Tower+Electra+Street+Abu+Dhabi" 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3 transition-colors"
-                    onClick={(e) => e.stopPropagation()}
+                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3.5 transition-colors group/link"
                   >
                     {t('contact.openInMaps')}
-                    <ArrowRight size={14} className="micro-transition rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1" />
+                    <ArrowRight size={14} className="micro-transition rtl:rotate-180 group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1" />
                   </a>
                 </div>
               </div>
 
               {/* Operating Hours */}
-              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-center gap-5 group transition-all duration-500">
-                <div className="text-plum transition-colors duration-500 shrink-0 micro-transition micro-icon">
-                  <Clock size={24} className="stroke-[1.5]" />
+              <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-start gap-4 sm:gap-5 group transition-all duration-500">
+                <div className="w-10 h-10 rounded-xl bg-plum/5 border border-plum/10 flex items-center justify-center text-plum group-hover:bg-plum group-hover:text-white transition-all duration-300 shrink-0 mt-0.5 shadow-2xs">
+                  <Clock size={20} className="stroke-[1.6]" />
                 </div>
-                <div>
-                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-1.5">{t('contact.hoursLabel')}</h4>
-                  <p className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-text-primary transition-colors duration-300">
-                    <span className="block mb-1">{t('contact.hoursLine1')}</span>
-                    <span className="block text-text-secondary">{t('contact.hoursLine2')}</span>
-                  </p>
+                <div className="flex-1">
+                  <div className="flex items-center justify-between mb-3">
+                    <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest">{t('contact.hoursLabel')}</h4>
+                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                      {t('contact.hoursStatus') || (language === 'AR' ? 'مفتوح يومياً' : 'Open Daily')}
+                    </span>
+                  </div>
+                  
+                  {/* Clean Aligned Branch Hours Schedule */}
+                  <div className="space-y-2.5 pt-1 border-t border-neutral-border/60">
+                    {((t('contact.branchesHours') as Array<{ branch: string; time: string }>) || [
+                      { branch: "Hamidiya 2", time: "12:00 PM – 1:00 AM" },
+                      { branch: "Al Wahda", time: "12:00 PM – 3:00 AM" },
+                      { branch: "Al Falah", time: "12:00 PM – 3:00 AM" },
+                      { branch: "Sharjah", time: "12:00 PM – 12:00 AM" }
+                    ]).map((item, idx) => (
+                      <div 
+                        key={idx} 
+                        className="flex items-center justify-between gap-3 text-xs sm:text-[13px] py-1 border-b border-neutral-border/30 last:border-0"
+                      >
+                        <span className="font-semibold text-text-primary flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-yellow shrink-0" />
+                          {item.branch}
+                        </span>
+                        <span className="font-numbers text-[12px] sm:text-[12.5px] font-bold text-plum bg-plum/5 px-2.5 py-0.5 rounded-md border border-plum/10 shrink-0 tracking-tight">
+                          {item.time}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -144,27 +176,29 @@ export function Contact() {
               </h4>
               <div className="flex flex-wrap gap-3.5 font-body">
                 <a
-                  href="tel:+966112345678"
-                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  href="tel:+971554946176"
+                  className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Phone size={16} className="text-plum shrink-0" />
-                  <span className="hidden sm:inline">{t('contact.callHq')}</span>
+                  <Phone size={15} className="text-plum shrink-0" />
+                  <span>{t('contact.callHq')}</span>
+                  <span className="text-text-secondary font-numbers text-[11px] ms-0.5" dir="ltr">+971 55 494 6176</span>
+                </a>
+                <a
+                  href="https://wa.me/971554946176"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20BE5C] text-white border border-transparent font-bold text-xs shadow-md shadow-green-600/20 hover:shadow-lg hover:shadow-green-600/30 transition-all duration-300 hover:-translate-y-1"
+                >
+                  <MessageSquare size={15} className="text-white shrink-0" />
+                  <span>{t('contact.whatsapp')}</span>
+                  <span className="font-numbers text-[11px] opacity-95 ms-0.5" dir="ltr">+971 55 494 6176</span>
                 </a>
                 <a
                   href="mailto:Info@wahadshaycafe.com"
-                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+                  className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
-                  <Mail size={16} className="text-plum shrink-0" />
-                  <span className="hidden sm:inline">{t('contact.emailSupport')}</span>
-                </a>
-                <a
-                  href="https://wa.me/966112345678"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-0 sm:gap-2.5 p-3.5 sm:px-5 sm:py-3 rounded-xl bg-plum text-white border border-transparent font-bold text-xs shadow-md shadow-plum/20 hover:shadow-lg hover:shadow-plum/30 transition-all duration-300 hover:-translate-y-1"
-                >
-                  <MessageSquare size={16} className="text-white shrink-0" />
-                  <span className="hidden sm:inline">{t('contact.whatsapp')}</span>
+                  <Mail size={15} className="text-plum shrink-0" />
+                  <span>{t('contact.emailSupport')}</span>
                 </a>
               </div>
             </div>

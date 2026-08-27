@@ -1,13 +1,8 @@
-import React from "react";
-import { Play, ExternalLink, Sparkles } from "lucide-react";
+import { Play, ExternalLink } from "lucide-react";
 import { FaInstagram } from "react-icons/fa6";
 import { useLanguage } from "../i18n/LanguageContext";
 
-import hotChickenBurgerImg from "../assets/hot_chicken_burger.jpg";
-import hotChickenRiceImg from "../assets/hot_chicken_rice.jpg";
-import juicyDipImg from "../assets/juicy_dip.jpg";
 import miniBitesImg from "../assets/mini_bites.jpg";
-import specialItemImg from "../assets/hot_chicken.jpg";
 
 interface MediaItem {
   id: string;
@@ -54,7 +49,7 @@ const mediaItems: MediaItem[] = [
   {
     id: "4",
     type: "video",
-    src: "/mobile .mp4",
+    src: "/mobile.mp4",
     instagramUrl: "https://www.instagram.com/reel/DY72O-qsBeV/",
     titleEn: "Hot Chicken Burger",
     titleAr: "برجر الدجاج الحار",

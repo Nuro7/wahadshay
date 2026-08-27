@@ -1,4 +1,3 @@
-import type React from "react";
 import Button from "./ui/Button";
 import { useLanguage } from "../i18n/LanguageContext";
 

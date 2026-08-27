@@ -8,7 +8,6 @@ import parathaImg from "../assets/hot_chicken.jpg";
 import plateImg from "../assets/hot_chicken_rice.jpg";
 import dipBurgerImg from "../assets/juicy_dip.jpg";
 import loadedFriesImg from "../assets/hot_chicken_rice.jpg";
-import wahadBurgerImg from "../assets/hot_chicken_burger.jpg";
 import cheeseImg from "../assets/mini_bites.jpg";
 
 const categories = [
@@ -123,24 +122,6 @@ export function Menu({ currency = "AED" }: MenuProps) {
         <div className="absolute bottom-[10%] right-[8%] opacity-[0.03] text-yellow transform -rotate-45 pointer-events-none animate-float-fries">
           <Sparkles size={180} strokeWidth={0.4} />
         </div>
-
-        {/* Framing Floating Food Elements on Sides */}
-        <motion.img
-          initial={{ y: 50, opacity: 0, rotate: -10 }}
-          animate={{ y: [0, -15, 0], opacity: 0.12, rotate: [-10, 0, -10] }}
-          transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-          src="/floating_herbs.png"
-          alt=""
-          className="hidden xl:block absolute left-[-2%] top-[25%] w-36 h-36 object-contain z-0 blur-[1px] pointer-events-none"
-        />
-        <motion.img
-          initial={{ y: -50, opacity: 0, rotate: 20 }}
-          animate={{ y: [0, 20, 0], opacity: 0.15, rotate: [20, 35, 20] }}
-          transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-          src="/flying_chilli.png"
-          alt=""
-          className="hidden xl:block absolute right-[-2%] top-[55%] w-48 h-48 object-contain z-0 pointer-events-none"
-        />
       </div>
 
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 relative z-10">

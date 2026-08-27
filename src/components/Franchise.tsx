@@ -10,9 +10,7 @@ import {
   MapPin,
   User,
   Briefcase,
-  MessageSquare,
-  Sparkles,
-  ArrowRight
+  MessageSquare
 } from "lucide-react";
 
 export function Franchise() {
@@ -95,7 +93,7 @@ export function Franchise() {
       `*Timeline:* ${formData.timeline}\n` +
       `*Notes:* ${formData.message || "I would like more information on opening a Wahad Shay franchise."}`
     );
-    window.open(`https://wa.me/971501234567?text=${text}`, "_blank");
+    window.open(`https://wa.me/971554946176?text=${text}`, "_blank");
   };
 
   // Safe translation getters
@@ -260,22 +258,34 @@ export function Franchise() {
                   </p>
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="group relative inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-full bg-gradient-to-r from-yellow via-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-xs sm:text-sm shadow-[0_4px_18px_rgba(245,189,32,0.3)] hover:shadow-[0_8px_25px_rgba(245,189,32,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex-shrink-0 w-full sm:w-auto"
-                >
-                  <div className="w-6 h-6 rounded-full bg-plum-dark flex items-center justify-center text-white flex-shrink-0 group-hover:rotate-12 transition-transform duration-300 shadow-xs">
-                    {/* Storefront Icon */}
-                    <svg className="w-3.5 h-3.5 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M3 9l1-5h16l1 5" />
-                      <path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0" />
-                      <path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9" />
-                      <path d="M9 21v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6" />
-                    </svg>
-                  </div>
-                  <span className="tracking-wide">{t("about.franchise.applyBtn") || "Apply for Franchise"}</span>
-                </button>
+                <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(true)}
+                    className="group relative inline-flex items-center justify-center gap-3 px-6 sm:px-7 py-3.5 rounded-full bg-gradient-to-r from-yellow via-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-xs sm:text-sm shadow-[0_4px_18px_rgba(245,189,32,0.3)] hover:shadow-[0_8px_25px_rgba(245,189,32,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 cursor-pointer flex-shrink-0 w-full sm:w-auto"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-plum-dark flex items-center justify-center text-white flex-shrink-0 group-hover:rotate-12 transition-transform duration-300 shadow-xs">
+                      {/* Storefront Icon */}
+                      <svg className="w-3.5 h-3.5 text-yellow" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 9l1-5h16l1 5" />
+                        <path d="M3 9a3 3 0 0 0 6 0 3 3 0 0 0 6 0 3 3 0 0 0 6 0" />
+                        <path d="M4 9v11a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V9" />
+                        <path d="M9 21v-6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6" />
+                      </svg>
+                    </div>
+                    <span className="tracking-wide">{t("about.franchise.applyBtn") || "Apply for Franchise"}</span>
+                  </button>
+
+                  <a
+                    href="https://wa.me/971554946176?text=Hello%20Wahad%20Shay,%20I%20am%20interested%20in%20a%20franchise%20partnership."
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20BE5C] text-white font-display font-bold text-xs sm:text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer w-full sm:w-auto"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>{language === "AR" ? "واتساب الامتياز" : "Franchise WhatsApp"}</span>
+                  </a>
+                </div>
               </div>
 
             </div>
@@ -517,7 +527,7 @@ export function Franchise() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.namePlaceholder") || "e.g. Tariq Al Mansoori"}
-                            className="w-full ps-10 pe-4 rtl:ps-4 rtl:pe-10 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
                           />
                         </div>
                       </div>
@@ -535,7 +545,7 @@ export function Franchise() {
                             value={formData.phone}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.phonePlaceholder") || "+971 50 123 4567"}
-                            className="w-full ps-10 pe-4 rtl:ps-4 rtl:pe-10 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
                           />
                         </div>
                       </div>
@@ -556,7 +566,7 @@ export function Franchise() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.emailPlaceholder") || "tariq@example.com"}
-                            className="w-full ps-10 pe-4 rtl:ps-4 rtl:pe-10 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
                           />
                         </div>
                       </div>
@@ -574,7 +584,7 @@ export function Franchise() {
                             value={formData.location}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.locationPlaceholder") || "e.g. Dubai, Abu Dhabi, Riyadh"}
-                            className="w-full ps-10 pe-4 rtl:ps-4 rtl:pe-10 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
                           />
                         </div>
                       </div>
@@ -654,7 +664,7 @@ export function Franchise() {
                           value={formData.message}
                           onChange={handleInputChange}
                           placeholder={t("about.franchise.modal.messagePlaceholder") || "Tell us about your proposed site, business background, or questions..."}
-                          className="w-full ps-10 pe-4 rtl:ps-4 rtl:pe-10 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all resize-none font-body"
+                          className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all resize-none font-body"
                         />
                       </div>
                     </div>

@@ -3,13 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, HelpCircle } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-interface FAQItem {
-  question: string;
-  answer: string;
-}
-
 export function FAQ() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const faqData = useMemo(() => {

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles, Compass, ShieldCheck, Heart, ChevronLeft, ChevronRight, ArrowRight, Leaf } from "lucide-react";
+import { Sparkles, ShieldCheck, Heart, ChevronLeft, ChevronRight, ArrowRight, Leaf } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 interface Milestone {
@@ -62,7 +62,7 @@ const defaultTimelineData: Milestone[] = [
   }
 ];
 
-const philosophyIcons = [Compass, Sparkles, Heart, ShieldCheck];
+const philosophyIcons = [Leaf, Sparkles, Heart, ShieldCheck];
 
 const StorefrontIcon = ({ className = "w-6 h-6" }: { className?: string }) => (
   <svg
@@ -132,7 +132,8 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </div>
                 
                 <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.12] tracking-tight">
-                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span> <span className="text-gradient-gold">{t('about.storyTitle2')}</span>
+                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
+                  {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
                   <br />
                   <span className="text-plum">{t('about.storyTitle3')}</span>
                 </h2>
@@ -205,7 +206,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
               <span className="text-gradient-plum">{t('about.philTitle1')}</span>{" "}
               <span className="text-gradient-gold">{t('about.philTitle2')}</span>
             </h2>
-            <p className="text-text-secondary text-base font-light max-w-md mx-auto">
+            <p className="text-text-secondary text-base sm:text-lg font-light max-w-2xl mx-auto leading-relaxed">
               {t('about.philDesc')}
             </p>
           </div>
@@ -263,6 +264,22 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </a>
               );
             })}
+          </div>
+
+          {/* Wahad Shay Promise Highlight */}
+          <div className="reveal text-center max-w-2xl mx-auto pt-2 sm:pt-4">
+            <div className="inline-flex flex-col items-center gap-2.5 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-neutral-border shadow-[0_4px_25px_rgba(43,37,32,0.03)] hover:shadow-[0_10px_35px_rgba(94,38,137,0.08)] transition-all duration-300">
+              <p className="font-display text-base sm:text-lg md:text-xl font-bold text-gradient-plum tracking-tight">
+                {t('about.philPromiseTagline') || "Great ingredients. Signature flavours. Warm hospitality."}
+              </p>
+              <div className="flex items-center gap-3">
+                <div className="h-px w-6 sm:w-10 bg-yellow/80 rounded-full" />
+                <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-plum uppercase">
+                  {t('about.philPromiseText') || "That’s the Wahad Shay promise."}
+                </span>
+                <div className="h-px w-6 sm:w-10 bg-yellow/80 rounded-full" />
+              </div>
+            </div>
           </div>
         </div>
       </section>

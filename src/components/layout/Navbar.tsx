@@ -11,6 +11,29 @@ export function Navbar() {
 
   const [activeHash, setActiveHash] = useState("#home");
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isOpen]);
+
+  // Handle ESC key to close mobile menu
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   useEffect(() => {
     const handleHashChange = () => {
       setActiveHash(window.location.hash || "#home");
@@ -197,7 +220,7 @@ export function Navbar() {
           </ul>
 
           {/* Bottom Action Section */}
-          <div className="mt-auto px-6 pb-8 pt-4 border-t border-neutral-border/40 bg-white">
+          <div className="mt-auto px-6 pb-[calc(env(safe-area-inset-bottom,20px)+16px)] pt-4 border-t border-neutral-border/40 bg-white">
             {/* Contact Now Button */}
             <a
               href="#contact"

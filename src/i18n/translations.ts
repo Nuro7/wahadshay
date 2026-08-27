@@ -167,7 +167,9 @@ export const translations: any = {
       philBadge: "Philosophy",
       philTitle1: "What Defines",
       philTitle2: "Wahad Shay",
-      philDesc: "We focus on four foundational pillars to deliver a memorable, luxury dining and café experience.",
+      philDesc: "We are committed to serving bold flavours, exceptional quality and memorable experiences in every bite",
+      philPromiseTagline: "Great ingredients. Signature flavours. Warm hospitality.",
+      philPromiseText: "That’s the Wahad Shay promise.",
       discover: "Discover",
       journeyBadge: "THE WAHAD SHAY JOURNEY",
       journeyTitle: "Our Journey, Growing Together",
@@ -222,20 +224,20 @@ export const translations: any = {
       ],
       philosophy: [
         {
-          title: "Authentic Sourcing",
-          desc: "We source premium organic saffron from trusted farmers and tea leaves from select high-altitude gardens."
+          title: "Real Ingredients",
+          desc: "We use handpicked, high-quality ingredients and authentic spices to create food that is fresh, honest and full of flavour."
         },
         {
-          title: "Artisanal Craft",
-          desc: "Our brioche, croissants, and focaccia are baked fresh daily by master bakers using traditional slow fermentation."
+          title: "Signature Creations",
+          desc: "From unique recipes to creative presentations, our menu is crafted to surprise, satisfy and keep you coming back for more."
         },
         {
           title: "Warm Hospitality",
-          desc: "We design spaces of serene comfort, combining warm beige materials and soft golden lighting for a cozy home feel."
+          desc: "Every guest is at the heart of what we do. From the moment you walk in to the last bite, we ensure you feel welcome, valued and cared for."
         },
         {
-          title: "Uncompromising Quality",
-          desc: "Every blend is double-spiced and every dish is checked for flavor, color, and absolute customer delight."
+          title: "Consistency Everywhere",
+          desc: "Our proven systems and quality standards ensure the same delicious taste and experience across every Wahad Shay outlet."
         }
       ],
       missionVision: {
@@ -463,13 +465,24 @@ export const translations: any = {
       hqTitle: "Flagship HQ Lounge",
       hqDesc: "Experience our quiet, ambient boutique Lounges and explore freshly baked bread selections.",
       addressLabel: "Address",
-      address: "King Abdulaziz Road, Riyadh, Saudi Arabia",
+      address: "Al Yasat Tower, 3rd Floor, Office No. 304\nElectra Street, Behind Season Hotel\nAl Danah Zone 1, Abu Dhabi",
+      addressLine1: "Al Yasat Tower, 3rd Floor, Office No. 304",
+      addressLine2: "Electra Street, Behind Season Hotel",
+      addressLine3: "Al Danah Zone 1, Abu Dhabi",
       openInMaps: "Open in Google Maps",
       hoursLabel: "Café Hours",
-      hoursLine1: "Sat - Thu: 8:00 AM - 12:00 AM",
-      hoursLine2: "Friday: 4:00 PM - 12:00 AM",
+      hoursStatus: "Open Daily",
+      branchesHours: [
+        { branch: "Hamidiya 2", time: "12:00 PM – 1:00 AM" },
+        { branch: "Al Wahda", time: "12:00 PM – 3:00 AM" },
+        { branch: "Al Falah", time: "12:00 PM – 3:00 AM" },
+        { branch: "Sharjah", time: "12:00 PM – 12:00 AM" }
+      ],
+      hoursLine1: "Hamidiya 2: 12PM - 1AM | Sharjah: 12PM - 12AM",
+      hoursLine2: "Al Wahda & Al Falah: 12PM - 3AM",
       quickActionLabel: "Quick Action Channels",
       callHq: "Call HQ",
+      phoneDisplay: "+971 55 494 6176",
       emailSupport: "Email Support",
       whatsapp: "WhatsApp",
       form: {
@@ -478,7 +491,7 @@ export const translations: any = {
         emailLabel: "Email Address",
         emailPlaceholder: "name@example.com",
         phoneLabel: "Phone Number",
-        phonePlaceholder: "+966 50 123 4567",
+        phonePlaceholder: "+971 55 494 6176",
         subjectLabel: "Subject",
         subjectPlaceholder: "Franchise Application / Corporate Inquiry",
         messageLabel: "Your Message",
@@ -511,7 +524,7 @@ export const translations: any = {
         },
         {
           question: "What are your standard boutique café operating hours?",
-          answer: "Our flagship hq in Riyadh and all branches across the UAE operate from Saturday to Thursday: 8:00 AM - 12:00 AM, and Fridays from 4:00 PM - 12:00 AM."
+          answer: "Our outlets operate daily: Hamidiya 2 (12:00 PM – 1:00 AM), Al Wahda (12:00 PM – 3:00 AM), Al Falah (12:00 PM – 3:00 AM), and Sharjah (12:00 PM – 12:00 AM)."
         }
       ]
     },
@@ -695,7 +708,9 @@ export const translations: any = {
       philBadge: "فلسفتنا",
       philTitle1: "ما يحدد",
       philTitle2: "واحد شاي",
-      philDesc: "نحن نركز على أربعة ركائز أساسية لتقديم تجربة طعام ومقهى فاخرة لا تُنسى.",
+      philDesc: "نحن ملتزمون بتقديم نكهات جريئة، وجودة استثنائية، وتجارب لا تُنسى في كل قضمة",
+      philPromiseTagline: "مكونات رائعة. نكهات مميزة. ضيافة دافئة.",
+      philPromiseText: "هذا هو وعد واحد شاي.",
       discover: "اكتشف",
       journeyBadge: "رحلة واحد شاي",
       journeyTitle: "رحلتنا، ننمو معاً",
@@ -750,20 +765,20 @@ export const translations: any = {
       ],
       philosophy: [
         {
-          title: "مصادر أصلية",
-          desc: "نستورد الزعفران العضوي الفاخر من مزارعين موثوقين وأوراق الشاي من حدائق مختارة على ارتفاعات عالية."
+          title: "مكونات حقيقية",
+          desc: "نستخدم مكونات عالية الجودة ومختارة بعناية مع توابل أصيلة لإعداد طعام طازج، صادق، ومفعم بالنكهات."
         },
         {
-          title: "حرفة يدوية",
-          desc: "يُخبز البريوش، والكرواسون، والفوكاتشيا طازجاً كل يوم بأيدي خبازين محترفين باستخدام التخمير البطيء التقليدي."
+          title: "ابتكارات مميزة",
+          desc: "من الوصفات الفريدة إلى أساليب التقديم المبتكرة، صُممت قائمتنا لتفاجئك، وتسعدك، وتجعلك تتطلع للمزيد دائماً."
         },
         {
           title: "ضيافة دافئة",
-          desc: "نصمم مساحات مريحة وهادئة، تجمع بين الألوان الدافئة والإضاءة الذهبية الناعمة لإحساس منزلي دافئ."
+          desc: "كل ضيف هو في قلب كل ما نقوم به. منذ لحظة دخولك وحتى آخر قضمة، نحرص على أن تشعر بالترحيب والتقدير والاهتمام."
         },
         {
-          title: "جودة لا تقبل المساومة",
-          desc: "كل مزيج به بهارات مضاعفة وكل طبق يُفحص من حيث النكهة، اللون، والرضا التام للعملاء."
+          title: "جودة ثابتة في كل مكان",
+          desc: "تضمن أنظمتنا المعتمدة ومعايير الجودة لدينا نفس المذاق اللذيذ والتجربة المميزة في كل فرع من فروع واحد شاي."
         }
       ],
       missionVision: {
@@ -991,13 +1006,24 @@ export const translations: any = {
       hqTitle: "المقر الرئيسي",
       hqDesc: "جرب صالاتنا الهادئة والمميزة واستكشف تشكيلة الخبز الطازج.",
       addressLabel: "العنوان",
-      address: "طريق الملك عبدالعزيز، الرياض، المملكة العربية السعودية",
+      address: "برج اليازات، الطابق 3، مكتب رقم 304\nشارع إلكترا، خلف فندق سيزون\nمنطقة الدانة 1، أبوظبي",
+      addressLine1: "برج اليازات، الطابق 3، مكتب رقم 304",
+      addressLine2: "شارع إلكترا، خلف فندق سيزون",
+      addressLine3: "منطقة الدانة 1، أبوظبي",
       openInMaps: "فتح في خرائط جوجل",
-      hoursLabel: "ساعات العمل",
-      hoursLine1: "السبت - الخميس: 8:00 صباحاً - 12:00 منتصف الليل",
-      hoursLine2: "الجمعة: 4:00 مساءً - 12:00 منتصف الليل",
+      hoursLabel: "ساعات عمل المقاهي",
+      hoursStatus: "مفتوح يومياً",
+      branchesHours: [
+        { branch: "الحميدية 2", time: "12:00 ظهراً – 1:00 ص" },
+        { branch: "الوحدة", time: "12:00 ظهراً – 3:00 ص" },
+        { branch: "الفلاح", time: "12:00 ظهراً – 3:00 ص" },
+        { branch: "الشارقة", time: "12:00 ظهراً – 12:00 ص" }
+      ],
+      hoursLine1: "الحميدية 2: 12:00 ظهراً - 1:00 ص | الشارقة: 12:00 ظهراً - 12:00 ص",
+      hoursLine2: "الوحدة والفلاح: 12:00 ظهراً - 3:00 ص",
       quickActionLabel: "قنوات التواصل السريع",
-      callHq: "اتصل بالمقر الرئيسي",
+      callHq: "اتصل بنا",
+      phoneDisplay: "+971 55 494 6176",
       emailSupport: "دعم البريد الإلكتروني",
       whatsapp: "واتساب",
       form: {
@@ -1006,7 +1032,7 @@ export const translations: any = {
         emailLabel: "البريد الإلكتروني",
         emailPlaceholder: "name@example.com",
         phoneLabel: "رقم الهاتف",
-        phonePlaceholder: "+966 50 123 4567",
+        phonePlaceholder: "+971 55 494 6176",
         subjectLabel: "الموضوع",
         subjectPlaceholder: "طلب امتياز / استفسار شركة",
         messageLabel: "رسالتك",
@@ -1039,7 +1065,7 @@ export const translations: any = {
         },
         {
           question: "ما هي ساعات عمل مقهى البوتيك القياسية؟",
-          answer: "يعمل مقرنا الرئيسي في الرياض وجميع الفروع في جميع أنحاء الإمارات من السبت إلى الخميس: 8:00 صباحاً - 12:00 منتصف الليل، وأيام الجمعة من 4:00 مساءً - 12:00 منتصف الليل."
+          answer: "تعمل فروعنا يومياً: الحميدية 2 (12:00 ظهراً – 1:00 ص)، الوحدة (12:00 ظهراً – 3:00 ص)، الفلاح (12:00 ظهراً – 3:00 ص)، والشارقة (12:00 ظهراً – 12:00 ص)."
         }
       ]
     },

@@ -63,8 +63,6 @@ export const menuCategories: Category[] = [
     name: "Special Burgers",
     arabicName: "برغر خاص",
     heroImage: burgerSpImg,
-    name: "Combo Sandwich",
-    heroImage: comboImg,
     transitionStyle: "floating",
     products: [
       { id: "cs1", name: "Combo 1", price: 35, image: comboImg, description: "Demo description for Combo 1", featured: true },

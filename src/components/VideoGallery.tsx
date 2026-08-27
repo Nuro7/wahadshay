@@ -18,7 +18,7 @@ const videoSrcs = [
 ];
 
 export function VideoGallery() {
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
   const [activeVideo, setActiveVideo] = useState<VideoItem | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const videoRefs = useRef<Record<string, HTMLVideoElement | null>>({});

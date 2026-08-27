@@ -1,4 +1,4 @@
-import { Globe2, Users, Handshake } from "lucide-react";
+import { Globe2, Handshake } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
 export default function Vision2030() {

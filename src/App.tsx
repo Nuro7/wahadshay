@@ -45,7 +45,7 @@ function App() {
       let targetPage = "home";
       if (["home"].includes(page)) {
         targetPage = "home";
-      } else if (["specials"].includes(page)) {
+      } else if (["specials", "menu"].includes(page)) {
         targetPage = "specials";
       } else if (["about"].includes(page)) {
         targetPage = "about";

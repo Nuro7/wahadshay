@@ -1,13 +1,6 @@
 import { Coffee, Utensils, Sparkles, Croissant, Dessert, ArrowRight } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-interface ExperienceItem {
-  icon: React.ComponentType<{ className?: string; size?: number }>;
-  title: string;
-  desc: string;
-  colSpan?: string;
-}
-
 const experienceIcons = [Sparkles, Coffee, Croissant, Dessert, Utensils];
 const colSpans = [
   "md:col-span-6 lg:col-span-5", // First row left
@@ -52,41 +45,44 @@ export function SignatureExperience() {
                 href="#specials"
                 key={exp.title}
                 style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
-                className={`reveal luxury-card luxury-card-hover group p-8 md:p-12 flex flex-col justify-between min-h-[340px] relative overflow-hidden block ${colSpan}`}
+                className={`reveal luxury-card luxury-card-hover group p-6 xs:p-7 md:p-8 lg:p-9 rounded-2xl sm:rounded-3xl bg-white border border-neutral-border shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.08)] flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${colSpan}`}
               >
                 {/* Large Background Watermark Icon */}
                 <div className="bg-icon-watermark right-[-5%] bottom-[-10%] group-hover:text-plum transition-colors duration-700">
                   <Icon size={240} strokeWidth={0.5} />
                 </div>
 
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-8">
-                    <div className="flex items-center gap-4">
-                      <span className="font-numbers text-sm font-bold text-plum/70 tracking-widest">
+                <div className="relative z-10 flex flex-col flex-1">
+                  {/* Top Row: Number with horizontal line & Circular Icon */}
+                  <div className="flex items-center justify-between mb-5 sm:mb-6">
+                    <div className="flex items-center gap-3">
+                      <span className="font-numbers text-base sm:text-lg font-bold text-plum/80 tracking-widest leading-none">
                         {numStr}
                       </span>
-                      <div className="w-8 h-px bg-plum/20" />
+                      <div className="w-6 sm:w-8 h-px bg-plum/20" />
                     </div>
-                    <div className="text-plum luxury-icon bg-plum/5 p-3 rounded-full border border-plum/10 transition-transform duration-500 ease-out">
-                      <Icon size={22} className="stroke-[1.5]" />
+                    <div className="text-plum luxury-icon bg-plum/5 p-2.5 sm:p-3 rounded-full border border-plum/10 transition-transform duration-500 ease-out group-hover:scale-105 group-hover:bg-plum/10">
+                      <Icon size={20} className="stroke-[1.5]" />
                     </div>
                   </div>
 
-                  <div className="mt-auto space-y-4 max-w-[85%]">
-                    <h3 className="font-display text-2xl font-bold text-text-primary leading-tight">
+                  {/* Title & Description directly below top row with tight, clean, elegant spacing */}
+                  <div className="space-y-2 sm:space-y-2.5 max-w-xl">
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-text-primary leading-tight group-hover:text-plum transition-colors duration-300">
                       {exp.title}
                     </h3>
-                    <p className="text-text-secondary text-sm leading-relaxed font-light">
+                    <p className="text-text-secondary text-[13.5px] xs:text-sm sm:text-[14.5px] leading-[1.6] font-body font-light">
                       {exp.desc}
                     </p>
                   </div>
+                </div>
 
-                  <div className="mt-10 pt-6 border-t border-neutral-border/50 flex items-center justify-between">
-                    <span className="text-[10px] uppercase font-bold tracking-[0.25em] text-plum">
-                      {t('about.signatureExperience.discover')}
-                    </span>
-                    <ArrowRight size={16} className="text-plum luxury-arrow transition-transform duration-500 rtl:rotate-180" />
-                  </div>
+                {/* Bottom Action Area with Divider */}
+                <div className={`relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-neutral-border/50 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+                  <span className="text-[10.5px] xs:text-[11px] uppercase font-bold tracking-[0.2em] text-plum group-hover:text-plum-dark transition-colors">
+                    {t('about.signatureExperience.discover') || "DISCOVER"}
+                  </span>
+                  <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-300 group-hover:translate-x-1 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
                 </div>
               </a>
             );

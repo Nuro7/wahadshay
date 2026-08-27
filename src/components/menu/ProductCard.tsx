@@ -10,7 +10,7 @@ interface ProductCardProps {
 }
 
 export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, featured }) => {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
   return (
     <div className="relative">
       {/* Heart Icon (like the reference) */}

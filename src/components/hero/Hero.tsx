@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState, Fragment } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import gsap from "gsap";
-import Button from "../ui/Button";
 import { useLanguage } from "../../i18n/LanguageContext";
 
 
@@ -82,7 +81,6 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
       (entries) => {
         if (entries[0].isIntersecting) {
           setTimeout(() => {
-            let start = 0;
             const duration = 2000;
             const end = target;
             const startTime = performance.now();
@@ -143,7 +141,7 @@ export default function Hero() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const videos = isMobile ? ['/mobile .mp4'] : ['/home.mp4', '/home1.mp4'];
+  const videos = useMemo(() => isMobile ? ['/mobile.mp4'] : ['/home.mp4', '/home1.mp4'], [isMobile]);
   const activeVideoIdx = activeVideoIndex >= videos.length ? 0 : activeVideoIndex;
 
   const handleVideoEnd = (index: number) => {
@@ -372,7 +370,15 @@ export default function Hero() {
 
           {/* CTA Buttons - Compact, solid yellow button aligned to the left */}
           <div className="hero-btn-container flex justify-start rtl:justify-end w-full">
-            <a href="#specials" className="w-fit">
+            <a
+              href="#specials"
+              onClick={(e) => {
+                e.preventDefault();
+                window.history.pushState(null, '', '#specials');
+                window.dispatchEvent(new HashChangeEvent("hashchange"));
+              }}
+              className="w-fit"
+            >
               <button className="bg-yellow text-plum-dark rounded-full h-[36px] sm:h-[40px] px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold tracking-wide active:scale-[0.97] transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_15px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
                 {t('hero.exploreMenu')}
               </button>
