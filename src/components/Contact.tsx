@@ -180,8 +180,7 @@ export function Contact() {
                   className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
                   <Phone size={15} className="text-plum shrink-0" />
-                  <span>{t('contact.callHq')}</span>
-                  <span className="text-text-secondary font-numbers text-[11px] ms-0.5" dir="ltr">+971 55 494 6176</span>
+                  <span>{t('contact.callHq') || (language === 'AR' ? 'اتصل بنا' : 'Call HQ')}</span>
                 </a>
                 <a
                   href="https://wa.me/971554946176"
@@ -190,15 +189,14 @@ export function Contact() {
                   className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20BE5C] text-white border border-transparent font-bold text-xs shadow-md shadow-green-600/20 hover:shadow-lg hover:shadow-green-600/30 transition-all duration-300 hover:-translate-y-1"
                 >
                   <MessageSquare size={15} className="text-white shrink-0" />
-                  <span>{t('contact.whatsapp')}</span>
-                  <span className="font-numbers text-[11px] opacity-95 ms-0.5" dir="ltr">+971 55 494 6176</span>
+                  <span>{t('contact.whatsapp') || (language === 'AR' ? 'واتساب' : 'WhatsApp')}</span>
                 </a>
                 <a
                   href="mailto:Info@wahadshaycafe.com"
                   className="flex items-center gap-2 p-3 sm:px-4 sm:py-2.5 rounded-xl bg-white hover:bg-neutral-white border border-neutral-border text-text-primary text-xs font-bold shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
                 >
                   <Mail size={15} className="text-plum shrink-0" />
-                  <span>{t('contact.emailSupport')}</span>
+                  <span>{t('contact.emailSupport') || (language === 'AR' ? 'دعم البريد الإلكتروني' : 'Email Support')}</span>
                 </a>
               </div>
             </div>
