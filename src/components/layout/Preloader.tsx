@@ -35,31 +35,42 @@ export function Preloader() {
     }, isMobileDevice ? 1600 : 3500);
 
     if (isMobileDevice) {
-      // Set initial states for mobile (already visible via HTML splash)
+      // Set initial states for mobile
       gsap.set(mobileLogoRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0
+        opacity: 0,
+        scale: 0.9,
+        y: 10
       });
 
-      // Quick smooth dissolve directly into the Hero background (~0.4s)
+      // STAGE 1: Mobile Logo Entrance (0s -> 0.4s)
+      tl.to(mobileLogoRef.current, {
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        duration: 0.4,
+        ease: "power3.out"
+      });
+
+      // STAGE 2: Gentle brand shimmer (0.4s -> 0.75s)
       tl.to(mobileLogoRef.current, {
         scale: 1.02,
         duration: 0.35,
-        ease: "power2.out"
+        ease: "sine.inOut"
       });
 
+      // STAGE 3: Trigger hero reveal (0.75s)
       tl.call(() => {
         document.body.classList.add("splash-done");
         window.dispatchEvent(new Event("splash-complete"));
-      }, [], 0.15);
+      }, [], 0.75);
 
+      // STAGE 4: Smooth dissolve directly into the Hero background (0.75s -> 1.1s)
       tl.to(containerRef.current, {
         opacity: 0,
         scale: 1.02,
         duration: 0.35,
         ease: "power2.inOut"
-      }, 0.15);
+      }, 0.75);
 
     } else {
       // Desktop sequence
