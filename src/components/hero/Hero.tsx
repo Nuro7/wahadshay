@@ -159,13 +159,38 @@ export default function Hero() {
     setActiveVideoIndex(nextIndex);
   };
 
-  useEffect(() => {
+  const tryPlayActiveVideo = () => {
     const vid = videoRefs.current[activeVideoIdx];
     if (vid) {
       vid.muted = true;
-      vid.play().catch(() => {});
+      const playPromise = vid.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
     }
+  };
+
+  useEffect(() => {
+    tryPlayActiveVideo();
+    const timer = setTimeout(tryPlayActiveVideo, 300);
+    return () => clearTimeout(timer);
   }, [activeVideoIdx, isMobile]);
+
+  useEffect(() => {
+    // Re-attempt play on user interaction or splash-complete if blocked by browser policy
+    const onUserInteract = () => {
+      tryPlayActiveVideo();
+    };
+    window.addEventListener("touchstart", onUserInteract, { once: true, passive: true });
+    window.addEventListener("click", onUserInteract, { once: true, passive: true });
+    window.addEventListener("splash-complete", onUserInteract);
+
+    return () => {
+      window.removeEventListener("touchstart", onUserInteract);
+      window.removeEventListener("click", onUserInteract);
+      window.removeEventListener("splash-complete", onUserInteract);
+    };
+  }, [activeVideoIdx]);
 
   useEffect(() => {
     // Pause inactive videos after the 1-second crossfade finishes to save resources
@@ -284,28 +309,43 @@ export default function Hero() {
               videoRefs.current[idx] = el;
               if (el) {
                 el.muted = true;
-                el.defaultMuted = true;
+                el.setAttribute("muted", "");
+                el.setAttribute("playsinline", "");
+                el.setAttribute("webkit-playsinline", "");
+                if (idx === activeVideoIdx) {
+                  el.play().catch(() => {});
+                }
               }
             }}
             src={src}
             poster={isMobile ? "/mobile-poster.webp" : "/home-poster.webp"}
-            autoPlay={idx === 0}
+            autoPlay
             muted
             playsInline
-            preload={isMobile ? "metadata" : "auto"}
+            preload="auto"
+            onCanPlay={(e) => {
+              if (idx === activeVideoIdx) {
+                const target = e.currentTarget as HTMLVideoElement;
+                target.muted = true;
+                target.play().catch(() => {});
+              }
+            }}
             onLoadedData={(e) => {
               if (idx === activeVideoIdx) {
-                (e.currentTarget as HTMLVideoElement).play().catch(() => {});
+                const target = e.currentTarget as HTMLVideoElement;
+                target.muted = true;
+                target.play().catch(() => {});
               }
             }}
             onEnded={() => handleVideoEnd(idx)}
             loop={isMobile}
-            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out bg-plum-dark ${idx === activeVideoIdx ? 'opacity-90 z-10' : 'opacity-0 z-0'
-              }`}
+            className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${
+              idx === activeVideoIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+            }`}
           />
         ))}
         {/* Soft vignette overlays to preserve branding and layout legibility */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/80 via-[#2E1A47]/40 to-[#2E1A47]/90 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/70 via-[#2E1A47]/20 to-[#2E1A47]/85 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
       </div>
 
       {/* Cinematic Lighting Layers */}
@@ -419,7 +459,7 @@ export default function Hero() {
       </div>
 
       {/* Smooth transition fading Hero into the next section */}
-      <div className="absolute bottom-0 left-0 w-full h-[250px] bg-gradient-to-t from-plum-dark to-transparent pointer-events-none z-10" />
+      <div className="absolute bottom-0 left-0 w-full h-[120px] md:h-[250px] bg-gradient-to-t from-plum-dark to-transparent pointer-events-none z-10" />
 
       {/* Mouse Scroll Indicator (Desktop Only) */}
       <a
