@@ -90,8 +90,8 @@ export function Franchise() {
     const emailBody = encodeURIComponent(getEmailBody());
 
     try {
-      // 1. Submit via formsubmit AJAX to nmsshamil232@gmail.com
-      await fetch(`https://formsubmit.co/ajax/${franchiseEmail}`, {
+      // 1. Submit via formsubmit AJAX to nmsshamil232@gmail.com (using FormSubmit token)
+      await fetch("https://formsubmit.co/ajax/d12d68864108f583ca82c4d27b7f889b", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
