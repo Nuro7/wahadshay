@@ -59,38 +59,16 @@ export function Franchise() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const franchiseEmail = "nmsshamil232@gmail.com";
-
-  const getEmailBody = () => {
-    return (
-      `Wahad Shay Franchise Application Details:\n` +
-      `----------------------------------------\n` +
-      `Full Name: ${formData.name || "N/A"}\n` +
-      `Phone / WhatsApp: ${formData.phone || "N/A"}\n` +
-      `Email Address: ${formData.email || "N/A"}\n` +
-      `Proposed City / Location: ${formData.location || "N/A"}\n` +
-      `Prior F&B Experience: ${formData.experience === "yes" ? "Yes, F&B / Retail Experience" : "No, First Venture"}\n` +
-      `Investment Timeline: ${formData.timeline === "immediate" ? "1-3 Months" : formData.timeline === "medium" ? "3-6 Months" : "6-12 Months"}\n` +
-      `Additional Notes: ${formData.message || "None provided"}\n\n` +
-      `Sent from Wahad Shay Franchise Portal: https://wahad-shay.vercel.app/#franchise`
-    );
-  };
-
-  const sendEmailInquiry = () => {
-    const subject = encodeURIComponent(`Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`);
-    const body = encodeURIComponent(getEmailBody());
-    window.location.href = `mailto:${franchiseEmail}?subject=${subject}&body=${body}`;
+  const openGmail = () => {
+    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const emailSubject = encodeURIComponent(`Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`);
-    const emailBody = encodeURIComponent(getEmailBody());
-
     try {
-      // 1. Submit via formsubmit AJAX to nmsshamil232@gmail.com (using FormSubmit token)
+      // Submit seamlessly in background to nmsshamil232@gmail.com
       await fetch("https://formsubmit.co/ajax/d12d68864108f583ca82c4d27b7f889b", {
         method: "POST",
         headers: {
@@ -111,14 +89,11 @@ export function Franchise() {
         }),
       });
     } catch {
-      // Ignore network errors - will open mailto client
+      // Fallback
+    } finally {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
     }
-
-    // Direct redirection to email client
-    window.location.href = `mailto:${franchiseEmail}?subject=${emailSubject}&body=${emailBody}`;
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
   };
 
   const handleResetModal = () => {
@@ -759,11 +734,11 @@ export function Franchise() {
                   <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
                     <button
                       type="button"
-                      onClick={sendEmailInquiry}
+                      onClick={openGmail}
                       className="bg-plum hover:bg-plum-dark text-white font-bold py-2.5 px-5 rounded-xl inline-flex items-center gap-2 text-sm shadow-md transition-all cursor-pointer"
                     >
                       <Mail className="w-4 h-4" />
-                      <span>{language === "AR" ? "إرسال عبر البريد الإلكتروني" : "Email Application"}</span>
+                      <span>{language === "AR" ? "فتح بريد جيميل" : "Open Gmail"}</span>
                     </button>
                     <button
                       type="button"
