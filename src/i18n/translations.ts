@@ -283,30 +283,30 @@ export const translations: any = {
         joinDesc: "Investment and partnership opportunities are available for those who share our vision."
       },
       signatureExperience: {
-        badge: "Flavor & Food Craft",
-        title: "Signature Experience",
-        subtitle: "From crispy Hot Chicken Burgers & loaded Juicy Dips to legendary spiced Karak and fresh artisan bakery.",
+        badge: "Crafted Favorites",
+        title: "Signature Offerings",
+        subtitle: "From ultra-popular Juicy Dip burgers and loaded Indomie to warm stuffed parathas, aromatic Mashkool plates, and iconic juices.",
         discover: "Discover",
         experiences: [
           {
-            title: "Hot Chicken & Burgers",
-            desc: "Crispy fried Hot Chicken Burgers, Juicy Dip sliders drenched in rich warm cheese sauce, and mouthwatering savory specials."
+            title: "Signature Burgers",
+            desc: "The ultra-popular \"Juicy Dip\" crispy chicken burger served drenched with rich, warm cheese sauce dip."
           },
           {
-            title: "Legendary Karak & Drinks",
-            desc: "Our iconic slow-brewed double-spiced cardamom Karak, rare Saffron infusions, iced lattes, and handcrafted refreshers."
+            title: "Stuffed Parathas",
+            desc: "Flaky, golden varieties including Keema, Nutella, crunchy Chips Oman with cheese, and Special Maska Parathas."
           },
           {
-            title: "Fresh Artisan Brioche",
-            desc: "Warm toasted golden brioche buns, savory stuffed croissants, and freshly baked artisan flatbreads prepared daily."
+            title: "Indomie Loaded Noodles",
+            desc: "Instant noodles leveled up with crispy chicken, savory hot dogs, golden fries, and rich melted cheese."
           },
           {
-            title: "Crispy Mini Bites & Rice",
-            desc: "Bite-sized crispy chicken nuggets, loaded fries with custom dips, and fragrant spiced Mashkool rice bowls."
+            title: "Gulf-inspired Plates",
+            desc: "Succulent, tender spiced chicken served over fragrant aromatic Mashkool rice and house special gravy."
           },
           {
-            title: "Fast-Casual & Late-Night Dining",
-            desc: "Vibrant lounges with fast table and drive-thru service open until late night, bringing friends and families together."
+            title: "Special Juices & Smoothies",
+            desc: "Signature handcrafted blends like Awar Qalb, Burj Al Emarat, and Galaxy juice layered to perfection."
           }
         ]
       },
@@ -826,30 +826,30 @@ export const translations: any = {
         joinDesc: "فرص الاستثمار والشراكة متاحة لأولئك الذين يشاركوننا رؤيتنا."
       },
       signatureExperience: {
-        badge: "أشهى النكهات والمأكولات",
-        title: "التجربة المميزة",
-        subtitle: "من برجر الدجاج الحار المقرمش وجوسي ديب الغني إلى شاي الكرك الأصيل والمخبوزات الطازجة.",
+        badge: "المأكولات المفضلة والمميزة",
+        title: "عروضنا المميزة",
+        subtitle: "من برجر جوسي ديب الشهير وإندومي لوديد إلى فطائر البراثا المحشوة، أطباق المشخول الخليجية، والعصائر الخاصة.",
         discover: "اكتشف",
         experiences: [
           {
-            title: "برجر والدجاج الحار",
-            desc: "برجر دجاج مقرمش وساخن، وسلايدرز جوسي ديب المغطاة بصوص الجبن الذائب، والوجبات السريعة المميزة."
+            title: "برجر سيجنتشر",
+            desc: "برجر دجاج \"جوسي ديب\" الأكثر شهرة والمقدم مع صوص الجبن الذائب الدافئ والغني."
           },
           {
-            title: "شاي الكرك والمشروبات الأسطورية",
-            desc: "كرك أصيل ومتبل بالهيل الطازج، ومنقوع الزعفران الفاخر، ومشروبات باردة ومنعشة محضرة يومياً."
+            title: "فطائر براثا محشوة",
+            desc: "تشكيلة براثا ذهبية ومقرمشة تشمل القيما، النوتيلا، بطاطس عمان بالجبن، وبراثا المسكا الخاصة."
           },
           {
-            title: "خبز البريوش والمخبوزات الطازجة",
-            desc: "خبز البريوش الذهبي الطازج، والكرواسون الهش المحشو، والمخبوزات الحرفية الساخنة المحضرة بإتقان."
+            title: "نودلز إندومي لوديد",
+            desc: "نودلز إندومي مميزة ومحملة بقطع الدجاج المقرمش، الهوت دوج، البطاطا، والجبن الذائب الشهي."
           },
           {
-            title: "ميني بايتس وأطباق الأرز الشهية",
-            desc: "قطع دجاج مقرمشة وذهبية مع صوصات التغميس الخاصة، وبطاطا مقرمشة، وأطباق أرز المشخول المتبل اللذيذ."
+            title: "أطباق خليجية مميزة",
+            desc: "دجاج متبل طري ولذيذ يقدم فوق أرز المشخول العطري الفاخر مع المرق الخاص بنا."
           },
           {
-            title: "جلسات عصرية وخدمة سريعة",
-            desc: "صالات مريحة وعصرية مع خدمة سيارات سريعة وجلسات مميزة تفتح حتى ساعات متأخرة لتجمع الأصدقاء والعائلات."
+            title: "عصائر وسموذي خاصة",
+            desc: "خلطات وعصائر فريدة ومبتكرة مثل عوار قلب، برج الإمارات، وعصير جالاكسي بطبقات منعشة ولذيذة."
           }
         ]
       },
