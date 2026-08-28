@@ -1,7 +1,7 @@
-import { Coffee, Utensils, Sparkles, Croissant, Dessert, ArrowRight } from "lucide-react";
+import { Flame, Coffee, Croissant, Sparkles, Utensils, ArrowRight } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-const experienceIcons = [Sparkles, Coffee, Croissant, Dessert, Utensils];
+const experienceIcons = [Flame, Coffee, Croissant, Sparkles, Utensils];
 const colSpans = [
   "md:col-span-6 lg:col-span-5", // First row left
   "md:col-span-6 lg:col-span-7", // First row right (slightly wider)

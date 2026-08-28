@@ -283,30 +283,30 @@ export const translations: any = {
         joinDesc: "Investment and partnership opportunities are available for those who share our vision."
       },
       signatureExperience: {
-        badge: "Crafted Offerings",
+        badge: "Flavor & Food Craft",
         title: "Signature Experience",
-        subtitle: "From slow-brewed double-spiced Karak to artisan brioche baked fresh every morning.",
+        subtitle: "From crispy Hot Chicken Burgers & loaded Juicy Dips to legendary spiced Karak and fresh artisan bakery.",
         discover: "Discover",
         experiences: [
           {
-            title: "Premium Tea",
-            desc: "Savor our legendary Karak and rare Saffron infusions, slow-brewed and double-spiced with fresh green cardamom."
+            title: "Hot Chicken & Burgers",
+            desc: "Crispy fried Hot Chicken Burgers, Juicy Dip sliders drenched in rich warm cheese sauce, and mouthwatering savory specials."
           },
           {
-            title: "Specialty Coffee",
-            desc: "Exquisite single-origin beans, cold brews, and iced espresso craft infused with delicate spices and syrups."
+            title: "Legendary Karak & Drinks",
+            desc: "Our iconic slow-brewed double-spiced cardamom Karak, rare Saffron infusions, iced lattes, and handcrafted refreshers."
           },
           {
-            title: "Fresh Baked Food",
-            desc: "Signature buttery brioches, flaky croissants, and herb-crusted flatbreads baked fresh daily by master bakers."
+            title: "Fresh Artisan Brioche",
+            desc: "Warm toasted golden brioche buns, savory stuffed croissants, and freshly baked artisan flatbreads prepared daily."
           },
           {
-            title: "Decadent Desserts",
-            desc: "Warm honey-infused cream scones, sweet glazed buns, and vanilla bean tea gelato pairings."
+            title: "Crispy Mini Bites & Rice",
+            desc: "Bite-sized crispy chicken nuggets, loaded fries with custom dips, and fragrant spiced Mashkool rice bowls."
           },
           {
-            title: "Luxury Dining",
-            desc: "Gather in our quiet, ambient Lounges designed with warm beige textures, perfect for authentic Arabic hospitality."
+            title: "Fast-Casual & Late-Night Dining",
+            desc: "Vibrant lounges with fast table and drive-thru service open until late night, bringing friends and families together."
           }
         ]
       },
@@ -826,30 +826,30 @@ export const translations: any = {
         joinDesc: "فرص الاستثمار والشراكة متاحة لأولئك الذين يشاركوننا رؤيتنا."
       },
       signatureExperience: {
-        badge: "عروضنا المصنوعة بحرفية",
+        badge: "أشهى النكهات والمأكولات",
         title: "التجربة المميزة",
-        subtitle: "من الكرك المخمر ببطء والمتبل مرتين إلى خبز البريوش الحرفي المخبوز طازجاً كل صباح.",
+        subtitle: "من برجر الدجاج الحار المقرمش وجوسي ديب الغني إلى شاي الكرك الأصيل والمخبوزات الطازجة.",
         discover: "اكتشف",
         experiences: [
           {
-            title: "شاي فاخر",
-            desc: "تذوق الكرك الأسطوري لدينا ومنقوع الزعفران النادر، المقطر ببطء والمتبل بالهيل الأخضر الطازج."
+            title: "برجر والدجاج الحار",
+            desc: "برجر دجاج مقرمش وساخن، وسلايدرز جوسي ديب المغطاة بصوص الجبن الذائب، والوجبات السريعة المميزة."
           },
           {
-            title: "قهوة مختصة",
-            desc: "حبوب فاخرة أحادية المنشأ، مشروبات باردة، وقهوة إسبريسو مثلجة ممزوجة بالتوابل والشراب الرقيق."
+            title: "شاي الكرك والمشروبات الأسطورية",
+            desc: "كرك أصيل ومتبل بالهيل الطازج، ومنقوع الزعفران الفاخر، ومشروبات باردة ومنعشة محضرة يومياً."
           },
           {
-            title: "مخبوزات طازجة",
-            desc: "بريوش غني بالزبدة، كرواسون هش، وخبز مسطح بالأعشاب، تُخبز طازجاً كل يوم على يد خبازين محترفين."
+            title: "خبز البريوش والمخبوزات الطازجة",
+            desc: "خبز البريوش الذهبي الطازج، والكرواسون الهش المحشو، والمخبوزات الحرفية الساخنة المحضرة بإتقان."
           },
           {
-            title: "حلويات فاخرة",
-            desc: "كعك الكريمة الدافئ المنقوع بالعسل، لفائف حلوة لامعة، وآيس كريم شاي بالفانيليا."
+            title: "ميني بايتس وأطباق الأرز الشهية",
+            desc: "قطع دجاج مقرمشة وذهبية مع صوصات التغميس الخاصة، وبطاطا مقرمشة، وأطباق أرز المشخول المتبل اللذيذ."
           },
           {
-            title: "تجربة طعام فاخرة",
-            desc: "تجمع في صالاتنا الهادئة المصممة بألوان بيج دافئة، مثالية للضيافة العربية الأصيلة."
+            title: "جلسات عصرية وخدمة سريعة",
+            desc: "صالات مريحة وعصرية مع خدمة سيارات سريعة وجلسات مميزة تفتح حتى ساعات متأخرة لتجمع الأصدقاء والعائلات."
           }
         ]
       },
