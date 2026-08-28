@@ -207,65 +207,65 @@ export function Contact() {
                     onSubmit={handleSubmit}
                     className="space-y-7"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
-                      <div className="space-y-2.5 group">
-                        <label htmlFor="name" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.nameLabel')}</label>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                      <div className="space-y-1.5 group text-start rtl:text-end">
+                        <label htmlFor="name" className="block text-xs font-bold text-text-primary uppercase tracking-wider text-start rtl:text-end transition-colors group-focus-within:text-plum">{t('contact.form.nameLabel')}</label>
                         <input
                           type="text"
                           id="name"
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full h-[48px] rounded-xl border border-neutral-border bg-white px-4 sm:px-5 typo-body text-text-primary placeholder:text-text-secondary/40 focus:border-plum focus:outline-none focus:ring-2 focus:ring-plum/15 transition-all duration-300 shadow-xs text-start rtl:text-end"
                           placeholder={t('contact.form.namePlaceholder')}
                         />
                       </div>
-                      <div className="space-y-2.5 group">
-                        <label htmlFor="email" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.emailLabel')}</label>
+                      <div className="space-y-1.5 group text-start rtl:text-end">
+                        <label htmlFor="email" className="block text-xs font-bold text-text-primary uppercase tracking-wider text-start rtl:text-end transition-colors group-focus-within:text-plum">{t('contact.form.emailLabel')}</label>
                         <input
                           type="email"
                           id="email"
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full h-[48px] rounded-xl border border-neutral-border bg-white px-4 sm:px-5 typo-body text-text-primary placeholder:text-text-secondary/40 focus:border-plum focus:outline-none focus:ring-2 focus:ring-plum/15 transition-all duration-300 shadow-xs text-start rtl:text-end"
                           placeholder={t('contact.form.emailPlaceholder')}
                         />
                       </div>
-                      <div className="space-y-2.5 group">
-                        <label htmlFor="phone" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.phoneLabel')}</label>
+                      <div className="space-y-1.5 group text-start rtl:text-end">
+                        <label htmlFor="phone" className="block text-xs font-bold text-text-primary uppercase tracking-wider text-start rtl:text-end transition-colors group-focus-within:text-plum">{t('contact.form.phoneLabel')}</label>
                         <input
                           type="tel"
                           id="phone"
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full h-[48px] rounded-xl border border-neutral-border bg-white px-4 sm:px-5 typo-body text-text-primary placeholder:text-text-secondary/40 focus:border-plum focus:outline-none focus:ring-2 focus:ring-plum/15 transition-all duration-300 shadow-xs text-start rtl:text-end"
                           placeholder={t('contact.form.phonePlaceholder')}
                         />
                       </div>
-                      <div className="space-y-2.5 group">
-                        <label htmlFor="subject" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
+                      <div className="space-y-1.5 group text-start rtl:text-end">
+                        <label htmlFor="subject" className="block text-xs font-bold text-text-primary uppercase tracking-wider text-start rtl:text-end transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
                         <input
                           type="text"
                           id="subject"
                           value={formData.subject}
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full h-[48px] rounded-xl border border-neutral-border bg-white px-4 sm:px-5 typo-body text-text-primary placeholder:text-text-secondary/40 focus:border-plum focus:outline-none focus:ring-2 focus:ring-plum/15 transition-all duration-300 shadow-xs text-start rtl:text-end"
                           placeholder={t('contact.form.subjectPlaceholder')}
                         />
                       </div>
                     </div>
 
-                    <div className="space-y-2.5 group">
-                      <label htmlFor="message" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
+                    <div className="space-y-1.5 group text-start rtl:text-end">
+                      <label htmlFor="message" className="block text-xs font-bold text-text-primary uppercase tracking-wider text-start rtl:text-end transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
                       <textarea
                         id="message"
-                        rows={5}
+                        rows={4}
                         required
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-4 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm resize-none"
+                        className="w-full rounded-xl border border-neutral-border bg-white p-4 sm:p-5 typo-body text-text-primary placeholder:text-text-secondary/40 focus:border-plum focus:outline-none focus:ring-2 focus:ring-plum/15 transition-all duration-300 shadow-xs resize-none text-start rtl:text-end font-body"
                         placeholder={t('contact.form.messagePlaceholder')}
                       />
                     </div>
@@ -273,7 +273,7 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full group relative overflow-hidden flex items-center justify-center gap-2 py-4 sm:py-5 rounded-xl bg-yellow text-plum-dark typo-button hover:bg-plum hover:text-white hover:shadow-xl hover:shadow-plum/20 transition-all duration-500 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full h-[50px] group relative overflow-hidden flex items-center justify-center gap-2 rounded-xl bg-yellow text-plum-dark font-display font-black text-sm uppercase tracking-wider hover:bg-plum hover:text-white shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         {isSubmitting ? t('contact.form.submitting') : t('contact.form.submitBtn')}

@@ -523,8 +523,8 @@ export function Franchise() {
                     
                     {/* Name & Phone */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                      <div className="text-start rtl:text-end">
+                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                           {t("about.franchise.modal.name") || "Full Name"} *
                         </label>
                         <div className="relative">
@@ -536,13 +536,13 @@ export function Franchise() {
                             value={formData.name}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.namePlaceholder") || "e.g. Tariq Al Mansoori"}
-                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full h-[46px] ps-10 pe-4 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all text-start rtl:text-end"
                           />
                         </div>
                       </div>
 
-                      <div>
-                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                      <div className="text-start rtl:text-end">
+                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                           {t("about.franchise.modal.phone") || "Phone / WhatsApp"} *
                         </label>
                         <div className="relative">
@@ -554,7 +554,7 @@ export function Franchise() {
                             value={formData.phone}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.phonePlaceholder") || "+971 50 123 4567"}
-                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full h-[46px] ps-10 pe-4 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all text-start rtl:text-end"
                           />
                         </div>
                       </div>
@@ -562,8 +562,8 @@ export function Franchise() {
 
                     {/* Email & Location */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                      <div className="text-start rtl:text-end">
+                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                           {t("about.franchise.modal.email") || "Email Address"} *
                         </label>
                         <div className="relative">
@@ -575,13 +575,13 @@ export function Franchise() {
                             value={formData.email}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.emailPlaceholder") || "tariq@example.com"}
-                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full h-[46px] ps-10 pe-4 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all text-start rtl:text-end"
                           />
                         </div>
                       </div>
 
-                      <div>
-                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                      <div className="text-start rtl:text-end">
+                        <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                           {t("about.franchise.modal.location") || "Proposed City / Country"} *
                         </label>
                         <div className="relative">
@@ -593,15 +593,15 @@ export function Franchise() {
                             value={formData.location}
                             onChange={handleInputChange}
                             placeholder={t("about.franchise.modal.locationPlaceholder") || "e.g. Dubai, Abu Dhabi, Riyadh"}
-                            className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all"
+                            className="w-full h-[46px] ps-10 pe-4 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all text-start rtl:text-end"
                           />
                         </div>
                       </div>
                     </div>
 
                     {/* Prior Experience */}
-                    <div>
-                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                    <div className="text-start rtl:text-end">
+                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                         {t("about.franchise.modal.experience") || "Prior F&B or Retail Experience"}
                       </label>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -610,7 +610,7 @@ export function Franchise() {
                           onClick={() => setFormData(p => ({ ...p, experience: "yes" }))}
                           className={`p-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all ${
                             formData.experience === "yes"
-                              ? "bg-plum/10 border-plum text-plum shadow-xs"
+                              ? "bg-plum/10 border-plum text-plum shadow-xs font-bold"
                               : "bg-neutral-ivory border-neutral-border text-text-secondary hover:border-plum/40"
                           }`}
                         >
@@ -623,7 +623,7 @@ export function Franchise() {
                           onClick={() => setFormData(p => ({ ...p, experience: "no" }))}
                           className={`p-3 rounded-xl border text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all ${
                             formData.experience === "no"
-                              ? "bg-plum/10 border-plum text-plum shadow-xs"
+                              ? "bg-plum/10 border-plum text-plum shadow-xs font-bold"
                               : "bg-neutral-ivory border-neutral-border text-text-secondary hover:border-plum/40"
                           }`}
                         >
@@ -634,8 +634,8 @@ export function Franchise() {
                     </div>
 
                     {/* Investment Timeline */}
-                    <div>
-                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                    <div className="text-start rtl:text-end">
+                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                         {t("about.franchise.modal.timeline") || "Expected Investment Timeline"}
                       </label>
                       <div className="grid grid-cols-3 gap-2">
@@ -648,9 +648,9 @@ export function Franchise() {
                             key={item.id}
                             type="button"
                             onClick={() => setFormData(p => ({ ...p, timeline: item.id }))}
-                            className={`py-2 px-3 rounded-xl border text-center text-xs font-semibold cursor-pointer transition-all ${
+                            className={`py-2.5 px-3 rounded-xl border text-center text-xs font-semibold cursor-pointer transition-all ${
                               formData.timeline === item.id
-                                ? "bg-yellow/20 border-yellow text-plum font-bold shadow-xs"
+                                ? "bg-yellow/25 border-yellow text-plum-dark font-bold shadow-xs"
                                 : "bg-neutral-ivory border-neutral-border text-text-secondary hover:border-plum/30"
                             }`}
                           >
@@ -661,19 +661,19 @@ export function Franchise() {
                     </div>
 
                     {/* Additional Notes */}
-                    <div>
-                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5">
+                    <div className="text-start rtl:text-end">
+                      <label className="block text-xs font-bold text-text-primary uppercase tracking-wider mb-1.5 text-start rtl:text-end">
                         {t("about.franchise.modal.message") || "Additional Information / Proposed Site Notes"}
                       </label>
                       <div className="relative">
-                        <MessageSquare className="w-4 h-4 text-[#A5A5A5] absolute left-3.5 rtl:left-auto rtl:right-3.5 top-3 pointer-events-none" />
+                        <MessageSquare className="w-4 h-4 text-[#A5A5A5] absolute left-3.5 rtl:left-auto rtl:right-3.5 top-3.5 pointer-events-none" />
                         <textarea
                           name="message"
                           rows={3}
                           value={formData.message}
                           onChange={handleInputChange}
                           placeholder={t("about.franchise.modal.messagePlaceholder") || "Tell us about your proposed site, business background, or questions..."}
-                          className="w-full ps-10 pe-4 py-2.5 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all resize-none font-body"
+                          className="w-full ps-10 pe-4 py-3 bg-neutral-ivory border border-neutral-border rounded-xl text-text-primary text-sm focus:outline-none focus:border-plum focus:ring-2 focus:ring-plum/20 transition-all resize-none font-body text-start rtl:text-end"
                         />
                       </div>
                     </div>
