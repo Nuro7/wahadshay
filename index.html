@@ -35,8 +35,53 @@
     </noscript>
     <title>Wahad Shay — A World of Flavor in One Place</title>
   </head>
-  <body class="overflow-x-hidden bg-neutral-white">
-    <div id="root"></div>
+  <body style="margin: 0; padding: 0; background-color: #2E1A47; overflow-x: hidden;">
+    <div id="root">
+      <!-- Instant Zero-Latency Pure CSS Branded Splash Screen (Eliminates White Flash on Mobile) -->
+      <style>
+        #initial-splash {
+          position: fixed;
+          inset: 0;
+          width: 100vw;
+          height: 100vh;
+          height: 100svh;
+          background: radial-gradient(circle at center, #4C1A6E 0%, #2E114D 60%, #150626 100%);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          z-index: 999999;
+          gap: 24px;
+        }
+        #initial-splash-logo {
+          width: 170px;
+          height: auto;
+          max-width: 70vw;
+          object-fit: contain;
+          animation: splashPulse 2s ease-in-out infinite;
+          filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.45));
+        }
+        #initial-splash-spinner {
+          width: 28px;
+          height: 28px;
+          border: 2.5px solid rgba(245, 189, 32, 0.2);
+          border-top-color: #F5BD20;
+          border-radius: 50%;
+          animation: splashSpin 0.7s linear infinite;
+        }
+        @keyframes splashPulse {
+          0%, 100% { transform: scale(1); opacity: 0.95; }
+          50% { transform: scale(1.03); opacity: 1; }
+        }
+        @keyframes splashSpin {
+          to { transform: rotate(360deg); }
+        }
+      </style>
+      <div id="initial-splash">
+        <img id="initial-splash-logo" src="/logo_wahad.png" alt="Wahad Shay" width="170" height="90" />
+        <div id="initial-splash-spinner"></div>
+      </div>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -4,14 +4,14 @@ import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/About";
 import Testimonials from "./components/Testimonials";
-import FranchiseSection from "./components/FranchiseSection";
-import FranchiseTeaser from "./components/FranchiseTeaser";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
-// Lazy-loaded routes to minimize initial bundle size on mobile
+// Lazy-loaded routes and below-the-fold heavy sections
+const FranchiseSection = lazy(() => import("./components/FranchiseSection"));
+const FranchiseTeaser = lazy(() => import("./components/FranchiseTeaser"));
 const Specials = lazy(() => import("./components/Specials"));
 const MissionVision = lazy(() => import("./components/MissionVision"));
 const Vision2030 = lazy(() => import("./components/Vision2030"));
@@ -101,8 +101,10 @@ function App() {
               <Hero />
               <About isHomePage={true} />
               <Testimonials />
-              <FranchiseSection />
-              <FranchiseTeaser />
+              <Suspense fallback={<div className="min-h-[300px] flex items-center justify-center"><div className="w-6 h-6 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+                <FranchiseSection />
+                <FranchiseTeaser />
+              </Suspense>
             </>
           )}
 
