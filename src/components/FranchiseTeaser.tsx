@@ -14,14 +14,14 @@ export function FranchiseTeaser() {
           
           {/* Left Column: Heading and info */}
           <div className="lg:col-span-3 space-y-6 text-center lg:text-start">
-            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+            <span className="typo-eyebrow text-plum block">
               {t('franchiseTeaser.badge')}
             </span>
-            <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary leading-tight">
+            <h2 className="typo-section-title text-text-primary">
               <span className="text-shimmer block md:inline">{t('franchiseTeaser.title1')}</span>
               <span className="text-plum font-extrabold block md:inline md:ms-2">{t('franchiseTeaser.title2')}</span>
             </h2>
-            <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-body max-w-xl mx-auto lg:mx-0">
+            <p className="typo-body text-text-secondary max-w-xl mx-auto lg:mx-0">
               {t('franchiseTeaser.subtitle')}
             </p>
             
@@ -35,7 +35,7 @@ export function FranchiseTeaser() {
                   window.dispatchEvent(new HashChangeEvent("hashchange"));
                 }}
               >
-                <Button variant="primary" className="shadow-[0_4px_15px_rgba(245,189,32,0.15)]">
+                <Button variant="primary" size="md" className="shadow-[0_4px_15px_rgba(245,189,32,0.15)]">
                   {t('franchiseTeaser.cta')}
                 </Button>
               </a>
@@ -45,20 +45,20 @@ export function FranchiseTeaser() {
           {/* Right Column: Statistics grid */}
           <div className="lg:col-span-2 grid grid-cols-2 gap-4 w-full">
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
-              <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.outletsNum')}</span>
-              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.outletsLabel')}</span>
+              <span className="typo-stat text-plum">{t('franchiseTeaser.stats.outletsNum')}</span>
+              <span className="typo-badge text-text-secondary mt-1">{t('franchiseTeaser.stats.outletsLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
-              <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.guestsNum')}</span>
-              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.guestsLabel')}</span>
+              <span className="typo-stat text-plum">{t('franchiseTeaser.stats.guestsNum')}</span>
+              <span className="typo-badge text-text-secondary mt-1">{t('franchiseTeaser.stats.guestsLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
-              <span className="font-numbers text-2xl md:text-3xl font-extrabold text-plum">{t('franchiseTeaser.stats.growthNum')}</span>
-              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.growthLabel')}</span>
+              <span className="typo-stat text-plum">{t('franchiseTeaser.stats.growthNum')}</span>
+              <span className="typo-badge text-text-secondary mt-1">{t('franchiseTeaser.stats.growthLabel')}</span>
             </div>
             <div className="premium-card p-6 flex flex-col justify-center items-center text-center h-[120px] border border-neutral-border bg-white/70 backdrop-blur-md shadow-sm rounded-2xl">
-              <span className="font-numbers text-2xl md:text-3xl font-extrabold text-yellow-600">{t('franchiseTeaser.stats.trainingNum')}</span>
-              <span className="text-[10px] text-text-secondary uppercase font-bold tracking-wider mt-1">{t('franchiseTeaser.stats.trainingLabel')}</span>
+              <span className="typo-stat text-yellow-600">{t('franchiseTeaser.stats.trainingNum')}</span>
+              <span className="typo-badge text-text-secondary mt-1">{t('franchiseTeaser.stats.trainingLabel')}</span>
             </div>
           </div>
 

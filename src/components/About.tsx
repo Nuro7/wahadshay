@@ -126,12 +126,12 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
                   <span className="h-px w-8 bg-plum/40 block" />
-                  <span className="text-plum text-xs font-bold uppercase tracking-[0.25em]">
+                  <span className="typo-eyebrow text-plum">
                     {t('about.storyBadge')}
                   </span>
                 </div>
                 
-                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.12] tracking-tight">
+                <h2 className="typo-section-title">
                   <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
                   {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
                   <br />
@@ -140,17 +140,17 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
               </div>
 
               <div className="space-y-4">
-                <p className="text-text-primary/90 text-base sm:text-lg leading-relaxed font-body font-medium">
+                <p className="typo-body-lg text-text-primary/90 max-w-prose">
                   {t('about.storyDesc1')}
                 </p>
                 {t('about.storyDesc2') && (
-                  <p className="text-text-secondary text-sm sm:text-base leading-relaxed font-body font-light">
+                  <p className="typo-body text-text-secondary max-w-prose">
                     {t('about.storyDesc2')}
                   </p>
                 )}
               </div>
 
-              <a href={isHomePage ? "#about" : "#menu"} className={`group inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-plum hover:text-plum-dark transition-colors pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
+              <a href={isHomePage ? "#about" : "#menu"} className={`group inline-flex items-center gap-3 typo-button-sm text-plum hover:text-plum-dark transition-colors pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
                 <span className="border-b border-plum/30 pb-1 group-hover:border-plum transition-colors">{t('about.discoverMore')}</span>
                 <ArrowRight size={16} className={`transform transition-transform ${language === 'AR' ? 'group-hover:-translate-x-1 rotate-180' : 'group-hover:translate-x-1'}`} />
               </a>
@@ -171,17 +171,17 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </div>
 
                 <div className="space-y-4 relative">
-                  <span className="text-[10px] uppercase font-bold tracking-[0.35em] text-text-secondary/70">
+                  <span className="typo-eyebrow text-text-secondary/70">
                     {t('about.mottoBadge')}
                   </span>
                   
-                  <blockquote className="font-display text-xl sm:text-2xl italic font-light leading-relaxed text-text-primary px-2">
+                  <blockquote className="typo-h3 italic font-light text-text-primary px-2">
                     {t('about.mottoText')}
                   </blockquote>
                   
                   <div className="pt-2 flex flex-col items-center gap-2">
                     <div className="h-5 w-px bg-plum/25" />
-                    <span className="font-display text-[11px] font-bold tracking-[0.25em] text-plum uppercase">
+                    <span className="typo-eyebrow text-plum">
                       {t('about.mottoFooter')}
                     </span>
                   </div>
@@ -198,15 +198,15 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
         <div className="absolute bottom-[10%] left-[-15%] w-[600px] h-[600px] bg-yellow/5 rounded-full blur-[140px] pointer-events-none" />
         
         <div className="premium-container relative z-10 space-y-16">
-          <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-            <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
+          <div className="reveal text-center max-w-2xl mx-auto space-y-4">
+            <span className="typo-eyebrow text-plum block">
               {t('about.philBadge')}
             </span>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+            <h2 className="typo-section-title">
               <span className="text-gradient-plum">{t('about.philTitle1')}</span>{" "}
               <span className="text-gradient-gold">{t('about.philTitle2')}</span>
             </h2>
-            <p className="text-text-secondary text-base sm:text-lg font-light max-w-2xl mx-auto leading-relaxed">
+            <p className="typo-body-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
               {t('about.philDesc')}
             </p>
           </div>
@@ -227,7 +227,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                     {/* Top Row: Number with underline (left) & Circle icon (right) */}
                     <div className="flex items-center justify-between mb-6 sm:mb-7">
                       <div className="flex flex-col">
-                        <span className="font-numbers text-lg xs:text-xl font-bold text-plum tracking-tight leading-none">
+                        <span className="text-lg xs:text-xl font-black text-plum leading-none tabular-nums">
                           {numStr}
                         </span>
                         <div className="w-6 h-0.5 bg-yellow/80 rounded-full mt-1.5" />
@@ -238,19 +238,19 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                     </div>
 
                     {/* Title */}
-                    <h3 className="font-display text-xl xs:text-[22px] sm:text-2xl font-bold text-text-primary leading-snug tracking-tight group-hover:text-plum transition-colors duration-300 mb-2.5 sm:mb-3">
+                    <h3 className="typo-h3 text-text-primary group-hover:text-plum transition-colors duration-300 mb-2.5">
                       {item.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-text-secondary text-[13.5px] xs:text-sm sm:text-[14.5px] leading-[1.6] font-body font-light">
+                    <p className="typo-body-sm text-text-secondary leading-relaxed">
                       {item.desc}
                     </p>
                   </div>
 
                   {/* Bottom Action Area with Divider */}
                   <div className={`mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-neutral-border/60 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
-                    <span className="text-[10.5px] xs:text-[11px] uppercase font-bold tracking-[0.2em] text-plum group-hover:text-plum-dark transition-colors">
+                    <span className="typo-eyebrow text-plum group-hover:text-plum-dark transition-colors">
                       {t('about.discover') || "DISCOVER"}
                     </span>
                     <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-300 group-hover:translate-x-1 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />
@@ -269,12 +269,12 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
           {/* Wahad Shay Promise Highlight */}
           <div className="reveal text-center max-w-2xl mx-auto pt-2 sm:pt-4">
             <div className="inline-flex flex-col items-center gap-2.5 px-6 sm:px-10 py-5 sm:py-6 rounded-2xl sm:rounded-3xl bg-white/90 backdrop-blur-md border border-neutral-border shadow-[0_4px_25px_rgba(43,37,32,0.03)] hover:shadow-[0_10px_35px_rgba(94,38,137,0.08)] transition-all duration-300">
-              <p className="font-display text-base sm:text-lg md:text-xl font-bold text-gradient-plum tracking-tight">
+              <p className="typo-h4 font-bold text-gradient-plum">
                 {t('about.philPromiseTagline') || "Great ingredients. Signature flavours. Warm hospitality."}
               </p>
               <div className="flex items-center gap-3">
                 <div className="h-px w-6 sm:w-10 bg-yellow/80 rounded-full" />
-                <span className="text-xs sm:text-[13px] font-bold tracking-[0.2em] text-plum uppercase">
+                <span className="typo-eyebrow text-plum">
                   {t('about.philPromiseText') || "That’s the Wahad Shay promise."}
                 </span>
                 <div className="h-px w-6 sm:w-10 bg-yellow/80 rounded-full" />
@@ -300,20 +300,20 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
             {/* Tag Badge with Hairline Accents */}
             <div className="flex items-center justify-center gap-3">
               <span className="h-px w-8 bg-yellow/50 block" />
-              <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em]">
+              <span className="typo-eyebrow text-yellow">
                 {t('about.journeyBadge') || 'THE WAHAD SHAY JOURNEY'}
               </span>
               <span className="h-px w-8 bg-yellow/50 block" />
             </div>
 
             {/* Headline with metallic gold shimmer */}
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+            <h2 className="typo-section-title text-white">
               <span className="text-shimmer-gold">
                 {t('about.journeyTitle') || 'Our Journey, Growing Together'}
               </span>
             </h2>
 
-            <p className="text-white/70 text-sm sm:text-base font-body font-light leading-relaxed max-w-xl mx-auto">
+            <p className="typo-body text-white/75 max-w-xl mx-auto leading-relaxed">
               <span>{t('about.journeySubtitle1') || 'From our first branch to the future ahead —'}</span>{' '}
               <span className="block sm:inline">{t('about.journeySubtitle2') || 'every milestone is a step closer to serving you better.'}</span>
             </p>
@@ -372,7 +372,7 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       className="flex flex-col items-center text-center group cursor-pointer select-none"
                     >
                       {/* Date Label above node */}
-                      <span className={`font-display text-[11px] font-bold uppercase tracking-wider transition-all duration-300 h-6 flex items-center ${
+                      <span className={`typo-badge transition-all duration-300 h-6 flex items-center ${
                         isActive ? "text-yellow scale-110 drop-shadow-[0_0_8px_rgba(245,189,32,0.6)] font-black" : "text-yellow/80 group-hover:text-yellow"
                       }`}>
                         {node.year}
@@ -410,14 +410,14 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                       </div>
 
                       {/* Branch Title */}
-                      <h4 className={`font-display text-[12px] sm:text-[13px] font-bold uppercase tracking-wider mt-3.5 transition-colors leading-snug ${
-                        isActive ? "text-white font-black" : "text-white/80 group-hover:text-white"
+                      <h4 className={`typo-button-sm mt-3.5 transition-colors leading-snug ${
+                        isActive ? "text-white font-black" : "text-white/80 group-hover:text-white font-semibold"
                       }`}>
                         {node.branchName || node.title}
                       </h4>
 
                       {/* Branch Short Description */}
-                      <p className="text-[11px] text-white/60 leading-relaxed max-w-[145px] mx-auto mt-1 font-body font-light">
+                      <p className="typo-body-sm text-white/60 leading-relaxed max-w-[145px] mx-auto mt-1">
                         {node.desc}
                       </p>
                     </div>
@@ -534,11 +534,11 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                         {/* Card Content */}
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2">
-                            <span className="text-[10px] sm:text-[11px] font-bold text-yellow uppercase tracking-wider font-display block">
+                            <span className="typo-badge text-yellow block">
                               {node.year}
                             </span>
                             {/* Step number badge */}
-                            <span className={`text-[9px] font-mono px-1.5 py-0.2 rounded-full border ${
+                            <span className={`typo-badge font-numbers px-1.5 py-0.2 rounded-full border ${
                               isActive
                                 ? "text-yellow border-yellow/50 bg-yellow/10"
                                 : "text-white/40 border-white/10 bg-white/5"
@@ -547,13 +547,13 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                             </span>
                           </div>
 
-                          <h4 className={`font-display font-bold text-sm sm:text-base transition-colors leading-tight mt-0.5 ${
-                            isActive ? "text-white font-black" : "text-white/90 group-hover:text-white"
+                          <h4 className={`typo-button-sm transition-colors leading-tight mt-0.5 ${
+                            isActive ? "text-white font-black" : "text-white/90 group-hover:text-white font-semibold"
                           }`}>
                             {node.branchName || node.title}
                           </h4>
 
-                          <p className="text-xs text-white/70 mt-1 font-body font-light line-clamp-2 leading-relaxed">
+                          <p className="typo-body-sm text-white/70 mt-1 line-clamp-2 leading-relaxed">
                             {node.desc}
                           </p>
                         </div>
@@ -614,20 +614,20 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
 
                       {/* Content */}
                       <div className="space-y-1 flex-1">
-                        <span className="text-yellow text-[11px] font-bold uppercase tracking-widest font-display block">
+                        <span className="typo-eyebrow text-yellow block">
                           {activeMilestone.year}
                         </span>
-                        <h3 className="font-display text-lg sm:text-2xl font-black text-white leading-tight mt-0.5">
+                        <h3 className="typo-h3 text-white leading-tight mt-0.5">
                           {activeMilestone.title}
                         </h3>
                         
                         {/* Golden Horizontal Bar */}
                         <div className="w-8 h-[2px] bg-gradient-to-r from-yellow to-yellow/40 my-1.5 mx-auto sm:mx-0 rounded-full" />
 
-                        <p className="text-white/90 text-xs sm:text-sm font-medium leading-relaxed font-body">
+                        <p className="typo-body text-white/90 font-medium leading-relaxed">
                           {activeMilestone.cardSubtitle || activeMilestone.desc}
                         </p>
-                        <p className="text-white/60 text-[11px] sm:text-xs font-light leading-relaxed font-body">
+                        <p className="typo-body-sm text-white/65 leading-relaxed">
                           {activeMilestone.cardDesc || activeMilestone.desc}
                         </p>
                       </div>

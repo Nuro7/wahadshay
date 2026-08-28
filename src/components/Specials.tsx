@@ -67,13 +67,13 @@ export function Specials() {
 
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-14 md:mb-20 space-y-4">
-          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="typo-eyebrow text-plum block">
             {t('specials.weeklyHighlights')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary mask-reveal">
+          <h2 className="typo-section-title text-text-primary mask-reveal">
             <span className="text-shimmer">{t('specials.title')}</span>
           </h2>
-          <p className="text-text-secondary text-base font-body max-w-lg mx-auto">
+          <p className="typo-body text-text-secondary max-w-lg mx-auto">
             {t('specials.subtitle')}
           </p>
         </div>
@@ -101,7 +101,7 @@ export function Specials() {
 
                   {/* Badge floating inside the top-end corner of the image */}
                   <div className="absolute top-3 end-3 z-20">
-                    <span className="bg-yellow text-plum-dark text-[10px] sm:text-[11px] font-black uppercase tracking-wider px-3 py-1 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] flex items-center gap-1 backdrop-blur-sm border border-yellow/30">
+                    <span className="bg-yellow text-plum-dark typo-badge px-3 py-1 rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] flex items-center gap-1 backdrop-blur-sm border border-yellow/30">
                       <Sparkles size={11} className="text-plum-dark" />
                       {spec.badge}
                     </span>
@@ -123,23 +123,23 @@ export function Specials() {
                 {/* Details */}
                 <div className="flex-1 flex flex-col justify-between text-start p-1 sm:p-0 space-y-3">
                   <div className="space-y-1.5">
-                    <span className="text-[10px] sm:text-[11px] font-black text-plum uppercase tracking-[0.2em] block font-display">
+                    <span className="typo-eyebrow text-plum block">
                       {spec.tag}
                     </span>
-                    <h3 className="font-display text-xl sm:text-2xl font-black text-text-primary group-hover:text-plum transition-colors leading-tight">
+                    <h3 className="typo-h3 text-text-primary group-hover:text-plum transition-colors leading-tight">
                       {spec.title}
                     </h3>
-                    <p className="text-text-secondary text-xs sm:text-sm leading-relaxed font-body font-light line-clamp-2 sm:line-clamp-3 pt-0.5">
+                    <p className="typo-body-sm text-text-secondary leading-relaxed line-clamp-2 sm:line-clamp-3 pt-0.5">
                       {spec.desc}
                     </p>
                   </div>
 
                   <div className="flex items-center justify-between pt-3.5 border-t border-neutral-border/80 mt-auto">
-                    <span className="font-body text-xs font-bold text-plum/90 uppercase tracking-wider flex items-center gap-1.5">
+                    <span className="typo-button-sm text-plum/90 uppercase flex items-center gap-1.5 font-bold">
                       <Sparkles size={13} className="text-yellow shrink-0" />
                       {spec.pairing}
                     </span>
-                    <span className="inline-flex items-center text-[10px] sm:text-[11px] font-bold text-plum uppercase tracking-wider bg-plum/5 px-3 py-1 rounded-full border border-plum/10 shrink-0">
+                    <span className="inline-flex items-center typo-badge text-plum bg-plum/5 px-3 py-1 rounded-full border border-plum/10 shrink-0">
                       {spec.highlight}
                     </span>
                   </div>

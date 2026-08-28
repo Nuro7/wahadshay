@@ -113,10 +113,10 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
 
   return (
     <div ref={containerRef} style={{ opacity: 0 }} className={`text-center flex flex-col items-center justify-center translate-y-4 stat-reveal flex-1 w-full ${!isLast ? "border-e border-white/10" : ""}`}>
-      <div className="font-numbers text-xl xs:text-2xl sm:text-3xl font-extrabold text-yellow tracking-tight whitespace-nowrap">
+      <div className="typo-stat text-yellow">
         {count.toLocaleString()}{suffix}
       </div>
-      <div className="font-body text-[9px] xs:text-[10px] sm:text-xs font-semibold tracking-wider text-white/75 uppercase mt-1 px-1 line-clamp-2 leading-tight">
+      <div className="typo-badge text-white/75 mt-1.5 px-1 line-clamp-2">
         {label}
       </div>
     </div>
@@ -162,6 +162,7 @@ export default function Hero() {
   useEffect(() => {
     const vid = videoRefs.current[activeVideoIdx];
     if (vid) {
+      vid.muted = true;
       vid.play().catch(() => {});
     }
   }, [activeVideoIdx, isMobile]);
@@ -279,12 +280,19 @@ export default function Hero() {
         {videos.map((src, idx) => (
           <video
             key={src}
-            ref={(el) => (videoRefs.current[idx] = el)}
+            ref={(el) => {
+              videoRefs.current[idx] = el;
+              if (el) {
+                el.muted = true;
+                el.defaultMuted = true;
+              }
+            }}
             src={src}
+            poster={isMobile ? "/mobile-poster.webp" : "/home-poster.webp"}
             autoPlay={idx === 0}
             muted
             playsInline
-            preload="auto"
+            preload={isMobile ? "metadata" : "auto"}
             onLoadedData={(e) => {
               if (idx === activeVideoIdx) {
                 (e.currentTarget as HTMLVideoElement).play().catch(() => {});
@@ -320,12 +328,12 @@ export default function Hero() {
         {/* Left Side Copywriting */}
         <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-start rtl:text-end items-start rtl:items-end max-w-2xl mx-auto lg:mx-0 w-full">
           <div className="space-y-4 flex flex-col items-start rtl:items-end text-start rtl:text-end w-full">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] xs:text-xs font-bold uppercase tracking-[0.25em] text-yellow whitespace-nowrap mb-2">
+            <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 typo-eyebrow text-yellow whitespace-nowrap mb-2">
               {t('hero.badge')}
             </span>
 
             {/* Word-by-word reveal heading grouped by lines for perfect text left alignment */}
-            <h1 className="font-display heading-fluid-h1 font-extrabold text-white text-start rtl:text-end leading-[1.1] md:leading-[1.15] w-full">
+            <h1 className="typo-display-xl text-white text-start rtl:text-end w-full">
               {language === 'AR' ? (
                 <>
                   <span className="block lg:inline lg:me-[0.28em]">
@@ -363,7 +371,7 @@ export default function Hero() {
               )}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-[340px] xs:max-w-[360px] lg:max-w-lg text-[15px] sm:text-[16px] md:text-fluid-body font-medium text-grey text-start rtl:text-end leading-relaxed">
+            <p style={{ opacity: 0 }} className="hero-subtitle max-w-prose lg:max-w-xl typo-body-lg text-white/80 text-start rtl:text-end">
               {t('hero.subtitle')}
             </p>
           </div>
@@ -379,7 +387,7 @@ export default function Hero() {
               }}
               className="w-fit"
             >
-              <button className="bg-yellow text-plum-dark rounded-full h-[36px] sm:h-[40px] px-4 sm:px-5 text-[12px] sm:text-[13px] font-bold tracking-wide active:scale-[0.97] transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_15px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
+              <button className="bg-yellow text-plum-dark rounded-full h-[42px] px-6 typo-button active:scale-[0.97] transition-all duration-300 shadow-[0_4px_14px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_20px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
                 {t('hero.exploreMenu')}
               </button>
             </a>
@@ -418,7 +426,7 @@ export default function Hero() {
         href="#about"
         className="hidden md:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex-col items-center gap-1.5 opacity-80 cursor-pointer group"
       >
-        <span className="font-body text-[9px] font-bold tracking-[0.25em] text-white uppercase group-hover:text-yellow transition-colors">
+        <span className="typo-eyebrow text-white group-hover:text-yellow transition-colors text-[10px]">
           {t('hero.scroll')}
         </span>
         <div className="w-[18px] h-[28px] rounded-full border border-white/40 group-hover:border-yellow/50 flex items-start justify-center p-1 transition-colors">

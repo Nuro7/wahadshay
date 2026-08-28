@@ -111,9 +111,9 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`font-body text-[13px] font-medium tracking-[0.02em] transition-colors duration-300 px-1 block uppercase ${isActive
-                      ? (isScrolled ? "text-plum font-semibold" : "text-white font-semibold")
-                      : (isScrolled ? "text-text-secondary hover:text-plum" : "text-white/70 hover:text-white")
+                    className={`typo-nav transition-colors duration-300 px-1 block ${isActive
+                      ? (isScrolled ? "text-plum font-bold" : "text-white font-bold")
+                      : (isScrolled ? "text-text-secondary hover:text-plum font-semibold" : "text-white/75 hover:text-white font-semibold")
                       }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
@@ -130,16 +130,16 @@ export function Navbar() {
         {/* Action Controls (Currency Switcher & CTA button) */}
         <div className="hidden sm:flex items-center gap-4 shrink-0">
           {/* Currency Switcher */}
-          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[40px] text-[12px] font-medium border transition-colors ${isScrolled
+          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[38px] typo-button-sm border transition-colors ${isScrolled
             ? "bg-neutral-white border-neutral-border text-text-primary"
             : "bg-white/5 border-white/10 text-white/85"
             }`}>
             <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
             <button
               onClick={() => setLanguage("EN")}
-              className={`font-semibold cursor-pointer transition-colors ${language === "EN"
+              className={`cursor-pointer transition-colors ${language === "EN"
                 ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+                : (isScrolled ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
                 }`}
             >
               EN
@@ -147,9 +147,9 @@ export function Navbar() {
             <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
             <button
               onClick={() => setLanguage("AR")}
-              className={`font-semibold cursor-pointer transition-colors ${language === "AR"
+              className={`cursor-pointer transition-colors ${language === "AR"
                 ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                : (isScrolled ? "text-text-secondary hover:text-text-primary" : "hover:text-white")
+                : (isScrolled ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
                 }`}
             >
               عربي
@@ -207,7 +207,7 @@ export function Navbar() {
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
-                    className={`block text-start text-[16px] tracking-[0.02em] uppercase transition-colors ${isActive
+                    className={`block text-start typo-h4 uppercase transition-colors ${isActive
                       ? "text-text-primary font-bold"
                       : "text-text-secondary font-medium hover:text-text-primary"
                       }`}
@@ -230,24 +230,24 @@ export function Navbar() {
                 window.history.pushState(null, '', '#contact');
                 window.dispatchEvent(new HashChangeEvent("hashchange"));
               }}
-              className="block w-full bg-yellow hover:bg-plum text-plum-dark hover:text-white font-semibold py-4 rounded-xl text-center text-[15px] tracking-wide transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.2)] hover:shadow-[0_8px_20px_rgba(94,38,137,0.25)] cursor-pointer"
+              className="block w-full bg-yellow hover:bg-plum text-plum-dark hover:text-white typo-button py-4 rounded-xl text-center transition-all duration-300 shadow-[0_4px_12px_rgba(245,189,32,0.2)] hover:shadow-[0_8px_20px_rgba(94,38,137,0.25)] cursor-pointer"
             >
               {t("mobileMenu.contactNow")}
             </a>
 
             {/* Language Selector */}
-            <div className="flex justify-center items-center gap-3 mt-4 text-[13px] font-semibold text-text-secondary">
-              <span className="font-body text-xs text-text-secondary/70">Language / لغة:</span>
+            <div className="flex justify-center items-center gap-3 mt-4 typo-body-sm text-text-secondary">
+              <span className="text-text-secondary/70">Language / لغة:</span>
               <button
                 onClick={() => { setLanguage("EN"); setIsOpen(false); }}
-                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "EN" ? "text-plum font-bold border-b border-plum" : "hover:text-text-primary"}`}
+                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "EN" ? "text-plum font-bold border-b-2 border-plum" : "hover:text-text-primary font-medium"}`}
               >
                 EN
               </button>
               <span className="text-neutral-300">|</span>
               <button
                 onClick={() => { setLanguage("AR"); setIsOpen(false); }}
-                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "AR" ? "text-plum font-bold border-b border-plum" : "hover:text-text-primary"}`}
+                className={`cursor-pointer py-0.5 px-2 rounded transition-colors ${language === "AR" ? "text-plum font-bold border-b-2 border-plum" : "hover:text-text-primary font-medium"}`}
               >
                 عربي
               </button>

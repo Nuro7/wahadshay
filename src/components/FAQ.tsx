@@ -25,13 +25,13 @@ export function FAQ() {
 
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="typo-eyebrow text-plum block">
             {t('faq.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
+          <h2 className="typo-section-title text-text-primary">
             <span className="text-shimmer">{t('faq.title')}</span>
           </h2>
-          <p className="text-text-secondary text-sm md:text-base font-body">
+          <p className="typo-body text-text-secondary">
             {t('faq.subtitle')}
           </p>
         </div>
@@ -59,7 +59,7 @@ export function FAQ() {
                   >
                     <div className="flex items-center gap-4 pe-4">
                       <HelpCircle size={18} className={`shrink-0 transition-colors ${isOpen ? "text-plum" : "text-text-secondary"}`} />
-                      <span className="font-display text-sm sm:text-base font-bold text-text-primary hover:text-plum transition-colors">
+                      <span className="typo-h4 font-semibold text-text-primary hover:text-plum transition-colors">
                         {item.question}
                       </span>
                     </div>
@@ -81,7 +81,7 @@ export function FAQ() {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
                       >
-                        <div className="px-6 pb-6 pt-2 border-t border-neutral-border font-body text-sm sm:text-base text-text-secondary leading-relaxed">
+                        <div className="px-6 pb-6 pt-2 border-t border-neutral-border typo-body text-text-secondary leading-relaxed">
                           {item.answer}
                         </div>
                       </motion.div>

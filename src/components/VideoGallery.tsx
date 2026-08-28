@@ -59,13 +59,13 @@ export function VideoGallery() {
         
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto space-y-4">
-          <span className="text-yellow text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="typo-eyebrow text-yellow block">
             {t('about.videoGallery.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-5xl font-black text-white mask-reveal">
+          <h2 className="typo-section-title text-white mask-reveal">
             <span className="text-shimmer-gold">{t('about.videoGallery.title')}</span>
           </h2>
-          <p className="text-grey text-sm md:text-base font-body max-w-md mx-auto leading-relaxed">
+          <p className="typo-body text-grey max-w-md mx-auto leading-relaxed">
             {t('about.videoGallery.subtitle')}
           </p>
         </div>
@@ -117,7 +117,7 @@ export function VideoGallery() {
 
               {/* Top Row: category badge */}
               <div className="flex justify-between items-start z-10 relative transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                <span className="bg-black/40 border border-white/20 text-[11px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full text-white/90 flex items-center gap-2 backdrop-blur-md shadow-sm">
+                <span className="bg-black/40 border border-white/20 typo-badge px-4 py-1.5 rounded-full text-white/90 flex items-center gap-2 backdrop-blur-md shadow-sm">
                   <Film size={14} className="text-yellow" />
                   CINEMA
                 </span>
@@ -125,10 +125,10 @@ export function VideoGallery() {
 
               {/* Bottom Row: Video Metadata */}
               <div className="space-y-3 z-10 relative mt-auto transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                <h3 className="font-display text-2xl font-black text-white group-hover:text-yellow transition-colors leading-tight">
+                <h3 className="typo-h3 text-white group-hover:text-yellow transition-colors leading-tight">
                   {item.title}
                 </h3>
-                <p className="text-white/70 text-sm leading-relaxed font-body line-clamp-2">
+                <p className="typo-body-sm text-white/70 leading-relaxed line-clamp-2">
                   {item.desc}
                 </p>
               </div>
@@ -159,7 +159,7 @@ export function VideoGallery() {
 
               {/* Top Controls Overlay */}
               <div className="absolute top-6 left-6 right-6 flex justify-between items-center z-20">
-                <span className="font-display text-sm font-black text-white tracking-wide uppercase drop-shadow-md">
+                <span className="typo-button-sm text-white drop-shadow-md">
                   {activeVideo.title}
                 </span>
                 

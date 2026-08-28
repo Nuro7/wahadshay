@@ -126,16 +126,16 @@ export function Menu({ currency = "AED" }: MenuProps) {
 
       <div className="mx-auto max-w-[1600px] px-6 md:px-10 relative z-10">
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto mb-8 md:mb-10 space-y-1.5">
-          <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
+        <div className="reveal text-center max-w-2xl mx-auto mb-8 md:mb-10 space-y-2">
+          <span className="typo-eyebrow text-plum block">
             {t('menuHero.topTiny')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-black text-text-primary mask-reveal leading-none">
+          <h2 className="typo-section-title text-text-primary mask-reveal leading-none">
             <span className="text-shimmer">
               {t('menuHero.our')} {t('menuHero.menuTitle')}
             </span>
           </h2>
-          <p className="text-text-secondary text-xs sm:text-sm font-body max-w-md mx-auto">
+          <p className="typo-body text-text-secondary max-w-md mx-auto">
             {t('menuHero.subtitle')}
           </p>
         </div>
@@ -150,9 +150,9 @@ export function Menu({ currency = "AED" }: MenuProps) {
               <button
                 key={cat}
                 onClick={() => setActiveTab(cat)}
-                className={`category-btn relative flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-full font-display text-[11px] md:text-sm font-bold uppercase tracking-wider md:tracking-widest transition-all duration-300 cursor-pointer shrink-0 border border-transparent overflow-hidden ${activeTab === cat
-                  ? "category-active text-plum-dark"
-                  : "text-text-secondary hover:text-plum border-neutral-border hover:border-plum/20 bg-white shadow-sm"
+                className={`category-btn relative flex items-center justify-center px-4 py-2 md:px-6 md:py-3 rounded-full typo-button-sm uppercase tracking-wider md:tracking-widest transition-all duration-300 cursor-pointer shrink-0 border border-transparent overflow-hidden ${activeTab === cat
+                  ? "category-active text-plum-dark font-bold"
+                  : "text-text-secondary hover:text-plum border-neutral-border hover:border-plum/20 bg-white shadow-sm font-semibold"
                   }`}
               >
                 {activeTab === cat && (
@@ -196,7 +196,7 @@ export function Menu({ currency = "AED" }: MenuProps) {
                   <div className="absolute -right-[30%] -bottom-[30%] w-[180px] h-[180px] bg-plum/3 rounded-full blur-[50px] group-hover:bg-plum/6 transition-all duration-700 pointer-events-none" />
 
                   {/* Category Badge on Top-Right/Left */}
-                  <span className={`absolute top-3 ${isArabic ? 'left-3' : 'right-3'} bg-yellow text-plum-dark text-[8.5px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full z-20`}>
+                  <span className={`absolute top-3 ${isArabic ? 'left-3' : 'right-3'} bg-yellow text-plum-dark typo-badge px-2 py-0.5 rounded-full z-20`}>
                     {t(`menuCategories.${item.category}`) || item.category}
                   </span>
 
@@ -212,21 +212,20 @@ export function Menu({ currency = "AED" }: MenuProps) {
 
                   {/* Details Container - Vertically Centered to balance empty space */}
                   <div className={`flex-1 flex flex-col justify-center items-center w-full my-3 space-y-1.5 ${isArabic ? 'font-arabic' : ''}`}>
-                    <span className="text-[8.5px] font-extrabold text-plum uppercase tracking-[0.2em] block opacity-85">
+                    <span className="typo-eyebrow text-plum block opacity-85 text-[10px]">
                       {item.id.toUpperCase()}
                     </span>
-                    <h3 className="font-display text-sm sm:text-base font-black text-text-primary group-hover:text-plum transition-colors leading-snug max-w-[90%]">
+                    <h3 className="typo-h4 font-bold text-text-primary group-hover:text-plum transition-colors leading-snug max-w-[90%]">
                       {t(`menuProducts.${item.id}.name`) || item.name}
                     </h3>
-                    <p className="text-text-secondary text-[11px] sm:text-[12px] leading-relaxed font-body font-light line-clamp-2 max-w-[95%]">
+                    <p className="typo-body-sm text-text-secondary leading-relaxed line-clamp-2 max-w-[95%]">
                       {t(`menuProducts.${item.id}.desc`) || item.desc}
                     </p>
                   </div>
 
-                  {/* Bottom Price Row - Pushed to bottom with mt-auto */}
                   <div className="w-full pt-3 mt-auto border-t border-neutral-border flex items-center justify-between shrink-0">
-                    <span className="font-body text-[10px] text-text-secondary uppercase tracking-wider">{t('specials.pairingPrice')}</span>
-                    <span className="font-numbers text-sm font-extrabold text-plum">
+                    <span className="typo-badge text-text-secondary">{t('specials.pairingPrice')}</span>
+                    <span className="text-sm sm:text-base font-extrabold text-plum tabular-nums">
                       {currency} {item.price}
                     </span>
                   </div>

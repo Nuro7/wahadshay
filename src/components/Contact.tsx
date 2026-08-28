@@ -72,14 +72,14 @@ export function Contact() {
       <div className="premium-container relative z-10">
         
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-24 space-y-4">
-          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
+          <span className="typo-eyebrow text-plum block">
             {t('contact.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
+          <h2 className="typo-section-title text-text-primary">
             <span className="text-shimmer">{t('contact.title')}</span>
           </h2>
-          <p className="text-text-secondary text-base font-body">
+          <p className="typo-body text-text-secondary">
             {t('contact.subtitle')}
           </p>
         </div>
@@ -90,31 +90,31 @@ export function Contact() {
           {/* Contact Details & Links (2/5 span) */}
           <div className={`reveal-${language === 'AR' ? 'right' : 'left'} reveal lg:col-span-2 space-y-10`}>
             <div className="space-y-4">
-              <h3 className="font-display text-3xl font-black text-plum tracking-tight">
+              <h3 className="typo-h3 text-plum tracking-tight">
                 {t('contact.hqTitle')}
               </h3>
-              <p className="text-text-secondary text-base leading-relaxed font-body max-w-sm">
+              <p className="typo-body text-text-secondary max-w-sm">
                 {t('contact.hqDesc')}
               </p>
             </div>
 
             {/* Information Cards List */}
-            <div className="space-y-5 font-body">
+            <div className="space-y-5">
               {/* Address */}
               <div className="glass-card glass-card-hover p-6 rounded-2xl flex items-start gap-4 sm:gap-5 group transition-all duration-500">
                 <div className="w-10 h-10 rounded-xl bg-plum/5 border border-plum/10 flex items-center justify-center text-plum group-hover:bg-plum group-hover:text-white transition-all duration-300 shrink-0 mt-0.5 shadow-2xs">
                   <MapPin size={20} className="stroke-[1.6]" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest mb-2">{t('contact.addressLabel')}</h4>
-                  <div className="text-text-primary text-sm font-medium leading-relaxed group-hover:text-plum transition-colors duration-300 space-y-1">
-                    <p className="font-bold text-text-primary text-[14.5px] leading-snug">
+                  <h4 className="typo-eyebrow text-text-secondary mb-2">{t('contact.addressLabel')}</h4>
+                  <div className="text-text-primary group-hover:text-plum transition-colors duration-300 space-y-1">
+                    <p className="typo-body font-bold text-text-primary leading-snug">
                       {t('contact.addressLine1') || "Al Yasat Tower, 3rd Floor, Office No. 304"}
                     </p>
-                    <p className="text-text-secondary text-[13.5px]">
+                    <p className="typo-body-sm text-text-secondary">
                       {t('contact.addressLine2') || "Electra Street, Behind Season Hotel"}
                     </p>
-                    <p className="text-text-secondary text-[13.5px]">
+                    <p className="typo-body-sm text-text-secondary">
                       {t('contact.addressLine3') || "Al Danah Zone 1, Abu Dhabi"}
                     </p>
                   </div>
@@ -122,7 +122,7 @@ export function Contact() {
                     href="https://www.google.com/maps/search/?api=1&query=Al+Yasat+Tower+Electra+Street+Abu+Dhabi" 
                     target="_blank" 
                     rel="noreferrer" 
-                    className="text-plum hover:text-plum-dark text-xs font-bold inline-flex items-center gap-1.5 mt-3.5 transition-colors group/link"
+                    className="text-plum hover:text-plum-dark typo-button-sm inline-flex items-center gap-1.5 mt-3.5 transition-colors group/link"
                   >
                     {t('contact.openInMaps')}
                     <ArrowRight size={14} className="micro-transition rtl:rotate-180 group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1" />
@@ -137,8 +137,8 @@ export function Contact() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-3">
-                    <h4 className="text-[11px] text-text-secondary uppercase font-black tracking-widest">{t('contact.hoursLabel')}</h4>
-                    <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full uppercase tracking-wider">
+                    <h4 className="typo-eyebrow text-text-secondary">{t('contact.hoursLabel')}</h4>
+                    <span className="typo-badge text-emerald-600 bg-emerald-50 border border-emerald-200/70 px-2.5 py-0.5 rounded-full">
                       {t('contact.hoursStatus') || (language === 'AR' ? 'مفتوح يومياً' : 'Open Daily')}
                     </span>
                   </div>
@@ -153,13 +153,13 @@ export function Contact() {
                     ]).map((item, idx) => (
                       <div 
                         key={idx} 
-                        className="flex items-center justify-between gap-3 text-xs sm:text-[13px] py-1 border-b border-neutral-border/30 last:border-0"
+                        className="flex items-center justify-between gap-3 typo-body-sm py-1.5 border-b border-neutral-border/30 last:border-0"
                       >
-                        <span className="font-semibold text-text-primary flex items-center gap-2">
+                        <span className="font-semibold text-text-primary flex items-center gap-2 whitespace-nowrap">
                           <span className="w-1.5 h-1.5 rounded-full bg-yellow shrink-0" />
                           {item.branch}
                         </span>
-                        <span className="font-numbers text-[12px] sm:text-[12.5px] font-bold text-plum bg-plum/5 px-2.5 py-0.5 rounded-md border border-plum/10 shrink-0 tracking-tight">
+                        <span className="text-[11.5px] sm:text-[12.5px] font-bold text-plum bg-plum/5 px-2.5 py-0.5 rounded-md border border-plum/10 shrink-0 tracking-tight tabular-nums whitespace-nowrap">
                           {item.time}
                         </span>
                       </div>
@@ -171,7 +171,7 @@ export function Contact() {
 
             {/* Quick Action Channels */}
             <div className="space-y-5 border-t border-neutral-border pt-8">
-              <h4 className="font-display text-[11px] font-black text-text-secondary uppercase tracking-[0.2em]">
+              <h4 className="typo-eyebrow text-text-secondary">
                 {t('contact.quickActionLabel')}
               </h4>
               <div className="flex flex-wrap gap-3.5 font-body">
@@ -202,85 +202,90 @@ export function Contact() {
             </div>
           </div>
 
-          {/* Contact Inquiry Form (3/5 span) */}
-          <div className={`reveal-${language === 'AR' ? 'left' : 'right'} reveal lg:col-span-3 luxury-card luxury-card-hover p-8 md:p-12 relative min-h-[500px] flex flex-col justify-center`}>
-            
-            {/* Ambient luxury inner glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white to-neutral-ivory/30 pointer-events-none" />
-            <div className="absolute -top-32 -right-32 w-64 h-64 bg-plum/5 rounded-full blur-[80px] pointer-events-none" />
-            
-            <div className="relative z-10 w-full h-full">
+          {/* Contact Form Column (3/5 span) */}
+          <div className={`reveal-${language === 'AR' ? 'left' : 'right'} reveal lg:col-span-3`}>
+            <div className="glass-card p-8 sm:p-10 md:p-12 rounded-3xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-yellow/5 rounded-full blur-2xl pointer-events-none" />
+
+              <div className="mb-8 space-y-2">
+                <span className="typo-eyebrow text-plum block">
+                  {t('contact.formBadge') || "GET IN TOUCH"}
+                </span>
+                <h3 className="typo-h3 text-text-primary">
+                  {t('contact.formTitle') || "Send Us a Message"}
+                </h3>
+              </div>
+
               <AnimatePresence mode="wait">
                 {!formSubmitted ? (
                   <motion.form
                     key="form"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.4 }}
                     onSubmit={handleSubmit}
-                    className="space-y-7 font-body"
+                    className="space-y-7"
                   >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-7">
                       <div className="space-y-2.5 group">
-                        <label htmlFor="name" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.nameLabel')}</label>
+                        <label htmlFor="name" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.nameLabel')}</label>
                         <input
                           type="text"
                           id="name"
                           required
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
                           placeholder={t('contact.form.namePlaceholder')}
                         />
                       </div>
                       <div className="space-y-2.5 group">
-                        <label htmlFor="email" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.emailLabel')}</label>
+                        <label htmlFor="email" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.emailLabel')}</label>
                         <input
                           type="email"
                           id="email"
                           required
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
                           placeholder={t('contact.form.emailPlaceholder')}
                         />
                       </div>
                       <div className="space-y-2.5 group">
-                        <label htmlFor="phone" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.phoneLabel')}</label>
+                        <label htmlFor="phone" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.phoneLabel')}</label>
                         <input
                           type="tel"
                           id="phone"
                           required
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
                           placeholder={t('contact.form.phonePlaceholder')}
                         />
                       </div>
                       <div className="space-y-2.5 group">
-                        <label htmlFor="subject" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
+                        <label htmlFor="subject" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.subjectLabel')}</label>
                         <input
                           type="text"
                           id="subject"
                           value={formData.subject}
                           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
+                          className="w-full rounded-xl border border-neutral-border bg-white px-5 py-3.5 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm"
                           placeholder={t('contact.form.subjectPlaceholder')}
                         />
                       </div>
                     </div>
 
-
                     <div className="space-y-2.5 group">
-                      <label htmlFor="message" className="text-[11px] font-black text-text-primary/70 uppercase tracking-widest block transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
+                      <label htmlFor="message" className="typo-eyebrow text-text-primary/75 block transition-colors group-focus-within:text-plum">{t('contact.form.messageLabel')}</label>
                       <textarea
                         id="message"
                         rows={5}
                         required
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-4 text-sm font-medium text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm resize-none"
+                        className="w-full rounded-xl border border-neutral-border bg-white px-5 py-4 typo-body text-text-primary placeholder-text-secondary/40 focus:border-plum focus:outline-none focus:ring-4 focus:ring-plum/10 transition-all duration-300 shadow-sm resize-none"
                         placeholder={t('contact.form.messagePlaceholder')}
                       />
                     </div>
@@ -288,7 +293,7 @@ export function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full group relative overflow-hidden flex items-center justify-center gap-2 py-4 sm:py-5 rounded-xl bg-yellow text-plum-dark text-[13px] font-black uppercase tracking-[0.15em] hover:bg-plum hover:text-white hover:shadow-xl hover:shadow-plum/20 transition-all duration-500 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
+                      className="w-full group relative overflow-hidden flex items-center justify-center gap-2 py-4 sm:py-5 rounded-xl bg-yellow text-plum-dark typo-button hover:bg-plum hover:text-white hover:shadow-xl hover:shadow-plum/20 transition-all duration-500 cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed"
                     >
                       <span className="relative z-10 flex items-center gap-2">
                         {isSubmitting ? t('contact.form.submitting') : t('contact.form.submitBtn')}
@@ -309,16 +314,16 @@ export function Contact() {
                       <Check size={36} className="relative z-10" />
                     </div>
                     <div className="space-y-3">
-                      <h3 className="font-display text-2xl font-black text-plum tracking-tight">
+                      <h3 className="typo-h3 text-plum tracking-tight">
                         {t('contact.success.title')}
                       </h3>
-                      <p className="text-text-secondary text-sm md:text-base max-w-sm mx-auto leading-relaxed font-body font-medium">
+                      <p className="typo-body text-text-secondary max-w-sm mx-auto leading-relaxed">
                         {t('contact.success.desc')}
                       </p>
                     </div>
                     <button
                       onClick={() => setFormSubmitted(false)}
-                      className="mt-4 px-8 py-3.5 rounded-full border border-neutral-border text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-neutral-light-beige hover:border-plum/30 transition-all duration-300 cursor-pointer shadow-sm"
+                      className="mt-4 px-8 py-3.5 rounded-full border border-neutral-border text-text-primary typo-button-sm uppercase hover:bg-neutral-light-beige hover:border-plum/30 transition-all duration-300 cursor-pointer shadow-sm"
                     >
                       {t('contact.success.sendAnother')}
                     </button>

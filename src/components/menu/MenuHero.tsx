@@ -35,20 +35,20 @@ export const MenuHero: React.FC = () => {
         >
           <div className="inline-flex items-center gap-4">
             <span className="h-px w-8 bg-yellow" />
-            <span className="text-yellow text-sm font-bold uppercase tracking-[0.2em]">{t('menuHero.badge')}</span>
+            <span className="typo-eyebrow text-yellow">{t('menuHero.badge')}</span>
             <span className="h-px w-8 bg-yellow" />
           </div>
 
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] uppercase tracking-tight flex flex-col mb-6">
+          <h1 className="typo-display-xl uppercase flex flex-col mb-6">
             <span className="text-plum">{t('menuHero.title1')}</span>
             <span className="text-yellow">{t('menuHero.title2')}</span>
           </h1>
 
-          <p className="font-body text-3xl md:text-5xl text-plum mb-6 font-medium tracking-tight">
+          <p className="typo-h3 text-plum mb-4 font-semibold tracking-tight">
             {t('menuHero.subtitle')}
           </p>
 
-          <p className="font-body text-lg md:text-xl text-text-secondary max-w-lg leading-relaxed flex flex-col">
+          <p className="typo-body-lg text-text-secondary max-w-lg leading-relaxed flex flex-col">
             <span>{t('menuHero.desc1')}</span>
             <span>{t('menuHero.desc2')}</span>
           </p>

@@ -148,32 +148,34 @@ export function Franchise() {
           {/* Left Column: Brand Statement & Editorial Quote */}
           <div className="reveal-left reveal lg:col-span-5 space-y-6">
             
-            {/* Tag Badge */}
-            <div className="flex items-center gap-3">
-              <span className="h-px w-8 bg-plum/40 block" />
-              <span className="text-plum text-xs font-bold uppercase tracking-[0.25em]">
-                {t("about.franchise.badge") || "PARTNER WITH WAHAD SHAY"}
-              </span>
+            <div className="space-y-3.5">
+              {/* Tag Badge */}
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-plum/40 block" />
+                <span className="typo-eyebrow text-plum">
+                  {t("about.franchise.badge") || "PARTNER WITH WAHAD SHAY"}
+                </span>
+              </div>
+
+              {/* Headline with metallic shimmer & plum branding */}
+              <h2 className="typo-section-title text-text-primary leading-[1.04]">
+                <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
+                <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
+              </h2>
+
+              <p className="typo-body text-text-secondary pt-0.5">
+                {t("about.franchise.subtitle") || "A proven model. A strong brand. A partnership built for success."}
+              </p>
             </div>
-
-            {/* Headline with metallic shimmer & plum branding */}
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary tracking-tight leading-[1.12]">
-              <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
-              <span className="text-plum font-extrabold block mt-1">{t("about.franchise.title2") || "Wahad Shay"}</span>
-            </h2>
-
-            <p className="text-text-secondary text-base sm:text-lg leading-relaxed font-body font-light">
-              {t("about.franchise.subtitle") || "A proven model. A strong brand. A partnership built for success."}
-            </p>
 
             {/* Luxury Editorial Quote Callout */}
             <div className="border-s-4 border-yellow bg-white/90 backdrop-blur-md p-6 rounded-r-2xl border-y border-e border-neutral-border shadow-xs space-y-2 transition-all hover:shadow-md">
-              <p className="text-text-primary text-base font-bold leading-relaxed font-display">
+              <p className="typo-h4 text-text-primary font-bold">
                 {language === "AR"
                   ? "يقدم واحد شاي أكثر من مجرد عمل تجاري – نحن نقدم شراكة حقيقية."
                   : "Wahad Shay offers more than a business – we offer a partnership."}
               </p>
-              <p className="text-text-secondary text-sm leading-relaxed font-body font-light">
+              <p className="typo-body-sm text-text-secondary">
                 {language === "AR"
                   ? "تُدار وفق إجراءات تشغيل قياسية وأنظمة مثبتة لتقديم نفس الجودة والتجربة في كل موقع."
                   : "Managed on our proven SOPs & systems to deliver the same quality and experience across every location."}
@@ -199,10 +201,10 @@ export function Franchise() {
                       <path d="M9 10h6" />
                     </svg>
                   </div>
-                  <h3 className="font-display font-bold text-sm sm:text-[15px] text-text-primary group-hover:text-plum transition-colors leading-snug">
+                  <h3 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
                     {featuresList[0]?.title || "Managed on Wahad Shay's Proven SOPs & Systems"}
                   </h3>
-                  <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2 font-body font-light">
+                  <p className="typo-body-sm text-text-secondary mt-2">
                     {featuresList[0]?.desc || "End-to-end operations guidance and support."}
                   </p>
                 </div>
@@ -213,35 +215,34 @@ export function Franchise() {
                     {/* Jar Recipe Icon */}
                     <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M8 2h8" />
-                      <path d="M9 2v3h6V2" />
-                      <path d="M6 8a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3v11a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3V8z" />
-                      <path d="M12 11c-1.5 0-3 1.5-3 3.5 0 2 2.5 3.5 3 3.5s3-1.5 3-3.5c0-2-1.5-3.5-3-3.5z" />
-                      <path d="M12 11v7" />
+                      <path d="M9 2v3" />
+                      <path d="M15 2v3" />
+                      <rect width="14" height="15" x="5" y="5" rx="3" />
+                      <circle cx="12" cy="13" r="2.5" />
                     </svg>
                   </div>
-                  <h3 className="font-display font-bold text-sm sm:text-[15px] text-text-primary group-hover:text-plum transition-colors leading-snug">
-                    {featuresList[1]?.title || "Masalas & Recipes Controlled Centrally"}
+                  <h3 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
+                    {featuresList[1]?.title || "Authentic Masalas & Recipes"}
                   </h3>
-                  <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2 font-body font-light">
-                    {featuresList[1]?.desc || "Standardized taste, quality and consistency."}
+                  <p className="typo-body-sm text-text-secondary mt-2">
+                    {featuresList[1]?.desc || "Direct supply of signature blends and spices."}
                   </p>
                 </div>
 
-                {/* Pillar 3: Quality & Experience */}
+                {/* Pillar 3: Quality Control */}
                 <div className="flex flex-col items-center text-center p-4 sm:p-5 pt-6 md:pt-5 group cursor-default">
                   <div className="w-14 h-14 rounded-2xl bg-plum/5 border border-plum/10 flex items-center justify-center text-plum mb-4 flex-shrink-0 group-hover:scale-110 group-hover:bg-plum group-hover:text-white group-hover:border-plum group-hover:shadow-[0_8px_20px_rgba(94,38,137,0.25)] transition-all duration-500 shadow-xs">
-                    {/* Rosette Badge Icon */}
+                    {/* Shield Check Icon */}
                     <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="9" r="6" />
-                      <path d="M8.21 13.89 7 22l5-3 5 3-1.21-8.11" />
-                      <polygon points="12 6 13 8 15.5 8.5 13.75 10.2 14.2 12.5 12 11.3 9.8 12.5 10.25 10.2 8.5 8.5 11 8 12 6" fill="currentColor" fillOpacity="0.2" />
+                      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                      <path d="m9 12 2 2 4-4" />
                     </svg>
                   </div>
-                  <h3 className="font-display font-bold text-sm sm:text-[15px] text-text-primary group-hover:text-plum transition-colors leading-snug">
-                    {featuresList[2]?.title || "Same Quality & Experience Across Every Location"}
+                  <h3 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
+                    {featuresList[2]?.title || "Regular Audits & Quality Control"}
                   </h3>
-                  <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2 font-body font-light">
-                    {featuresList[2]?.desc || "One brand promise, delivered everywhere."}
+                  <p className="typo-body-sm text-text-secondary mt-2">
+                    {featuresList[2]?.desc || "Routine monitoring for peak consistency."}
                   </p>
                 </div>
 
@@ -275,16 +276,6 @@ export function Franchise() {
                     </div>
                     <span className="tracking-wide">{t("about.franchise.applyBtn") || "Apply for Franchise"}</span>
                   </button>
-
-                  <a
-                    href="https://wa.me/971554946176?text=Hello%20Wahad%20Shay,%20I%20am%20interested%20in%20a%20franchise%20partnership."
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20BE5C] text-white font-display font-bold text-xs sm:text-sm shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer w-full sm:w-auto"
-                  >
-                    <MessageSquare className="w-4 h-4" />
-                    <span>{language === "AR" ? "واتساب الامتياز" : "Franchise WhatsApp"}</span>
-                  </a>
                 </div>
               </div>
 
@@ -328,7 +319,7 @@ export function Franchise() {
               className="reveal luxury-card luxury-card-hover group p-7 sm:p-8 rounded-3xl bg-white border border-neutral-border flex flex-col items-center text-center relative shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.09)] transition-all duration-500 cursor-default"
             >
               {/* Number Badge */}
-              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 font-numbers font-black text-xs group-hover:bg-plum group-hover:text-white transition-all duration-300">
+              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 typo-badge group-hover:bg-plum group-hover:text-white transition-all duration-300">
                 01
               </span>
               
@@ -343,11 +334,11 @@ export function Franchise() {
                 </svg>
               </div>
 
-              <h4 className="font-display font-bold text-base sm:text-lg text-text-primary group-hover:text-plum transition-colors leading-snug">
+              <h4 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
                 {stepsList[0]?.title || "Submit Inquiry"}
               </h4>
 
-              <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2.5 font-body font-light">
+              <p className="typo-body-sm text-text-secondary mt-2.5">
                 {stepsList[0]?.desc || "Fill out our franchise application form with details about you, your experience, and the proposed location."}
               </p>
             </div>
@@ -357,7 +348,7 @@ export function Franchise() {
               style={{ "--stagger-idx": 2 } as React.CSSProperties}
               className="reveal luxury-card luxury-card-hover group p-7 sm:p-8 rounded-3xl bg-white border border-neutral-border flex flex-col items-center text-center relative shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.09)] transition-all duration-500 cursor-default"
             >
-              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 font-numbers font-black text-xs group-hover:bg-plum group-hover:text-white transition-all duration-300">
+              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 typo-badge group-hover:bg-plum group-hover:text-white transition-all duration-300">
                 02
               </span>
 
@@ -371,11 +362,11 @@ export function Franchise() {
                 </svg>
               </div>
 
-              <h4 className="font-display font-bold text-base sm:text-lg text-text-primary group-hover:text-plum transition-colors leading-snug">
+              <h4 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
                 {stepsList[1]?.title || "Evaluation & Approval"}
               </h4>
 
-              <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2.5 font-body font-light">
+              <p className="typo-body-sm text-text-secondary mt-2.5">
                 {stepsList[1]?.desc || "We evaluate the location feasibility, business potential and alignment with our brand standards."}
               </p>
             </div>
@@ -385,26 +376,21 @@ export function Franchise() {
               style={{ "--stagger-idx": 3 } as React.CSSProperties}
               className="reveal luxury-card luxury-card-hover group p-7 sm:p-8 rounded-3xl bg-white border border-neutral-border flex flex-col items-center text-center relative shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.09)] transition-all duration-500 cursor-default"
             >
-              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 font-numbers font-black text-xs group-hover:bg-plum group-hover:text-white transition-all duration-300">
+              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 typo-badge group-hover:bg-plum group-hover:text-white transition-all duration-300">
                 03
               </span>
 
               <div className="w-16 h-16 rounded-2xl bg-neutral-ivory border border-neutral-border/80 text-plum group-hover:bg-gradient-to-br group-hover:from-plum group-hover:to-plum-dark group-hover:text-white group-hover:border-plum group-hover:scale-110 shadow-xs group-hover:shadow-[0_10px_25px_rgba(94,38,137,0.25)] transition-all duration-500 flex items-center justify-center mb-5 mt-2">
                 <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="7" r="3" />
-                  <circle cx="6" cy="17" r="3" />
-                  <circle cx="18" cy="17" r="3" />
-                  <path d="M9.5 9.5 7.5 14.5" />
-                  <path d="M14.5 9.5 16.5 14.5" />
-                  <path d="M9 17h6" />
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
                 </svg>
               </div>
 
-              <h4 className="font-display font-bold text-base sm:text-lg text-text-primary group-hover:text-plum transition-colors leading-snug">
+              <h4 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
                 {stepsList[2]?.title || "Setup & Training"}
               </h4>
 
-              <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2.5 font-body font-light">
+              <p className="typo-body-sm text-text-secondary mt-2.5">
                 {stepsList[2]?.desc || "We assist with outlet design, setup and staff training. You get access to our SOPs, systems and complete support."}
               </p>
             </div>
@@ -414,7 +400,7 @@ export function Franchise() {
               style={{ "--stagger-idx": 4 } as React.CSSProperties}
               className="reveal luxury-card luxury-card-hover group p-7 sm:p-8 rounded-3xl bg-white border border-neutral-border flex flex-col items-center text-center relative shadow-[0_4px_20px_rgba(43,37,32,0.03)] hover:shadow-[0_15px_40px_rgba(94,38,137,0.09)] transition-all duration-500 cursor-default"
             >
-              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 font-numbers font-black text-xs group-hover:bg-plum group-hover:text-white transition-all duration-300">
+              <span className="absolute top-5 left-5 rtl:left-auto rtl:right-5 px-3 py-1 rounded-full bg-plum/5 text-plum border border-plum/10 typo-badge group-hover:bg-plum group-hover:text-white transition-all duration-300">
                 04
               </span>
 
@@ -422,15 +408,14 @@ export function Franchise() {
                 <svg className="w-7 h-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M3 3v18h18" />
                   <path d="m19 9-5 5-4-4-3 3" />
-                  <path d="M19 5v4h-4" />
                 </svg>
               </div>
 
-              <h4 className="font-display font-bold text-base sm:text-lg text-text-primary group-hover:text-plum transition-colors leading-snug">
+              <h4 className="typo-h4 font-semibold text-text-primary group-hover:text-plum transition-colors leading-snug">
                 {stepsList[3]?.title || "Operations & Growth"}
               </h4>
 
-              <p className="text-text-secondary text-xs sm:text-[13px] leading-relaxed mt-2.5 font-body font-light">
+              <p className="typo-body-sm text-text-secondary mt-2.5">
                 {stepsList[3]?.desc || "Centralized operational support ensures consistent standards, smooth day-to-day performance, and continued growth of the outlet."}
               </p>
             </div>
@@ -451,7 +436,7 @@ export function Franchise() {
               <path d="M22 13h-4a2 2 0 0 0-2 2v1" />
             </svg>
           </div>
-          <p className="text-text-primary text-sm sm:text-base font-body">
+          <p className="typo-body text-text-primary">
             <span>{t("about.franchise.bottomBanner.text1") || "With Wahad Shay, you're never on your own."}</span>{" "}
             <span className="font-bold text-plum">{t("about.franchise.bottomBanner.text2") || "We grow together, We win together."}</span>
           </p>
@@ -498,13 +483,13 @@ export function Franchise() {
                 <>
                   {/* Modal Header */}
                   <div className="text-center sm:text-start mb-6 pe-8 rtl:pe-0 rtl:ps-8">
-                    <span className="text-plum text-xs font-bold uppercase tracking-[0.2em] block mb-1">
+                    <span className="typo-eyebrow text-plum block mb-1">
                       {t("about.franchise.badge") || "PARTNER WITH WAHAD SHAY"}
                     </span>
-                    <h3 className="font-display text-2xl sm:text-3xl font-black text-text-primary">
+                    <h3 className="typo-h3 text-text-primary">
                       {t("about.franchise.modal.title") || "Franchise Application"}
                     </h3>
-                    <p className="text-text-secondary text-xs sm:text-sm mt-1.5 leading-relaxed font-body font-light">
+                    <p className="typo-body-sm text-text-secondary mt-1.5 leading-relaxed">
                       {t("about.franchise.modal.subtitle") || "Partner with Wahad Shay and bring authentic luxury chai & café culture to your region."}
                     </p>
                   </div>

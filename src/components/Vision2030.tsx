@@ -11,10 +11,10 @@ export default function Vision2030() {
         
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 reveal">
-          <h2 className="font-display text-3xl md:text-4xl font-extrabold text-plum">{t('about.vision2030.title')}</h2>
+          <h2 className="typo-h2 text-plum">{t('about.vision2030.title')}</h2>
           <div className="hidden md:block w-1.5 h-16 bg-plum rounded-full"></div>
           <div className="md:hidden h-1.5 w-16 bg-plum rounded-full"></div>
-          <p className="font-body text-base md:text-lg text-text-secondary max-w-xl leading-relaxed">
+          <p className="typo-body-lg text-text-secondary max-w-xl">
             {t('about.vision2030.subtitle')}
           </p>
         </div>
@@ -28,20 +28,20 @@ export default function Vision2030() {
               style={{ "--stagger-idx": idx + 1 } as React.CSSProperties}
             >
               <div className="bg-plum text-white w-14 flex items-center justify-center shrink-0">
-                <span className="transform -rotate-90 whitespace-nowrap font-display font-bold text-lg tracking-wider block">
+                <span className="transform -rotate-90 whitespace-nowrap typo-badge text-white tracking-wider block">
                   Phase {item.phase}
                 </span>
               </div>
               <div className="p-8">
-                <h4 className="font-display text-2xl font-bold text-plum mb-3 group-hover:text-plum-dark transition-colors">{item.title}</h4>
-                <p className="text-text-secondary text-base leading-relaxed">{item.description}</p>
+                <h4 className="typo-h3 text-plum mb-2 group-hover:text-plum-dark transition-colors">{item.title}</h4>
+                <p className="typo-body-sm text-text-secondary">{item.description}</p>
               </div>
             </div>
           ))}
           
           {/* Badge */}
           <div className={`hidden lg:flex absolute ${language === 'AR' ? '-left-6' : '-right-6'} -bottom-6 bg-yellow text-plum rounded-3xl p-6 shadow-2xl transform rotate-12 border-4 border-white z-20 items-center justify-center animate-float-burger`}>
-            <span className="font-display font-black text-2xl text-center leading-tight">
+            <span className="typo-h3 font-black text-center text-plum leading-tight">
               {t('about.vision2030.badgeLine1')}<br/>{t('about.vision2030.badgeLine2')}
             </span>
           </div>
@@ -60,8 +60,8 @@ export default function Vision2030() {
                 <Globe2 size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-2xl font-bold text-yellow mb-4">{t('about.vision2030.longTermTitle')}</h4>
-                <p className="text-white/90 text-base leading-relaxed">
+                <h4 className="typo-h3 text-yellow mb-2">{t('about.vision2030.longTermTitle')}</h4>
+                <p className="typo-body text-white/90">
                   {t('about.vision2030.longTermDesc1')}<span className="text-yellow font-bold">{t('about.vision2030.longTermDesc2')}</span>{t('about.vision2030.longTermDesc3')}
                 </p>
               </div>
@@ -73,8 +73,8 @@ export default function Vision2030() {
                 <Handshake size={40} className="stroke-[1.5]" />
               </div>
               <div>
-                <h4 className="font-display text-2xl font-bold text-yellow mb-4">{t('about.vision2030.joinTitle')}</h4>
-                <p className="text-white/90 text-base leading-relaxed">
+                <h4 className="typo-h3 text-yellow mb-2">{t('about.vision2030.joinTitle')}</h4>
+                <p className="typo-body text-white/90">
                   {t('about.vision2030.joinDesc')}
                 </p>
               </div>

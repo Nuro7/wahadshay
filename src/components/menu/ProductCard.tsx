@@ -59,28 +59,28 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
             <div className="flex justify-between items-start gap-4">
               <div>
                 <div className="mb-2">
-                  <span className={`text-[9px] font-display font-bold tracking-[0.15em] uppercase px-3 py-1 rounded-full ${featured ? 'bg-plum border border-white/20 text-yellow' : 'bg-yellow/20 text-plum-dark'}`}>
+                  <span className={`typo-badge px-3 py-1 rounded-full ${featured ? 'bg-plum border border-white/20 text-yellow' : 'bg-yellow/20 text-plum-dark'}`}>
                     {featured ? 'Signature' : 'Chef\'s Pick'}
                   </span>
                 </div>
-                <h3 className={`font-display text-[clamp(20px,2vw,28px)] font-black transition-colors duration-400 ${featured ? 'text-white' : 'text-plum'}`}>
+                <h3 className={`typo-h3 transition-colors duration-400 ${featured ? 'text-white' : 'text-plum'}`}>
                   {language === "AR" && product.arabicName ? product.arabicName : product.name}
                 </h3>
                 {language === "EN" && product.arabicName && (
-                  <p className={`font-body mt-0.5 text-sm ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.arabicName}</p>
+                  <p className={`typo-body-sm mt-0.5 ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.arabicName}</p>
                 )}
                 {language === "AR" && (
-                  <p className={`font-body mt-0.5 text-sm ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.name}</p>
+                  <p className={`typo-body-sm mt-0.5 ${featured ? 'text-white/60' : 'text-plum/50'}`}>{product.name}</p>
                 )}
               </div>
             </div>
             
-            <p className={`text-sm md:text-base mt-3 line-clamp-2 leading-relaxed font-medium ${featured ? 'text-white/80' : 'text-text-secondary'}`}>
+            <p className={`typo-body mt-3 line-clamp-2 leading-relaxed font-medium ${featured ? 'text-white/80' : 'text-text-secondary'}`}>
               {language === "AR" && product.arabicDescription ? product.arabicDescription : product.description}
             </p>
             
             <div className="mt-6 flex items-center gap-6">
-              <span className={`font-display text-[18px] md:text-[22px] font-bold ${featured ? 'text-yellow' : 'text-plum-dark'}`}>
+              <span className={`typo-stat ${featured ? 'text-yellow' : 'text-plum-dark'}`}>
                 AED {product.price}
               </span>
               <motion.div 
@@ -89,7 +89,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onClick, feat
                   hover: { opacity: 1, x: language === "AR" ? -5 : 5 }
                 }}
                 transition={{ duration: 0.3 }}
-                className={`flex items-center gap-2 font-display font-bold text-[10px] md:text-[11px] tracking-wider uppercase px-4 py-2 rounded-full shadow-sm group-hover:shadow-md ${featured ? 'bg-yellow text-plum-dark' : 'bg-yellow text-plum-dark'}`}
+                className={`flex items-center gap-2 typo-button-sm uppercase px-4 py-2 rounded-full shadow-sm group-hover:shadow-md ${featured ? 'bg-yellow text-plum-dark' : 'bg-yellow text-plum-dark'}`}
               >
                 {language === "AR" ? "عرض التفاصيل" : "VIEW DETAILS"} 
                 <span className={`text-lg leading-none mt-[-2px] ${language === "AR" ? 'rotate-180' : ''}`}>→</span>

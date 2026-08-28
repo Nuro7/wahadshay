@@ -228,14 +228,14 @@ export default function FranchiseSection() {
 
       <div className="premium-container relative z-10">
         {/* Section Header */}
-        <div className="reveal text-center mb-8 md:mb-24 space-y-4">
-          <p className="uppercase tracking-[8px] text-plum text-xs font-bold font-display">
+        <div className="reveal text-center mb-8 md:mb-20 space-y-4">
+          <p className="typo-eyebrow text-plum">
             {t('about.franchiseSection.tag')}
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-text-primary font-display">
+          <h2 className="typo-section-title text-text-primary">
             <span className="text-shimmer">{t('about.franchiseSection.title')}</span>
           </h2>
-          <p className="text-text-secondary max-w-xl mx-auto text-sm md:text-base font-light font-body">
+          <p className="typo-body text-text-secondary max-w-xl mx-auto">
             {t('about.franchiseSection.subtitle')}
           </p>
         </div>
@@ -255,46 +255,46 @@ export default function FranchiseSection() {
 
             {/* Floating Branch Statistics Card */}
             <div className={`absolute top-6 ${language === 'AR' ? 'right-6' : 'left-6'} z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-white/95 border border-neutral-border backdrop-blur-md space-y-4 shadow-lg`}>
-              <h4 className="font-display text-xs font-bold text-plum uppercase tracking-widest">{t('about.franchiseSection.stats.title')}</h4>
-              <div className="space-y-3 font-body">
+              <h4 className="typo-eyebrow text-plum">{t('about.franchiseSection.stats.title')}</h4>
+              <div className="space-y-3">
                 <div>
-                  <span className="text-[10px] text-text-secondary uppercase font-bold block">{t('about.franchiseSection.stats.activeOutlets')}</span>
-                  <span className="font-numbers text-lg font-bold text-text-primary">{t('about.franchiseSection.stats.activeOutletsVal')}</span>
+                  <span className="typo-badge text-text-secondary block">{t('about.franchiseSection.stats.activeOutlets')}</span>
+                  <span className="text-lg font-black text-text-primary tabular-nums">{t('about.franchiseSection.stats.activeOutletsVal')}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-text-secondary uppercase font-bold block">{t('about.franchiseSection.stats.weeklyTraffic')}</span>
-                  <span className="font-numbers text-lg font-bold text-text-primary">{t('about.franchiseSection.stats.weeklyTrafficVal')}</span>
+                  <span className="typo-badge text-text-secondary block">{t('about.franchiseSection.stats.weeklyTraffic')}</span>
+                  <span className="text-lg font-black text-text-primary tabular-nums">{t('about.franchiseSection.stats.weeklyTrafficVal')}</span>
                 </div>
                 <div>
-                  <span className="text-[10px] text-text-secondary uppercase font-bold block">{t('about.franchiseSection.stats.growthRate')}</span>
-                  <span className="font-numbers text-lg font-bold text-plum">{t('about.franchiseSection.stats.growthRateVal')}</span>
+                  <span className="typo-badge text-text-secondary block">{t('about.franchiseSection.stats.growthRate')}</span>
+                  <span className="text-lg font-black text-plum tabular-nums">{t('about.franchiseSection.stats.growthRateVal')}</span>
                 </div>
               </div>
             </div>
 
             {/* Floating Expansion Roadmap Card */}
             <div className={`absolute top-6 ${language === 'AR' ? 'left-6' : 'right-6'} z-20 hidden lg:block w-[240px] p-5 rounded-2xl bg-white/95 border border-neutral-border backdrop-blur-md space-y-4 shadow-lg`}>
-              <h4 className="font-display text-xs font-bold text-plum uppercase tracking-widest">{t('about.franchiseSection.roadmap.title')}</h4>
-              <div className="space-y-3 font-body text-[11px]">
+              <h4 className="typo-eyebrow text-plum">{t('about.franchiseSection.roadmap.title')}</h4>
+              <div className="space-y-3 typo-body-sm">
                 <div className="flex gap-2">
                   <div className="h-1.5 w-1.5 rounded-full bg-plum mt-1 shrink-0 animate-pulse" />
                   <div>
                     <span className="text-text-primary font-bold block">{t('about.franchiseSection.roadmap.q1Title')}</span>
-                    <span className="text-text-secondary font-light">{t('about.franchiseSection.roadmap.q1Desc')}</span>
+                    <span className="text-text-secondary">{t('about.franchiseSection.roadmap.q1Desc')}</span>
                   </div>
                 </div>
                 <div className="flex gap-2">
                   <div className="h-1.5 w-1.5 rounded-full bg-yellow mt-1 shrink-0" />
                   <div>
                     <span className="text-text-primary font-bold block">{t('about.franchiseSection.roadmap.q2Title')}</span>
-                    <span className="text-text-secondary font-light">{t('about.franchiseSection.roadmap.q2Desc')}</span>
+                    <span className="text-text-secondary">{t('about.franchiseSection.roadmap.q2Desc')}</span>
                   </div>
                 </div>
                 <div className="flex gap-2">
                   <div className="h-1.5 w-1.5 rounded-full bg-neutral-border mt-1 shrink-0" />
                   <div>
                     <span className="text-text-primary font-bold block">{t('about.franchiseSection.roadmap.q3Title')}</span>
-                    <span className="text-text-secondary font-light">{t('about.franchiseSection.roadmap.q3Desc')}</span>
+                    <span className="text-text-secondary">{t('about.franchiseSection.roadmap.q3Desc')}</span>
                   </div>
                 </div>
               </div>
@@ -789,26 +789,26 @@ export default function FranchiseSection() {
                   <div className="p-8 space-y-6 text-center">
                     <div>
                       <div className="flex items-center justify-center gap-2 mb-3">
-                        <span className="text-[10px] tracking-[4px] uppercase text-plum font-bold font-display">
+                        <span className="typo-badge text-plum">
                           {t('about.franchiseSection.modal.network') || '📍 NETWORK'}
                         </span>
                         {selectedBranch.status === "Open" ? (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-plum/10 text-plum border border-plum/20">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full typo-badge bg-plum/10 text-plum border border-plum/20">
                             <span className="w-1.5 h-1.5 rounded-full bg-plum animate-pulse" />
                             {t('about.franchiseSection.modal.statusOpen') || 'OPEN'}
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[9px] font-bold tracking-wider uppercase bg-yellow/10 text-yellow-800 border border-yellow/30">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full typo-badge bg-yellow/10 text-yellow-800 border border-yellow/30">
                             <span className="w-1.5 h-1.5 rounded-full bg-yellow" />
                             {t('about.franchiseSection.modal.statusComingSoon') || 'COMING SOON'}
                           </span>
                         )}
                       </div>
 
-                      <p className="text-text-primary font-extrabold text-lg font-display mb-1">
+                      <p className="typo-h3 text-text-primary mb-1">
                         {selectedBranch.name}
                       </p>
-                      <p className="text-text-secondary text-sm font-medium font-body mb-3">
+                      <p className="typo-body-sm text-text-secondary mb-3">
                         {selectedBranch.area}, {selectedBranch.city}
                       </p>
                     </div>
@@ -818,7 +818,7 @@ export default function FranchiseSection() {
                         href={selectedBranch.mapLink}
                         target="_blank"
                         rel="noreferrer"
-                        className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white text-sm font-bold uppercase tracking-widest flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer"
+                        className="w-full py-3.5 rounded-xl bg-plum hover:bg-plum-dark text-white typo-button flex items-center justify-center gap-2 transition-colors shadow-lg shadow-plum/20 cursor-pointer"
                       >
                         <Navigation size={16} />
                         {t('about.franchiseSection.modal.getDirections') || 'Get Directions'}

@@ -88,7 +88,7 @@ export const CategoryNavigation: React.FC<CategoryNavProps> = ({
             <button
               key={cat.id}
               onClick={() => onSelectCategory(cat.id)}
-              className={`group relative flex flex-col items-center justify-center gap-2 w-16 h-[88px] md:w-24 md:h-[116px] rounded-[1.5rem] md:rounded-[2rem] font-display text-[9px] md:text-xs font-bold uppercase tracking-wider transition-all duration-300 cursor-pointer shrink-0 shadow-sm ${
+              className={`group relative flex flex-col items-center justify-center gap-2 w-16 h-[88px] md:w-24 md:h-[116px] rounded-[1.5rem] md:rounded-[2rem] typo-button-sm uppercase transition-all duration-300 cursor-pointer shrink-0 shadow-sm ${
                 isActive
                   ? "category-active bg-plum-dark text-white shadow-[0_8px_16px_rgba(94,38,137,0.3)] -translate-y-1.5"
                   : "bg-white text-plum-dark/70 hover:bg-white hover:text-plum hover:-translate-y-1 hover:shadow-md"

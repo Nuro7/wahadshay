@@ -51,7 +51,7 @@ export const ProductGrid: React.FC<ProductGridProps> = ({ category, onSelectProd
       {/* Regular Items Title */}
       {displayRegular.length > 0 && (
         <motion.div variants={itemVariants} className="mb-12 flex items-center gap-6">
-          <h3 className="font-display text-3xl font-black text-plum uppercase tracking-wider">
+          <h3 className="typo-h3 text-plum uppercase">
             Explore {category.name}
           </h3>
           <div className="flex-1 h-px bg-plum/10" />

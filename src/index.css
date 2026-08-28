@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bricolage Grotesque", sans-serif;
-  --font-body: "Manrope", sans-serif;
-  --font-numbers: "Outfit", sans-serif;
+  --font-heading: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-primary: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-arabic: "Alexandria", "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-body: var(--font-primary);
+  --font-numbers: var(--font-primary);
 
   /* Official Brand Colors */
   --color-plum: #5E2689;      /* Primary Brand Purple */
@@ -21,6 +24,7 @@
   --color-neutral-border: #E7DED2;
   --color-text-primary: #2B2520;
   --color-text-secondary: #6D655D;
+  --color-text-muted: #9E958B;
 
   --animate-fade-in: fade-in 0.25s ease-out;
   --animate-slide-up: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -40,6 +44,32 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    font-family: var(--font-primary);
+  }
+
+  html[lang="ar"],
+  html[dir="rtl"] {
+    font-family: var(--font-arabic);
+  }
+
+  html[lang="ar"] h1,
+  html[lang="ar"] h2,
+  html[lang="ar"] h3,
+  html[lang="ar"] h4,
+  html[lang="ar"] h5,
+  html[lang="ar"] h6,
+  html[lang="ar"] .font-display,
+  html[lang="ar"] .typo-display-xl,
+  html[lang="ar"] .typo-display-lg,
+  html[lang="ar"] .typo-section-title,
+  html[lang="ar"] .typo-h1,
+  html[lang="ar"] .typo-h2,
+  html[lang="ar"] .typo-h3,
+  html[lang="ar"] .typo-h4,
+  html[lang="ar"] .heading-fluid-h1,
+  html[lang="ar"] .heading-fluid-h2,
+  html[lang="ar"] .heading-fluid-h3 {
+    font-family: var(--font-arabic);
   }
 
   body {
@@ -47,6 +77,12 @@
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    background-color: var(--color-plum-dark);
+    color: var(--color-text-primary);
+    font-family: inherit;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
   
   #root {
@@ -56,20 +92,8 @@
     width: 100%;
   }
 
-  html {
-    /* Removed scroll-behavior: smooth as it conflicts with Lenis */
-  }
-
   section[id] {
     scroll-margin-top: 110px;
-  }
-
-  body {
-    margin: 0;
-    background-color: var(--color-plum-dark);
-    color: var(--color-text-primary);
-    font-family: var(--font-body);
-    -webkit-font-smoothing: antialiased;
   }
 
   h1,
@@ -78,11 +102,18 @@
   h4,
   h5,
   h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-heading);
     color: var(--color-text-primary);
-    font-weight: 700;
-    letter-spacing: -0.015em;
-    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+
+  p {
+    font-family: inherit;
+    line-height: 1.65;
+    text-wrap: pretty;
   }
 
   /* Custom Premium Scrollbar */
@@ -547,7 +578,7 @@
 }
 
 /* 
- * WAHAD SHAY RESPONSIVE UTILITIES 
+ * WAHAD SHAY UNIFIED GLOBAL TYPOGRAPHY SYSTEM 
  */
 .premium-container {
   width: 100%;
@@ -558,38 +589,202 @@
   padding-right: clamp(1.25rem, 4vw, 2.5rem);
 }
 
-.heading-fluid-h1 {
-  font-size: clamp(1.65rem, 8vw, 3.75rem);
+/* ========================================================
+ * 1. DISPLAY & HEADINGS (Fluid Responsive Scales)
+ * ======================================================== */
+
+/* Display XL — Hero primary display statements */
+.typo-display-xl {
+  font-family: var(--font-heading);
+  font-size: clamp(2.25rem, 5.5vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* Display Lg / H1 — Page titles and major hero headlines */
+.typo-display-lg,
+.typo-h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.025em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* H2 — Standard Section Titles */
+.typo-h2,
+.typo-section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 3vw, 2.625rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+/* H3 — Card Headings & Major Subsections */
+.typo-h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+/* H4 — Sub-feature Headings, Accordion Questions, Small Cards */
+.typo-h4 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.0625rem, 1.4vw, 1.25rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+/* Legacy & Tailwind Display Utility */
+.font-display {
+  font-family: var(--font-heading);
+}
+
+/* ========================================================
+ * 2. BODY & SUPPORTING TEXT
+ * ======================================================== */
+
+/* Body Large — Section Introductions, Hero Subtitles, Quotes */
+.typo-body-lg {
+  font-family: inherit;
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Body Standard — Primary paragraphs, card descriptions */
+.typo-body {
+  font-family: inherit;
+  font-size: clamp(0.90625rem, 1vw, 1rem);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+/* Body Small — Secondary metadata, caption details */
+.typo-body-sm {
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+/* ========================================================
+ * 3. LABELS, BADGES & INTERACTION TOKENS
+ * ======================================================== */
+
+/* Eyebrow / Section Category Tag / Overline */
+.typo-eyebrow {
+  font-family: inherit;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Micro Badge / Pill Tag */
+.typo-badge {
+  font-family: inherit;
+  font-size: 0.6875rem;
+  line-height: 1.3;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* Numeric Statistics (Tabular, non-wrapping) */
+.typo-stat {
+  font-family: inherit;
+  font-size: clamp(1.625rem, 3.2vw, 2.375rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
+  font-weight: 800;
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Button Standard */
+.typo-button {
+  font-family: inherit;
+  font-size: 0.9375rem;
+  line-height: 1.2;
+  letter-spacing: 0.03em;
+  font-weight: 600;
+}
+
+/* Button Small */
+.typo-button-sm {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+/* Navigation Links */
+.typo-nav {
+  font-family: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ========================================================
+ * 4. BACKWARDS-COMPATIBILITY ALIASES
+ * ======================================================== */
+.heading-fluid-h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 800;
 }
 
 .heading-fluid-h2 {
-  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
-  line-height: 1.12;
-  letter-spacing: -0.015em;
+  font-family: var(--font-heading);
+  font-size: clamp(1.625rem, 3vw, 2.625rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
 .heading-fluid-h3 {
-  font-size: clamp(1.35rem, 2.5vw, 1.875rem);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
+  font-weight: 700;
 }
 
 .text-fluid-body {
-  font-size: clamp(0.9rem, 1.2vw, 1.0625rem);
+  font-family: inherit;
+  font-size: clamp(0.90625rem, 1vw, 1rem);
   line-height: 1.65;
 }
 
 .text-fluid-small {
-  font-size: clamp(0.75rem, 1vw, 0.875rem);
-  line-height: 1.5;
+  font-family: inherit;
+  font-size: 0.875rem;
+  line-height: 1.55;
 }
 
 .text-fluid-label {
-  font-size: 0.6875rem;
+  font-family: inherit;
+  font-size: 0.75rem;
   line-height: 1.4;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   font-weight: 700;
 }

@@ -21,14 +21,14 @@ export function SignatureExperience() {
       <div className="premium-container relative z-10 space-y-16">
         
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto space-y-6">
-          <span className="text-plum text-[11px] font-bold uppercase tracking-[0.25em] block">
+        <div className="reveal text-center max-w-2xl mx-auto space-y-4">
+          <span className="typo-eyebrow text-plum block">
             {t('about.signatureExperience.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary mask-reveal">
+          <h2 className="typo-section-title text-text-primary mask-reveal">
             <span className="text-shimmer">{t('about.signatureExperience.title')}</span>
           </h2>
-          <p className="text-text-secondary text-base font-light max-w-lg mx-auto">
+          <p className="typo-body text-text-secondary max-w-lg mx-auto">
             {t('about.signatureExperience.subtitle')}
           </p>
         </div>
@@ -56,7 +56,7 @@ export function SignatureExperience() {
                   {/* Top Row: Number with horizontal line & Circular Icon */}
                   <div className="flex items-center justify-between mb-5 sm:mb-6">
                     <div className="flex items-center gap-3">
-                      <span className="font-numbers text-base sm:text-lg font-bold text-plum/80 tracking-widest leading-none">
+                      <span className="text-base sm:text-lg font-black text-plum/80 leading-none tabular-nums">
                         {numStr}
                       </span>
                       <div className="w-6 sm:w-8 h-px bg-plum/20" />
@@ -68,10 +68,10 @@ export function SignatureExperience() {
 
                   {/* Title & Description directly below top row with tight, clean, elegant spacing */}
                   <div className="space-y-2 sm:space-y-2.5 max-w-xl">
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-text-primary leading-tight group-hover:text-plum transition-colors duration-300">
+                    <h3 className="typo-h3 text-text-primary leading-tight group-hover:text-plum transition-colors duration-300">
                       {exp.title}
                     </h3>
-                    <p className="text-text-secondary text-[13.5px] xs:text-sm sm:text-[14.5px] leading-[1.6] font-body font-light">
+                    <p className="typo-body-sm text-text-secondary leading-relaxed">
                       {exp.desc}
                     </p>
                   </div>
@@ -79,7 +79,7 @@ export function SignatureExperience() {
 
                 {/* Bottom Action Area with Divider */}
                 <div className={`relative z-10 mt-6 sm:mt-8 pt-4 sm:pt-5 border-t border-neutral-border/50 flex items-center justify-between ${language === 'AR' ? 'flex-row-reverse' : ''}`}>
-                  <span className="text-[10.5px] xs:text-[11px] uppercase font-bold tracking-[0.2em] text-plum group-hover:text-plum-dark transition-colors">
+                  <span className="typo-eyebrow text-plum group-hover:text-plum-dark transition-colors">
                     {t('about.signatureExperience.discover') || "DISCOVER"}
                   </span>
                   <ArrowRight size={16} className={`text-plum luxury-arrow transition-transform duration-300 group-hover:translate-x-1 group-hover:text-plum-dark ${language === 'AR' ? 'rotate-180 group-hover:-translate-x-1' : ''}`} />

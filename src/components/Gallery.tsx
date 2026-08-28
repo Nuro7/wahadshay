@@ -101,14 +101,14 @@ export function Gallery() {
           {/* Hairline Tag Badge */}
           <div className="flex items-center justify-center gap-3">
             <span className="h-px w-8 bg-plum/40 block" />
-            <span className="text-plum text-xs font-bold uppercase tracking-[0.25em]">
+            <span className="typo-eyebrow text-plum">
               {t("about.gallery.badge") || "VISUAL JOURNAL"}
             </span>
             <span className="h-px w-8 bg-plum/40 block" />
           </div>
 
           {/* Headline with Signature Metallic Shimmer */}
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-text-primary tracking-tight leading-[1.12]">
+          <h2 className="typo-section-title text-text-primary">
             <span className="text-shimmer block sm:inline">
               {language === "AR" ? "لمحة من" : "A Taste of"}
             </span>{" "}
@@ -117,7 +117,7 @@ export function Gallery() {
             </span>
           </h2>
 
-          <p className="text-text-secondary text-sm sm:text-base font-body font-light leading-relaxed max-w-xl mx-auto">
+          <p className="typo-body text-text-secondary max-w-xl mx-auto">
             {t("about.gallery.tasteSubtitle") || "Tea, craft, and moments shared across every cup and bite."}
           </p>
 
@@ -151,7 +151,7 @@ export function Gallery() {
                     loop
                     muted
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out z-0"
                   />
 
@@ -160,7 +160,7 @@ export function Gallery() {
 
                   {/* Top Badge */}
                   <div className="absolute top-4 inset-x-4 flex items-center justify-between z-20 pointer-events-none">
-                    <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-yellow shadow-xs flex items-center gap-1.5">
+                    <span className="px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 typo-badge text-yellow shadow-xs flex items-center gap-1.5">
                       <FaInstagram size={13} className="text-yellow" />
                       <span>{language === "AR" ? "ريلز إنستغرام" : "INSTAGRAM REEL"}</span>
                     </span>
@@ -179,16 +179,16 @@ export function Gallery() {
 
                   {/* Bottom Content Bar */}
                   <div className="p-6 z-20 relative space-y-2 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                    <span className="text-yellow text-[11px] font-bold tracking-widest uppercase block">
+                    <span className="typo-eyebrow text-yellow block">
                       {language === "AR" ? item.subtitleAr : item.subtitleEn}
                     </span>
-                    <h3 className="font-display font-black text-white text-xl sm:text-2xl leading-tight">
+                    <h3 className="typo-h3 text-white leading-tight">
                       {language === "AR" ? item.titleAr : item.titleEn}
                     </h3>
 
                     {/* Direct Instagram Action Pill */}
                     <div className="pt-2 flex items-center gap-2">
-                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#F5BD20] to-[#E5AB15] text-plum-dark font-display font-black text-xs shadow-md group-hover:shadow-lg transition-all">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gradient-to-r from-[#F5BD20] to-[#E5AB15] text-plum-dark typo-button-sm shadow-md group-hover:shadow-lg transition-all">
                         <FaInstagram size={14} />
                         <span>{language === "AR" ? "مشاهدة الفيديو على إنستغرام" : "Watch on Instagram"}</span>
                         <ExternalLink size={12} />
@@ -200,7 +200,7 @@ export function Gallery() {
                 /* Still Photo Card */
                 <div className="w-full h-full p-6 flex flex-col items-center justify-between relative bg-gradient-to-br from-white via-neutral-ivory to-white">
                   <div className="w-full flex justify-between items-center z-20">
-                    <span className="px-3 py-1 rounded-full bg-plum/5 border border-plum/10 text-[10px] sm:text-xs font-bold uppercase tracking-wider text-plum shadow-xs">
+                    <span className="px-3 py-1 rounded-full bg-plum/5 border border-plum/10 typo-badge text-plum shadow-xs">
                       {language === "AR" ? "طبق مميز" : "SIGNATURE DISH"}
                     </span>
                     <div className="w-8 h-8 rounded-full bg-plum/5 text-plum flex items-center justify-center">
@@ -216,10 +216,10 @@ export function Gallery() {
                   />
 
                   <div className="w-full text-start z-20 space-y-1">
-                    <span className="text-plum text-[11px] font-bold uppercase tracking-wider block">
+                    <span className="typo-eyebrow text-plum block">
                       {language === "AR" ? item.subtitleAr : item.subtitleEn}
                     </span>
-                    <h3 className="font-display font-black text-text-primary text-xl leading-tight">
+                    <h3 className="typo-h3 text-text-primary leading-tight">
                       {language === "AR" ? item.titleAr : item.titleEn}
                     </h3>
                   </div>
@@ -238,10 +238,10 @@ export function Gallery() {
               <FaInstagram size={22} />
             </div>
             <div>
-              <h4 className="font-display font-black text-lg text-text-primary">
+              <h4 className="typo-h4 text-text-primary font-bold">
                 {language === "AR" ? "تابع حسابنا الرسمي على إنستغرام" : "Follow Our Official Instagram"}
               </h4>
-              <p className="text-text-secondary text-xs sm:text-sm font-body font-light">
+              <p className="typo-body-sm text-text-secondary">
                 {language === "AR" ? "استكشف أحدث الأطباق والأجواء والريلز عبر @wahadshay.ae" : "Explore our latest dishes, rituals and reels at @wahadshay.ae"}
               </p>
             </div>
@@ -251,7 +251,7 @@ export function Gallery() {
             href="https://www.instagram.com/wahadshay.ae/"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full bg-plum hover:bg-plum-dark text-white font-display font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2 flex-shrink-0"
+            className="px-6 py-3 rounded-full bg-plum hover:bg-plum-dark text-white typo-button transition-all duration-300 shadow-sm hover:shadow-md flex items-center gap-2 flex-shrink-0"
           >
             <FaInstagram size={16} />
             <span>{language === "AR" ? "متابعة @wahadshay.ae" : "Follow @wahadshay.ae"}</span>

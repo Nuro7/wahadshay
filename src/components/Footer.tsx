@@ -27,47 +27,47 @@ export function Footer() {
                 className="h-16 sm:h-16 md:h-12 lg:h-14 w-auto object-contain object-left rtl:object-right group-hover:scale-[1.02] transition-transform duration-300"
               />
             </a>
-            <p className="text-[#D4CFC9] text-[14px] md:text-[15px] lg:text-[16px] leading-[1.7] max-w-[440px] font-body whitespace-pre-line text-start mb-6">
+            <p className="text-white/70 typo-body max-w-[440px] whitespace-pre-line text-start mb-6">
               {t('footer.brandStory')}
             </p>
 
           </div>
 
           {/* Explore Column */}
-          <div className="flex flex-col font-body">
-            <h4 className="font-display text-[13px] md:text-[14px] font-bold uppercase tracking-[0.08em] text-white mb-5 md:mb-6">
+          <div className="flex flex-col">
+            <h4 className="typo-eyebrow text-white mb-5 md:mb-6">
               {t('footer.explore')}
             </h4>
             <ul className="flex flex-col space-y-3.5">
               <li>
-                <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.home')}</a>
+                <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.home')}</a>
               </li>
               <li>
-                <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.aboutUs')}</a>
+                <a href="#about" onClick={(e) => handleLinkClick(e, '#about')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.aboutUs')}</a>
               </li>
               <li>
-                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.ourFranchise')}</a>
+                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.ourFranchise')}</a>
               </li>
               <li>
-                <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.contact')}</a>
+                <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.contact')}</a>
               </li>
             </ul>
           </div>
 
           {/* Partnership Column */}
-          <div className="flex flex-col font-body">
-            <h4 className="font-display text-[13px] md:text-[14px] font-bold uppercase tracking-[0.08em] text-white mb-5 md:mb-6">
+          <div className="flex flex-col">
+            <h4 className="typo-eyebrow text-white mb-5 md:mb-6">
               {t('footer.partnership')}
             </h4>
             <ul className="flex flex-col space-y-3.5">
               <li>
-                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.franchiseProgram')}</a>
+                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.franchiseProgram')}</a>
               </li>
               <li>
-                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.expansionMap')}</a>
+                <a href="#franchise" onClick={(e) => handleLinkClick(e, '#franchise')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.expansionMap')}</a>
               </li>
               <li>
-                <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="text-[14px] md:text-[15px] lg:text-[16px] font-normal text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.networkInquiries')}</a>
+                <a href="#contact" onClick={(e) => handleLinkClick(e, '#contact')} className="typo-body-sm text-white/70 hover:text-yellow transition-colors duration-300 block">{t('footer.networkInquiries')}</a>
               </li>
             </ul>
           </div>
@@ -79,7 +79,7 @@ export function Footer() {
 
         {/* Copyright Bar */}
         <div className="pt-6 md:pt-8 flex flex-col items-center justify-center gap-4 w-full text-center">
-          <p className="text-white/50 text-[11px] md:text-[12px] tracking-[0.06em] font-body font-medium uppercase leading-relaxed">
+          <p className="text-white/50 typo-body-sm uppercase leading-relaxed">
             {language === 'AR' ? (
               <>
                 © {currentYear}{' '}

@@ -19,8 +19,8 @@ export default function MissionVision() {
                 <Eye size={32} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-4">{t('about.missionVision.visionTitle')}</h3>
-                <p className="text-text-primary text-base md:text-lg font-medium max-w-md leading-relaxed font-body">
+                <h3 className="typo-h3 text-plum mb-3">{t('about.missionVision.visionTitle')}</h3>
+                <p className="typo-body-lg text-text-primary max-w-md">
                   {t('about.missionVision.visionDesc')}
                 </p>
               </div>
@@ -33,8 +33,8 @@ export default function MissionVision() {
                 <Target size={32} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
               <div className="pt-2">
-                <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-4">{t('about.missionVision.missionTitle')}</h3>
-                <p className="text-text-primary text-base md:text-lg font-medium max-w-md leading-relaxed font-body">
+                <h3 className="typo-h3 text-plum mb-3">{t('about.missionVision.missionTitle')}</h3>
+                <p className="typo-body-lg text-text-primary max-w-md">
                   {t('about.missionVision.missionDesc')}
                 </p>
               </div>
@@ -42,7 +42,7 @@ export default function MissionVision() {
           </div>
 
           <div className="lg:border-s lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
-            <h3 className="font-display text-2xl md:text-3xl font-extrabold text-plum mb-10">{t('about.missionVision.coreValuesTitle')}</h3>
+            <h3 className="typo-h3 text-plum mb-8">{t('about.missionVision.coreValuesTitle')}</h3>
             <div className="space-y-6">
               {coreValues.map((title, idx) => {
                 const Icon = coreIcons[idx % coreIcons.length];
@@ -51,7 +51,7 @@ export default function MissionVision() {
                     <div className="shrink-0 flex items-center justify-center w-12 h-12 rounded-full bg-plum/5 text-plum group-hover:bg-plum group-hover:text-yellow transition-colors duration-300">
                       <Icon size={22} className="stroke-[1.5]" />
                     </div>
-                    <span className="font-body text-text-primary text-base md:text-lg font-medium group-hover:text-plum transition-colors">{title}</span>
+                    <span className="typo-body-lg text-text-primary font-semibold group-hover:text-plum transition-colors">{title}</span>
                   </div>
                 );
               })}

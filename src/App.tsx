@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
 import About from "./components/About";
-import MissionVision from "./components/MissionVision";
-import Vision2030 from "./components/Vision2030";
-import SignatureExperience from "./components/SignatureExperience";
-import Specials from "./components/Specials";
-import Franchise from "./components/Franchise";
-import FranchiseSection from "./components/FranchiseSection";
 import Testimonials from "./components/Testimonials";
-import Gallery from "./components/Gallery";
-import FAQ from "./components/FAQ";
-import Contact from "./components/Contact";
+import FranchiseSection from "./components/FranchiseSection";
+import FranchiseTeaser from "./components/FranchiseTeaser";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
-// Import new featured/teaser components
-import FranchiseTeaser from "./components/FranchiseTeaser";
+// Lazy-loaded routes to minimize initial bundle size on mobile
+const Specials = lazy(() => import("./components/Specials"));
+const MissionVision = lazy(() => import("./components/MissionVision"));
+const Vision2030 = lazy(() => import("./components/Vision2030"));
+const SignatureExperience = lazy(() => import("./components/SignatureExperience"));
+const Franchise = lazy(() => import("./components/Franchise"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const Contact = lazy(() => import("./components/Contact"));
+const FAQ = lazy(() => import("./components/FAQ"));
 
 function App() {
   // Initialize Lenis smooth scroll
@@ -107,38 +107,38 @@ function App() {
           )}
 
           {currentPage === "specials" && (
-            <>
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
               <Specials />
-            </>
+            </Suspense>
           )}
 
           {currentPage === "about" && (
-            <>
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
               <About />
               <MissionVision />
               <Vision2030 />
               <SignatureExperience />
-            </>
+            </Suspense>
           )}
 
           {currentPage === "franchise" && (
-            <>
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
               <Franchise />
               <FranchiseSection />
-            </>
+            </Suspense>
           )}
 
           {currentPage === "gallery" && (
-            <>
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
               <Gallery />
-            </>
+            </Suspense>
           )}
 
           {currentPage === "contact" && (
-            <>
+            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
               <Contact />
               <FAQ />
-            </>
+            </Suspense>
           )}
         </main>
         

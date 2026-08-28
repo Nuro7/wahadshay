@@ -21,9 +21,18 @@
     <meta name="twitter:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
     <meta name="twitter:image" content="/logo_wahad.png" />
 
+    <!-- Critical Above-the-fold Assets Preload -->
+    <link rel="preload" as="image" href="/logo_wahad.png" type="image/png" fetchpriority="high" />
+    <link rel="preload" as="image" href="/mobile-poster.webp" type="image/webp" media="(max-width: 768px)" />
+
+    <!-- Google Fonts Preconnect & Asynchronous Loading (Non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Manrope:wght@200..800&family=Outfit:wght@100..900&family=Alex+Brush&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    </noscript>
     <title>Wahad Shay — A World of Flavor in One Place</title>
   </head>
   <body class="overflow-x-hidden bg-neutral-white">

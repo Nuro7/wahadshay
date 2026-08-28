@@ -44,13 +44,13 @@ export function Testimonials() {
 
         {/* Section Heading */}
         <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="text-plum text-xs font-bold uppercase tracking-[0.25em] block">
+          <span className="typo-eyebrow text-plum block">
             {t('testimonials.badge')}
           </span>
-          <h2 className="font-display text-3xl md:text-4xl font-black text-text-primary">
+          <h2 className="typo-section-title text-text-primary">
             <span className="text-shimmer">{t('testimonials.title')}</span>
           </h2>
-          <p className="text-text-secondary text-sm md:text-base font-body">
+          <p className="typo-body text-text-secondary max-w-lg mx-auto">
             {t('testimonials.subtitle')}
           </p>
         </div>
@@ -76,16 +76,16 @@ export function Testimonials() {
               </div>
 
               {/* Message */}
-              <p className="text-text-primary/85 text-sm leading-relaxed italic font-body my-6 flex-1 text-start">
+              <p className="typo-body text-text-primary/85 leading-relaxed italic my-6 flex-1 text-start">
                 "{item.text}"
               </p>
 
               {/* User Bio */}
               <div className="border-t border-neutral-border pt-4 text-start">
-                <h4 className="font-display text-sm font-bold text-plum group-hover:text-plum-dark transition-colors">
+                <h4 className="typo-h4 font-bold text-plum group-hover:text-plum-dark transition-colors">
                   {item.name}
                 </h4>
-                <span className="text-[10px] text-text-secondary font-body uppercase font-bold tracking-wider mt-1 block">
+                <span className="typo-badge text-text-secondary mt-1 block">
                   {item.role}
                 </span>
               </div>

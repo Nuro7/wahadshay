@@ -17,52 +17,60 @@ export function Preloader() {
 
     const isMobileDevice = window.innerWidth <= 768;
 
+    const completePreloader = () => {
+      setIsDestroyed(true);
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.classList.add("splash-done");
+    };
+
     const tl = gsap.timeline({
-      onComplete: () => {
-        setIsDestroyed(true);
-        document.body.style.overflow = "";
-        document.documentElement.style.overflow = "";
-        document.body.classList.add("splash-done");
-      }
+      onComplete: completePreloader
     });
+
+    // Fallback safety timer so mobile browsers never get stuck
+    const safetyTimeout = setTimeout(() => {
+      completePreloader();
+      window.dispatchEvent(new Event("splash-complete"));
+    }, isMobileDevice ? 1600 : 3500);
 
     if (isMobileDevice) {
       // Set initial states for mobile
       gsap.set(mobileLogoRef.current, {
         opacity: 0,
-        scale: 0.86,
-        y: 15
+        scale: 0.9,
+        y: 12
       });
 
-      // STAGE 1: Mobile Logo Entrance (0s -> 0.8s)
+      // STAGE 1: Mobile Logo Entrance (0s -> 0.45s)
       tl.to(mobileLogoRef.current, {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.8,
+        duration: 0.45,
         ease: "power3.out"
       });
 
-      // STAGE 2: Subtle golden aura & gentle pulse (0.8s -> 1.5s)
+      // STAGE 2: Gentle pulse & brand shimmer (0.45s -> 0.85s)
       tl.to(mobileLogoRef.current, {
-        scale: 1.025,
-        duration: 0.7,
+        scale: 1.02,
+        duration: 0.4,
         ease: "sine.inOut"
       });
 
-      // STAGE 3: Trigger hero reveal right as preloader begins dissolving
+      // STAGE 3: Trigger hero reveal right as preloader begins dissolving (0.8s)
       tl.call(() => {
         document.body.classList.add("splash-done");
         window.dispatchEvent(new Event("splash-complete"));
-      }, [], 1.4);
+      }, [], 0.8);
 
-      // STAGE 4: Smooth dissolve directly into the Hero background (1.4s -> 2.0s)
+      // STAGE 4: Smooth dissolve directly into the Hero background (0.8s -> 1.2s)
       tl.to(containerRef.current, {
         opacity: 0,
-        scale: 1.03,
-        duration: 0.6,
+        scale: 1.02,
+        duration: 0.4,
         ease: "power2.inOut"
-      }, 1.4);
+      }, 0.8);
 
     } else {
       // Desktop sequence
@@ -133,6 +141,7 @@ export function Preloader() {
     }
 
     return () => {
+      clearTimeout(safetyTimeout);
       tl.kill();
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";

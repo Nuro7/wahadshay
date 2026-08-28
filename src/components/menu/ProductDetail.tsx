@@ -76,31 +76,31 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({ product, onClose }
                 transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               >
                 {language === "EN" && product.arabicName && (
-                  <p className="font-body text-2xl text-plum/60 mb-2">{product.arabicName}</p>
+                  <p className="typo-h3 text-plum/60 mb-2">{product.arabicName}</p>
                 )}
                 {language === "AR" && (
-                  <p className="font-body text-2xl text-plum/60 mb-2">{product.name}</p>
+                  <p className="typo-h3 text-plum/60 mb-2">{product.name}</p>
                 )}
-                <h2 className="font-display text-4xl md:text-6xl font-black text-plum mb-6 leading-none">
+                <h2 className="typo-display-lg text-plum mb-6 leading-none">
                   {language === "AR" && product.arabicName ? product.arabicName : product.name}
                 </h2>
                 
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="font-display text-3xl font-bold text-yellow bg-plum/5 px-4 py-2 rounded-2xl">
+                  <div className="typo-stat text-3xl text-yellow bg-plum/5 px-4 py-2 rounded-2xl">
                     AED {product.price}
                   </div>
                 </div>
 
                 <div className="w-16 h-1 bg-yellow mb-8 rounded-full" />
                 
-                <p className="text-text-secondary text-lg leading-relaxed mb-10 font-medium">
+                <p className="typo-body-lg text-text-secondary leading-relaxed mb-10">
                   {language === "AR" && product.arabicDescription ? product.arabicDescription : product.description}
                 </p>
 
                 {/* Return to menu / Close Action */}
                 <button 
                   onClick={onClose}
-                  className="w-full md:w-auto px-10 py-4 bg-white border-2 border-plum text-plum font-bold tracking-[0.15em] text-sm uppercase rounded-full hover:bg-plum hover:text-white transition-colors duration-300 shadow-sm"
+                  className="w-full md:w-auto px-10 py-4 bg-white border-2 border-plum text-plum typo-button uppercase rounded-full hover:bg-plum hover:text-white transition-colors duration-300 shadow-sm"
                 >
                   {language === "AR" ? "العودة للقائمة" : "Return to Menu"}
                 </button>
