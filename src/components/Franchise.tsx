@@ -59,10 +59,6 @@ export function Franchise() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const openGmail = () => {
-    window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -732,14 +728,6 @@ export function Franchise() {
                     {t("about.franchise.modal.successDesc") || "Thank you for your interest in partnering with Wahad Shay. Our franchise expansion team will review your application and get in touch within 24-48 hours."}
                   </p>
                   <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
-                    <button
-                      type="button"
-                      onClick={openGmail}
-                      className="bg-plum hover:bg-plum-dark text-white font-bold py-2.5 px-5 rounded-xl inline-flex items-center gap-2 text-sm shadow-md transition-all cursor-pointer"
-                    >
-                      <Mail className="w-4 h-4" />
-                      <span>{language === "AR" ? "فتح بريد جيميل" : "Open Gmail"}</span>
-                    </button>
                     <button
                       type="button"
                       onClick={sendWhatsAppInquiry}
