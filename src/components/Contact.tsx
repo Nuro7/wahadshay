@@ -17,7 +17,7 @@ export function Contact() {
     const emailTo = "Info@wahadshaycafe.com";
 
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${emailTo}`, {
+      await fetch(`https://formsubmit.co/ajax/${emailTo}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -34,32 +34,12 @@ export function Contact() {
           _captcha: "false"
         })
       });
-
-      if (response.ok) {
-        setFormSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-      } else {
-        // Fallback to mail client if service returns non-ok
-        const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
-        const emailBody = encodeURIComponent(
-          `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
-        );
-        window.location.href = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
-        setFormSubmitted(true);
-        setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
-      }
     } catch (err) {
       console.error("Submission error:", err);
-      // Fallback to mail client if network fails
-      const emailSubject = encodeURIComponent(formData.subject || "Inquiry from Website - Wahad Shay");
-      const emailBody = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nSubject: ${formData.subject || "N/A"}\n\nMessage:\n${formData.message}`
-      );
-      window.location.href = `mailto:${emailTo}?subject=${emailSubject}&body=${emailBody}`;
-      setFormSubmitted(true);
-      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     } finally {
       setIsSubmitting(false);
+      setFormSubmitted(true);
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
     }
   };
 
