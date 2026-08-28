@@ -59,13 +59,66 @@ export function Franchise() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const franchiseEmail = "nmsshamil232@gmail.com";
+
+  const getEmailBody = () => {
+    return (
+      `Wahad Shay Franchise Application Details:\n` +
+      `----------------------------------------\n` +
+      `Full Name: ${formData.name || "N/A"}\n` +
+      `Phone / WhatsApp: ${formData.phone || "N/A"}\n` +
+      `Email Address: ${formData.email || "N/A"}\n` +
+      `Proposed City / Location: ${formData.location || "N/A"}\n` +
+      `Prior F&B Experience: ${formData.experience === "yes" ? "Yes, F&B / Retail Experience" : "No, First Venture"}\n` +
+      `Investment Timeline: ${formData.timeline === "immediate" ? "1-3 Months" : formData.timeline === "medium" ? "3-6 Months" : "6-12 Months"}\n` +
+      `Additional Notes: ${formData.message || "None provided"}\n\n` +
+      `Sent from Wahad Shay Franchise Portal: https://wahad-shay.vercel.app/#franchise`
+    );
+  };
+
+  const sendEmailInquiry = () => {
+    const subject = encodeURIComponent(`Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`);
+    const body = encodeURIComponent(getEmailBody());
+    window.location.href = `mailto:${franchiseEmail}?subject=${subject}&body=${body}`;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 900);
+
+    const emailSubject = encodeURIComponent(`Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`);
+    const emailBody = encodeURIComponent(getEmailBody());
+
+    try {
+      // 1. Submit via formsubmit AJAX to nmsshamil232@gmail.com
+      await fetch(`https://formsubmit.co/ajax/${franchiseEmail}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`,
+          _template: "table",
+          _captcha: "false",
+          "Full Name": formData.name,
+          "Phone / WhatsApp": formData.phone,
+          "Email Address": formData.email,
+          "Proposed City / Location": formData.location,
+          "Prior F&B Experience": formData.experience === "yes" ? "Yes, F&B / Retail" : "No, First Venture",
+          "Investment Timeline": formData.timeline === "immediate" ? "1-3 Months" : formData.timeline === "medium" ? "3-6 Months" : "6-12 Months",
+          "Additional Information / Notes": formData.message || "None provided",
+        }),
+      });
+    } catch {
+      // Ignore network errors - will open mailto client
+    }
+
+    // Direct redirection to email client
+    window.location.href = `mailto:${franchiseEmail}?subject=${emailSubject}&body=${emailBody}`;
+
+    setIsSubmitting(false);
+    setIsSubmitted(true);
   };
 
   const handleResetModal = () => {
@@ -703,19 +756,27 @@ export function Franchise() {
                   <p className="text-text-secondary text-sm max-w-md mx-auto leading-relaxed font-body">
                     {t("about.franchise.modal.successDesc") || "Thank you for your interest in partnering with Wahad Shay. Our franchise expansion team will review your application and get in touch within 24-48 hours."}
                   </p>
-                  <div className="pt-4 flex items-center justify-center gap-3">
+                  <div className="pt-4 flex flex-wrap items-center justify-center gap-3">
+                    <button
+                      type="button"
+                      onClick={sendEmailInquiry}
+                      className="bg-plum hover:bg-plum-dark text-white font-bold py-2.5 px-5 rounded-xl inline-flex items-center gap-2 text-sm shadow-md transition-all cursor-pointer"
+                    >
+                      <Mail className="w-4 h-4" />
+                      <span>{language === "AR" ? "إرسال عبر البريد الإلكتروني" : "Email Application"}</span>
+                    </button>
                     <button
                       type="button"
                       onClick={sendWhatsAppInquiry}
-                      className="bg-[#25D366] hover:bg-[#20BE5C] text-white font-bold py-2.5 px-6 rounded-xl inline-flex items-center gap-2 text-sm shadow-md transition-all cursor-pointer"
+                      className="bg-[#25D366] hover:bg-[#20BE5C] text-white font-bold py-2.5 px-5 rounded-xl inline-flex items-center gap-2 text-sm shadow-md transition-all cursor-pointer"
                     >
                       <Phone className="w-4 h-4" />
-                      <span>{language === "AR" ? "متابعة الطلب عبر واتساب" : "Follow up on WhatsApp"}</span>
+                      <span>{language === "AR" ? "متابعة الطلب عبر واتساب" : "WhatsApp"}</span>
                     </button>
                     <button
                       type="button"
                       onClick={handleResetModal}
-                      className="bg-neutral-ivory hover:bg-neutral-sand text-text-primary font-bold py-2.5 px-6 rounded-xl text-sm transition-all cursor-pointer"
+                      className="bg-neutral-ivory hover:bg-neutral-sand text-text-primary font-bold py-2.5 px-5 rounded-xl text-sm transition-all cursor-pointer"
                     >
                       {t("about.franchise.modal.closeBtn") || "Close"}
                     </button>
