@@ -1,7 +1,7 @@
-import { Flame, Layers, Soup, Utensils, Sparkles, ArrowRight } from "lucide-react";
+import { Hamburger, Sandwich, Soup, Drumstick, CupSoda, ArrowRight } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-const experienceIcons = [Flame, Layers, Soup, Utensils, Sparkles];
+const experienceIcons = [Hamburger, Sandwich, Soup, Drumstick, CupSoda];
 const colSpans = [
   "md:col-span-6 lg:col-span-5", // First row left
   "md:col-span-6 lg:col-span-7", // First row right (slightly wider)
