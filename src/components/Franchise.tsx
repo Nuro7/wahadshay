@@ -29,17 +29,8 @@ export function Franchise() {
     message: ""
   });
 
-  // Lock body scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isModalOpen]);
+  // iOS Safari scroll locking fix: Removed naive overflow="hidden" on body as it causes freezing.
+  // The fixed modal overlay naturally traps focus and scroll on desktop.
 
   // Handle ESC key to close modal
   useEffect(() => {
@@ -476,7 +467,7 @@ export function Franchise() {
       {/* ======================================================== */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
             {/* Backdrop Blur */}
             <motion.div
               initial={{ opacity: 0 }}
@@ -493,7 +484,7 @@ export function Franchise() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative bg-white rounded-3xl shadow-2xl border border-neutral-border w-full max-w-2xl p-6 sm:p-8 z-10 my-8 max-h-[90vh] overflow-y-auto"
+              className="relative bg-white rounded-3xl shadow-2xl border border-neutral-border w-full max-w-2xl p-6 sm:p-8 z-10 my-auto sm:my-8 shrink-0"
             >
               
               {/* Close Button */}

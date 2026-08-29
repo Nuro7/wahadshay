@@ -11,17 +11,8 @@ export function Navbar() {
 
   const [activeHash, setActiveHash] = useState("#home");
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isOpen]);
+  // Removed naive overflow="hidden" on body to prevent iOS Safari from freezing.
+  // The full screen mobile menu traps scrolling naturally.
 
   // Handle ESC key to close mobile menu
   useEffect(() => {
