@@ -10,6 +10,17 @@ import hotChickenImg from "../assets/hot_chicken.webp";
 import hotChickenBurgerImg from "../assets/hot_chicken_burger.webp";
 import hotChickenRiceImg from "../assets/hot_chicken_rice.webp";
 
+import reelThumb1 from "../assets/reel_thumb_1.webp";
+import reelThumb2 from "../assets/reel_thumb_2.webp";
+import reelThumb3 from "../assets/reel_thumb_3.webp";
+import reelThumb4 from "../assets/reel_thumb_4.webp";
+import reelThumb5 from "../assets/reel_thumb_5.webp";
+import reelThumb6 from "../assets/reel_thumb_6.webp";
+import reelThumb7 from "../assets/reel_thumb_7.webp";
+import reelThumb8 from "../assets/reel_thumb_8.webp";
+import reelThumb9 from "../assets/reel_thumb_9.webp";
+import reelThumb10 from "../assets/reel_thumb_10.webp";
+
 export interface MediaItem {
   id: string;
   type: "reel" | "photo";
@@ -29,56 +40,62 @@ const mediaItems: MediaItem[] = [
   {
     id: "reel-1",
     type: "reel",
-    thumbnail: hotChickenBurgerImg, // Fallback thumbnail
+    thumbnail: reelThumb1,
     instagramUrl: "https://www.instagram.com/reel/DclkzVJICXl/",
   },
   {
     id: "reel-2",
     type: "reel",
-    thumbnail: juicyDipImg,
+    thumbnail: reelThumb2,
     instagramUrl: "https://www.instagram.com/reel/DcQKf_ZsW_7/",
   },
   {
     id: "reel-3",
     type: "reel",
-    thumbnail: hotChickenImg,
+    thumbnail: reelThumb3,
     instagramUrl: "https://www.instagram.com/reel/Db7xZfxs7Q_/",
   },
   {
     id: "reel-4",
     type: "reel",
-    thumbnail: miniBitesImg,
+    thumbnail: reelThumb4,
     instagramUrl: "https://www.instagram.com/reel/DbgYW-fM9y-/",
   },
   {
     id: "reel-5",
     type: "reel",
-    thumbnail: hotChickenRiceImg,
+    thumbnail: reelThumb5,
     instagramUrl: "https://www.instagram.com/reel/DauWVdlKerE/",
   },
   {
     id: "reel-6",
     type: "reel",
-    thumbnail: hotChickenImg,
+    thumbnail: reelThumb6,
     instagramUrl: "https://www.instagram.com/reel/DbI0f8-s2DD/",
   },
   {
     id: "reel-7",
     type: "reel",
-    thumbnail: juicyDipImg,
+    thumbnail: reelThumb7,
     instagramUrl: "https://www.instagram.com/reel/DaDelTjo8IS/",
   },
   {
     id: "reel-8",
     type: "reel",
-    thumbnail: miniBitesImg,
+    thumbnail: reelThumb8,
     instagramUrl: "https://www.instagram.com/reel/DZnDl69NLhb/",
   },
   {
     id: "reel-9",
     type: "reel",
-    thumbnail: hotChickenBurgerImg,
+    thumbnail: reelThumb9,
     instagramUrl: "https://www.instagram.com/reel/DYrM6W0uwht/",
+  },
+  {
+    id: "reel-10",
+    type: "reel",
+    thumbnail: reelThumb10,
+    instagramUrl: "https://www.instagram.com/p/DYzMyFivkg_/",
   },
   {
     id: "photo-1",
@@ -132,24 +149,60 @@ export function Gallery() {
       {/* Background Subtle Line Art Texture */}
       <div className="absolute inset-0 food-pattern-bg opacity-[0.04] pointer-events-none" />
       
+      {/* Ambient Diffused Glow Orbs */}
+      <div className="absolute top-[5%] left-[-10%] w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-plum/10 rounded-full blur-[120px] md:blur-[180px] pointer-events-none mix-blend-multiply" />
+      <div className="absolute bottom-[10%] right-[-10%] w-[350px] h-[350px] md:w-[550px] md:h-[550px] bg-yellow/10 rounded-full blur-[100px] md:blur-[160px] pointer-events-none mix-blend-multiply" />
+
+      {/* Massive Background Typography Watermarks */}
+      <div className="absolute top-[8%] -left-[5%] text-[10rem] md:text-[16rem] font-black text-plum/[0.03] tracking-tighter pointer-events-none select-none whitespace-nowrap leading-none z-0">
+        GALLERY
+      </div>
+      <div className="absolute top-[45%] -right-[10%] text-[8rem] md:text-[14rem] font-black text-plum/[0.03] tracking-tighter pointer-events-none select-none whitespace-nowrap leading-none z-0">
+        MEMORY TIME
+      </div>
+      
+      {/* Decorative Sparkle Elements */}
+      <div className="absolute top-[15%] right-[10%] w-3 h-3 md:w-4 md:h-4 text-yellow opacity-40 pointer-events-none">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+      </div>
+      <div className="absolute bottom-[25%] left-[5%] w-2 h-2 md:w-3 md:h-3 text-plum opacity-30 pointer-events-none">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+      </div>
+      
       <div className="premium-container relative z-10 space-y-10 md:space-y-16">
         
-        {/* SECTION HEADER: Minimal & Editorial */}
-        <div className="reveal text-center max-w-2xl mx-auto space-y-4">
+        {/* SECTION HEADER: Brand Theme & Shimmer */}
+        <div className="reveal text-center max-w-3xl mx-auto space-y-4 sm:space-y-6">
           
+          {/* Hairline Tag Badge */}
           <div className="flex items-center justify-center gap-3">
-            <span className="typo-eyebrow text-plum tracking-[0.2em] font-semibold">
+            <span className="h-px w-8 bg-plum/40 block" />
+            <span className="typo-eyebrow text-plum tracking-[0.2em] font-bold uppercase">
               {t("about.gallery.badge") || "VISUAL JOURNAL"}
             </span>
+            <span className="h-px w-8 bg-plum/40 block" />
           </div>
 
-          <h2 className="typo-section-title text-text-primary text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
-            {language === "AR" ? "لمحة من قصتنا" : "A Taste of Our Story"}
+          {/* Headline with Signature Metallic Shimmer */}
+          <h2 className="typo-section-title text-text-primary">
+            <span className="text-shimmer block sm:inline">
+              {language === "AR" ? "لمحة من" : "A Taste of"}
+            </span>{" "}
+            <span className="text-plum font-extrabold block sm:inline">
+              {language === "AR" ? "قصتنا" : "Our Story"}
+            </span>
           </h2>
 
-          <p className="typo-body text-text-secondary md:text-lg">
+          <p className="typo-body text-text-secondary max-w-xl mx-auto leading-relaxed md:text-lg">
             {t("about.gallery.tasteSubtitle") || "Tea, craft, and moments shared."}
           </p>
+
+          {/* Minimalist Brand Divider */}
+          <div className="flex items-center justify-center gap-3 pt-4 pb-2 max-w-xs mx-auto">
+            <div className="h-px bg-gradient-to-r from-transparent via-plum/20 to-plum/40 flex-1" />
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-pulse" />
+            <div className="h-px bg-gradient-to-l from-transparent via-plum/20 to-plum/40 flex-1" />
+          </div>
         </div>
 
         {/* ASYMMETRIC MASONRY GALLERY */}
