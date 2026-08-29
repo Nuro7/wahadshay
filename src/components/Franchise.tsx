@@ -467,7 +467,7 @@ export function Franchise() {
       {/* ======================================================== */}
       <AnimatePresence>
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto" style={{ WebkitOverflowScrolling: 'touch' }}>
+          <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
             {/* Backdrop Blur */}
             <motion.div
               initial={{ opacity: 0 }}
