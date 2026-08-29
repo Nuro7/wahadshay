@@ -57,8 +57,9 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 py-2 md:py-3 transition-all duration-500 ${isScrolled ? "translate-y-0" : "translate-y-1"
-        }`}
+      className={`fixed inset-x-0 top-0 z-50 w-full px-4 sm:px-6 md:px-8 py-2 md:py-3 transition-all duration-500 ${
+        isScrolled ? "translate-y-0" : "translate-y-1"
+      }`}
     >
       <div
         className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-3 sm:px-6 md:px-8 py-1 md:py-2 ${isScrolled

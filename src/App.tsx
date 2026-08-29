@@ -1,4 +1,4 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect, lazy, Suspense, startTransition, useTransition } from "react";
 import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
@@ -21,20 +21,48 @@ const Gallery = lazy(() => import("./components/Gallery"));
 const Contact = lazy(() => import("./components/Contact"));
 const FAQ = lazy(() => import("./components/FAQ"));
 
+// Prefetch all lazy chunks after initial page load
+// so navigation to any page is instant (no spinner wait)
+const prefetchAll = () => {
+  import("./components/About");
+  import("./components/Specials");
+  import("./components/About");
+  import("./components/MissionVision");
+  import("./components/Vision2030");
+  import("./components/SignatureExperience");
+  import("./components/Franchise");
+  import("./components/FranchiseSection");
+  import("./components/FranchiseTeaser");
+  import("./components/Gallery");
+  import("./components/Contact");
+  import("./components/FAQ");
+  import("./components/Testimonials");
+};
+
+// Minimal spinner for Suspense fallback — used only if a chunk hasn't
+// been prefetched yet (first navigation before prefetch completes)
+const PageSpinner = () => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" />
+  </div>
+);
+
 function App() {
-  // Initialize Lenis smooth scroll
   useLenis();
-  // Initialize vanilla scroll reveal animation system
   useScrollReveal();
 
-
-  // Routing State management
   const [currentPage, setCurrentPage] = useState<string>("home");
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";
     }
+  }, []);
+
+  // Prefetch all lazy chunks ~2 seconds after the hero is visible.
+  useEffect(() => {
+    const timer = setTimeout(prefetchAll, 2000);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -59,18 +87,29 @@ function App() {
 
       setCurrentPage(targetPage);
 
-      // Smooth scroll target resolution if a sub-hash section exists on the page
-      setTimeout(() => {
+      // We need to wait for Suspense to finish loading the chunk before we can scroll to the element.
+      // A simple retry loop ensures we find the element once it renders.
+      const scrollToHash = () => {
         const scrollTarget = document.getElementById(page);
-        
         if (scrollTarget) {
           if ((window as any).lenis) {
-            (window as any).lenis.scrollTo(scrollTarget, { offset: page === 'faq' ? -100 : 0 });
+            (window as any).lenis.scrollTo(scrollTarget, {
+              offset: page === "faq" ? -100 : 0,
+              immediate: true,
+            });
           } else {
-            scrollTarget.scrollIntoView({ behavior: "smooth" });
+            scrollTarget.scrollIntoView({ behavior: "instant" });
           }
+        } else if (page !== targetPage && page !== 'home') {
+          // If the element isn't found yet (Suspense is loading), check again in 100ms
+          setTimeout(scrollToHash, 100);
         }
-      }, 50);
+      };
+
+      // Only attempt to scroll to a specific section if the hash is not the main page name
+      if (page !== targetPage && page !== 'home' && page !== '') {
+         setTimeout(scrollToHash, 50);
+      }
     };
 
     handleHashChange();
@@ -78,28 +117,32 @@ function App() {
     return () => window.removeEventListener("hashchange", handleHashChange);
   }, []);
 
-  // Force scroll to top on page change
+  // Scroll to top immediately on page change if no specific hash target
   useEffect(() => {
-    requestAnimationFrame(() => {
-      if ((window as any).lenis) {
-        (window as any).lenis.scrollTo(0, { immediate: true });
-      }
-      window.scrollTo(0, 0);
-    });
+    const hash = window.location.hash.toLowerCase().replace("#", "");
+    // If the hash matches the page name exactly (e.g. #about on about page), scroll to top
+    if (hash === currentPage || hash === "" || hash === "home") {
+      requestAnimationFrame(() => {
+        if ((window as any).lenis) {
+          (window as any).lenis.scrollTo(0, { immediate: true });
+        }
+        window.scrollTo(0, 0);
+      });
+    }
   }, [currentPage]);
 
   return (
     <>
       <Preloader />
-      
+
       <Layout>
         <Navbar />
-        
-        <main className={`flex-1 flex flex-col ${currentPage !== 'home' ? 'pt-8 md:pt-10' : ''}`}>
+
+        <main className={`flex-1 flex flex-col ${currentPage !== "home" ? "pt-8 md:pt-10" : ""}`}>
           {currentPage === "home" && (
             <>
               <Hero />
-              <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center"><div className="w-6 h-6 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+              <Suspense fallback={<div className="min-h-[200px]" />}>
                 <About isHomePage={true} />
                 <Testimonials />
                 <FranchiseSection />
@@ -109,13 +152,13 @@ function App() {
           )}
 
           {currentPage === "specials" && (
-            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+            <Suspense fallback={<PageSpinner />}>
               <Specials />
             </Suspense>
           )}
 
           {currentPage === "about" && (
-            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+            <Suspense fallback={<PageSpinner />}>
               <About />
               <MissionVision />
               <Vision2030 />
@@ -124,26 +167,26 @@ function App() {
           )}
 
           {currentPage === "franchise" && (
-            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+            <Suspense fallback={<PageSpinner />}>
               <Franchise />
               <FranchiseSection />
             </Suspense>
           )}
 
           {currentPage === "gallery" && (
-            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+            <Suspense fallback={<PageSpinner />}>
               <Gallery />
             </Suspense>
           )}
 
           {currentPage === "contact" && (
-            <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center"><div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+            <Suspense fallback={<PageSpinner />}>
               <Contact />
               <FAQ />
             </Suspense>
           )}
         </main>
-        
+
         <Footer />
       </Layout>
     </>

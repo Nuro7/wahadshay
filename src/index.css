@@ -96,6 +96,15 @@
     scroll-margin-top: 110px;
   }
 
+  /* Initial states for GSAP animations to prevent flash */
+  .word-reveal,
+  .hero-subtitle,
+  .hero-btn-container button,
+  .hero-btn-container a,
+  .stat-reveal {
+    opacity: 0;
+  }
+
   h1,
   h2,
   h3,
