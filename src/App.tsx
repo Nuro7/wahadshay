@@ -42,8 +42,9 @@ const prefetchAll = () => {
 // Minimal spinner for Suspense fallback — used only if a chunk hasn't
 // been prefetched yet (first navigation before prefetch completes)
 const PageSpinner = () => (
-  <div className="min-h-[50vh] flex items-center justify-center">
-    <div className="w-8 h-8 rounded-full border-2 border-plum border-t-transparent animate-spin" />
+  <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] w-full">
+    <div className="w-10 h-10 rounded-full border-[3px] border-yellow/30 border-t-yellow animate-spin" />
+    <p className="mt-4 text-yellow/70 text-sm animate-pulse tracking-wide font-medium">Loading...</p>
   </div>
 );
 
@@ -87,9 +88,12 @@ function App() {
 
       setCurrentPage(targetPage);
 
-      // We need to wait for Suspense to finish loading the chunk before we can scroll to the element.
-      // A simple retry loop ensures we find the element once it renders.
+      let retries = 0;
+      const currentHash = window.location.hash;
       const scrollToHash = () => {
+        // Stop if the user navigated to another page while we were waiting
+        if (window.location.hash !== currentHash) return;
+        
         const scrollTarget = document.getElementById(page);
         if (scrollTarget) {
           if ((window as any).lenis) {
@@ -100,8 +104,10 @@ function App() {
           } else {
             scrollTarget.scrollIntoView({ behavior: "instant" });
           }
-        } else if (page !== targetPage && page !== 'home') {
+        } else if (page !== targetPage && page !== 'home' && retries < 30) {
           // If the element isn't found yet (Suspense is loading), check again in 100ms
+          // Max 30 retries (3 seconds) to prevent infinite loops
+          retries++;
           setTimeout(scrollToHash, 100);
         }
       };

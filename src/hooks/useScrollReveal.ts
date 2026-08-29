@@ -27,7 +27,19 @@ export function useScrollReveal() {
     // 2. Observe all current elements
     const observeElements = () => {
       const elements = document.querySelectorAll(".reveal:not(.reveal-active)");
-      elements.forEach((el) => observer.observe(el));
+      const viewportHeight = window.innerHeight;
+      
+      elements.forEach((el) => {
+        // Fallback for iOS Safari: if the element is already in the viewport
+        // when observed, sometimes IntersectionObserver doesn't fire until scroll.
+        // We manually check getBoundingClientRect and reveal if it's visible.
+        const rect = el.getBoundingClientRect();
+        if (rect.top < viewportHeight && rect.bottom > 0) {
+          el.classList.add("reveal-active");
+        } else {
+          observer.observe(el);
+        }
+      });
     };
 
     observeElements();
