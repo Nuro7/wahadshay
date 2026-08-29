@@ -7,40 +7,20 @@ import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
-// Lazy-loaded routes and below-the-fold heavy sections
-const About = lazy(() => import("./components/About"));
-const Testimonials = lazy(() => import("./components/Testimonials"));
-const FranchiseSection = lazy(() => import("./components/FranchiseSection"));
-const FranchiseTeaser = lazy(() => import("./components/FranchiseTeaser"));
-const Specials = lazy(() => import("./components/Specials"));
-const MissionVision = lazy(() => import("./components/MissionVision"));
-const Vision2030 = lazy(() => import("./components/Vision2030"));
-const SignatureExperience = lazy(() => import("./components/SignatureExperience"));
-const Franchise = lazy(() => import("./components/Franchise"));
-const Gallery = lazy(() => import("./components/Gallery"));
-const Contact = lazy(() => import("./components/Contact"));
-const FAQ = lazy(() => import("./components/FAQ"));
+import About from "./components/About";
+import Testimonials from "./components/Testimonials";
+import FranchiseSection from "./components/FranchiseSection";
+import FranchiseTeaser from "./components/FranchiseTeaser";
+import Specials from "./components/Specials";
+import MissionVision from "./components/MissionVision";
+import Vision2030 from "./components/Vision2030";
+import SignatureExperience from "./components/SignatureExperience";
+import Franchise from "./components/Franchise";
+import Gallery from "./components/Gallery";
+import Contact from "./components/Contact";
+import FAQ from "./components/FAQ";
 
-// Prefetch all lazy chunks after initial page load
-// so navigation to any page is instant (no spinner wait)
-const prefetchAll = () => {
-  import("./components/About");
-  import("./components/Specials");
-  import("./components/About");
-  import("./components/MissionVision");
-  import("./components/Vision2030");
-  import("./components/SignatureExperience");
-  import("./components/Franchise");
-  import("./components/FranchiseSection");
-  import("./components/FranchiseTeaser");
-  import("./components/Gallery");
-  import("./components/Contact");
-  import("./components/FAQ");
-  import("./components/Testimonials");
-};
-
-// Minimal spinner for Suspense fallback — used only if a chunk hasn't
-// been prefetched yet (first navigation before prefetch completes)
+// Minimal spinner for Suspense fallback — mostly unused now since pages are bundled
 const PageSpinner = () => (
   <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] w-full">
     <div className="w-10 h-10 rounded-full border-[3px] border-yellow/30 border-t-yellow animate-spin" />
@@ -60,11 +40,7 @@ function App() {
     }
   }, []);
 
-  // Prefetch all lazy chunks ~2 seconds after the hero is visible.
-  useEffect(() => {
-    const timer = setTimeout(prefetchAll, 2000);
-    return () => clearTimeout(timer);
-  }, []);
+
 
   useEffect(() => {
     const handleHashChange = () => {
