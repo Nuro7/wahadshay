@@ -32,26 +32,22 @@ export function Preloader() {
     };
 
     if (isMobileDevice) {
-      // Mobile: pure CSS-based transition — zero GSAP dependency.
-      // The logo fades in via CSS, then the whole splash fades out.
-      // This means 0 KB of GSAP is needed before users see the brand.
-      const logo = mobileLogoRef.current;
+      // Mobile: The inline HTML splash in index.html already showed the brand logo
+      // BEFORE any JS loaded. By the time this React Preloader mounts, the inline
+      // splash is already fading out (or gone). We don't need to show another logo —
+      // just fade out this container quickly and reveal the Hero.
       const container = containerRef.current;
-      if (logo) {
-        logo.style.transition = "opacity 0.25s ease-out, transform 0.25s ease-out";
-        logo.style.opacity = "1";
-        logo.style.transform = "scale(1)";
-      }
 
-      const fadeOutTimer = setTimeout(() => {
+      // Wait for the inline splash fade to finish (~420ms), then fade this out
+      const showTimer = setTimeout(() => {
         if (container) {
-          container.style.transition = "opacity 0.3s ease-in-out";
+          container.style.transition = "opacity 0.25s ease-in-out";
           container.style.opacity = "0";
         }
-        setTimeout(completePreloader, 320);
-      }, 350);
+        setTimeout(completePreloader, 270);
+      }, 100); // short delay — inline splash is already fading
 
-      return () => clearTimeout(fadeOutTimer);
+      return () => clearTimeout(showTimer);
 
     } else {
       // Desktop: elegant GSAP entrance — loaded dynamically so it doesn't
@@ -125,6 +121,16 @@ export function Preloader() {
           justify-content: center;
           overflow: hidden;
           will-change: opacity;
+        }
+
+        /* On mobile, start invisible. The inline HTML splash (in index.html) already
+           showed the brand logo before JS loaded. The React Preloader just needs
+           to be a transparent layer that fades away to reveal the Hero. */
+        @media (max-width: 768px) {
+          .splash-container {
+            opacity: 0;
+            background: transparent;
+          }
         }
 
         /* Desktop-only ambient glow — not rendered on mobile */

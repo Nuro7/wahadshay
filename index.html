@@ -2,7 +2,6 @@
 <html lang="en" class="overflow-x-hidden overflow-y-scroll">
   <head>
     <meta charset="UTF-8" />
-    <!-- SVG favicon first (1 KB vs 50 KB PNG) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -23,22 +22,13 @@
     <meta name="twitter:image" content="/logo_wahad.webp" />
 
     <!-- Critical Above-the-fold Assets Preload -->
-    <!-- LCP image on mobile: the video poster -->
-    <link rel="preload" as="image" href="/mobile-poster.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
-    <!-- LCP image on desktop -->
-    <link rel="preload" as="image" href="/home-poster.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
-    <!-- Navbar logo — above the fold on all devices -->
     <link rel="preload" as="image" href="/logo_wahad.webp" type="image/webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="/mobile-poster.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+    <link rel="preload" as="image" href="/home-poster.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
 
-    <!-- Google Fonts: preconnect + async load (non-render-blocking) -->
+    <!-- Google Fonts: async, non-render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!--
-      Load fonts via media="print" trick: browser fetches them low-priority
-      and flips to 'all' once downloaded, so fonts NEVER block rendering.
-      font-display=swap is set server-side by Google, so text shows in system
-      font immediately while brand fonts load.
-    -->
     <link
       rel="preload"
       as="style"
@@ -54,9 +44,107 @@
       <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     </noscript>
 
+    <!--
+      INLINE SPLASH SCREEN STYLES
+      These are inlined in the <head> so the splash renders in the SAME paint
+      as the first HTML byte — zero JS, zero external CSS needed.
+      This eliminates the dark purple blank screen on iOS/Android while JS loads.
+    -->
+    <style>
+      /* Reset */
+      *, *::before, *::after { box-sizing: border-box; }
+      html, body { margin: 0; padding: 0; }
+      body { background-color: #2E1A47; overflow-x: hidden; }
+
+      /* Inline splash — visible instantly, removed by React on mount */
+      #splash-inline {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: radial-gradient(circle at center, #4C1A6E 0%, #2E114D 60%, #150626 100%);
+        transition: opacity 0.4s ease-out;
+      }
+
+      #splash-inline.splash-hiding {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      #splash-inline img {
+        height: clamp(90px, 24vw, 130px);
+        width: auto;
+        max-width: 80vw;
+        object-fit: contain;
+        /* Slight fade-in animation — pure CSS, zero JS */
+        animation: splashLogoIn 0.35s ease-out forwards;
+      }
+
+      @keyframes splashLogoIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+
+      /* Subtle pulsing glow ring below logo */
+      #splash-inline .splash-ring {
+        margin-top: 28px;
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+
+      #splash-inline .splash-dot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #F5BD20;
+        opacity: 0.5;
+        animation: splashDotPulse 1.2s ease-in-out infinite;
+      }
+
+      #splash-inline .splash-dot:nth-child(2) { animation-delay: 0.2s; }
+      #splash-inline .splash-dot:nth-child(3) { animation-delay: 0.4s; }
+
+      @keyframes splashDotPulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.8); }
+        50%       { opacity: 1;   transform: scale(1.2); }
+      }
+
+      /* Accessibility: respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        #splash-inline img { animation: none; opacity: 1; transform: none; }
+        #splash-inline .splash-dot { animation: none; opacity: 0.6; }
+        #splash-inline { transition: none; }
+      }
+    </style>
+
     <title>Wahad Shay — A World of Flavor in One Place</title>
   </head>
-  <body style="margin: 0; padding: 0; background-color: #2E1A47; overflow-x: hidden;">
+  <body>
+    <!--
+      INLINE SPLASH — rendered by the BROWSER before any JS loads.
+      Shows immediately when HTML is received (same frame as background color).
+      React's main.tsx removes this once the app has mounted.
+    -->
+    <div id="splash-inline" aria-hidden="true">
+      <img
+        src="/logo_wahad.webp"
+        alt="Wahad Shay"
+        width="280"
+        height="120"
+        fetchpriority="high"
+        decoding="sync"
+      />
+      <div class="splash-ring">
+        <div class="splash-dot"></div>
+        <div class="splash-dot"></div>
+        <div class="splash-dot"></div>
+      </div>
+    </div>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
