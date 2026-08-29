@@ -14,24 +14,27 @@ export function Contact() {
     if (!formData.name || !formData.email || !formData.phone || !formData.message) return;
     setIsSubmitting(true);
 
-    const emailTo = "Info@wahadshaycafe.com";
-
     try {
-      await fetch(`https://formsubmit.co/ajax/${emailTo}`, {
+      // Submit seamlessly to Info@wahadshaycafe.com
+      const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai", dateStyle: "full", timeStyle: "medium" });
+      await fetch("https://formsubmit.co/ajax/Info@wahadshaycafe.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json"
+          Accept: "application/json"
         },
         body: JSON.stringify({
-          Name: formData.name,
-          Email: formData.email,
-          Phone: formData.phone,
-          Subject: formData.subject || "Website Contact Inquiry",
-          Message: formData.message,
-          _subject: `New Inquiry: ${formData.subject || formData.name} - Wahad Shay`,
-          _template: "table",
-          _captcha: "false"
+          _subject: `💬 [CUSTOMER INQUIRY] ${formData.subject || "General Inquiry"} — ${formData.name}`,
+          _template: "box",
+          _captcha: "false",
+          "📨 INQUIRY CATEGORY": "💬 General Customer & Guest Feedback",
+          "👤 SENDER NAME": formData.name,
+          "✉️ SENDER EMAIL": formData.email,
+          "📞 CONTACT PHONE": formData.phone,
+          "📌 INQUIRY SUBJECT": formData.subject || "General Inquiry",
+          "💬 MESSAGE CONTENT": formData.message,
+          "🌐 SOURCE CHANNEL": "Website Contact Page (#contact)",
+          "🕒 SUBMITTED AT (UAE TIME)": timestamp,
         })
       });
     } catch (err) {

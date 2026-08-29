@@ -71,15 +71,19 @@ export function Navbar() {
           <a href="#home" className="relative flex items-center group">
             {/* Base Logo */}
             <img
-              src="/logo_wahad.png"
+              src="/logo_wahad.webp"
               alt="Wahad Shay Logo"
+              width="180"
+              height="48"
               className="h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
             />
             {/* Tagline Overlay (Turns black when scrolled) */}
             <img
-              src="/logo_wahad.png"
+              src="/logo_wahad.webp"
               alt=""
               aria-hidden="true"
+              width="180"
+              height="48"
               className={`absolute inset-0 h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
                 }`}
               style={{

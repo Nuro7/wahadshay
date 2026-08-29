@@ -1,8 +1,8 @@
-import hotChickenBurgerImg from "../assets/hot_chicken_burger.jpg";
-import hotChickenRiceImg from "../assets/hot_chicken_rice.jpg";
-import juicyDipImg from "../assets/juicy_dip.jpg";
-import miniBitesImg from "../assets/mini_bites.jpg";
-import specialItemImg from "../assets/hot_chicken.jpg";
+import hotChickenBurgerImg from "../assets/hot_chicken_burger.webp";
+import hotChickenRiceImg from "../assets/hot_chicken_rice.webp";
+import juicyDipImg from "../assets/juicy_dip.webp";
+import miniBitesImg from "../assets/mini_bites.webp";
+import specialItemImg from "../assets/hot_chicken.webp";
 import { useLanguage } from "../i18n/LanguageContext";
 import { Sparkles } from "lucide-react";
 
@@ -95,7 +95,7 @@ export function Specials() {
                 <div className="absolute -right-[20%] -bottom-[20%] w-[250px] h-[250px] bg-plum/4 rounded-full blur-[70px] group-hover:bg-plum/8 transition-all duration-700 pointer-events-none" />
 
                 {/* Hero Image Container */}
-                <div className="w-full h-56 sm:h-60 sm:w-[210px] md:w-[230px] lg:w-[250px] sm:h-auto sm:self-stretch shrink-0 relative rounded-2xl overflow-hidden bg-[#241038]/5 shadow-md">
+                <div className="w-full aspect-[4/3] sm:w-[260px] md:w-[280px] lg:w-[300px] sm:aspect-[4/3] sm:h-auto shrink-0 relative rounded-2xl overflow-hidden bg-[#241038]/5 shadow-md">
                   {/* Subtle inner ambient glow */}
                   <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-plum/10 via-yellow/15 to-transparent blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-10" />
 
@@ -111,13 +111,19 @@ export function Specials() {
                   <img
                     src={spec.image}
                     alt={spec.title}
+                    loading="lazy"
+                    decoding="async"
+                    width="300"
+                    height="225"
                     className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out will-change-transform ${
-                      spec.image === miniBitesImg ? "object-[center_35%]" : "object-center"
+                      spec.image === miniBitesImg
+                        ? "object-[center_35%]"
+                        : "object-center"
                     }`}
                   />
 
                   {/* Bottom Image Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none sm:hidden" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none sm:hidden" />
                 </div>
 
                 {/* Details */}

@@ -2,14 +2,14 @@ import { useState, useEffect, lazy, Suspense } from "react";
 import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
-import About from "./components/About";
-import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
 // Lazy-loaded routes and below-the-fold heavy sections
+const About = lazy(() => import("./components/About"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
 const FranchiseSection = lazy(() => import("./components/FranchiseSection"));
 const FranchiseTeaser = lazy(() => import("./components/FranchiseTeaser"));
 const Specials = lazy(() => import("./components/Specials"));
@@ -99,9 +99,9 @@ function App() {
           {currentPage === "home" && (
             <>
               <Hero />
-              <About isHomePage={true} />
-              <Testimonials />
-              <Suspense fallback={<div className="min-h-[300px] flex items-center justify-center"><div className="w-6 h-6 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+              <Suspense fallback={<div className="min-h-[200px] flex items-center justify-center"><div className="w-6 h-6 rounded-full border-2 border-plum border-t-transparent animate-spin" /></div>}>
+                <About isHomePage={true} />
+                <Testimonials />
                 <FranchiseSection />
                 <FranchiseTeaser />
               </Suspense>

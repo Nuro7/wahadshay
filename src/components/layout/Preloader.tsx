@@ -10,141 +10,87 @@ export function Preloader() {
   const mobileLogoRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Disable scrolling when preloader is active
-    document.body.style.overflow = "hidden";
-    document.documentElement.style.overflow = "hidden";
-    document.body.classList.remove("splash-done");
+    // Mark splash as done immediately so hero and app render without delay
+    document.body.classList.add("splash-done");
+    window.dispatchEvent(new Event("splash-complete"));
 
     const isMobileDevice = window.innerWidth <= 768;
 
     const completePreloader = () => {
       setIsDestroyed(true);
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
-      document.body.classList.add("splash-done");
     };
 
     const tl = gsap.timeline({
       onComplete: completePreloader
     });
 
-    // Fallback safety timer so mobile browsers never get stuck
-    const safetyTimeout = setTimeout(() => {
-      completePreloader();
-      window.dispatchEvent(new Event("splash-complete"));
-    }, isMobileDevice ? 1600 : 3500);
-
     if (isMobileDevice) {
-      // Set initial states for mobile
+      // Mobile: quick 0.35s graceful brand dissolve directly into Hero
       gsap.set(mobileLogoRef.current, {
         opacity: 0,
-        scale: 0.9,
-        y: 10
+        scale: 0.95
       });
 
-      // STAGE 1: Mobile Logo Entrance (0s -> 0.4s)
       tl.to(mobileLogoRef.current, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.25,
+        ease: "power2.out"
+      });
+
+      tl.to(containerRef.current, {
+        opacity: 0,
+        duration: 0.3,
+        ease: "power2.inOut"
+      }, "+=0.1");
+
+    } else {
+      // Desktop: Fast elegant entrance without holding screen
+      gsap.set(iconRef.current, {
+        opacity: 0,
+        scale: 0.85,
+        y: 10
+      });
+      gsap.set(wordmarkRef.current, {
+        opacity: 0,
+        x: 15
+      });
+      gsap.set(taglineRef.current, {
+        opacity: 0,
+        y: 8
+      });
+
+      tl.to(iconRef.current, {
         opacity: 1,
         scale: 1,
         y: 0,
         duration: 0.4,
-        ease: "power3.out"
+        ease: "power2.out"
       });
 
-      // STAGE 2: Gentle brand shimmer (0.4s -> 0.75s)
-      tl.to(mobileLogoRef.current, {
-        scale: 1.02,
-        duration: 0.35,
-        ease: "sine.inOut"
-      });
-
-      // STAGE 3: Trigger hero reveal (0.75s)
-      tl.call(() => {
-        document.body.classList.add("splash-done");
-        window.dispatchEvent(new Event("splash-complete"));
-      }, [], 0.75);
-
-      // STAGE 4: Smooth dissolve directly into the Hero background (0.75s -> 1.1s)
-      tl.to(containerRef.current, {
-        opacity: 0,
-        scale: 1.02,
-        duration: 0.35,
-        ease: "power2.inOut"
-      }, 0.75);
-
-    } else {
-      // Desktop sequence
-      gsap.set(iconRef.current, {
-        opacity: 0,
-        scale: 0.7,
-        y: 20,
-        rotation: 2,
-        x: window.innerWidth > 480 ? 100 : 0
-      });
-      gsap.set(wordmarkRef.current, {
-        opacity: 0,
-        x: 30,
-        filter: "blur(12px)"
-      });
-      gsap.set(taglineRef.current, {
-        opacity: 0,
-        y: 12,
-        filter: "blur(8px)"
-      });
-
-      // STAGE 1: Icon entrance (0s to 0.9s)
-      tl.to(iconRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        rotation: 0,
-        duration: 0.9,
-        ease: "power3.out"
-      });
-
-      // STAGE 2: Icon slides left, Wordmark enters (0.9s to 1.7s)
-      tl.to(iconRef.current, {
-        x: 0,
-        duration: 0.8,
-        ease: "power4.out"
-      }, 0.9);
       tl.to(wordmarkRef.current, {
         opacity: 1,
         x: 0,
-        filter: "blur(0px)",
-        duration: 0.8,
-        ease: "power4.out"
-      }, 0.9);
-
-      // STAGE 3: Tagline fades in (1.7s to 2.3s)
-      tl.to(taglineRef.current, {
-        opacity: 0.85,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.6,
+        duration: 0.4,
         ease: "power2.out"
-      }, 1.7);
+      }, "-=0.2");
 
-      // STAGE 4: Trigger hero reveal right as preloader begins dissolving
-      tl.call(() => {
-        document.body.classList.add("splash-done");
-        window.dispatchEvent(new Event("splash-complete"));
-      }, [], 2.4);
+      tl.to(taglineRef.current, {
+        opacity: 0.9,
+        y: 0,
+        duration: 0.3,
+        ease: "power2.out"
+      }, "-=0.2");
 
-      // STAGE 5: Smooth dissolve exit (2.4s to 3.0s)
       tl.to(containerRef.current, {
         opacity: 0,
-        scale: 1.03,
-        duration: 0.6,
+        duration: 0.4,
         ease: "power2.inOut"
-      }, 2.4);
+      }, "+=0.3");
     }
 
     return () => {
-      clearTimeout(safetyTimeout);
       tl.kill();
-      document.body.style.overflow = "";
-      document.documentElement.style.overflow = "";
     };
   }, []);
 
@@ -399,7 +345,7 @@ export function Preloader() {
 
       <div
         ref={containerRef}
-        className="splash-container"
+        className="splash-container pointer-events-none"
       >
         {/* Background glow shifting */}
         <div className="splash-bg-glow" />
@@ -421,18 +367,22 @@ export function Preloader() {
               {/* Stage 1: Icon reveal */}
               <div ref={iconRef} className="logo-wrapper">
                 <img
-                  src="/icon.png"
+                  src="/icon.webp"
                   alt="Wahad Shay Icon"
                   className="splash-icon"
+                  width="139"
+                  height="139"
                 />
               </div>
 
               {/* Stage 2: Wordmark slides in */}
               <div ref={wordmarkRef} className="text-wrapper">
                 <img
-                  src="/wordmark.png"
+                  src="/wordmark.webp"
                   alt="Wahad Shay Wordmark"
                   className="splash-wordmark"
+                  width="200"
+                  height="106"
                 />
               </div>
             </div>
@@ -440,16 +390,18 @@ export function Preloader() {
             {/* Stage 3: Tagline fades in */}
             <div ref={taglineRef} className="tagline-wrapper">
               <img
-                src="/tagline.png"
+                src="/tagline.webp"
                 alt="Wahad Shay Tagline"
                 className="splash-tagline"
+                width="240"
+                height="26"
               />
             </div>
           </div>
 
           {/* Mobile single logo */}
           <div ref={mobileLogoRef} className="mobile-logo-wrapper">
-            <img src="/logo_wahad.png" alt="Wahad Shay Logo" className="splash-mobile-logo" />
+            <img src="/logo_wahad.webp" alt="Wahad Shay Logo" className="splash-mobile-logo" width="280" height="140" />
           </div>
         </div>
       </div>

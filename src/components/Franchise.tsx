@@ -64,24 +64,27 @@ export function Franchise() {
     setIsSubmitting(true);
 
     try {
-      // Submit seamlessly in background to nmsshamil232@gmail.com
-      await fetch("https://formsubmit.co/ajax/d12d68864108f583ca82c4d27b7f889b", {
+      // Submit seamlessly in background to Info@wahadshaycafe.com
+      const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Dubai", dateStyle: "full", timeStyle: "medium" });
+      await fetch("https://formsubmit.co/ajax/Info@wahadshaycafe.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `Wahad Shay Franchise Application - ${formData.name || "Partner Inquiry"}`,
+          _subject: `🏢 [FRANCHISE LEAD] ${formData.name.toUpperCase()} — ${formData.location || "UAE"}`,
           _template: "table",
           _captcha: "false",
-          "Full Name": formData.name,
-          "Phone / WhatsApp": formData.phone,
-          "Email Address": formData.email,
-          "Proposed City / Location": formData.location,
-          "Prior F&B Experience": formData.experience === "yes" ? "Yes, F&B / Retail" : "No, First Venture",
-          "Investment Timeline": formData.timeline === "immediate" ? "1-3 Months" : formData.timeline === "medium" ? "3-6 Months" : "6-12 Months",
-          "Additional Information / Notes": formData.message || "None provided",
+          "📁 APPLICATION CATEGORY": "🏛️ Commercial Franchise & Territory Partnership",
+          "👤 APPLICANT FULL NAME": formData.name,
+          "📱 PHONE / WHATSAPP": formData.phone,
+          "✉️ APPLICANT EMAIL": formData.email,
+          "📍 TARGET EMIRATE / PROPOSED CITY": formData.location,
+          "💼 PRIOR F&B / RETAIL EXPERIENCE": formData.experience === "yes" ? "✅ Yes — Experienced F&B Operator" : "🆕 No — First Venture",
+          "⏳ PLANNED INVESTMENT TIMELINE": formData.timeline === "immediate" ? "🚀 Immediate (1-3 Months)" : formData.timeline === "medium" ? "📅 Mid-Term (3-6 Months)" : "🗓️ Long-Term (6-12 Months)",
+          "📝 PROPOSAL / ADDITIONAL NOTES": formData.message || "None provided",
+          "🕒 SUBMITTED AT (UAE TIME)": timestamp,
         }),
       });
     } catch {

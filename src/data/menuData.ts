@@ -1,15 +1,15 @@
-import parathaImg from "../assets/hot_chicken.jpg";
-import indomieImg from "../assets/hot_chicken_rice.jpg";
-import burgerSpImg from "../assets/hot_chicken_burger.jpg";
-import comboImg from "../assets/mini_bites.jpg";
-import wrapImg from "../assets/juicy_dip.jpg";
-import plateImg from "../assets/hot_chicken_rice.jpg";
-import wahadImg from "../assets/hot_chicken.jpg";
-import saladImg from "../assets/mini_bites.jpg";
-import soupImg from "../assets/hot_chicken_rice.jpg";
-import juiceImg from "../assets/juicy_dip.jpg";
-import milkshakeImg from "../assets/hot_chicken_burger.jpg";
-import dessertImg from "../assets/mini_bites.jpg";
+import parathaImg from "../assets/hot_chicken.webp";
+import indomieImg from "../assets/hot_chicken_rice.webp";
+import burgerSpImg from "../assets/hot_chicken_burger.webp";
+import comboImg from "../assets/mini_bites.webp";
+import wrapImg from "../assets/juicy_dip.webp";
+import plateImg from "../assets/hot_chicken_rice.webp";
+import wahadImg from "../assets/hot_chicken.webp";
+import saladImg from "../assets/mini_bites.webp";
+import soupImg from "../assets/hot_chicken_rice.webp";
+import juiceImg from "../assets/juicy_dip.webp";
+import milkshakeImg from "../assets/hot_chicken_burger.webp";
+import dessertImg from "../assets/mini_bites.webp";
 
 export interface Product {
   id: string;

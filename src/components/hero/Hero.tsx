@@ -13,6 +13,9 @@ const CanvasParticles = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    const isMobile = window.innerWidth < 768;
+    const particleCount = isMobile ? 8 : 20;
+
     let animationFrameId: number;
     let particles: Array<{
       x: number;
@@ -29,10 +32,10 @@ const CanvasParticles = () => {
     };
 
     resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("resize", resizeCanvas, { passive: true });
 
     // Tiny, slow gold dust particles
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
@@ -112,7 +115,7 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
   }, [target, delay]);
 
   return (
-    <div ref={containerRef} style={{ opacity: 0 }} className={`text-center flex flex-col items-center justify-center translate-y-4 stat-reveal flex-1 w-full ${!isLast ? "border-e border-white/10" : ""}`}>
+    <div ref={containerRef} className={`text-center flex flex-col items-center justify-center stat-reveal flex-1 w-full transition-all duration-500 ${!isLast ? "border-e border-white/10" : ""}`}>
       <div className="typo-stat text-yellow">
         {count.toLocaleString()}{suffix}
       </div>
@@ -137,7 +140,7 @@ export default function Hero() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    window.addEventListener("resize", checkMobile);
+    window.addEventListener("resize", checkMobile, { passive: true });
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
@@ -153,7 +156,7 @@ export default function Hero() {
     const nextVid = videoRefs.current[nextIndex];
     if (nextVid) {
       nextVid.currentTime = 0;
-      nextVid.play().catch(e => console.error("Video play failed", e));
+      nextVid.play().catch(() => {});
     }
 
     setActiveVideoIndex(nextIndex);
@@ -177,18 +180,16 @@ export default function Hero() {
   }, [activeVideoIdx, isMobile]);
 
   useEffect(() => {
-    // Re-attempt play on user interaction or splash-complete if blocked by browser policy
+    // Re-attempt play on user interaction if blocked by browser policy
     const onUserInteract = () => {
       tryPlayActiveVideo();
     };
     window.addEventListener("touchstart", onUserInteract, { once: true, passive: true });
     window.addEventListener("click", onUserInteract, { once: true, passive: true });
-    window.addEventListener("splash-complete", onUserInteract);
 
     return () => {
       window.removeEventListener("touchstart", onUserInteract);
       window.removeEventListener("click", onUserInteract);
-      window.removeEventListener("splash-complete", onUserInteract);
     };
   }, [activeVideoIdx]);
 
@@ -211,82 +212,83 @@ export default function Hero() {
   useEffect(() => {
     let titleTimeline: gsap.core.Timeline | null = null;
 
-    const startAnimations = () => {
-      // 1. Cinematic reveals via GSAP
-      titleTimeline = gsap.timeline({ delay: 0.2 });
+    // 1. Cinematic reveals via GSAP (starts immediately without artificial delay)
+    titleTimeline = gsap.timeline({ delay: 0.05 });
 
-      titleTimeline.fromTo(
-        ".word-reveal",
-        { opacity: 0, y: 35 },
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.08,
-          duration: 1.3,
-          ease: "power4.out",
-        }
-      );
+    titleTimeline.fromTo(
+      ".word-reveal",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.06,
+        duration: 1.0,
+        ease: "power4.out",
+      }
+    );
 
-      titleTimeline.fromTo(
-        ".hero-subtitle",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-        "-=0.7"
-      );
+    titleTimeline.fromTo(
+      ".hero-subtitle",
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+      "-=0.6"
+    );
 
-      titleTimeline.fromTo(
-        ".hero-btn-container button, .hero-btn-container a",
-        { opacity: 0, y: 25 },
-        { opacity: 1, y: 0, stagger: 0.1, duration: 0.9, ease: "power3.out" },
-        "-=0.7"
-      );
+    titleTimeline.fromTo(
+      ".hero-btn-container button, .hero-btn-container a",
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: "power3.out" },
+      "-=0.6"
+    );
 
-      titleTimeline.fromTo(
-        ".stat-reveal",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.12, duration: 0.8, ease: "power2.out" },
-        "-=0.4"
-      );
-    };
+    titleTimeline.fromTo(
+      ".stat-reveal",
+      { opacity: 0, y: 15 },
+      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out" },
+      "-=0.4"
+    );
 
-    if (document.body.classList.contains("splash-done")) {
-      startAnimations();
-    } else {
-      window.addEventListener("splash-complete", startAnimations);
+    // 2. Mouse parallax only on desktop
+    let onMouseMove: ((e: MouseEvent) => void) | null = null;
+    if (window.innerWidth >= 1024) {
+      onMouseMove = (e: MouseEvent) => {
+        const { clientX, clientY } = e;
+        const { innerWidth, innerHeight } = window;
+
+        const x = (clientX / innerWidth) - 0.5;
+        const y = (clientY / innerHeight) - 0.5;
+
+        gsap.to(parallaxVideoRef.current, { x: x * 18, y: y * 18, duration: 1.4, ease: "power2.out" });
+        gsap.to(lightingRef.current, { x: -x * 30, y: -y * 30, duration: 1.6, ease: "power2.out" });
+      };
+      window.addEventListener("mousemove", onMouseMove, { passive: true });
     }
 
-    // 2. Mouse parallax
-    const onMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { innerWidth, innerHeight } = window;
-
-      const x = (clientX / innerWidth) - 0.5;
-      const y = (clientY / innerHeight) - 0.5;
-
-      gsap.to(parallaxVideoRef.current, { x: x * 18, y: y * 18, duration: 1.4, ease: "power2.out" });
-      gsap.to(lightingRef.current, { x: -x * 30, y: -y * 30, duration: 1.6, ease: "power2.out" });
-    };
-
-    // 3. Scroll-based parallax
+    // 3. Scroll-based parallax (throttled check)
+    let ticking = false;
     const onScroll = () => {
-      const scrollY = window.scrollY;
-      if (scrollY > window.innerHeight) return;
-
-      if (parallaxVideoRef.current) {
-        parallaxVideoRef.current.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
-      }
-      if (lightingRef.current) {
-        lightingRef.current.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const scrollY = window.scrollY;
+          if (scrollY <= window.innerHeight) {
+            if (parallaxVideoRef.current) {
+              parallaxVideoRef.current.style.transform = `translate3d(0, ${scrollY * 0.15}px, 0)`;
+            }
+            if (lightingRef.current) {
+              lightingRef.current.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
+            }
+          }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       if (titleTimeline) titleTimeline.kill();
-      window.removeEventListener("splash-complete", startAnimations);
-      window.removeEventListener("mousemove", onMouseMove);
+      if (onMouseMove) window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
@@ -322,7 +324,7 @@ export default function Hero() {
             autoPlay
             muted
             playsInline
-            preload="auto"
+            preload={isMobile ? "metadata" : "auto"}
             onCanPlay={(e) => {
               if (idx === activeVideoIdx) {
                 const target = e.currentTarget as HTMLVideoElement;
@@ -411,7 +413,7 @@ export default function Hero() {
               )}
             </h1>
 
-            <p style={{ opacity: 0 }} className="hero-subtitle max-w-prose lg:max-w-xl typo-body-lg text-white/80 text-start rtl:text-end">
+            <p className="hero-subtitle max-w-prose lg:max-w-xl typo-body-lg text-white/80 text-start rtl:text-end">
               {t('hero.subtitle')}
             </p>
           </div>

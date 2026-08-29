@@ -22,8 +22,12 @@ export function Footer() {
           <div className="flex flex-col items-start">
             <a href="#home" onClick={(e) => handleLinkClick(e, '#home')} className="inline-block mb-6 md:mb-7 -ms-4 md:-ms-5">
               <img
-                src="/logo_wahad.png"
+                src="/logo_wahad.webp"
                 alt="Wahad Shay Logo"
+                loading="lazy"
+                decoding="async"
+                width="180"
+                height="48"
                 className="h-16 sm:h-16 md:h-12 lg:h-14 w-auto object-contain object-left rtl:object-right group-hover:scale-[1.02] transition-transform duration-300"
               />
             </a>
