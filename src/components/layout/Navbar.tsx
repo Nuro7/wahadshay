@@ -113,6 +113,9 @@ export function Navbar() {
                     href={itemHash}
                     onClick={(e) => {
                       e.preventDefault();
+                      if (window.location.hash === itemHash || (window.location.hash === "" && itemHash === "#home")) {
+                        return;
+                      }
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
@@ -208,6 +211,11 @@ export function Navbar() {
                     href={itemHash}
                     onClick={(e) => {
                       e.preventDefault();
+                      // Prevent duplicate rapid taps
+                      if (window.location.hash === itemHash || (window.location.hash === "" && itemHash === "#home")) {
+                        setIsOpen(false);
+                        return;
+                      }
                       setIsOpen(false);
                       window.history.pushState(null, '', itemHash);
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
@@ -231,6 +239,10 @@ export function Navbar() {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
+                if (window.location.hash === "#contact") {
+                  setIsOpen(false);
+                  return;
+                }
                 setIsOpen(false);
                 window.history.pushState(null, '', '#contact');
                 window.dispatchEvent(new HashChangeEvent("hashchange"));
