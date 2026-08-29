@@ -11,15 +11,15 @@ export default function MissionVision() {
       <div className="premium-container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
-          <div className="space-y-12">
+          <div className="space-y-10 sm:space-y-12">
             {/* Vision */}
-            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal group">
-              <div className="shrink-0 flex items-center justify-center w-20 h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
+            <div className="flex flex-row gap-4 sm:gap-6 items-start reveal-left reveal group">
+              <div className="shrink-0 flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
                 <div className="absolute inset-0 rounded-2xl border border-yellow opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-500" />
-                <Eye size={32} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
+                <Eye className="w-7 h-7 sm:w-8 sm:h-8 text-plum stroke-[1.5] sm:stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
-              <div className="pt-2">
-                <h3 className="typo-h3 text-plum mb-3">{t('about.missionVision.visionTitle')}</h3>
+              <div className="pt-0.5 sm:pt-2">
+                <h3 className="typo-h3 text-plum mb-2 sm:mb-3">{t('about.missionVision.visionTitle')}</h3>
                 <p className="typo-body-lg text-text-primary max-w-md">
                   {t('about.missionVision.visionDesc')}
                 </p>
@@ -27,13 +27,13 @@ export default function MissionVision() {
             </div>
 
             {/* Mission */}
-            <div className="flex flex-col sm:flex-row gap-6 items-start reveal-left reveal group" style={{ "--stagger-idx": 1 } as React.CSSProperties}>
-              <div className="shrink-0 flex items-center justify-center w-20 h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
+            <div className="flex flex-row gap-4 sm:gap-6 items-start reveal-left reveal group" style={{ "--stagger-idx": 1 } as React.CSSProperties}>
+              <div className="shrink-0 flex items-center justify-center w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white border border-neutral-border shadow-sm relative transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-md group-hover:border-plum/20">
                 <div className="absolute inset-0 rounded-2xl border border-yellow opacity-0 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-all duration-500" />
-                <Target size={32} className="text-plum stroke-[1] transition-transform duration-500 group-hover:scale-110" />
+                <Target className="w-7 h-7 sm:w-8 sm:h-8 text-plum stroke-[1.5] sm:stroke-[1] transition-transform duration-500 group-hover:scale-110" />
               </div>
-              <div className="pt-2">
-                <h3 className="typo-h3 text-plum mb-3">{t('about.missionVision.missionTitle')}</h3>
+              <div className="pt-0.5 sm:pt-2">
+                <h3 className="typo-h3 text-plum mb-2 sm:mb-3">{t('about.missionVision.missionTitle')}</h3>
                 <p className="typo-body-lg text-text-primary max-w-md">
                   {t('about.missionVision.missionDesc')}
                 </p>
