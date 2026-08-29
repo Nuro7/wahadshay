@@ -42,8 +42,8 @@ export default function MissionVision() {
           </div>
 
           <div className="lg:border-s lg:border-plum/20 lg:px-16 reveal-right reveal" style={{ "--stagger-idx": 2 } as React.CSSProperties}>
-            <h3 className="typo-h3 text-plum mb-8">{t('about.missionVision.coreValuesTitle')}</h3>
-            <div className="space-y-6">
+            <h3 className="typo-h3 text-plum mb-5 sm:mb-8">{t('about.missionVision.coreValuesTitle')}</h3>
+            <div className="space-y-1 sm:space-y-6">
               {coreValues.map((title, idx) => {
                 const Icon = coreIcons[idx % coreIcons.length];
                 return (
