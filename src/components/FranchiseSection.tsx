@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import type React from "react";
 import { createPortal } from "react-dom";
 import { MapPin, X, Navigation } from "lucide-react";
@@ -105,42 +105,37 @@ const branches: Branch[] = [
   },
 ];
 
-// Continuous golden floating particles component
-const GoldParticles = () => {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; size: number; duration: number; delay: number; driftX: number }>>([]);
+// Gold particles — pre-generated at module level so they never change between renders.
+// Using a static array avoids the useState+useEffect pattern that caused an extra
+// re-render on mount (setParticles triggering a layout cycle during LCP window).
+const GOLD_PARTICLES = Array.from({ length: 25 }).map((_, i) => ({
+  id: i,
+  x: (i * 37 + 11) % 100,          // deterministic spread without Math.random
+  size: (i % 3) + 1.5,
+  duration: 10 + (i % 20),
+  delay: -((i * 3) % 20),
+  driftX: ((i * 7) % 40) - 20,
+}));
 
-  useEffect(() => {
-    const generated = Array.from({ length: 25 }).map((_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      size: Math.random() * 3 + 1,
-      duration: Math.random() * 20 + 10,
-      delay: Math.random() * -20,
-      driftX: Math.random() * 40 - 20,
-    }));
-    setParticles(generated);
-  }, []);
-
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {particles.map((p) => (
-        <div
-          key={p.id}
-          className="absolute rounded-full bg-gradient-to-b from-[#D4AF37] to-[#F5D66A] opacity-35 blur-[0.5px] animate-float-up"
-          style={{
-            left: `${p.x}%`,
-            bottom: `-10px`,
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            "--float-duration": `${p.duration}s`,
-            "--float-delay": `${p.delay}s`,
-            "--drift-x": `${p.driftX}px`,
-          } as React.CSSProperties}
-        />
-      ))}
-    </div>
-  );
-};
+const GoldParticles = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+    {GOLD_PARTICLES.map((p) => (
+      <div
+        key={p.id}
+        className="absolute rounded-full bg-gradient-to-b from-[#D4AF37] to-[#F5D66A] opacity-35 blur-[0.5px] animate-float-up"
+        style={{
+          left: `${p.x}%`,
+          bottom: `-10px`,
+          width: `${p.size}px`,
+          height: `${p.size}px`,
+          "--float-duration": `${p.duration}s`,
+          "--float-delay": `${p.delay}s`,
+          "--drift-x": `${p.driftX}px`,
+        } as React.CSSProperties}
+      />
+    ))}
+  </div>
+);
 
 export default function FranchiseSection() {
   const { t, language } = useLanguage();
@@ -148,20 +143,29 @@ export default function FranchiseSection() {
   const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
+  // rAF ref for mousemove throttling — prevents 60+ setState calls per second
+  const rafRef = useRef<number | null>(null);
 
-  const getPathClass = (cityName: string) => {
+  const getPathClass = useCallback((cityName: string) => {
     const isActive = hoveredCard === cityName || (selectedBranch && selectedBranch.city === cityName);
     return `${isActive ? "fill-[#2E1A47]" : "fill-[#5E2689]"} stroke-[#D4AF37]/25 hover:fill-[#2E1A47] hover:stroke-[#F5D66A] transition-all duration-300 cursor-pointer`;
-  };
+  }, [hoveredCard, selectedBranch]);
 
-  // Parallax effect on map container based on mouse movement
-  const handleMouseMove = (e: React.MouseEvent) => {
+  // Throttled parallax: only one setState per animation frame, not per pixel moved
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (!containerRef.current) return;
-    const { left, top, width, height } = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / (width / 2);
-    const y = (e.clientY - top - height / 2) / (height / 2);
-    setMousePosition({ x: x * 12, y: y * 12 });
-  };
+    if (rafRef.current) return; // already scheduled — skip this event
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!containerRef.current) return;
+      const { left, top, width, height } = containerRef.current.getBoundingClientRect();
+      const x = (clientX - left - width / 2) / (width / 2);
+      const y = (clientY - top - height / 2) / (height / 2);
+      setMousePosition({ x: x * 12, y: y * 12 });
+    });
+  }, []);
 
   const handleMouseLeave = () => {
     setMousePosition({ x: 0, y: 0 });

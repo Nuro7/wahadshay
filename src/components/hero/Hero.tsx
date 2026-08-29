@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import gsap from "gsap";
 import { useLanguage } from "../../i18n/LanguageContext";
 
-
-
+/**
+ * CanvasParticles — desktop only, lazy-initialized after first frame.
+ * On mobile this entire component is not mounted, saving the rAF loop
+ * and canvas compositing overhead during the critical render window.
+ */
 const CanvasParticles = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -13,9 +15,7 @@ const CanvasParticles = () => {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const isMobile = window.innerWidth < 768;
-    const particleCount = isMobile ? 8 : 20;
-
+    const particleCount = 20;
     let animationFrameId: number;
     let particles: Array<{
       x: number;
@@ -34,7 +34,6 @@ const CanvasParticles = () => {
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas, { passive: true });
 
-    // Tiny, slow gold dust particles
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -53,7 +52,6 @@ const CanvasParticles = () => {
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(245, 189, 32, ${p.opacity})`;
         ctx.fill();
-
         p.x += p.speedX;
         p.y += p.speedY;
         if (p.y < 0) {
@@ -75,7 +73,19 @@ const CanvasParticles = () => {
   return <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none opacity-45 z-0" />;
 };
 
-const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: { label: string; target: number; suffix?: string; delay?: number; isLast?: boolean }) => {
+const CounterItem = ({
+  label,
+  target,
+  suffix = "",
+  delay = 0,
+  isLast = false,
+}: {
+  label: string;
+  target: number;
+  suffix?: string;
+  delay?: number;
+  isLast?: boolean;
+}) => {
   const [count, setCount] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -93,7 +103,6 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
               const easedProgress = progress * (2 - progress);
               const current = Math.floor(easedProgress * end);
               setCount(current);
-
               if (progress < 1) {
                 requestAnimationFrame(animate);
               }
@@ -115,9 +124,15 @@ const CounterItem = ({ label, target, suffix = "", delay = 0, isLast = false }: 
   }, [target, delay]);
 
   return (
-    <div ref={containerRef} className={`text-center flex flex-col items-center justify-center stat-reveal flex-1 w-full transition-all duration-500 ${!isLast ? "border-e border-white/10" : ""}`}>
+    <div
+      ref={containerRef}
+      className={`text-center flex flex-col items-center justify-center stat-reveal flex-1 w-full transition-all duration-500 ${
+        !isLast ? "border-e border-white/10" : ""
+      }`}
+    >
       <div className="typo-stat text-yellow">
-        {count.toLocaleString()}{suffix}
+        {count.toLocaleString()}
+        {suffix}
       </div>
       <div className="typo-badge text-white/75 mt-1.5 px-1 line-clamp-2">
         {label}
@@ -131,20 +146,24 @@ export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
   const parallaxVideoRef = useRef<HTMLDivElement>(null);
   const lightingRef = useRef<HTMLDivElement>(null);
-
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
+
   const [activeVideoIndex, setActiveVideoIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(() => typeof window !== "undefined" ? window.innerWidth < 768 : false);
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     window.addEventListener("resize", checkMobile, { passive: true });
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const videos = useMemo(() => isMobile ? ['/mobile.mp4'] : ['/home.mp4', '/home1.mp4'], [isMobile]);
+  // On mobile: single video. On desktop: two alternating videos.
+  const videos = useMemo(
+    () => (isMobile ? ["/mobile.mp4"] : ["/home.mp4", "/home1.mp4"]),
+    [isMobile]
+  );
   const activeVideoIdx = activeVideoIndex >= videos.length ? 0 : activeVideoIndex;
 
   const handleVideoEnd = (index: number) => {
@@ -152,13 +171,11 @@ export default function Hero() {
     if (index !== currentActiveIdx) return;
     const nextIndex = (index + 1) % videos.length;
 
-    // Pre-play the next video before the opacity transition begins
     const nextVid = videoRefs.current[nextIndex];
     if (nextVid) {
       nextVid.currentTime = 0;
       nextVid.play().catch(() => {});
     }
-
     setActiveVideoIndex(nextIndex);
   };
 
@@ -180,91 +197,100 @@ export default function Hero() {
   }, [activeVideoIdx, isMobile]);
 
   useEffect(() => {
-    // Re-attempt play on user interaction if blocked by browser policy
-    const onUserInteract = () => {
-      tryPlayActiveVideo();
-    };
+    const onUserInteract = () => tryPlayActiveVideo();
     window.addEventListener("touchstart", onUserInteract, { once: true, passive: true });
     window.addEventListener("click", onUserInteract, { once: true, passive: true });
-
     return () => {
       window.removeEventListener("touchstart", onUserInteract);
       window.removeEventListener("click", onUserInteract);
     };
   }, [activeVideoIdx]);
 
+  // Pause inactive desktop videos after crossfade
   useEffect(() => {
-    // Pause inactive videos after the 1-second crossfade finishes to save resources
     const timeouts = videos.map((_, idx) => {
       const vid = videoRefs.current[idx];
       if (!vid || idx === activeVideoIndex) return null;
-
-      return setTimeout(() => {
-        vid.pause();
-      }, 1000);
+      return setTimeout(() => { vid.pause(); }, 1000);
     });
-
-    return () => {
-      timeouts.forEach(t => t && clearTimeout(t));
-    };
+    return () => { timeouts.forEach((t) => t && clearTimeout(t)); };
   }, [activeVideoIndex, videos]);
 
+  // GSAP animations — dynamically imported so GSAP never blocks first paint.
+  // On mobile: pure CSS word-reveal animation handles the text entrance,
+  // so even if GSAP arrives late, no content is hidden waiting for it.
   useEffect(() => {
-    let titleTimeline: gsap.core.Timeline | null = null;
-
-    // 1. Cinematic reveals via GSAP (starts immediately without artificial delay)
-    titleTimeline = gsap.timeline({ delay: 0.05 });
-
-    titleTimeline.fromTo(
-      ".word-reveal",
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.06,
-        duration: 1.0,
-        ease: "power4.out",
-      }
-    );
-
-    titleTimeline.fromTo(
-      ".hero-subtitle",
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-      "-=0.6"
-    );
-
-    titleTimeline.fromTo(
-      ".hero-btn-container button, .hero-btn-container a",
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: "power3.out" },
-      "-=0.6"
-    );
-
-    titleTimeline.fromTo(
-      ".stat-reveal",
-      { opacity: 0, y: 15 },
-      { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out" },
-      "-=0.4"
-    );
-
-    // 2. Mouse parallax only on desktop
+    let killed = false;
+    let titleTimeline: any = null;
     let onMouseMove: ((e: MouseEvent) => void) | null = null;
-    if (window.innerWidth >= 1024) {
-      onMouseMove = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const { innerWidth, innerHeight } = window;
 
-        const x = (clientX / innerWidth) - 0.5;
-        const y = (clientY / innerHeight) - 0.5;
+    // First: immediately show words via CSS so content is visible even without GSAP
+    const words = document.querySelectorAll<HTMLElement>(".word-reveal");
+    const subtitle = document.querySelector<HTMLElement>(".hero-subtitle");
+    const buttons = document.querySelectorAll<HTMLElement>(".hero-btn-container button, .hero-btn-container a");
+    const stats = document.querySelectorAll<HTMLElement>(".stat-reveal");
 
-        gsap.to(parallaxVideoRef.current, { x: x * 18, y: y * 18, duration: 1.4, ease: "power2.out" });
-        gsap.to(lightingRef.current, { x: -x * 30, y: -y * 30, duration: 1.6, ease: "power2.out" });
-      };
-      window.addEventListener("mousemove", onMouseMove, { passive: true });
-    }
+    // Inline CSS fallback — makes content instantly visible if GSAP is slow
+    // GSAP will override these values when it loads
+    const applyFallback = () => {
+      words.forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+      if (subtitle) { subtitle.style.opacity = "1"; subtitle.style.transform = "none"; }
+      buttons.forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+      stats.forEach((el) => { el.style.opacity = "1"; el.style.transform = "none"; });
+    };
 
-    // 3. Scroll-based parallax (throttled check)
+    // Safety net: if GSAP takes longer than 1.5s, reveal content immediately
+    const fallbackTimer = setTimeout(applyFallback, 1500);
+
+    // Dynamic import of GSAP — runs asynchronously, never blocks initial render
+    import("gsap").then(({ default: gsap }) => {
+      if (killed) return;
+      clearTimeout(fallbackTimer);
+
+      titleTimeline = gsap.timeline({ delay: 0.05 });
+
+      titleTimeline.fromTo(
+        ".word-reveal",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.06, duration: 1.0, ease: "power4.out" }
+      );
+
+      titleTimeline.fromTo(
+        ".hero-subtitle",
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        "-=0.6"
+      );
+
+      titleTimeline.fromTo(
+        ".hero-btn-container button, .hero-btn-container a",
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.08, duration: 0.8, ease: "power3.out" },
+        "-=0.6"
+      );
+
+      titleTimeline.fromTo(
+        ".stat-reveal",
+        { opacity: 0, y: 15 },
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.7, ease: "power2.out" },
+        "-=0.4"
+      );
+
+      // Mouse parallax — desktop only
+      if (window.innerWidth >= 1024) {
+        onMouseMove = (e: MouseEvent) => {
+          const { clientX, clientY } = e;
+          const { innerWidth, innerHeight } = window;
+          const x = clientX / innerWidth - 0.5;
+          const y = clientY / innerHeight - 0.5;
+          gsap.to(parallaxVideoRef.current, { x: x * 18, y: y * 18, duration: 1.4, ease: "power2.out" });
+          gsap.to(lightingRef.current, { x: -x * 30, y: -y * 30, duration: 1.6, ease: "power2.out" });
+        };
+        window.addEventListener("mousemove", onMouseMove, { passive: true });
+      }
+    });
+
+    // Scroll-based parallax — throttled, runs without GSAP
     let ticking = false;
     const onScroll = () => {
       if (!ticking) {
@@ -287,6 +313,8 @@ export default function Hero() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
+      killed = true;
+      clearTimeout(fallbackTimer);
       if (titleTimeline) titleTimeline.kill();
       if (onMouseMove) window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", onScroll);
@@ -324,6 +352,8 @@ export default function Hero() {
             autoPlay
             muted
             playsInline
+            // Mobile: metadata only — don't preload full video on initial load.
+            // Desktop: auto preload for seamless crossfade between clips.
             preload={isMobile ? "metadata" : "auto"}
             onCanPlay={(e) => {
               if (idx === activeVideoIdx) {
@@ -342,11 +372,12 @@ export default function Hero() {
             onEnded={() => handleVideoEnd(idx)}
             loop={isMobile}
             className={`absolute inset-0 w-full h-full object-cover object-center scale-[1.03] transition-opacity duration-1000 ease-in-out ${
-              idx === activeVideoIdx ? 'opacity-100 z-10' : 'opacity-0 z-0'
+              idx === activeVideoIdx ? "opacity-100 z-10" : "opacity-0 z-0"
             }`}
           />
         ))}
-        {/* Soft vignette overlays to preserve branding and layout legibility */}
+
+        {/* Vignette overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#2E1A47]/70 via-[#2E1A47]/20 to-[#2E1A47]/85 md:bg-gradient-to-r md:from-[#2E1A47]/90 md:via-[#2E1A47]/70 md:to-transparent z-1 pointer-events-none" />
       </div>
 
@@ -355,39 +386,51 @@ export default function Hero() {
         ref={lightingRef}
         className="absolute inset-0 pointer-events-none z-1 will-change-transform"
       >
-        {/* Warm Golden Key Light */}
         <div className="absolute top-0 left-0 w-[70%] h-[70%] bg-[radial-gradient(circle_at_top_left,rgba(245,189,32,0.08)_0%,transparent_75%)]" />
-        {/* Violet rim light */}
         <div className="absolute bottom-0 right-0 w-[50%] h-[70%] bg-[radial-gradient(circle_at_bottom_right,rgba(94,38,137,0.15)_0%,transparent_60%)]" />
       </div>
 
-      {/* Slow gold particles */}
-      <CanvasParticles />
+      {/* Gold particles — desktop only. Saves the rAF loop + canvas compositing on mobile. */}
+      {!isMobile && <CanvasParticles />}
 
       {/* Content wrapper */}
-      <div className="relative z-20 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between flex-1 w-full gap-6 lg:gap-12" dir="ltr">
-
+      <div
+        className="relative z-20 premium-container flex flex-col lg:grid lg:grid-cols-2 items-center lg:items-center justify-between flex-1 w-full gap-6 lg:gap-12"
+        dir="ltr"
+      >
         {/* Left Side Copywriting */}
-        <div dir={language === 'AR' ? 'rtl' : 'ltr'} className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-start rtl:text-end items-start rtl:items-end max-w-2xl mx-auto lg:mx-0 w-full">
+        <div
+          dir={language === "AR" ? "rtl" : "ltr"}
+          className="space-y-6 md:space-y-8 flex flex-col justify-start md:justify-center text-start rtl:text-end items-start rtl:items-end max-w-2xl mx-auto lg:mx-0 w-full"
+        >
           <div className="space-y-4 flex flex-col items-start rtl:items-end text-start rtl:text-end w-full">
             <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 typo-eyebrow text-yellow whitespace-nowrap mb-2">
-              {t('hero.badge')}
+              {t("hero.badge")}
             </span>
 
-            {/* Word-by-word reveal heading grouped by lines for perfect text left alignment */}
             <h1 className="typo-display-xl text-white text-start rtl:text-end w-full">
-              {language === 'AR' ? (
+              {language === "AR" ? (
                 <>
                   <span className="block lg:inline lg:me-[0.28em]">
-                    {(t('hero.heading') as any).slice(0, 3).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal ms-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                    {(t("hero.heading") as any).slice(0, 3).map((word: any, idx: number) => (
+                      <span
+                        key={idx}
+                        className={`inline-block word-reveal ms-[0.28em] ${
+                          word.highlight ? "text-shimmer-gold font-black" : ""
+                        }`}
+                      >
                         {word.text}
                       </span>
                     ))}
                   </span>
                   <span className="block lg:inline">
-                    {(t('hero.heading') as any).slice(3, 6).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal ms-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                    {(t("hero.heading") as any).slice(3, 6).map((word: any, idx: number) => (
+                      <span
+                        key={idx}
+                        className={`inline-block word-reveal ms-[0.28em] ${
+                          word.highlight ? "text-shimmer-gold font-black" : ""
+                        }`}
+                      >
                         {word.text}
                       </span>
                     ))}
@@ -396,15 +439,25 @@ export default function Hero() {
               ) : (
                 <>
                   <span className="block lg:inline lg:me-[0.28em]">
-                    {(t('hero.heading') as any).slice(0, 4).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal me-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                    {(t("hero.heading") as any).slice(0, 4).map((word: any, idx: number) => (
+                      <span
+                        key={idx}
+                        className={`inline-block word-reveal me-[0.28em] ${
+                          word.highlight ? "text-shimmer-gold font-black" : ""
+                        }`}
+                      >
                         {word.text}
                       </span>
                     ))}
                   </span>
                   <span className="block lg:inline">
-                    {(t('hero.heading') as any).slice(4, 7).map((word: any, idx: number) => (
-                      <span key={idx} className={`inline-block word-reveal me-[0.28em] ${word.highlight ? 'text-shimmer-gold font-black' : ''}`}>
+                    {(t("hero.heading") as any).slice(4, 7).map((word: any, idx: number) => (
+                      <span
+                        key={idx}
+                        className={`inline-block word-reveal me-[0.28em] ${
+                          word.highlight ? "text-shimmer-gold font-black" : ""
+                        }`}
+                      >
                         {word.text}
                       </span>
                     ))}
@@ -414,62 +467,61 @@ export default function Hero() {
             </h1>
 
             <p className="hero-subtitle max-w-prose lg:max-w-xl typo-body-lg text-white/80 text-start rtl:text-end">
-              {t('hero.subtitle')}
+              {t("hero.subtitle")}
             </p>
           </div>
 
-          {/* CTA Buttons - Compact, solid yellow button aligned to the left */}
+          {/* CTA Buttons */}
           <div className="hero-btn-container flex justify-start rtl:justify-end w-full">
             <a
               href="#specials"
               onClick={(e) => {
                 e.preventDefault();
-                window.history.pushState(null, '', '#specials');
+                window.history.pushState(null, "", "#specials");
                 window.dispatchEvent(new HashChangeEvent("hashchange"));
               }}
               className="w-fit"
             >
               <button className="bg-yellow text-plum-dark rounded-full h-[42px] px-6 typo-button active:scale-[0.97] transition-all duration-300 shadow-[0_4px_14px_rgba(245,189,32,0.25)] hover:shadow-[0_6px_20px_rgba(245,189,32,0.35)] hover:-translate-y-[2px] transform cursor-pointer">
-                {t('hero.exploreMenu')}
+                {t("hero.exploreMenu")}
               </button>
             </a>
           </div>
 
-          {/* Desktop Counters Row (Hidden on Mobile) */}
+          {/* Desktop Counters */}
           <div className="hidden lg:grid grid-cols-3 w-full pt-8 border-t border-white/10">
-            <CounterItem label={t('hero.countriesInspired')} target={25} suffix="+" delay={1.3} />
-            <CounterItem label={t('hero.community')} target={600} suffix="K+" delay={1.45} />
-            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} isLast={true} />
+            <CounterItem label={t("hero.countriesInspired")} target={25} suffix="+" delay={1.3} />
+            <CounterItem label={t("hero.community")} target={600} suffix="K+" delay={1.45} />
+            <CounterItem label={t("hero.futureOutlets")} target={100} suffix="+" delay={1.6} isLast={true} />
           </div>
         </div>
 
-        {/* Right Side Spacer: Empty space to let background show through (Desktop only) */}
+        {/* Right spacer (desktop) */}
         <div className="hidden lg:block h-[380px] sm:h-[420px] lg:h-[480px] w-full" />
 
-        {/* Mobile Product Composition Spacer (Leaves room for the ambient video background showing the Karak cup pour) */}
+        {/* Mobile spacer */}
         <div className="w-full flex-1 min-h-[160px] lg:hidden pointer-events-none" />
 
-        {/* Mobile Counters Row (Visible on Mobile only, placed at the bottom) */}
+        {/* Mobile Counters */}
         <div className="flex lg:hidden w-full pt-4 border-t border-white/10 max-w-[340px] xs:max-w-[360px] sm:max-w-lg">
           <div className="grid grid-cols-3 w-full">
-            <CounterItem label={t('hero.countriesInspired')} target={25} suffix="+" delay={1.3} />
-            <CounterItem label={t('hero.community')} target={600} suffix="K+" delay={1.45} />
-            <CounterItem label={t('hero.futureOutlets')} target={100} suffix="+" delay={1.6} isLast={true} />
+            <CounterItem label={t("hero.countriesInspired")} target={25} suffix="+" delay={1.3} />
+            <CounterItem label={t("hero.community")} target={600} suffix="K+" delay={1.45} />
+            <CounterItem label={t("hero.futureOutlets")} target={100} suffix="+" delay={1.6} isLast={true} />
           </div>
         </div>
-
       </div>
 
-      {/* Smooth transition fading Hero into the next section */}
+      {/* Hero fade-out gradient */}
       <div className="absolute bottom-0 left-0 w-full h-[120px] md:h-[250px] bg-gradient-to-t from-plum-dark to-transparent pointer-events-none z-10" />
 
-      {/* Mouse Scroll Indicator (Desktop Only) */}
+      {/* Scroll Indicator (Desktop Only) */}
       <a
         href="#about"
         className="hidden md:flex absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex-col items-center gap-1.5 opacity-80 cursor-pointer group"
       >
         <span className="typo-eyebrow text-white group-hover:text-yellow transition-colors text-[10px]">
-          {t('hero.scroll')}
+          {t("hero.scroll")}
         </span>
         <div className="w-[18px] h-[28px] rounded-full border border-white/40 group-hover:border-yellow/50 flex items-start justify-center p-1 transition-colors">
           <div className="w-[3px] h-[5px] rounded-full bg-yellow animate-scroll-dot" />

@@ -1,43 +1,56 @@
 import { useEffect } from "react";
-import Lenis from "lenis";
 
+/**
+ * Smooth scroll via Lenis — desktop only.
+ * Uses a dynamic import so the lenis library (18 KB) is NEVER included
+ * in the initial JS bundle. It loads asynchronously after the page is
+ * interactive, which means zero cost for mobile users (where it's skipped
+ * entirely anyway).
+ */
 export function useLenis() {
   useEffect(() => {
-    // Detect mobile touch devices to preserve native 60/120Hz hardware momentum scrolling
-    const isTouch = 
-      "ontouchstart" in window || 
-      navigator.maxTouchPoints > 0 || 
+    // Detect mobile touch devices — preserve native hardware momentum scrolling.
+    // Skip Lenis entirely on touch devices.
+    const isTouch =
+      "ontouchstart" in window ||
+      navigator.maxTouchPoints > 0 ||
       window.matchMedia("(pointer: coarse)").matches;
 
-    if (isTouch) {
-      return;
-    }
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-      wheelMultiplier: 1,
-    });
-
-    // Attach lenis instance to window for global access
-    (window as any).lenis = lenis;
+    if (isTouch) return;
 
     let animId: number;
-    function raf(time: number) {
-      lenis.raf(time);
-      animId = requestAnimationFrame(raf);
-    }
+    let lenisInstance: any = null;
 
-    animId = requestAnimationFrame(raf);
+    // Dynamic import: Lenis only downloads when this effect runs on desktop.
+    // This keeps it completely out of the initial JS bundle.
+    import("lenis").then(({ default: Lenis }) => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: "vertical",
+        gestureOrientation: "vertical",
+        smoothWheel: true,
+        wheelMultiplier: 1,
+      });
+
+      lenisInstance = lenis;
+      (window as any).lenis = lenis;
+
+      function raf(time: number) {
+        lenis.raf(time);
+        animId = requestAnimationFrame(raf);
+      }
+      animId = requestAnimationFrame(raf);
+    });
 
     return () => {
-      cancelAnimationFrame(animId);
-      lenis.destroy();
-      delete (window as any).lenis;
+      if (animId) cancelAnimationFrame(animId);
+      if (lenisInstance) {
+        lenisInstance.destroy();
+        delete (window as any).lenis;
+      }
     };
   }, []);
 }
+
 export default useLenis;

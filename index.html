@@ -2,8 +2,9 @@
 <html lang="en" class="overflow-x-hidden overflow-y-scroll">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <!-- SVG favicon first (1 KB vs 50 KB PNG) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#2E1A47" />
     <meta name="description" content="Wahad Shay — A World of Flavor in One Place. Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
@@ -13,27 +14,46 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Wahad Shay — A World of Flavor in One Place" />
     <meta property="og:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
-    <meta property="og:image" content="/logo_wahad.png" />
+    <meta property="og:image" content="/logo_wahad.webp" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Wahad Shay — A World of Flavor in One Place" />
     <meta name="twitter:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
-    <meta name="twitter:image" content="/logo_wahad.png" />
+    <meta name="twitter:image" content="/logo_wahad.webp" />
 
     <!-- Critical Above-the-fold Assets Preload -->
-    <link rel="preload" as="image" href="/logo_wahad.webp" type="image/webp" fetchpriority="high" />
+    <!-- LCP image on mobile: the video poster -->
     <link rel="preload" as="image" href="/mobile-poster.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
+    <!-- LCP image on desktop -->
     <link rel="preload" as="image" href="/home-poster.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
+    <!-- Navbar logo — above the fold on all devices -->
+    <link rel="preload" as="image" href="/logo_wahad.webp" type="image/webp" fetchpriority="high" />
 
-    <!-- Google Fonts Preconnect & Asynchronous Loading (Non-render-blocking) -->
+    <!-- Google Fonts: preconnect + async load (non-render-blocking) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" />
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <!--
+      Load fonts via media="print" trick: browser fetches them low-priority
+      and flips to 'all' once downloaded, so fonts NEVER block rendering.
+      font-display=swap is set server-side by Google, so text shows in system
+      font immediately while brand fonts load.
+    -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
     <noscript>
       <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     </noscript>
+
     <title>Wahad Shay — A World of Flavor in One Place</title>
   </head>
   <body style="margin: 0; padding: 0; background-color: #2E1A47; overflow-x: hidden;">
