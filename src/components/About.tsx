@@ -114,17 +114,17 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
   return (
     <>
       {/* 1. Our Story Section */}
-      <section id="about" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
+      <section id="about" className={`${isHomePage ? "section-padding-landing" : "page-first-section"} bg-neutral-ivory relative overflow-hidden select-none`}>
         {/* Subtle botanical line texture can be simulated or added as background. For now we use very soft blurred orbs to keep it clean */}
         <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] bg-plum/3 rounded-full blur-[160px] pointer-events-none" />
         
-        <div className="premium-container relative z-10">
+        <div className={`${isHomePage ? "premium-container" : "page-container"} relative z-10`}>
           <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
             {/* Left: Editorial Story */}
             <div className="reveal-left reveal space-y-8 lg:col-span-7">
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
                   <span className="h-px w-8 bg-plum/40 block" />
                   <span className="typo-eyebrow text-plum">
                     {t('about.storyBadge')}
@@ -132,31 +132,31 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                 </div>
                 
                 {isHomePage ? (
-                  <h2 className="typo-section-title">
+                  <h2 className="typo-section-title mb-5">
                     <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
                     {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
                     <br />
                     <span className="text-plum">{t('about.storyTitle3')}</span>
                   </h2>
                 ) : (
-                  <h1 className="typo-section-title">
+                  <h1 className="typo-section-title mb-5">
                     <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
                     {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
                     <br />
                     <span className="text-plum">{t('about.storyTitle3')}</span>
                   </h1>
                 )}
-              </div>
 
-              <div className="space-y-4">
-                <p className="typo-body-lg text-text-primary/90 max-w-prose">
-                  {t('about.storyDesc1')}
-                </p>
-                {t('about.storyDesc2') && (
-                  <p className="typo-body text-text-secondary max-w-prose">
-                    {t('about.storyDesc2')}
+                <div className="space-y-4">
+                  <p className="typo-body-lg text-text-primary/90 max-w-prose">
+                    {t('about.storyDesc1')}
                   </p>
-                )}
+                  {t('about.storyDesc2') && (
+                    <p className="typo-body text-text-secondary max-w-prose">
+                      {t('about.storyDesc2')}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <a href={isHomePage ? "#about" : "#menu"} className={`group inline-flex items-center gap-3 typo-button-sm text-plum hover:text-plum-dark transition-colors pt-2 ${language === 'AR' ? 'flex-row-reverse' : ''}`}>

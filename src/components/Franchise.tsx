@@ -150,13 +150,13 @@ export function Franchise({ isHomePage = false }: { isHomePage?: boolean } = {})
   ];
 
   return (
-    <section id="franchise" className="section-padding bg-neutral-ivory border-t border-neutral-border/40 relative overflow-hidden select-none">
+    <section id="franchise" className={`${isHomePage ? "section-padding border-t border-neutral-border/40" : "page-first-section"} bg-neutral-ivory relative overflow-hidden select-none`}>
       
       {/* Background ambient luxury light */}
       <div className="absolute top-[5%] right-[-10%] w-[500px] h-[500px] bg-plum/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-[5%] left-[-10%] w-[450px] h-[450px] bg-yellow/5 rounded-full blur-[130px] pointer-events-none" />
 
-      <div className="premium-container relative z-10 space-y-16 md:space-y-20">
+      <div className={`${isHomePage ? "premium-container" : "page-container"} relative z-10 space-y-16 md:space-y-20`}>
         
         {/* ======================================================== */}
         {/* TOP ROW: Brand Header & Info (Left) + CTA & 3-Pillars Card (Right) */}
@@ -166,9 +166,9 @@ export function Franchise({ isHomePage = false }: { isHomePage?: boolean } = {})
           {/* Left Column: Brand Statement & Editorial Quote */}
           <div className="reveal-left reveal lg:col-span-5 space-y-6">
             
-            <div className="space-y-3.5">
+            <div>
               {/* Tag Badge */}
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mb-4">
                 <span className="h-px w-8 bg-plum/40 block" />
                 <span className="typo-eyebrow text-plum">
                   {t("about.franchise.badge") || "PARTNER WITH WAHAD SHAY"}
@@ -177,18 +177,18 @@ export function Franchise({ isHomePage = false }: { isHomePage?: boolean } = {})
 
               {/* Headline with metallic shimmer & plum branding */}
               {isHomePage ? (
-                <h2 className="typo-section-title text-text-primary leading-[1.04]">
+                <h2 className="typo-section-title text-text-primary leading-[1.04] mb-5">
                   <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
                   <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
                 </h2>
               ) : (
-                <h1 className="typo-section-title text-text-primary leading-[1.04]">
+                <h1 className="typo-section-title text-text-primary leading-[1.04] mb-5">
                   <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
                   <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
                 </h1>
               )}
 
-              <p className="typo-body text-text-secondary pt-0.5">
+              <p className="typo-body text-text-secondary mb-8">
                 {t("about.franchise.subtitle") || "A proven model. A strong brand. A partnership built for success."}
               </p>
             </div>

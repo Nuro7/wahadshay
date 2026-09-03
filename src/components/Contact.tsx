@@ -47,24 +47,24 @@ export function Contact({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   };
 
   return (
-    <section id="contact" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="contact" className={`${isHomePage ? "section-padding-landing" : "page-first-section"} bg-neutral-ivory relative overflow-hidden select-none`}>
       {/* Background Soft Glow Orbs */}
       <div className="absolute top-[20%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[380px] h-[380px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
-      <div className="premium-container relative z-10">
+      <div className={`${isHomePage ? "premium-container" : "page-container"} relative z-10`}>
         
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto mb-16 md:mb-20 space-y-4">
-          <span className="typo-eyebrow text-plum block">
+        <div className="reveal text-center max-w-2xl mx-auto mb-8 md:mb-10">
+          <span className="typo-eyebrow text-plum block mb-4">
             {t('contact.badge')}
           </span>
           {isHomePage ? (
-            <h2 className="typo-section-title text-text-primary">
+            <h2 className="typo-section-title text-text-primary mb-5">
               <span className="text-shimmer">{t('contact.title')}</span>
             </h2>
           ) : (
-            <h1 className="typo-section-title text-text-primary">
+            <h1 className="typo-section-title text-text-primary mb-5">
               <span className="text-shimmer">{t('contact.title')}</span>
             </h1>
           )}

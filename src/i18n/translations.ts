@@ -56,16 +56,44 @@ export const translations: any = {
       pairingPrice: "Pairing Price",
       items: [
         {
-          tag: "Signature Pairing",
-          title: "Royal Karak & Cheese Brioche",
-          desc: "Our double-spiced cardamom karak tea paired with a warm, toasted brioche bun loaded with dripping triple cheddar cheese.",
-          badge: "Most Popular"
+          tag: "House Special",
+          title: "Hot Chicken Burger",
+          desc: "Crispy golden fried hot chicken patty topped with melted cheese, fresh lettuce, and signature spicy sauce.",
+          badge: "Chef's Choice",
+          pairing: "Wahad shay",
+          highlight: "Freshly Prepared Daily"
         },
         {
-          tag: "House Special",
-          title: "Golden Saffron & Herb Bun",
-          desc: "A hot cup of slow-brewed golden saffron tea served alongside our signature baked rosemary herb bun.",
-          badge: "Chef's Choice"
+          tag: "Signature Pairing",
+          title: "Juicy Dip Burger",
+          desc: "Succulent chicken burger served with rich, warm dripping cheese sauce dip for the ultimate flavor experience.",
+          badge: "Most Popular",
+          pairing: "Wahad shay",
+          highlight: "Signature Recipe"
+        },
+        {
+          tag: "Chef Special",
+          title: "Hot Chicken Rice",
+          desc: "Fragrant seasoned mashkool rice served with spicy roasted chicken and house special gravy.",
+          badge: "Customer Favorite",
+          pairing: "Wahad shay",
+          highlight: "Slow Cooked Flavors"
+        },
+        {
+          tag: "Snack Favorite",
+          title: "Mini Bites",
+          desc: "Bite-sized golden crispy chicken nuggets served hot with custom dipping sauce.",
+          badge: "Trending",
+          pairing: "Wahad shay",
+          highlight: "Crispy & Tender"
+        },
+        {
+          tag: "Signature Selection",
+          title: "Hot Chicken",
+          desc: "Our exclusive combination of signature Karak tea and artisanal freshly prepared delicacies.",
+          badge: "Must Try",
+          pairing: "Wahad shay",
+          highlight: "Artisan Craft"
         }
       ]
     },
@@ -599,16 +627,44 @@ export const translations: any = {
       pairingPrice: "سعر الزوج",
       items: [
         {
-          tag: "اقتران مميز",
-          title: "كرك ملكي وبريوش بالجبن",
-          desc: "شاي كرك بالهيل المضاعف مقترن بخبز بريوش دافئ ومحمص ومليء بجبن الشيدر الثلاثي.",
-          badge: "الأكثر شعبية"
+          tag: "طبق الدار المميز",
+          title: "برجر الدجاج الحار",
+          desc: "قطعة دجاج حارة مقرمشة وذهبية تعلوها الجبنة الذائبة، الخس الطازج، وصلصتنا الحارة المميزة.",
+          badge: "اختيار الشيف",
+          pairing: "واحد شاي",
+          highlight: "يُحضر طازجاً يومياً"
         },
         {
-          tag: "طبق خاص",
-          title: "الزعفران الذهبي وخبز الأعشاب",
-          desc: "كوب ساخن من شاي الزعفران الذهبي المخمر ببطء يقدم مع خبز إكليل الجبل المخبوز المميز لدينا.",
-          badge: "اختيار الشيف"
+          tag: "مزيج مميز",
+          title: "برجر جوسي ديب",
+          desc: "برجر دجاج شهي وغني بالعصارة يُقدّم مع تغميسة صلصة الجبن الدافئة واللذيذة لتجربة نكهة استثنائية.",
+          badge: "الأكثر طلباً",
+          pairing: "واحد شاي",
+          highlight: "وصفة خاصة"
+        },
+        {
+          tag: "خاص بالشيف",
+          title: "أرز الدجاج الحار",
+          desc: "أرز مشخول متبل وعطري يُقدّم مع الدجاج المحمر الحار ومرق الدار الخاص.",
+          badge: "المفضل لدى الزوار",
+          pairing: "واحد شاي",
+          highlight: "نكهات مطهوة ببطء"
+        },
+        {
+          tag: "سناك مفضل",
+          title: "ميني بايتس",
+          desc: "قطع دجاج مقرمشة وذهبية بحجم اللقمة تُقدّم ساخنة مع صلصة التغميس الخاصة.",
+          badge: "الأكثر رواجاً",
+          pairing: "واحد شاي",
+          highlight: "مقرمش وطري"
+        },
+        {
+          tag: "تشكيلة استثنائية",
+          title: "دجاج حار",
+          desc: "مجموعتنا الحصرية التي تجمع بين شاي الكرك المميز والمأكولات الحرفية الطازجة.",
+          badge: "تجربة لا تُفوت",
+          pairing: "واحد شاي",
+          highlight: "حرفة وإتقان"
         }
       ]
     },

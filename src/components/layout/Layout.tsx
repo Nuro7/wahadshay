@@ -2,11 +2,14 @@ import type { ReactNode } from "react";
 
 interface LayoutProps {
   children: ReactNode;
+  currentPage?: string;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, currentPage = "home" }: LayoutProps) {
+  const isDark = currentPage === "home" || currentPage === "404";
+
   return (
-    <div className="flex-1 w-full bg-plum-dark text-text-primary relative overflow-clip font-body selection:bg-yellow selection:text-plum-dark flex flex-col">
+    <div className={`flex-1 w-full ${isDark ? "bg-plum-dark" : "bg-neutral-ivory"} text-text-primary relative overflow-clip font-body selection:bg-yellow selection:text-plum-dark flex flex-col transition-colors duration-300`}>
 
       {/* Ambient Orbs Wrapper to contain overflow and prevent scrollWidth expansion */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

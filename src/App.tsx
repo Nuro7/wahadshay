@@ -171,10 +171,10 @@ function App() {
       <SEO page={currentPage as any} />
       <Preloader />
 
-      <Layout>
-        <Navbar />
+      <Layout currentPage={currentPage}>
+        <Navbar currentPage={currentPage} />
 
-        <main className={`flex-1 flex flex-col ${currentPage !== "home" ? "pt-8 md:pt-10" : ""}`}>
+        <main className={`flex-1 flex flex-col ${currentPage !== "home" ? "page-content bg-neutral-ivory" : ""}`}>
           {currentPage === "home" && (
             <>
               <Hero />

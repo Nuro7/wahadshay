@@ -7,75 +7,86 @@ import { useLanguage } from "../i18n/LanguageContext";
 import { Sparkles } from "lucide-react";
 
 export function Specials({ isHomePage = false }: { isHomePage?: boolean } = {}) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+  const isAr = language === "AR";
 
   const specials = [
     {
-      title: "Hot Chicken Burger",
-      tag: "House Special",
-      badge: "Chef's Choice",
-      desc: "Crispy golden fried hot chicken patty topped with melted cheese, fresh lettuce, and signature spicy sauce.",
+      title: isAr ? "برجر الدجاج الحار" : "Hot Chicken Burger",
+      tag: isAr ? "طبق الدار المميز" : "House Special",
+      badge: isAr ? "اختيار الشيف" : "Chef's Choice",
+      desc: isAr
+        ? "قطعة دجاج حارة مقرمشة وذهبية تعلوها الجبنة الذائبة، الخس الطازج، وصلصتنا الحارة المميزة."
+        : "Crispy golden fried hot chicken patty topped with melted cheese, fresh lettuce, and signature spicy sauce.",
       image: hotChickenBurgerImg,
-      pairing: "Wahad shay",
-      highlight: "Freshly Prepared Daily",
+      pairing: isAr ? "واحد شاي" : "Wahad shay",
+      highlight: isAr ? "يُحضر طازجاً يومياً" : "Freshly Prepared Daily",
     },
     {
-      title: "Juicy Dip Burger",
-      tag: "Signature Pairing",
-      badge: "Most Popular",
-      desc: "Succulent chicken burger served with rich, warm dripping cheese sauce dip for the ultimate flavor experience.",
+      title: isAr ? "برجر جوسي ديب" : "Juicy Dip Burger",
+      tag: isAr ? "مزيج مميز" : "Signature Pairing",
+      badge: isAr ? "الأكثر طلباً" : "Most Popular",
+      desc: isAr
+        ? "برجر دجاج شهي وغني بالعصارة يُقدّم مع تغميسة صلصة الجبن الدافئة واللذيذة لتجربة نكهة استثنائية."
+        : "Succulent chicken burger served with rich, warm dripping cheese sauce dip for the ultimate flavor experience.",
       image: juicyDipImg,
-      pairing: "Wahad shay",
-      highlight: "Signature Recipe",
+      pairing: isAr ? "واحد شاي" : "Wahad shay",
+      highlight: isAr ? "وصفة خاصة" : "Signature Recipe",
     },
     {
-      title: "Hot Chicken Rice",
-      tag: "Chef Special",
-      badge: "Customer Favorite",
-      desc: "Fragrant seasoned mashkool rice served with spicy roasted chicken and house special gravy.",
+      title: isAr ? "أرز الدجاج الحار" : "Hot Chicken Rice",
+      tag: isAr ? "خاص بالشيف" : "Chef Special",
+      badge: isAr ? "المفضل لدى الزوار" : "Customer Favorite",
+      desc: isAr
+        ? "أرز مشخول متبل وعطري يُقدّم مع الدجاج المحمر الحار ومرق الدار الخاص."
+        : "Fragrant seasoned mashkool rice served with spicy roasted chicken and house special gravy.",
       image: hotChickenRiceImg,
-      pairing: "Wahad shay",
-      highlight: "Slow Cooked Flavors",
+      pairing: isAr ? "واحد شاي" : "Wahad shay",
+      highlight: isAr ? "نكهات مطهوة ببطء" : "Slow Cooked Flavors",
     },
     {
-      title: "Mini Bites",
-      tag: "Snack Favorite",
-      badge: "Trending",
-      desc: "Bite-sized golden crispy chicken nuggets served hot with custom dipping sauce.",
+      title: isAr ? "ميني بايتس" : "Mini Bites",
+      tag: isAr ? "سناك مفضل" : "Snack Favorite",
+      badge: isAr ? "الأكثر رواجاً" : "Trending",
+      desc: isAr
+        ? "قطع دجاج مقرمشة وذهبية بحجم اللقمة تُقدّم ساخنة مع صلصة التغميس الخاصة."
+        : "Bite-sized golden crispy chicken nuggets served hot with custom dipping sauce.",
       image: miniBitesImg,
-      pairing: "Wahad shay",
-      highlight: "Crispy & Tender",
+      pairing: isAr ? "واحد شاي" : "Wahad shay",
+      highlight: isAr ? "مقرمش وطري" : "Crispy & Tender",
     },
     {
-      title: "Hot Chicken",
-      tag: "Signature Selection",
-      badge: "Must Try",
-      desc: "Our exclusive combination of signature Karak tea and artisanal freshly prepared delicacies.",
+      title: isAr ? "دجاج حار" : "Hot Chicken",
+      tag: isAr ? "تشكيلة استثنائية" : "Signature Selection",
+      badge: isAr ? "تجربة لا تُفوت" : "Must Try",
+      desc: isAr
+        ? "مجموعتنا الحصرية التي تجمع بين شاي الكرك المميز والمأكولات الحرفية الطازجة."
+        : "Our exclusive combination of signature Karak tea and artisanal freshly prepared delicacies.",
       image: specialItemImg,
-      pairing: "Wahad shay",
-      highlight: "Artisan Craft",
+      pairing: isAr ? "واحد شاي" : "Wahad shay",
+      highlight: isAr ? "حرفة وإتقان" : "Artisan Craft",
     },
   ];
 
   return (
-    <section id="specials" className="section-padding-landing bg-neutral-ivory relative overflow-hidden select-none min-h-screen">
+    <section id="specials" className={`${isHomePage ? "section-padding-landing" : "page-first-section"} bg-neutral-ivory relative overflow-hidden select-none`}>
       {/* Background soft glow orbs */}
       <div className="absolute top-[30%] left-[-15%] w-[450px] h-[450px] bg-plum/5 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-[10%] right-[-10%] w-[400px] h-[400px] bg-yellow/2 rounded-full blur-[120px] pointer-events-none animate-pulse" />
 
-      <div className="premium-container relative z-10">
+      <div className={`${isHomePage ? "premium-container" : "page-container"} relative z-10`}>
 
         {/* Section Heading */}
-        <div className="reveal text-center max-w-2xl mx-auto mb-14 md:mb-20 space-y-4">
-          <span className="typo-eyebrow text-plum block">
+        <div className="reveal text-center max-w-2xl mx-auto mb-8 md:mb-10">
+          <span className="typo-eyebrow text-plum block mb-4">
             {t('specials.weeklyHighlights')}
           </span>
           {isHomePage ? (
-            <h2 className="typo-section-title text-text-primary mask-reveal">
+            <h2 className="typo-section-title text-text-primary mask-reveal mb-5">
               <span className="text-shimmer">{t('specials.title')}</span>
             </h2>
           ) : (
-            <h1 className="typo-section-title text-text-primary mask-reveal">
+            <h1 className="typo-section-title text-text-primary mask-reveal mb-5">
               <span className="text-shimmer">{t('specials.title')}</span>
             </h1>
           )}

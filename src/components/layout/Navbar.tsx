@@ -4,12 +4,21 @@ import { useLanguage } from "../../i18n/LanguageContext";
 
 const menuItems = ["Home", "About", "Specials", "Franchise", "Gallery", "Contact"];
 
-export function Navbar() {
+interface NavbarProps {
+  currentPage?: string;
+}
+
+export function Navbar({ currentPage = "home" }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage, t } = useLanguage();
 
   const [activeHash, setActiveHash] = useState("#home");
+
+  // Determine whether to use light header theme (on scrolled home OR any non-dark page)
+  const isHomePage = (currentPage === "home" || !currentPage) && (activeHash === "#home" || activeHash === "");
+  const isDarkPage = currentPage === "404" ? true : isHomePage;
+  const isLight = isScrolled || !isDarkPage;
 
   // Removed naive overflow="hidden" on body to prevent iOS Safari from freezing.
   // The full screen mobile menu traps scrolling naturally.
@@ -53,7 +62,7 @@ export function Navbar() {
       }`}
     >
       <div
-        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-3 sm:px-6 md:px-8 py-1 md:py-2 ${isScrolled
+        className={`mx-auto max-w-[1440px] rounded-full border transition-all duration-500 flex items-center justify-between px-3 sm:px-6 md:px-8 py-1 md:py-2 ${isLight
           ? "border-neutral-border bg-neutral-white/90 backdrop-blur-xl shadow-[0_8px_30px_rgba(43,37,32,0.06)]"
           : "border-white/5 bg-plum-dark/40 backdrop-blur-md"
           }`}
@@ -69,14 +78,14 @@ export function Navbar() {
               height="48"
               className="h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain group-hover:scale-[1.02] transition-transform duration-300"
             />
-            {/* Tagline Overlay (Turns black when scrolled) */}
+            {/* Tagline Overlay (Turns black when scrolled / light mode) */}
             <img
               src="/logo_wahad.webp"
               alt=""
               aria-hidden="true"
               width="180"
               height="48"
-              className={`absolute inset-0 h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isScrolled ? "opacity-100" : "opacity-0"
+              className={`absolute inset-0 h-8 xs:h-10 sm:h-11 md:h-12 lg:h-14 w-auto object-contain pointer-events-none group-hover:scale-[1.02] transition-all duration-300 ${isLight ? "opacity-100" : "opacity-0"
                 }`}
               style={{
                 filter: "invert(1) brightness(0.2)", // Turns white to dark without making it look fat/stroked
@@ -111,14 +120,14 @@ export function Navbar() {
                       window.dispatchEvent(new HashChangeEvent("hashchange"));
                     }}
                     className={`typo-nav transition-colors duration-300 px-1 block ${isActive
-                      ? (isScrolled ? "text-plum font-bold" : "text-white font-bold")
-                      : (isScrolled ? "text-text-secondary hover:text-plum font-semibold" : "text-white/75 hover:text-white font-semibold")
+                      ? (isLight ? "text-plum font-bold" : "text-white font-bold")
+                      : (isLight ? "text-text-secondary hover:text-plum font-semibold" : "text-white/75 hover:text-white font-semibold")
                       }`}
                   >
                     {t(`nav.${item.toLowerCase()}`)}
                   </a>
                   <div className={`absolute left-1/2 -translate-x-1/2 bottom-[-4px] h-[2px] w-[40px] transition-transform duration-300 origin-center ${isActive ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                    } ${isScrolled ? "bg-plum" : "bg-yellow"
+                    } ${isLight ? "bg-plum" : "bg-yellow"
                     }`} />
                 </li>
               );
@@ -129,26 +138,26 @@ export function Navbar() {
         {/* Action Controls (Currency Switcher & CTA button) */}
         <div className="hidden sm:flex items-center gap-4 shrink-0">
           {/* Currency Switcher */}
-          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[38px] typo-button-sm border transition-colors ${isScrolled
+          <div className={`flex items-center gap-1.5 rounded-full px-4 h-[38px] typo-button-sm border transition-colors ${isLight
             ? "bg-neutral-white border-neutral-border text-text-primary"
             : "bg-white/5 border-white/10 text-white/85"
             }`}>
-            <Globe size={13} className={isScrolled ? "text-plum" : "text-yellow"} />
+            <Globe size={13} className={isLight ? "text-plum" : "text-yellow"} />
             <button
               onClick={() => setLanguage("EN")}
               className={`cursor-pointer transition-colors ${language === "EN"
-                ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                : (isScrolled ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
+                ? (isLight ? "text-plum font-bold" : "text-yellow font-bold")
+                : (isLight ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
                 }`}
             >
               EN
             </button>
-            <span className={isScrolled ? "text-neutral-border" : "text-white/20"}>|</span>
+            <span className={isLight ? "text-neutral-border" : "text-white/20"}>|</span>
             <button
               onClick={() => setLanguage("AR")}
               className={`cursor-pointer transition-colors ${language === "AR"
-                ? (isScrolled ? "text-plum font-bold" : "text-yellow font-bold")
-                : (isScrolled ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
+                ? (isLight ? "text-plum font-bold" : "text-yellow font-bold")
+                : (isLight ? "text-text-secondary hover:text-text-primary font-medium" : "text-white/70 hover:text-white font-medium")
                 }`}
             >
               عربي
@@ -163,7 +172,7 @@ export function Navbar() {
           {/* Hamburger trigger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`rounded-full w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center border transition-all cursor-pointer focus:outline-none ${isScrolled
+            className={`rounded-full w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center border transition-all cursor-pointer focus:outline-none ${isLight
               ? "bg-neutral-white border-neutral-border text-text-primary hover:text-plum"
               : "bg-white/5 border-white/10 text-white/80 hover:text-white"
               }`}

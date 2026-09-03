@@ -140,7 +140,7 @@ export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   };
 
   return (
-    <section id="gallery" className="section-padding bg-neutral-ivory relative overflow-hidden select-none">
+    <section id="gallery" className={`${isHomePage ? "section-padding" : "page-first-section"} bg-neutral-ivory relative overflow-hidden select-none`}>
       
       {/* Background Subtle Line Art Texture */}
       <div className="absolute inset-0 food-pattern-bg opacity-[0.04] pointer-events-none" />
@@ -165,13 +165,13 @@ export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
       </div>
       
-      <div className="premium-container relative z-10 space-y-10 md:space-y-16">
+      <div className={`${isHomePage ? "premium-container" : "page-container"} relative z-10 space-y-8 md:space-y-10`}>
         
         {/* SECTION HEADER: Brand Theme & Shimmer */}
-        <div className="reveal text-center max-w-3xl mx-auto space-y-4 sm:space-y-6">
+        <div className="reveal text-center max-w-3xl mx-auto mb-8 md:mb-10">
           
           {/* Hairline Tag Badge */}
-          <div className="flex items-center justify-center gap-3">
+          <div className="flex items-center justify-center gap-3 mb-4">
             <span className="h-px w-8 bg-plum/40 block" />
             <span className="typo-eyebrow text-plum tracking-[0.2em] font-bold uppercase">
               {t("about.gallery.badge") || "VISUAL JOURNAL"}
@@ -181,7 +181,7 @@ export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
 
           {/* Headline with Signature Metallic Shimmer */}
           {isHomePage ? (
-            <h2 className="typo-section-title text-text-primary">
+            <h2 className="typo-section-title text-text-primary mb-5">
               <span className="text-shimmer block sm:inline">
                 {language === "AR" ? "لمحة من" : "A Taste of"}
               </span>{" "}
@@ -190,7 +190,7 @@ export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
               </span>
             </h2>
           ) : (
-            <h1 className="typo-section-title text-text-primary">
+            <h1 className="typo-section-title text-text-primary mb-5">
               <span className="text-shimmer block sm:inline">
                 {language === "AR" ? "لمحة من" : "A Taste of"}
               </span>{" "}
@@ -200,12 +200,12 @@ export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
             </h1>
           )}
 
-          <p className="typo-body text-text-secondary max-w-xl mx-auto leading-relaxed md:text-lg">
+          <p className="typo-body text-text-secondary max-w-xl mx-auto leading-relaxed md:text-lg mb-4">
             {t("about.gallery.tasteSubtitle") || "Tea, craft, and moments shared."}
           </p>
 
           {/* Minimalist Brand Divider */}
-          <div className="flex items-center justify-center gap-3 pt-4 pb-2 max-w-xs mx-auto">
+          <div className="flex items-center justify-center gap-3 pt-2 max-w-xs mx-auto">
             <div className="h-px bg-gradient-to-r from-transparent via-plum/20 to-plum/40 flex-1" />
             <span className="w-1.5 h-1.5 rounded-full bg-yellow animate-pulse" />
             <div className="h-px bg-gradient-to-l from-transparent via-plum/20 to-plum/40 flex-1" />
