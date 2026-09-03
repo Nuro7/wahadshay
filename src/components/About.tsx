@@ -131,12 +131,21 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                   </span>
                 </div>
                 
-                <h2 className="typo-section-title">
-                  <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
-                  {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
-                  <br />
-                  <span className="text-plum">{t('about.storyTitle3')}</span>
-                </h2>
+                {isHomePage ? (
+                  <h2 className="typo-section-title">
+                    <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
+                    {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
+                    <br />
+                    <span className="text-plum">{t('about.storyTitle3')}</span>
+                  </h2>
+                ) : (
+                  <h1 className="typo-section-title">
+                    <span className="text-gradient-plum">{t('about.storyTitle1')}</span>
+                    {t('about.storyTitle2') ? <span className="text-gradient-gold ms-1">{t('about.storyTitle2')}</span> : null}
+                    <br />
+                    <span className="text-plum">{t('about.storyTitle3')}</span>
+                  </h1>
+                )}
               </div>
 
               <div className="space-y-4">

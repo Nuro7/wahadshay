@@ -1,26 +1,28 @@
-import { useState, useEffect, lazy, Suspense, startTransition, useTransition } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Layout from "./components/layout/Layout";
 import Navbar from "./components/layout/Navbar";
 import Hero from "./components/hero/Hero";
 import Footer from "./components/Footer";
 import Preloader from "./components/layout/Preloader";
+import SEO from "./components/common/SEO";
 import useLenis from "./hooks/useLenis";
 import useScrollReveal from "./hooks/useScrollReveal";
 
-import About from "./components/About";
-import Testimonials from "./components/Testimonials";
-import FranchiseSection from "./components/FranchiseSection";
-import FranchiseTeaser from "./components/FranchiseTeaser";
-import Specials from "./components/Specials";
-import MissionVision from "./components/MissionVision";
-import Vision2030 from "./components/Vision2030";
-import SignatureExperience from "./components/SignatureExperience";
-import Franchise from "./components/Franchise";
-import Gallery from "./components/Gallery";
-import Contact from "./components/Contact";
-import FAQ from "./components/FAQ";
+// Efficient lazy code splitting for secondary pages & sections
+const About = lazy(() => import("./components/About"));
+const Testimonials = lazy(() => import("./components/Testimonials"));
+const FranchiseSection = lazy(() => import("./components/FranchiseSection"));
+const FranchiseTeaser = lazy(() => import("./components/FranchiseTeaser"));
+const Specials = lazy(() => import("./components/Specials"));
+const MissionVision = lazy(() => import("./components/MissionVision"));
+const Vision2030 = lazy(() => import("./components/Vision2030"));
+const SignatureExperience = lazy(() => import("./components/SignatureExperience"));
+const Franchise = lazy(() => import("./components/Franchise"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const Contact = lazy(() => import("./components/Contact"));
+const FAQ = lazy(() => import("./components/FAQ"));
 
-// Minimal spinner for Suspense fallback — mostly unused now since pages are bundled
+// Minimal elegant spinner for Suspense fallback
 const PageSpinner = () => (
   <div className="flex-1 flex flex-col items-center justify-center min-h-[60vh] w-full">
     <div className="w-10 h-10 rounded-full border-[3px] border-yellow/30 border-t-yellow animate-spin" />
@@ -28,11 +30,72 @@ const PageSpinner = () => (
   </div>
 );
 
+// SEO-safe 404 View
+const NotFound = ({ onGoHome }: { onGoHome: () => void }) => {
+  return (
+    <div className="flex-1 flex flex-col items-center justify-center min-h-[65vh] px-4 text-center select-none py-16">
+      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow/10 border border-yellow/30 text-yellow text-xs font-bold uppercase tracking-widest mb-4">
+        404 • Page Not Found
+      </div>
+      <h1 className="typo-display-lg text-white mb-4">
+        Lost in the <span className="text-shimmer-gold">Aroma?</span>
+      </h1>
+      <p className="typo-body text-white/70 max-w-md mx-auto mb-8">
+        The page you are looking for does not exist or has been moved. Discover our signature teas and bakes instead.
+      </p>
+      <div className="flex flex-wrap items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={onGoHome}
+          className="px-6 py-3 rounded-full bg-yellow text-plum-dark font-bold typo-button-sm shadow-md hover:bg-yellow/90 transition-all cursor-pointer"
+        >
+          Return to Home
+        </button>
+        <a
+          href="#specials"
+          onClick={(e) => {
+            e.preventDefault();
+            window.history.pushState(null, "", "#specials");
+            window.dispatchEvent(new HashChangeEvent("hashchange"));
+          }}
+          className="px-6 py-3 rounded-full border border-white/20 text-white font-semibold typo-button-sm hover:border-yellow hover:text-yellow transition-all"
+        >
+          Explore Specials
+        </a>
+      </div>
+    </div>
+  );
+};
+
+function resolvePage(): string {
+  if (typeof window === "undefined") return "home";
+
+  const hash = window.location.hash.toLowerCase().replace("#", "");
+  const path = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, "");
+
+  // Hash takes precedence if present
+  const target = hash || path || "home";
+
+  if (["home", ""].includes(target)) return "home";
+  if (["specials", "menu"].includes(target)) return "specials";
+  if (["about"].includes(target)) return "about";
+  if (["franchise"].includes(target)) return "franchise";
+  if (["gallery"].includes(target)) return "gallery";
+  if (["contact", "faq"].includes(target)) return "contact";
+
+  // If path is specified and not recognized, show 404
+  if (path && !["home", "specials", "menu", "about", "franchise", "gallery", "contact", "faq"].includes(path)) {
+    return "404";
+  }
+
+  return "home";
+}
+
 function App() {
   useLenis();
   useScrollReveal();
 
-  const [currentPage, setCurrentPage] = useState<string>("home");
+  const [currentPage, setCurrentPage] = useState<string>(() => resolvePage());
 
   useEffect(() => {
     if ("scrollRestoration" in window.history) {
@@ -40,69 +103,53 @@ function App() {
     }
   }, []);
 
-
-
   useEffect(() => {
-    const handleHashChange = () => {
-      const hash = window.location.hash.toLowerCase() || "#home";
-      const page = hash.replace("#", "");
-
-      let targetPage = "home";
-      if (["home"].includes(page)) {
-        targetPage = "home";
-      } else if (["specials", "menu"].includes(page)) {
-        targetPage = "specials";
-      } else if (["about"].includes(page)) {
-        targetPage = "about";
-      } else if (["franchise"].includes(page)) {
-        targetPage = "franchise";
-      } else if (["gallery"].includes(page)) {
-        targetPage = "gallery";
-      } else if (["contact", "faq"].includes(page)) {
-        targetPage = "contact";
-      }
-
+    const handleNavigation = () => {
+      const targetPage = resolvePage();
       setCurrentPage(targetPage);
 
+      const hash = window.location.hash.toLowerCase().replace("#", "");
+      const path = window.location.pathname.toLowerCase().replace(/^\/+|\/+$/g, "");
+      const section = hash || path;
+
       let retries = 0;
-      const currentHash = window.location.hash;
-      const scrollToHash = () => {
-        // Stop if the user navigated to another page while we were waiting
-        if (window.location.hash !== currentHash) return;
-        
-        const scrollTarget = document.getElementById(page);
+      const currentUrl = window.location.href;
+      const scrollToSection = () => {
+        if (window.location.href !== currentUrl) return;
+
+        const scrollTarget = document.getElementById(section);
         if (scrollTarget) {
           if ((window as any).lenis) {
             (window as any).lenis.scrollTo(scrollTarget, {
-              offset: page === "faq" ? -100 : 0,
+              offset: section === "faq" ? -100 : 0,
               immediate: true,
             });
           } else {
             scrollTarget.scrollIntoView({ behavior: "instant" });
           }
-        } else if (page !== targetPage && page !== 'home' && retries < 30) {
-          // If the element isn't found yet (Suspense is loading), check again in 100ms
-          // Max 30 retries (3 seconds) to prevent infinite loops
+        } else if (section !== targetPage && section !== "home" && section !== "" && retries < 30) {
           retries++;
-          setTimeout(scrollToHash, 100);
+          setTimeout(scrollToSection, 100);
         }
       };
 
-      // Only attempt to scroll to a specific section if the hash is not the main page name
-      if (page !== targetPage && page !== 'home' && page !== '') {
-         setTimeout(scrollToHash, 50);
+      if (section !== targetPage && section !== "home" && section !== "") {
+        setTimeout(scrollToSection, 50);
       }
     };
 
-    handleHashChange();
-    window.addEventListener("hashchange", handleHashChange);
-    return () => window.removeEventListener("hashchange", handleHashChange);
+    handleNavigation();
+    window.addEventListener("hashchange", handleNavigation);
+    window.addEventListener("popstate", handleNavigation);
+    return () => {
+      window.removeEventListener("hashchange", handleNavigation);
+      window.removeEventListener("popstate", handleNavigation);
+    };
   }, []);
 
-  // Scroll to top immediately on page change if no specific hash target
+  // Scroll to top immediately on page change if no specific section target
   useEffect(() => {
     const hash = window.location.hash.toLowerCase().replace("#", "");
-    // If the hash matches the page name exactly (e.g. #about on about page), scroll to top
     if (hash === currentPage || hash === "" || hash === "home") {
       requestAnimationFrame(() => {
         if ((window as any).lenis) {
@@ -113,8 +160,15 @@ function App() {
     }
   }, [currentPage]);
 
+  const handleGoHome = () => {
+    window.history.pushState(null, "", "/");
+    setCurrentPage("home");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <>
+      <SEO page={currentPage as any} />
       <Preloader />
 
       <Layout>
@@ -166,6 +220,10 @@ function App() {
               <Contact />
               <FAQ />
             </Suspense>
+          )}
+
+          {currentPage === "404" && (
+            <NotFound onGoHome={handleGoHome} />
           )}
         </main>
 

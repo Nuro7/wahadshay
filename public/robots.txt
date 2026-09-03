@@ -1,0 +1,6 @@
+# robots.txt for https://wahad-shay.vercel.app/
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://wahad-shay.vercel.app/sitemap.xml

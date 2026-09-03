@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, ExternalLink, X, ChevronLeft, ChevronRight, Image as ImageIcon } from "lucide-react";
+import { Play, ExternalLink, X, Image as ImageIcon } from "lucide-react";
 import { FaInstagram } from "react-icons/fa6";
 import { useLanguage } from "../i18n/LanguageContext";
 
 import miniBitesImg from "../assets/mini_bites.webp";
-import juicyDipImg from "../assets/juicy_dip.webp";
-import hotChickenImg from "../assets/hot_chicken.webp";
-import hotChickenBurgerImg from "../assets/hot_chicken_burger.webp";
-import hotChickenRiceImg from "../assets/hot_chicken_rice.webp";
 
 import reelThumb1 from "../assets/reel_thumb_1.webp";
 import reelThumb2 from "../assets/reel_thumb_2.webp";
@@ -112,7 +108,7 @@ const mediaItems: MediaItem[] = [
   }
 ];
 
-export function Gallery() {
+export function Gallery({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   const { t, language } = useLanguage();
   const [activePhoto, setActivePhoto] = useState<MediaItem | null>(null);
 
@@ -184,14 +180,25 @@ export function Gallery() {
           </div>
 
           {/* Headline with Signature Metallic Shimmer */}
-          <h2 className="typo-section-title text-text-primary">
-            <span className="text-shimmer block sm:inline">
-              {language === "AR" ? "لمحة من" : "A Taste of"}
-            </span>{" "}
-            <span className="text-plum font-extrabold block sm:inline">
-              {language === "AR" ? "قصتنا" : "Our Story"}
-            </span>
-          </h2>
+          {isHomePage ? (
+            <h2 className="typo-section-title text-text-primary">
+              <span className="text-shimmer block sm:inline">
+                {language === "AR" ? "لمحة من" : "A Taste of"}
+              </span>{" "}
+              <span className="text-plum font-extrabold block sm:inline">
+                {language === "AR" ? "قصتنا" : "Our Story"}
+              </span>
+            </h2>
+          ) : (
+            <h1 className="typo-section-title text-text-primary">
+              <span className="text-shimmer block sm:inline">
+                {language === "AR" ? "لمحة من" : "A Taste of"}
+              </span>{" "}
+              <span className="text-plum font-extrabold block sm:inline">
+                {language === "AR" ? "قصتنا" : "Our Story"}
+              </span>
+            </h1>
+          )}
 
           <p className="typo-body text-text-secondary max-w-xl mx-auto leading-relaxed md:text-lg">
             {t("about.gallery.tasteSubtitle") || "Tea, craft, and moments shared."}

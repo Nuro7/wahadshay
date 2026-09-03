@@ -13,7 +13,7 @@ import {
   MessageSquare
 } from "lucide-react";
 
-export function Franchise() {
+export function Franchise({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   const { t, language } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -176,10 +176,17 @@ export function Franchise() {
               </div>
 
               {/* Headline with metallic shimmer & plum branding */}
-              <h2 className="typo-section-title text-text-primary leading-[1.04]">
-                <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
-                <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
-              </h2>
+              {isHomePage ? (
+                <h2 className="typo-section-title text-text-primary leading-[1.04]">
+                  <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
+                  <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
+                </h2>
+              ) : (
+                <h1 className="typo-section-title text-text-primary leading-[1.04]">
+                  <span className="text-shimmer block">{t("about.franchise.title1") || "Be a Part of"}</span>
+                  <span className="text-plum font-extrabold block">{t("about.franchise.title2") || "Wahad Shay"}</span>
+                </h1>
+              )}
 
               <p className="typo-body text-text-secondary pt-0.5">
                 {t("about.franchise.subtitle") || "A proven model. A strong brand. A partnership built for success."}

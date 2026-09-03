@@ -6,42 +6,185 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="theme-color" content="#2E1A47" />
-    <meta name="description" content="Wahad Shay — A World of Flavor in One Place. Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
+    <meta name="description" content="Wahad Shay — A World of Flavor in One Place. Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies in the UAE." />
     <meta name="keywords" content="Wahad Shay, Karak Tea, Specialty Chai, UAE Cafe, Artisan Bakery, Franchise UAE, Abu Dhabi, Dubai, Sharjah, Ajman" />
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://wahad-shay.vercel.app/" id="canonical-tag" />
+
     <!-- Open Graph / Facebook / WhatsApp -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Wahad Shay — A World of Flavor in One Place" />
-    <meta property="og:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
-    <meta property="og:image" content="/logo_wahad.webp" />
+    <meta property="og:site_name" content="Wahad Shay" />
+    <meta property="og:title" content="Wahad Shay — A World of Flavor in One Place | Signature Karak &amp; Specialty Teas" />
+    <meta property="og:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies across the UAE." />
+    <meta property="og:url" content="https://wahad-shay.vercel.app/" />
+    <meta property="og:image" content="https://wahad-shay.vercel.app/logo_wahad.webp" />
+    <meta property="og:image:secure_url" content="https://wahad-shay.vercel.app/logo_wahad.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wahad Shay Signature Tea &amp; Cafe Lounge" />
+    <meta property="og:locale" content="en_AE" />
+    <meta property="og:locale:alternate" content="ar_AE" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Wahad Shay — A World of Flavor in One Place" />
-    <meta name="twitter:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies." />
-    <meta name="twitter:image" content="/logo_wahad.webp" />
+    <meta name="twitter:description" content="Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies across the UAE." />
+    <meta name="twitter:image" content="https://wahad-shay.vercel.app/logo_wahad.webp" />
+
+    <!-- Base Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://wahad-shay.vercel.app/#organization",
+          "name": "Wahad Shay",
+          "legalName": "Wahad Shay Cafe",
+          "url": "https://wahad-shay.vercel.app/",
+          "logo": {
+            "@type": "ImageObject",
+            "@id": "https://wahad-shay.vercel.app/#logo",
+            "url": "https://wahad-shay.vercel.app/logo_wahad.webp",
+            "caption": "Wahad Shay"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+971554946176",
+            "contactType": "customer service",
+            "email": "Info@wahadshaycafe.com",
+            "areaServed": "AE",
+            "availableLanguage": ["English", "Arabic"]
+          },
+          "sameAs": [
+            "https://www.instagram.com/wahadshay.ae/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://wahad-shay.vercel.app/#website",
+          "url": "https://wahad-shay.vercel.app/",
+          "name": "Wahad Shay",
+          "description": "A World of Flavor in One Place. Globally inspired premium teas, authentic karak rituals, and artisanal baked delicacies across the UAE.",
+          "publisher": {
+            "@id": "https://wahad-shay.vercel.app/#organization"
+          },
+          "inLanguage": ["en-AE", "ar-AE"]
+        },
+        {
+          "@type": "CafeOrCoffeeShop",
+          "@id": "https://wahad-shay.vercel.app/#cafe",
+          "name": "Wahad Shay — Specialty Tea & Karak Lounge",
+          "image": "https://wahad-shay.vercel.app/logo_wahad.webp",
+          "url": "https://wahad-shay.vercel.app/",
+          "telephone": "+971554946176",
+          "priceRange": "AED 10-30",
+          "servesCuisine": [
+            "Karak Tea",
+            "Specialty Chai",
+            "Artisan Bakery",
+            "Fast Casual",
+            "Middle Eastern Tea House"
+          ],
+          "parentOrganization": {
+            "@id": "https://wahad-shay.vercel.app/#organization"
+          },
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Al Yasat Tower, 3rd Floor, Office No. 304, Electra Street, Behind Season Hotel, Al Danah Zone 1",
+            "addressLocality": "Abu Dhabi",
+            "addressRegion": "Abu Dhabi",
+            "addressCountry": "AE"
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday",
+                "Sunday"
+              ],
+              "opens": "12:00",
+              "closes": "03:00"
+            }
+          ],
+          "department": [
+            {
+              "@type": "CafeOrCoffeeShop",
+              "name": "Wahad Shay - Hamidiya 2 Branch",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ajman",
+                "addressRegion": "Ajman",
+                "addressCountry": "AE"
+              },
+              "openingHours": "Mo-Su 12:00-01:00"
+            },
+            {
+              "@type": "CafeOrCoffeeShop",
+              "name": "Wahad Shay - Al Falah Branch",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Abu Dhabi",
+                "addressRegion": "Abu Dhabi",
+                "addressCountry": "AE"
+              },
+              "openingHours": "Mo-Su 12:00-03:00"
+            },
+            {
+              "@type": "CafeOrCoffeeShop",
+              "name": "Wahad Shay - Al Wahda Branch",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Abu Dhabi",
+                "addressRegion": "Abu Dhabi",
+                "addressCountry": "AE"
+              },
+              "openingHours": "Mo-Su 12:00-03:00"
+            },
+            {
+              "@type": "CafeOrCoffeeShop",
+              "name": "Wahad Shay - Sharjah Branch",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Sharjah",
+                "addressRegion": "Sharjah",
+                "addressCountry": "AE"
+              },
+              "openingHours": "Mo-Su 12:00-00:00"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Critical Above-the-fold Assets Preload -->
     <link rel="preload" as="image" href="/logo_wahad.webp" type="image/webp" fetchpriority="high" />
     <link rel="preload" as="image" href="/mobile-poster.webp" type="image/webp" media="(max-width: 768px)" fetchpriority="high" />
     <link rel="preload" as="image" href="/home-poster.webp" type="image/webp" media="(min-width: 769px)" fetchpriority="high" />
 
-    <!-- Google Fonts: async, non-render-blocking -->
+    <!-- Google Fonts: async, non-render-blocking, optimized weights -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700&display=swap"
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700&display=swap"
       rel="stylesheet"
       media="print"
       onload="this.media='all'"
     />
     <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Alexandria:wght@400;600;700;800&family=Aref+Ruqaa:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
     </noscript>
 
     <!--

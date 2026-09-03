@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight, Check } from "lucide-react";
 import { useLanguage } from "../i18n/LanguageContext";
 
-export function Contact() {
+export function Contact({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   const { t, language } = useLanguage();
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
@@ -59,9 +59,15 @@ export function Contact() {
           <span className="typo-eyebrow text-plum block">
             {t('contact.badge')}
           </span>
-          <h2 className="typo-section-title text-text-primary">
-            <span className="text-shimmer">{t('contact.title')}</span>
-          </h2>
+          {isHomePage ? (
+            <h2 className="typo-section-title text-text-primary">
+              <span className="text-shimmer">{t('contact.title')}</span>
+            </h2>
+          ) : (
+            <h1 className="typo-section-title text-text-primary">
+              <span className="text-shimmer">{t('contact.title')}</span>
+            </h1>
+          )}
           <p className="typo-body text-text-secondary">
             {t('contact.subtitle')}
           </p>

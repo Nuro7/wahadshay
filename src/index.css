@@ -804,14 +804,3 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%235E2689' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.065'%3E%3Cpath d='M 20 28 C 20 18, 40 18, 40 28 Z M 18 32 C 18 30, 42 30, 42 32 M 20 36 C 20 40, 40 40, 40 36 Z'/%3E%3Cpath d='M 108 102 C 104 106, 110 112, 114 108 L 124 118 M 111 105 L 121 115'/%3E%3Cpath d='M 128 100 L 128 107 M 132 100 L 132 107 M 136 100 L 136 107 M 128 107 H 136 M 132 107 L 132 118'/%3E%3Cpath d='M 68 62 C 73 57, 87 57, 92 62 L 80 82 Z'/%3E%3Ccircle cx='76' cy='67' r='1.5' fill='%235E2689'/%3E%3Ccircle cx='82' cy='72' r='1.5' fill='%235E2689'/%3E%3C/g%3E%3Cg fill='none' stroke='%23F5BD20' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round' opacity='0.085'%3E%3Cpath d='M 105 28 C 105 40, 135 40, 135 28 Z M 102 28 H 138 M 114 22 C 114 18, 118 18, 118 14 M 122 22 C 122 18, 126 18, 126 14'/%3E%3Cpath d='M 18 108 C 23 118, 43 118, 43 104 C 43 96, 33 98, 25 106 M 39 101 C 41 96, 46 97, 46 97'/%3E%3Cpath d='M 70 142 H 90 L 88 154 H 72 Z M 90 144 C 94 144, 94 150, 90 150 M 76 136 V 139 M 80 136 V 139 M 84 136 V 139'/%3E%3C/g%3E%3C/svg%3E");
 }
 
-/* Luxury Calligraphic Handwriting Fonts */
-.font-signature {
-  font-family: 'Alex Brush', cursive;
-  font-style: normal;
-}
-
-.font-arabic-signature {
-  font-family: 'Aref Ruqaa', serif;
-  font-weight: 700;
-  font-style: normal;
-}

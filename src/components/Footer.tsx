@@ -93,7 +93,7 @@ export function Footer() {
                 . جميع الحقوق محفوظة.
                 <span className="mx-2 text-white/20">|</span>
                 تم التطوير بواسطة{' '}
-                <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
+                <a href="https://nuro7.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
                   nuro 7
                 </a>
               </>
@@ -106,7 +106,7 @@ export function Footer() {
                 . ALL RIGHTS RESERVED.
                 <span className="mx-2 text-white/20">|</span>
                 DEVELOPED BY{' '}
-                <a href="https://nuro7.com/" target="_blank" rel="noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
+                <a href="https://nuro7.com/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
                   NURO 7
                 </a>
               </>
@@ -115,13 +115,13 @@ export function Footer() {
 
           {/* Social Links (Centered) */}
           <div className="flex items-center justify-center gap-[24px] text-white/60 w-full mt-1">
-            <a href="https://www.instagram.com/wahadshay.ae/" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block" aria-label="Instagram">
+            <a href="https://www.instagram.com/wahadshay.ae/" target="_blank" rel="noopener noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block" aria-label="Instagram">
               <FaInstagram size={19} />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block" aria-label="X (formerly Twitter)">
               <FaXTwitter size={19} />
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-yellow hover:-translate-y-0.5 transition-all duration-300 block" aria-label="Facebook">
               <FaFacebook size={19} />
             </a>
           </div>

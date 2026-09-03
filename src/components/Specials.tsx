@@ -6,7 +6,7 @@ import specialItemImg from "../assets/hot_chicken.webp";
 import { useLanguage } from "../i18n/LanguageContext";
 import { Sparkles } from "lucide-react";
 
-export function Specials() {
+export function Specials({ isHomePage = false }: { isHomePage?: boolean } = {}) {
   const { t } = useLanguage();
 
   const specials = [
@@ -70,9 +70,15 @@ export function Specials() {
           <span className="typo-eyebrow text-plum block">
             {t('specials.weeklyHighlights')}
           </span>
-          <h2 className="typo-section-title text-text-primary mask-reveal">
-            <span className="text-shimmer">{t('specials.title')}</span>
-          </h2>
+          {isHomePage ? (
+            <h2 className="typo-section-title text-text-primary mask-reveal">
+              <span className="text-shimmer">{t('specials.title')}</span>
+            </h2>
+          ) : (
+            <h1 className="typo-section-title text-text-primary mask-reveal">
+              <span className="text-shimmer">{t('specials.title')}</span>
+            </h1>
+          )}
           <p className="typo-body text-text-secondary max-w-lg mx-auto">
             {t('specials.subtitle')}
           </p>
