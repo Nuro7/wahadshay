@@ -232,21 +232,21 @@ export const translations: any = {
           status: "open"
         },
         {
+          year: "SEPTEMBER 2026",
+          title: "Sharjah Branch",
+          branchName: "SHARJAH BRANCH",
+          desc: "More flavours, more memories. Now open in Sharjah.",
+          cardSubtitle: "Carrying our legacy to the cultural capital.",
+          cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
+          status: "open"
+        },
+        {
           year: "OPENING SOON",
           title: "Al Rawda Branch",
           branchName: "AL RAWDA BRANCH",
           desc: "A new destination is on the way.",
           cardSubtitle: "Expanding to new vibrant neighborhoods.",
           cardDesc: "Our upcoming Al Rawda branch is designed with luxurious warm interiors to create the perfect community sanctuary.",
-          status: "upcoming"
-        },
-        {
-          year: "OPENING SOON",
-          title: "Sharjah Branch",
-          branchName: "SHARJAH BRANCH",
-          desc: "More flavours, more memories. Coming soon to Sharjah.",
-          cardSubtitle: "Carrying our legacy to the cultural capital.",
-          cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
           status: "upcoming"
         }
       ],
@@ -803,21 +803,21 @@ export const translations: any = {
           status: "open"
         },
         {
+          year: "سبتمبر 2026",
+          title: "فرع الشارقة",
+          branchName: "فرع الشارقة",
+          desc: "مزيد من النكهات والذكريات. تم الافتتاح في الشارقة.",
+          cardSubtitle: "نحمل إرثنا إلى عاصمة الثقافة.",
+          cardDesc: "تقديم شاي الكرك المميز والشاي المختص والمخبوزات الحرفية إلى إمارة الشارقة.",
+          status: "open"
+        },
+        {
           year: "قريباً",
           title: "فرع الروضة",
           branchName: "فرع الروضة",
           desc: "وجهة جديدة في طريقها إليكم.",
           cardSubtitle: "التوسع إلى أحياء جديدة نابضة بالحياة.",
           cardDesc: "فرع الروضة القادم مصمم بديكورات داخلية دافئة وفاخرة ليكون الملاذ المثالي لروادنا.",
-          status: "upcoming"
-        },
-        {
-          year: "قريباً",
-          title: "فرع الشارقة",
-          branchName: "فرع الشارقة",
-          desc: "مزيد من النكهات والذكريات. قريباً في الشارقة.",
-          cardSubtitle: "نحمل إرثنا إلى عاصمة الثقافة.",
-          cardDesc: "تقديم شاي الكرك المميز والشاي المختص والمخبوزات الحرفية إلى إمارة الشارقة.",
           status: "upcoming"
         }
       ],

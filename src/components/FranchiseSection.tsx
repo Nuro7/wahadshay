@@ -60,7 +60,7 @@ const branches: Branch[] = [
     name: "Muwaileh",
     city: "Sharjah",
     area: "Muwaileh",
-    status: "Coming Soon",
+    status: "Open",
     mapLink: "https://www.google.com/maps/search/CHUNKIES%2F%20Kader%20Abdul%20Kader%20Cafe/@25.310611724853516,55.450016021728516,17z?hl=en",
     x: "58%",
     y: "55%",

@@ -43,21 +43,21 @@ const defaultTimelineData: Milestone[] = [
     status: "open"
   },
   {
+    year: "SEPTEMBER 2026",
+    title: "Sharjah Branch",
+    branchName: "SHARJAH BRANCH",
+    desc: "More flavours, more memories. Now open in Sharjah.",
+    cardSubtitle: "Carrying our legacy to the cultural capital.",
+    cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
+    status: "open"
+  },
+  {
     year: "OPENING SOON",
     title: "Al Rawda Branch",
     branchName: "AL RAWDA BRANCH",
     desc: "A new destination is on the way.",
     cardSubtitle: "Expanding to new vibrant neighborhoods.",
     cardDesc: "Our upcoming Al Rawda branch is designed with luxurious warm interiors to create the perfect community sanctuary.",
-    status: "upcoming"
-  },
-  {
-    year: "OPENING SOON",
-    title: "Sharjah Branch",
-    branchName: "SHARJAH BRANCH",
-    desc: "More flavours, more memories. Coming soon to Sharjah.",
-    cardSubtitle: "Carrying our legacy to the cultural capital.",
-    cardDesc: "Bringing Wahad Shay's signature karak, specialty teas, and artisanal baked delicacies to Sharjah.",
     status: "upcoming"
   }
 ];
@@ -347,8 +347,8 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                   {/* Solid Gold Wave for Open branches */}
                   <path
                     d={language === 'AR'
-                      ? "M 800,20 Q 700,5 600,20 T 400,20"
-                      : "M 0,20 Q 100,5 200,20 T 400,20"}
+                      ? "M 800,20 Q 700,5 600,20 T 400,20 T 200,20"
+                      : "M 0,20 Q 100,5 200,20 T 400,20 T 600,20"}
                     fill="none"
                     stroke="#F5BD20"
                     strokeWidth="2.5"
@@ -357,8 +357,8 @@ export function About({ isHomePage = false }: { isHomePage?: boolean }) {
                   {/* Dashed Gold Wave for Upcoming branches */}
                   <path
                     d={language === 'AR'
-                      ? "M 400,20 Q 300,5 200,20 T 0,20"
-                      : "M 400,20 Q 500,5 600,20 T 800,20"}
+                      ? "M 200,20 Q 100,35 0,20"
+                      : "M 600,20 Q 700,35 800,20"}
                     fill="none"
                     stroke="#F5BD20"
                     strokeWidth="2"
