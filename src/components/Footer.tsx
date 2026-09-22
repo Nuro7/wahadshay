@@ -93,7 +93,7 @@ export function Footer() {
                 . جميع الحقوق محفوظة.
                 <span className="mx-2 text-white/20">|</span>
                 تم التطوير بواسطة{' '}
-                <a href="tel:+919446617877" className="text-white hover:text-yellow transition-colors font-semibold">
+                <a href="https://wa.me/919446617877?text=Hello%20Nuro7!%20I%20am%20reaching%20out%20from%20the%20Wahad%20Shay%20website." target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
                   nuro 7
                 </a>
               </>
@@ -106,7 +106,7 @@ export function Footer() {
                 . ALL RIGHTS RESERVED.
                 <span className="mx-2 text-white/20">|</span>
                 DEVELOPED BY{' '}
-                <a href="tel:+919446617877" className="text-white hover:text-yellow transition-colors font-semibold">
+                <a href="https://wa.me/919446617877?text=Hello%20Nuro7!%20I%20am%20reaching%20out%20from%20the%20Wahad%20Shay%20website." target="_blank" rel="noopener noreferrer" className="text-white hover:text-yellow transition-colors font-semibold">
                   NURO 7
                 </a>
               </>

@@ -5,7 +5,7 @@ export interface SEOProps {
   page: "home" | "about" | "specials" | "franchise" | "gallery" | "contact" | "404";
 }
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://wahad-shay.vercel.app").replace(/\/$/, "");
+const SITE_URL = (import.meta.env.VITE_SITE_URL || "https://wahadshaycafe.com").replace(/\/$/, "");
 
 const pageMeta: Record<string, {
   path: string;
@@ -77,6 +77,10 @@ export function SEO({ page }: SEOProps) {
   useEffect(() => {
     // 1. Update Document Title
     document.title = title;
+
+    // 1.5 Update HTML Lang and Dir attributes for SEO
+    document.documentElement.lang = isArabic ? "ar" : "en";
+    document.documentElement.dir = isArabic ? "rtl" : "ltr";
 
     // Helper to safely set meta tag content
     const setMeta = (attrName: string, attrVal: string, content: string) => {

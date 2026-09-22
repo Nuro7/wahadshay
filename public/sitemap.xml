@@ -3,62 +3,62 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <!-- Homepage -->
   <url>
-    <loc>https://wahad-shay.vercel.app/</loc>
+    <loc>https://wahadshaycafe.com/</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://wahad-shay.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wahadshaycafe.com/" />
   </url>
 
   <!-- About Us -->
   <url>
-    <loc>https://wahad-shay.vercel.app/about</loc>
+    <loc>https://wahadshaycafe.com/about</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/about" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/about" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/about" />
   </url>
 
   <!-- Specials & Menu -->
   <url>
-    <loc>https://wahad-shay.vercel.app/specials</loc>
+    <loc>https://wahadshaycafe.com/specials</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/specials" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/specials" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/specials" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/specials" />
   </url>
 
   <!-- Franchise Opportunities -->
   <url>
-    <loc>https://wahad-shay.vercel.app/franchise</loc>
+    <loc>https://wahadshaycafe.com/franchise</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/franchise" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/franchise" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/franchise" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/franchise" />
   </url>
 
   <!-- Visual Journal & Gallery -->
   <url>
-    <loc>https://wahad-shay.vercel.app/gallery</loc>
+    <loc>https://wahadshaycafe.com/gallery</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/gallery" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/gallery" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/gallery" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/gallery" />
   </url>
 
   <!-- Contact & Branches -->
   <url>
-    <loc>https://wahad-shay.vercel.app/contact</loc>
+    <loc>https://wahadshaycafe.com/contact</loc>
     <lastmod>2026-09-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://wahad-shay.vercel.app/contact" />
-    <xhtml:link rel="alternate" hreflang="ar" href="https://wahad-shay.vercel.app/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://wahadshaycafe.com/contact" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://wahadshaycafe.com/contact" />
   </url>
 </urlset>
